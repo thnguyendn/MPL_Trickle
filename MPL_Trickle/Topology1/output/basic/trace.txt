@@ -1,0 +1,61 @@
+TRACE NUMBER 1
+	fired transition cp0:cp_init
+	fired transition cp0:cp_init
+	fired transition cp0:cp_init
+	fired transition cp0:cp_init
+	fired transition initialstate:o_startup
+	fired transition cp0_init:cp_init
+	OUTPUT n2:Log(INIT)
+	fired transition cp0_init:cp_init
+	OUTPUT n3:Log(INIT)
+	fired transition cp1:cp_sendCM
+	output n3:ControlMsg([ 0 , 0 ])
+	fired transition cp0_init:cp_init
+	OUTPUT n1:Log(INIT)
+	fired transition cp1:cp1_receiveCM_inconsistent
+	input  n1:ControlMsg([ 0 , 0 ])
+	fired transition cp1:cp1_receiveCM_consistent
+	input  n2:ControlMsg([ 0 , 0 ])
+	fired transition cp0_init:cp_init
+	OUTPUT n4:Log(INIT)
+	fired transition cp1:cp1_receiveCM_consistent
+	input  n4:ControlMsg([ 0 , 0 ])
+	fired transition cp1:cp_sendCM
+	output n1:ControlMsg([ 1 , 1 ])
+	fired transition cp1:cp1_receiveCM_inconsistent
+	input  n2:ControlMsg([ 1 , 1 ])
+	fired transition cp2:cp2_receiveCM_inconsistent
+	input  n3:ControlMsg([ 1 , 1 ])
+	fired transition dp0:dp_init
+	fired transition dp1:dp_sendDM
+	output n1:DataMsg({ 1 , FRAGMENT_0 , 0 })
+	fired transition dp0:dp_init
+	fired transition dp1:dp_sendDM
+	output n1:DataMsg({ 2 , FRAGMENT_1 , 1 })
+	fired transition dp0:dp_init
+	fired transition dp1:dp1_receiveDM_consistent
+	input  n2:DataMsg({ 1 , FRAGMENT_0 , 0 })
+	fired transition dp0:dp_init
+	fired transition dp1:dp1_receiveDM_consistent
+	input  n3:DataMsg({ 1 , FRAGMENT_0 , 0 })
+	fired transition dp0:dp_init
+	fired transition dp1:dp1_receiveDM_consistent
+	input  n2:DataMsg({ 2 , FRAGMENT_1 , 1 })
+	fired transition dp0:dp_init
+	fired transition dp1:dp1_receiveDM_consistent
+	input  n3:DataMsg({ 2 , FRAGMENT_1 , 1 })
+	fired transition cp1:cp_sendCM
+	output n3:ControlMsg([ 1 , 1 ])
+	fired transition cp1:cp1_receiveCM_inconsistent
+	input  n4:ControlMsg([ 1 , 1 ])
+	fired transition dp0:dp_init
+	fired transition dp0:dp_init
+	fired transition dp1:dp_sendDM
+	output n3:DataMsg({ 2 , FRAGMENT_1 , 1 })
+	fired transition dp1:dp1_receiveDM_consistent
+	input  n4:DataMsg({ 2 , FRAGMENT_1 , 1 })
+	fired transition dp1:dp_sendDM
+	output n3:DataMsg({ 1 , FRAGMENT_0 , 0 })
+	fired transition dp1:dp1_receiveDM_inconsistent
+	input  n4:DataMsg({ 1 , FRAGMENT_0 , 0 })
+
