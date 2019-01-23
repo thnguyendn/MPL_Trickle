@@ -32,7 +32,7 @@ In my case, this would be :
 And the next step is juste waiting for the execution finishing.
 At the end of execution, you should see a succesful message as below.
 
-![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/Commande.png)
+![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/Result.png)
 
 
 To use PlantUML, we propose to execute PlantUML directly on a Windows or Linux plateform from the file plantuml.jar in the directory /plantuml of the downloaded sources.
