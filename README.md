@@ -56,7 +56,7 @@ First, you execute PlantUML directly on a Windows or Linux plateform from the fi
 
 Last step consists of clicking on the button "Change Directory", then going to the directory which stores your result which could be readable by PlantUML. This file is stored at the location /MPL_Trickle/Topology1/output/basic/symbex_sequence.txt.
 
-By default, PlantUML generates the graphical result with the extension .png. You can also generate also other formats as .svg, .pdf, ...
+By default, PlantUML generates the graphical result with the extension .png. You can also generate also other formats as .svg, .pdf,... In this example, we chose to generate a .svg extension file (/MPL_Trickle/Topology1/output/basic/symbex_sequence.svg)
 
 
 ## Contributing
