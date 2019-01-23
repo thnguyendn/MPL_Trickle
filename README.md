@@ -13,6 +13,10 @@ PlantUML is used to give a visualization of our result under the form of sequenc
 
 For this, you need to download PlantUML here : http://plantuml.com/download
 
+Then choose "PlantUML compiled Jar (Version 1.2019.0)"
+
+To use PlantUML to visualize, we propose to execute PlantUML directly on a Windows or Linux plateform from the file plantuml.jar in the directory /plantuml of the downloaded sources.
+
 
 ### Installing
 
