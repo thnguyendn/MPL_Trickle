@@ -3,8 +3,8 @@
 This directory contains sources for our submitted paper for VVIOT2019.
 
 Among these files, there is :
-- A .xlia extension(stands for eXecutable Language for Interaction & Assemblage) file (MPL_modeling_T1.xlia) for modeling a node and interactions between all nodes in topology T1
-- A workflow file (workflow_Update_All_Nodes.sew) for executing our heuristics to cover the sequence SEQ1 + FOR1 detailed in the paper. This objective coverage finishes when all nodes in the topology are updated
+- A .xlia extension(stands for eXecutable Language for Interaction & Assemblage) file (**MPL_modeling_T1.xlia**) for modeling a node and interactions between all nodes in topology T1
+- A workflow file (**workflow_Update_All_Nodes.sew**) for executing our heuristics to cover the sequence SEQ1 + FOR1 detailed in the paper. This objective coverage finishes when all nodes in the topology are updated
 
 
 ## Getting Started
@@ -42,11 +42,11 @@ In my case, this would be :
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/Commande.png)
 
 And the next step is juste waiting for the execution finishing.
-At the end of execution, you should see a succesful message as below with a resume of all covered elements.
+At the end of execution, you will see a succesful message as below with a resume of all covered elements.
 
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/Result.png)
 
-Once the execution finished, the generated result are found at the directory /MPL_Trickle/Topology1/output.
+Once the execution finished, the generated result are found at the directory **/MPL_Trickle/Topology1/output**.
 
 With PlantUML, we can visualize our result as follows:
 
@@ -54,9 +54,9 @@ First, you execute PlantUML directly on a Windows or Linux plateform from the fi
 
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/PlantUML.png)
 
-Last step consists of clicking on the button "Change Directory", then going to the directory which stores your result which could be readable by PlantUML. This file is stored at the location /MPL_Trickle/Topology1/output/basic/symbex_sequence.txt.
+Last step consists of clicking on the button "Change Directory", then going to the directory which stores your result which could be readable by PlantUML. This file is stored at the location **/MPL_Trickle/Topology1/output/basic/symbex_sequence.txt**.
 
-By default, PlantUML generates the graphical result with the extension .png. You can also generate also other formats as .svg, .pdf,... In this example, we chose to generate a .svg extension file (/MPL_Trickle/Topology1/output/basic/symbex_sequence.svg)
+By default, PlantUML generates the graphical result with the extension .png. You can also generate also other formats as .svg, .pdf,... In this example, we chose to generate a .svg extension file (**/MPL_Trickle/Topology1/output/basic/symbex_sequence.svg**)
 
 
 ## Contributing
