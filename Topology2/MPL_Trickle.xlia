@@ -1,0 +1,571 @@
+@xlia< system , 1.0 >:
+
+system< and > Trickle {
+@private:
+	const int BUFF_SIZE = 2;
+	
+	type FRAGMENT enum { UNDEF_FRAGMENT, FRAGMENT_0 , FRAGMENT_1 }
+	
+	type INFO_KIND enum { INIT , TERMINE }
+  	
+	type DATA_MESSAGE struct {
+		var integer seq;
+		var FRAGMENT fragment;
+		var integer offset;
+	}
+	
+@machine:
+
+	lifeline model timed statemachine< and > Node {
+		
+		@parameter:
+			input var DATA_MESSAGE[BUFF_SIZE] my_buff;
+				
+    		input var FRAGMENT[BUFF_SIZE] firmware;
+    		
+            input var int[BUFF_SIZE] myseq_buff;
+            
+            input var bool[BUFF_SIZE] mydp_run;
+		
+	  	@public:
+	  		buffer fifo<*> bufferNode;
+  		
+		    port output Log( INFO_KIND information );
+		    port inout ControlMsg( int[BUFF_SIZE] seqBuff, time< pos_rational > emit_time );
+		    port inout DataMsg( DATA_MESSAGE dataMessage, time< pos_rational > emit_time );
+		
+		    var bool coverageProp = false;
+	    	const int CTRL_EXPIR = 2;
+	    	const int DATA_EXPIR = 2;
+	    	const int MIN_SEQ = 1;
+		    
+	  	@private:
+            var int[BUFF_SIZE] seq_buff;
+		  	var uinteger i;
+            
+			// INSTRUMENTATION
+			var clock pos_rational localTime = 0;
+			
+			var boolean localPC = true;
+			var boolean localPtC = true;
+            var int new_seq_buff;
+            var int new_seq;
+            var FRAGMENT new_fragment;
+            var int new_offset;
+  	
+  			var time< pos_rational > timeEmit;
+  	 	 	
+		@macro:
+		 	// macro for timed guard
+		 	macro routine Tguard( boolean localTimeCondition ) {
+//		 		tguard( localTimeCondition );
+		 		
+		 		localPtC = localPtC && localTimeCondition;
+		 	}
+		 
+		  	// macro for data guard
+		 	macro routine Dguard( boolean localDataCondition ) {
+		 		guard( localDataCondition );
+		 		
+		 		localPC = localPC && localDataCondition;
+		 	}
+            
+	@composite:
+  		statemachine< or > ControlProcess {
+		    
+  		@private:
+	        var uinteger k;
+		  	var uinteger c;
+		  	var uinteger e;
+		  	var urational tau;
+		  	var urational tau_l;
+		  	var urational tau_h;
+		  	var uinteger i;
+	    	var urational t;
+            var boolean consistent;
+            
+			var clock pos_rational cl;
+			
+		@macro:
+			routine doubleTau() {
+				if ( 2*tau <= tau_h ){
+					tau := 2*tau;
+				}
+				elseif ( 2*tau > tau_h ){
+					tau := tau_h;
+				}
+			}
+			routine analyse_seq() {
+		      	Dguard( e < CTRL_EXPIR );
+		      	input ControlMsg( seq_buff, timeEmit );
+	
+				Tguard( timeEmit <= localTime );
+		      	consistent := true;
+		      	
+				for( i = 0 ; i < BUFF_SIZE ; i++ ) {
+					if ( myseq_buff[i] != seq_buff[i] ){
+						consistent := false;
+						if ( not mydp_run[i] ){
+							mydp_run[i] := true;
+						}
+					}
+				}
+			}
+			routine analyse_cp1_consistent() {
+		      	Tguard( cl < t );
+		      	
+		      	analyse_seq();
+		      	
+				guard( consistent );
+				c++;
+			}
+			routine analyse_cp1_inconsistent() {
+		      	Tguard( cl < t );
+		      	
+		      	analyse_seq();
+		      	
+				guard( ! consistent );
+				tau := tau_l;
+				newfresh(t);
+				Dguard( tau/2 <= t < tau );
+	      		cl := 0;
+	      		c := 0;
+	      		e := 0;
+//	      		e++;
+			}
+			routine analyse_cp2_consistent() {
+		      	Tguard( cl < tau );
+		      	
+				analyse_seq();
+				
+				guard( consistent );
+				c++;
+			}
+			routine analyse_cp2_inconsistent() {
+		      	Tguard( cl < tau );
+		      	
+				analyse_seq();
+				
+				guard( ! consistent );
+				tau := tau_l;
+				newfresh(t);
+				Dguard( tau/2 <= t < tau );
+	      		cl := 0;
+	      		c := 0;
+	      		e := 0;
+//	      		e++;
+			}
+                
+		@region:
+		    state<initial> cp0 {
+		      	transition cp_init --> cp0_init {
+		    		k := 2;
+		      		c := 0;
+		      		e := 0;
+		      		tau_l := 4;
+		      		tau_h := 8;
+		      		tau := tau_l;
+//					newfresh(t);
+//					Dguard( tau/2 <= t < tau );
+//					output Log( INIT );
+//		      		cl := 0;
+//		      		mydp_run := false;
+		      	}
+		    }
+		    state cp0_init {
+		      	transition cp_init --> cp1 {
+					newfresh(t);
+					Dguard( tau/2 <= t < tau );
+					output Log( INIT );
+		      		cl := 0;
+		      		mydp_run := false;
+		      	}
+		    }
+		    state cp1 {
+		      	transition cp_sendCM --> cp2 {
+			      	Tguard( cl == t );
+			      	Dguard( c < k && e < CTRL_EXPIR );
+					output ControlMsg( myseq_buff, localTime );
+		      	}
+		      	transition cp1_receiveCM_consistent --> cp1 {
+			      	analyse_cp1_consistent();
+		      	}
+		      	transition cp1_receiveCM_inconsistent --> cp1 {
+			      	analyse_cp1_inconsistent();
+		      	}
+		      	transition cp_CTRL_EXPIR --> cp3 {
+			      	Dguard( e == CTRL_EXPIR );
+			      	output Log(TERMINE);
+		      	}
+		      	transition cp1_reach_k --> cp2 {
+			      	Tguard( cl == t );
+			      	Dguard( c >= k && e < CTRL_EXPIR );
+		      	}
+	      	}
+		    state cp2 {
+		      	transition cp_resetTau --> cp1 {
+			      	Tguard( cl > t && cl == tau );
+			      	Dguard( e < CTRL_EXPIR );
+			      	doubleTau();
+					newfresh(t);
+					Dguard( tau/2 <= t < tau );
+					e++;
+					cl := 0;
+		      	}
+		      	transition cp2_receiveCM_consistent --> cp2 {
+			      	analyse_cp2_consistent();
+		      	}
+		      	transition cp2_receiveCM_inconsistent --> cp1 {
+			      	analyse_cp2_inconsistent();
+		      	}
+	      	}
+		    
+		    state <final> cp3 {
+		    	
+		    }
+	    }
+
+
+		model statemachine< or > DataProcess {
+			
+		@parameter:
+			input var int mySeq;
+		
+        @private:
+	        var uinteger k;
+		  	var uinteger c;
+		  	var uinteger e;
+		  	var urational tau;
+		  	var urational tau_l;
+		  	var urational tau_h;
+		  	var uinteger i;
+	    	var urational t;
+            var boolean consistent;
+            
+			var clock pos_rational cl;
+            var DATA_MESSAGE d;
+                
+		@macro:
+			routine doubleTau() {
+				if ( 2*tau <= tau_h ){
+					tau := 2*tau;
+				}
+				elseif ( 2*tau > tau_h ){
+					tau := tau_h;
+				}
+			}
+			routine analyse_data() {
+		      	Dguard( e < DATA_EXPIR );
+		      	input DataMsg( d, timeEmit );
+		      	
+				Tguard( timeEmit <= localTime );
+				
+		      	consistent := true;
+		      	
+				// La version de mon packet est plus rÃƒÂ©cente => j'envoie mon packet
+				if ( mySeq == d.seq ){
+					my_buff[d.seq - MIN_SEQ] := d;
+					myseq_buff[d.seq - MIN_SEQ] := 1;
+					firmware[d.offset] := d.fragment;
+				}
+				// La version de mon packet est plus ancienne
+				else {
+		      		consistent := false;
+		      	}
+			}
+			routine analyse_dp1_consistent() {
+		      	Tguard( cl < t );
+		      	
+		      	analyse_data();
+		      	
+				guard( consistent );
+				c++;
+			}
+			routine analyse_dp1_inconsistent() {
+		      	Tguard( cl < t );
+		      	
+		      	analyse_data();
+				
+				guard( ! consistent );
+				tau := tau_l;
+				newfresh(t);
+				Dguard( tau/2 <= t < tau );
+	      		cl := 0;
+	      		c := 0;
+	      		e := 0;
+//	      		e++;
+			}
+			routine analyse_dp2_consistent() {
+		      	Tguard( cl < tau );
+		      	
+		      	analyse_data();
+		      	
+				guard( consistent );
+				c++;
+			}
+			routine analyse_dp2_inconsistent() {
+		      	Tguard( cl < tau );
+		      	
+				analyse_data();
+				
+				guard( ! consistent );
+				tau := tau_l;
+				newfresh(t);
+				Dguard( tau/2 <= t < tau );
+	      		cl := 0;
+	      		c := 0;
+	      		e := 0;
+//	      		e++;
+			}
+                
+		@region:
+			state <start> dp0 {
+				transition dp_init --> dp1 {
+		    		k := 2;
+		      		c := 0;
+		      		e := 0;
+		      		tau_l := 4;
+		      		tau_h := 8;
+		      		tau := tau_l;
+					newfresh(t);
+					Dguard( tau/2 <= t < tau );
+					
+					guard( mydp_run[mySeq - MIN_SEQ] );
+					
+		      		cl := 0;
+		      	}
+			}
+		    state dp1 {
+				transition dp_sendDM --> dp2 {
+					Tguard( cl == t );
+					Dguard( c < k && e < DATA_EXPIR && 
+					my_buff[mySeq - MIN_SEQ].fragment != UNDEF_FRAGMENT );
+					output DataMsg( my_buff[mySeq - MIN_SEQ], localTime );
+		      	}
+				transition dp1_receiveDM_consistent --> dp1 {
+			      	analyse_dp1_consistent();
+		      	}
+				transition dp1_receiveDM_inconsistent --> dp1 {
+			      	analyse_dp1_inconsistent();
+		      	}
+				transition dp_DATA_EXPIR --> dp3 {
+			      	Dguard( e == DATA_EXPIR );
+//			      	output Log(TERMINE);
+		      	}
+		      	transition dp1_reach_k --> dp2 {
+			      	Tguard( cl == t );
+			      	Dguard( c >= k && e < DATA_EXPIR && my_buff[mySeq - MIN_SEQ].fragment == UNDEF_FRAGMENT );
+		      	}
+		    }
+		    state dp2 {
+				transition dp_resetTau --> dp1 {
+			      	Tguard( cl > t && cl == tau );
+			      	Dguard( e < DATA_EXPIR );
+			      	doubleTau();
+					newfresh(t);
+					Dguard( tau/2 <= t < tau );
+		      		e++;
+		      		cl := 0;
+		      	}
+		      	transition dp2_receiveDM_consistent --> dp2 {
+			      	analyse_dp2_consistent();
+		      	}
+				transition dp2_receiveDM_inconsistent --> dp1 {
+			      	analyse_dp2_inconsistent();
+		      	}
+		    }
+		    
+		    state <final> dp3 {
+		    	
+		    }
+		}
+		
+	instance< DataProcess > DataProcess1
+	{
+		mySeq := 1;
+	}
+		
+	instance< DataProcess > DataProcess2
+	{
+		mySeq := 2;
+	}
+		
+	@moe:
+		@schedule{ |i|
+			run ControlProcess;
+			run DataProcess1;
+			run DataProcess2;
+		}
+		
+		@irun{
+	 		Tguard( $delta>0 );
+ 		}
+	 		
+		@run{
+			schedule;
+			coverageProp = ( myseq_buff[0]==1 && myseq_buff[1]==1 );
+		}
+	}
+
+
+	lifeline timed statemachine< and > Observer {
+		
+	  	@public:
+		    
+	  	@private:
+			var clock pos_rational cl_o; // Observer's clock
+    		
+		@region:
+
+	    state<initial> initialstate {
+	    	transition o_startup --> o0 {
+				cl_o := 0;
+	      	}
+	    }
+	    state o0 {
+	      	transition u_receive_packet_from_internal --> OK {
+	      		guard(
+	      			   spec::Trickle.n1.coverageProp
+	      			&& spec::Trickle.n2.coverageProp
+	      			&& spec::Trickle.n3.coverageProp
+	      			&& spec::Trickle.n4.coverageProp
+	      		);
+	      		exit("OK");
+	      	}
+	    }
+	    state< final > OK {
+	    	
+	    }
+	}
+
+	instance< Node > n1
+	{
+		my_buff = 
+			{
+				{1, FRAGMENT_0, 0}, {2, FRAGMENT_1, 1}
+			};
+			
+		firmware = 
+			{
+				FRAGMENT_0, UNDEF_FRAGMENT
+			};
+			
+		myseq_buff = 1;
+		mydp_run = true;
+	}
+	
+	instance< Node > n2
+	{
+		my_buff = 
+			{
+				{0, UNDEF_FRAGMENT, 0}, {0, UNDEF_FRAGMENT, 1}
+			};
+			
+		firmware = 
+			{
+				UNDEF_FRAGMENT, UNDEF_FRAGMENT
+			};
+			
+  		myseq_buff := 0;
+		mydp_run = false;
+	}
+	
+	instance< Node > n3
+	{
+		my_buff = 
+			{
+				{0, UNDEF_FRAGMENT, 0}, {0, UNDEF_FRAGMENT, 1}
+			};
+			
+		firmware = 
+			{
+				UNDEF_FRAGMENT, UNDEF_FRAGMENT
+			};
+			
+  		myseq_buff := 0;
+		mydp_run = false;
+	}
+	
+	instance< Node > n4
+	{
+		my_buff = 
+			{
+				{0, UNDEF_FRAGMENT, 0}, {0, UNDEF_FRAGMENT, 1}
+			};
+			
+		firmware = 
+			{
+				UNDEF_FRAGMENT, UNDEF_FRAGMENT
+			};
+			
+  		myseq_buff := 0;
+		mydp_run = false;
+	}
+
+
+//@moe:	
+//	@schedule { |;|
+//		{|i|
+//			run n3;
+//			run n1;
+//			run n2;
+//			run n4;
+//		}
+//	}
+	
+@com:
+	connect< env >{
+		output n1->Log;
+		output n2->Log;
+		output n3->Log;
+		output n4->Log;
+	}
+  	/* Node1 */
+  	connect< multicast >{
+  		output n1->ControlMsg;
+  		
+		input< buffer< n2.bufferNode > > n2->ControlMsg;
+    	input< buffer< n3.bufferNode > > n3->ControlMsg;
+	}
+	connect< multicast >{
+    	output n1->DataMsg;
+    
+	    input< buffer< n2.bufferNode > > n2->DataMsg;
+	    input< buffer< n3.bufferNode > > n3->DataMsg;
+    }
+  	/* Node2 */
+  	connect< multicast >{
+    	output n2->ControlMsg;
+    
+    	input< buffer< n3.bufferNode > > n3->ControlMsg;
+  	}
+  	connect< multicast >{
+    	output n2->DataMsg;
+    
+    	input< buffer< n3.bufferNode > > n3->DataMsg;
+  	}
+  	/* Node3 */
+  	connect< multicast >{
+    	output n3->ControlMsg;
+    
+	    input< buffer< n1.bufferNode > > n1->ControlMsg;
+	    input< buffer< n4.bufferNode > > n4->ControlMsg;
+  	}
+  	connect< multicast >{
+	    output n3->DataMsg;
+	    
+	    input< buffer< n1.bufferNode > > n1->DataMsg;
+	    input< buffer< n4.bufferNode > > n4->DataMsg;
+  	}
+  	/* Node4 */
+  	connect< multicast >{
+    	output n4->ControlMsg;
+    
+	    input< buffer< n2.bufferNode > > n2->ControlMsg;
+  	}
+  	connect< multicast >{
+	    output n4->DataMsg;
+	    
+	    input< buffer< n2.bufferNode > > n2->DataMsg;
+  	}
+}
