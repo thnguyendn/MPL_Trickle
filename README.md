@@ -29,11 +29,11 @@ First, you execute this command in your console (Ubuntu plateform)
 In my case, this would be : 
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/Commande.png)
 
-And repeat
+And the next step is juste waiting for the execution finishing.
+At the end of execution, you should see a succesful message as below.
 
-```
-until finished
-```
+![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/Commande.png)
+
 
 To use PlantUML, we propose to execute PlantUML directly on a Windows or Linux plateform from the file plantuml.jar in the directory /plantuml of the downloaded sources.
 
