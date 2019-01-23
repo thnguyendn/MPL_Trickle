@@ -69,6 +69,7 @@ Please visit https://projects.eclipse.org/proposals/eclipse-formal-modeling-proj
 * **Ngo Minh Thang Nguyen** (ngo-minh-thang.nguyen@cea.fr)
 * **Boutheïna Bannour** (boutheina.bannour@cea.fr)
 * **Arnault Lapitre** (arnault.lapitre@cea.fr)
+* **Pascale Le Gall** (pascale.legall@centralesupelec.fr)
 
 ## License
 
