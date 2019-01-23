@@ -3,7 +3,7 @@
 This directory contains sources for our submitted paper for VVIOT2019.
 
 Among these files, there is :
-- A .xlia (stands for eXecutable Language for Interaction & Assemblage) extension file (MPL_modeling_T1.xlia) for modeling a node and interactions between all nodes in topology T1
+- A .xlia extension(stands for eXecutable Language for Interaction & Assemblage) file (MPL_modeling_T1.xlia) for modeling a node and interactions between all nodes in topology T1
 - A workflow file (workflow_Update_All_Nodes.sew) for executing our heuristics to cover the sequence SEQ1 + FOR1 detailed in the paper. This objective coverage finishes when all nodes in the topology are updated
 
 
