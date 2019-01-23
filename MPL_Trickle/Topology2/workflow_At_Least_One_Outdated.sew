@@ -5,7 +5,7 @@
 // CEA - LIST
 workflow {
 	workspace [
-		root   = "/home/thang/Dropbox/Implementation_Diversity/Diversity_workspace/MPL_Trickle/Topology2"
+		root   = "Your_absolute_path_to_directory_Topology2"
 		output = "output"
 		log    = "log"
 		debug  = "debug"
