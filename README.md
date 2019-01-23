@@ -9,18 +9,17 @@ It contains :
 
 ## Getting Started
 
-PlantUML is used to give a visualization of our result under the form of sequence diagram. 
+PlantUML is used to give a way to visualize our result under the form of sequence diagram. 
 
 For this, you need to download PlantUML here : http://plantuml.com/download
 
-Then choose "PlantUML compiled Jar (Version 1.2019.0)"
+Then choose "PlantUML compiled Jar (Version 1.2019.0)" and wait for the download finishing (you should accept the security message appeared as the downloaded file is a .jar extension)
 
-To use PlantUML to visualize, we propose to execute PlantUML directly on a Windows or Linux plateform from the file plantuml.jar in the directory /plantuml of the downloaded sources.
-
+To use PlantUML, you just need to double-click on the donwloaded file.
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+A following serie of steps tells you how to execute a workflow and use PlantUML to visualize our result.
 
 Say what the step will be
 
@@ -34,7 +33,7 @@ And repeat
 until finished
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+To use PlantUML, we propose to execute PlantUML directly on a Windows or Linux plateform from the file plantuml.jar in the directory /plantuml of the downloaded sources.
 
 After executing the workflow, we obtain the result of symbolic execution. An illustration for this result is found in the file /output/basic/symbex_sequence.txt.
 
