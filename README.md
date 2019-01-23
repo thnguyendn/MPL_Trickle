@@ -21,11 +21,13 @@ To use PlantUML, you just need to double-click on the donwloaded file.
 
 A following serie of steps tells you how to execute a workflow and use PlantUML to visualize our result.
 
-Say what the step will be
+First, you execute this command in your console (Ubuntu plateform)
 
 ```
-Give the example
+./avm.exe /your_Absolute_Path_To_the_Workflow_File
 ```
+In my case, this would be : 
+![alt text](http://url/to/img.png)
 
 And repeat
 
