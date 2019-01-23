@@ -27,7 +27,7 @@ First, you execute this command in your console (Ubuntu plateform)
 ./avm.exe /your_Absolute_Path_To_the_Workflow_File
 ```
 In my case, this would be : 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/Commande.png)
 
 And repeat
 
