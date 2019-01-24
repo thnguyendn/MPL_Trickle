@@ -59,24 +59,24 @@ The last step consists of clicking on the button "Change Directory", then going 
 By default, PlantUML generates the graphical result with the extension .png. You can also generate also other formats as .svg, .pdf,... In this example, we chose to generate a .svg extension file (**/MPL_Trickle/Topology1/output/basic/symbex_sequence.svg**)
 
 
-### Differences between theorical models and experimentation
+<!---## Differences between theorical models and experimentation--->
 
-#* **Time instrumentation**
-#In models experimented here, we instrumented the code in order to construct the guards on causal communications of the couple output/input action **(p!m @Z1)/(p?m @Z2)** where **p** and **m** are respectively the port and the message and **Z1** and **Z2** are the timestamp of emission and reception. For that, we create a parameter that is emitted and received by the port and this parameter denotes the timestamp of emission for an output and the timestamp of reception for an input.
+<!---* **Time instrumentation**
+In models experimented here, we instrumented the code in order to construct the guards on causal communications of the couple output/input action **(p!m @Z1)/(p?m @Z2)** where **p** and **m** are respectively the port and the message and **Z1** and **Z2** are the timestamp of emission and reception. For that, we create a parameter that is emitted and received by the port and this parameter denotes the timestamp of emission for an output and the timestamp of reception for an input.--->
 
-#This instrumentation is presented in the following declaration of a couple of (output/input). In the workflow file:
+<!---This instrumentation is presented in the following declaration of a couple of (output/input). In the workflow file:--->
 
-#At line 188 , we have the declaration for output.
+<!---At line 188 , we have the declaration for output.--->
 
-#![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/output.png)
+<!---![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/output.png)--->
 
-#At line 100, we have the declaration for corresponding input.
+<!---At line 100, we have the declaration for corresponding input.--->
 
-#![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/input.png)
+<!---![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/input.png)--->
 
-#Where **localTime** and **timeEmit** represent respectively the timestamp of emission and the timestamp of reception
+<!---Where **localTime** and **timeEmit** represent respectively the timestamp of emission and the timestamp of reception--->
 
-#* **Time instrumentation**
+<!---* **Time instrumentation**--->
 
 
 
