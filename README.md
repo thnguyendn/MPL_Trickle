@@ -67,6 +67,7 @@ In models experimented here, we instrumented the code in order to construct the 
 This instrumentation is presented in the following declaration of a couple of (output/input).
 
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/output.png)
+
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/input.png)
 
 
