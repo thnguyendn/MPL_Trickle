@@ -67,10 +67,16 @@ In models experimented here, we instrumented the code in order to construct the 
 This instrumentation is presented in the following declaration of a couple of (output/input). In the workflow file:
 
 At line 188 , we have the declaration for output.
+
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/output.png)
 
 At line 100, we have the declaration for corresponding input.
+
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/input.png)
+
+
+* **Time instrumentation**
+
 
 
 ## Contributing
