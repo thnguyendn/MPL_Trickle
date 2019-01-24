@@ -64,10 +64,12 @@ By default, PlantUML generates the graphical result with the extension .png. You
 * **Time instrumentation**
 In models experimented here, we instrumented the code in order to construct the guards on causal communications of the couple output/input action **(p!m @Z1)/(p?m @Z2)** where **p** and **m** are respectively the port and the message and **Z1** and **Z2** are the timestamp of emission and reception. For that, we create a parameter that is emitted and received by the port and this parameter denotes the timestamp of emission for an output and the timestamp of reception for an input.
 
-This instrumentation is presented in the following declaration of a couple of (output/input).
+This instrumentation is presented in the following declaration of a couple of (output/input). In the workflow file:
 
+At line 188 , we have the declaration for output.
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/output.png)
 
+At line 100, we have the declaration for corresponding input.
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/input.png)
 
 
