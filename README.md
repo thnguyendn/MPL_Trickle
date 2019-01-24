@@ -1,6 +1,6 @@
 # MPL_Trickle
 
-This directory contains sources for our submitted paper for VVIOT2019.
+This directory contains sources for modeling different elements in a Wireless Sensor Network (WSN) applying Trickle algorithm and generating interesting scenarios. These scenarios are relevant to many elements in the network and are selected to illustrate interesting features in the WSN.
 
 Among these files, there is :
 - A .xlia extension(stands for eXecutable Language for Interaction & Assemblage) file (**MPL_modeling_T1.xlia**) for modeling a node and interactions between all nodes in topology T1
