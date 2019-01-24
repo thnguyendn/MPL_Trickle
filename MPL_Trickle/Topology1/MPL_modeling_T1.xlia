@@ -6,8 +6,12 @@ system< and > Trickle {
 	
 	type FRAGMENT enum { UNDEF_FRAGMENT, FRAGMENT_0 , FRAGMENT_1 }
 	
-	type INFO_KIND enum { INIT , TERMINE }
+	type INFO_KIND enum { INIT , TERMIN }
   	
+  	// A Data Message is a structure containing : 
+  	// a sequence number (seq) identifies a Data Message in the network
+  	// the useful data (fragment) of firmware
+  	// an offset (offset) determines position of corresponding fragment in the firmware 
 	type DATA_MESSAGE struct {
 		var integer seq;
 		var FRAGMENT fragment;
@@ -16,9 +20,11 @@ system< and > Trickle {
 	
 @machine:
 
+	// Template for a node which could be instanced to create many nodes
 	lifeline model timed statemachine< and > Node {
 		
 		@parameter:
+			// the array contains received Data Messages
 			input var DATA_MESSAGE[BUFF_SIZE] my_buff;
 				
     		input var FRAGMENT[BUFF_SIZE] firmware;
@@ -28,6 +34,8 @@ system< and > Trickle {
             input var bool[BUFF_SIZE] mydp_run;
 		
 	  	@public:
+	  		// The waiting queue (FIFO) used to store received messages which have not been
+	  		// consumed yet
 	  		buffer fifo<*> bufferNode;
   		
 		    port output Log( INFO_KIND information );
@@ -44,6 +52,7 @@ system< and > Trickle {
 		  	var uinteger i;
             
 			// INSTRUMENTATION
+			// This variable represents time elapsed in each node
 			var clock pos_rational localTime = 0;
 			
 			var boolean localPC = true;
@@ -186,7 +195,7 @@ system< and > Trickle {
 		      	}
 		      	transition cp_CTRL_EXPIR --> cp3 {
 			      	Dguard( e == CTRL_EXPIR );
-			      	output Log(TERMINE);
+			      	output Log(TERMIN);
 		      	}
 		      	transition cp1_reach_k --> cp2 {
 			      	Tguard( cl == t );
@@ -216,7 +225,7 @@ system< and > Trickle {
 		    }
 	    }
 
-
+		// Template for a DataProcess which could be instanced to create many DataProcess
 		model statemachine< or > DataProcess {
 			
 		@parameter:
@@ -368,6 +377,9 @@ system< and > Trickle {
 		    }
 		}
 		
+	// Declaration of different instances of Data Process in the network
+	// In this example, we suppose that there are two Data Process which
+	// represent two Data Messages to be transmitted in the network
 	instance< DataProcess > DataProcess1
 	{
 		mySeq := 1;
@@ -396,6 +408,10 @@ system< and > Trickle {
 	}
 
 
+	// Automaton Observer is used to determine when the coverage is finished,
+	// When the value of boolean variable coverageProp for each node is assigned 
+	// with true, i.e. each node has already received two fragments of firmware (line 405),
+	// the coverage is finished
 	lifeline timed statemachine< and > Observer {
 		
 	  	@public:
@@ -426,6 +442,9 @@ system< and > Trickle {
 	    }
 	}
 
+	// Declaration of instance node n1 in the network
+	// At the beginning, we suppose that n1 possesses two Data Messages, containing
+	// two fragments of firmware
 	instance< Node > n1
 	{
 		my_buff = 
@@ -435,13 +454,15 @@ system< and > Trickle {
 			
 		firmware = 
 			{
-				FRAGMENT_0, UNDEF_FRAGMENT
+				FRAGMENT_0, FRAGMENT_1
 			};
 			
 		myseq_buff = 1;
 		mydp_run = true;
 	}
 	
+	// Declaration of instance node n2 in the network
+	// At the beginning, we suppose that n2 does not contain any fragment of firmware
 	instance< Node > n2
 	{
 		my_buff = 
@@ -458,6 +479,8 @@ system< and > Trickle {
 		mydp_run = false;
 	}
 	
+	// Declaration of instance node n3 in the network
+	// At the beginning, we suppose that n3 does not contain any fragment of firmware
 	instance< Node > n3
 	{
 		my_buff = 
@@ -474,6 +497,8 @@ system< and > Trickle {
 		mydp_run = false;
 	}
 	
+	// Declaration of instance node n4 in the network
+	// At the beginning, we suppose that n4 does not contain any fragment of firmware
 	instance< Node > n4
 	{
 		my_buff = 
@@ -490,13 +515,17 @@ system< and > Trickle {
 		mydp_run = false;
 	}
 
+// Declaration of connections in the network
 @com:
+	// Connection to environment (env)
 	connect< env >{
 		output n1->Log;
 		output n2->Log;
 		output n3->Log;
 		output n4->Log;
 	}
+	
+	// Connection between nodes in the network (multicast connection)
   	/* Node1 */
   	connect< multicast >{
   		output n1->ControlMsg;
