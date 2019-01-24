@@ -39,12 +39,12 @@ First, you execute this command in your console (Ubuntu plateform)
 ./avm.exe /your_Absolute_Path_To_the_Workflow_File
 ```
 In my case, this would be : 
-![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/Commande.png)
+![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/Commande.png)
 
 And the next step is juste waiting for the execution finishing.
 At the end of execution, you will see a succesful message as below with a resume of all covered elements.
 
-![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/Result.png)
+![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/Result.png)
 
 Once the execution finished, the generated result are found at the directory **/MPL_Trickle/Topology1/output**.
 
@@ -52,11 +52,22 @@ With PlantUML, we can visualize our result as follows:
 
 First, you execute PlantUML directly on a Windows or Linux plateform from the file plantuml.jar in the directory /plantuml of the downloaded sources. The graphic interface of PlantUML will look like this.
 
-![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/PlantUML.png)
+![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/PlantUML.png)
 
-Last step consists of clicking on the button "Change Directory", then going to the directory which stores your result which could be readable by PlantUML. This file is stored at the location **/MPL_Trickle/Topology1/output/basic/symbex_sequence.txt**.
+The last step consists of clicking on the button "Change Directory", then going to the directory which stores your result which could be readable by PlantUML. This file is stored at the location **/MPL_Trickle/Topology1/output/basic/symbex_sequence.txt**.
 
 By default, PlantUML generates the graphical result with the extension .png. You can also generate also other formats as .svg, .pdf,... In this example, we chose to generate a .svg extension file (**/MPL_Trickle/Topology1/output/basic/symbex_sequence.svg**)
+
+
+## Differences between theorical models and experimentation
+
+* **Time instrumentation**
+In models experimented here, we instrumented the code in order to construct the guards on causal communications of the couple output/input action **(p!m @Z1)/(p?m @Z2)** where **p** and **m** are respectively the port and the message and **Z1** and **Z2** are the timestamp of emission and reception. For that, we create a parameter that is emitted and received by the port and this parameter denotes the timestamp of emission for an output and the timestamp of reception for an input.
+
+This instrumentation is presented in the following declaration of a couple of (output/input).
+
+![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/output.png)
+![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/input.png)
 
 
 ## Contributing
