@@ -74,6 +74,7 @@ At line 100, we have the declaration for corresponding input.
 
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/input.png)
 
+Where **localTime** and **timeEmit** represent respectively the timestamp of emission and the timestamp of reception
 
 * **Time instrumentation**
 
