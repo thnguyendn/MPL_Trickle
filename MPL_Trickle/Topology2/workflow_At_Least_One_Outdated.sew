@@ -5,7 +5,7 @@
 // CEA - LIST
 workflow {
 	workspace [
-		root   = "Your_absolute_path_to_directory_Topology2"
+		root   = "/home/thang/Dropbox/Implementation_Diversity/Diversity_workspace/MPL_Trickle/Topology2"
 		output = "output"
 		log    = "log"
 		debug  = "debug"
@@ -331,3 +331,83 @@ workflow {
 		verbose = 'MINIMUM'
 	] // end console
 }
+
+//EOF of @sew< workflow , 1.0 >:
+
+/*
+# Grammar Reference
+
+## Trace Specification
+- [*] , use for ANY element
+- com_element_id ::= <port_name_id> | <signal_name_id>
+- com = <com_element_id>
+- input = <com_element_id>
+- output = <com_element_id>
+- input#env = <com_element_id>
+- output#env = <com_element_id>
+
+- variable = <variable_name_id>
+- newfresh = <variable_name_id>
+- state = <state_name_id>
+- transition = <transition_name_id>
+- statemachine = <statemachine_name_id>
+
+
+## Trace Format Specification
+- line#wrap#width = 80
+- line#wrap#separator = "\n\	"
+
+// %1% --> ec#id
+// %2% --> ec#eval
+// %3% --> ec#hight
+// %4% --> ec#width
+// %5% --> ec#weight
+// %6% --> statemachine configuration i.e. control node
+- context#ufid = "ctx< %1% > %6%"
+
+// %1% --> trace number
+// %2% --> execution context leaf identifier
+- file#header = "TRACE NUMBER %1%"
+- file#begin  = ""
+- file#end    = ""
+
+// %1% --> trace number
+// %2% --> execution context leaf identifier
+- testcase#header = "TRACE NUMBER %1%"
+- testcase#begin  = ""
+- testcase#end    = ""
+- testcase#end    = ""
+- init#begin = "\t// Initialization parameter values:"
+- init#end   = "\n"
+
+// %1% --> string message
+// %2% --> execution context identifier
+- comment   = "//%1%"
+- separator = "%1%"
+- newline   = "\n%1%"
+
+// %1% --> step identifier
+// %2% --> execution context identifier
+- step#begin = "\t#step#begin %1%"
+- step#end   = "\t#step#end %1%"
+
+// %1% --> condition
+// %2% --> execution context identifier
+- path#condition = "\tPC: %1%"
+- path#timed#condition = "\tPtC: %1%"
+- node#condition = "\tNC: %1%"
+- node#timed#condition = "\tNtC: %1%"
+
+// %1% --> machine runtime pid
+// %2% --> machine container identifier
+// %3% --> port | signal | variable | machine | transition | routine
+// %4% --> value
+- time   = "\t%4%"
+- assign = "\t%2%:%3% = %4%"
+- newfresh = "\tnewfresh %2%->%3%( %4% )"
+- input  = "\tinput  %2%->%3%%4%"
+- output = "\toutput %2%->%3%%4%"
+- input#env  = "\tINPUT  %2%->%3%%4%"
+- output#env = "\tOUTPUT %2%->%3%%4%"
+
+*/
