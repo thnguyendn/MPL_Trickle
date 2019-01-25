@@ -1,0 +1,76 @@
+ec( Id:0 , Pr:0 , Ev:0 , H:0 , W:1 , Q:0 ) {
+	ed( pid_3:initialstate , ( pid_8:cp0 , pid_14:dp0 , pid_19:dp0 ) , ( pid_25:cp0 , pid_31:dp0 , pid_36:dp0 ) , ( pid_42:cp0 , pid_48:dp0 , pid_53:dp0 ) ) {
+		exec_status = AEES_OK;
+		@init{ |and|
+			init Observer;
+			init n1;
+			init n2;
+			init n3;
+		}
+		@schedule{
+			schedule $self;
+		}
+		rid = run::pid_1:Trickle;
+
+	runtime#state:
+		<@rid#0 = STATE_UNDEFINED;		// run::#PARAMETERS#
+		<@rid#1 = STATE_RUNNING;		// run::Trickle
+		<@rid#2 = STATE_DISABLED;		// run::Trickle.Observer
+		<@rid#3 = STATE_DISABLED;		// run::Trickle.Observer.initialstate
+		<@rid#4 = STATE_DISABLED;		// run::Trickle.Observer.o0
+		<@rid#5 = STATE_DISABLED;		// run::Trickle.Observer.OK
+		<@rid#6 = STATE_DISABLED;		// run::Trickle.n1
+		<@rid#7 = STATE_DISABLED;		// run::Trickle.n1.ControlProcess
+		<@rid#8 = STATE_DISABLED;		// run::Trickle.n1.ControlProcess.cp0
+		<@rid#9 = STATE_DISABLED;		// run::Trickle.n1.ControlProcess.cp0_init
+		<@rid#10 = STATE_DISABLED;		// run::Trickle.n1.ControlProcess.cp1
+		<@rid#11 = STATE_DISABLED;		// run::Trickle.n1.ControlProcess.cp2
+		<@rid#12 = STATE_DISABLED;		// run::Trickle.n1.ControlProcess.cp3
+		<@rid#13 = STATE_DISABLED;		// run::Trickle.n1.DataProcess1
+		<@rid#14 = STATE_DISABLED;		// run::Trickle.n1.DataProcess1.dp0
+		<@rid#15 = STATE_DISABLED;		// run::Trickle.n1.DataProcess1.dp1
+		<@rid#16 = STATE_DISABLED;		// run::Trickle.n1.DataProcess1.dp2
+		<@rid#17 = STATE_DISABLED;		// run::Trickle.n1.DataProcess1.dp3
+		<@rid#18 = STATE_DISABLED;		// run::Trickle.n1.DataProcess2
+		<@rid#19 = STATE_DISABLED;		// run::Trickle.n1.DataProcess2.dp0
+		<@rid#20 = STATE_DISABLED;		// run::Trickle.n1.DataProcess2.dp1
+		<@rid#21 = STATE_DISABLED;		// run::Trickle.n1.DataProcess2.dp2
+		<@rid#22 = STATE_DISABLED;		// run::Trickle.n1.DataProcess2.dp3
+		<@rid#23 = STATE_DISABLED;		// run::Trickle.n2
+		<@rid#24 = STATE_DISABLED;		// run::Trickle.n2.ControlProcess
+		<@rid#25 = STATE_DISABLED;		// run::Trickle.n2.ControlProcess.cp0
+		<@rid#26 = STATE_DISABLED;		// run::Trickle.n2.ControlProcess.cp0_init
+		<@rid#27 = STATE_DISABLED;		// run::Trickle.n2.ControlProcess.cp1
+		<@rid#28 = STATE_DISABLED;		// run::Trickle.n2.ControlProcess.cp2
+		<@rid#29 = STATE_DISABLED;		// run::Trickle.n2.ControlProcess.cp3
+		<@rid#30 = STATE_DISABLED;		// run::Trickle.n2.DataProcess1
+		<@rid#31 = STATE_DISABLED;		// run::Trickle.n2.DataProcess1.dp0
+		<@rid#32 = STATE_DISABLED;		// run::Trickle.n2.DataProcess1.dp1
+		<@rid#33 = STATE_DISABLED;		// run::Trickle.n2.DataProcess1.dp2
+		<@rid#34 = STATE_DISABLED;		// run::Trickle.n2.DataProcess1.dp3
+		<@rid#35 = STATE_DISABLED;		// run::Trickle.n2.DataProcess2
+		<@rid#36 = STATE_DISABLED;		// run::Trickle.n2.DataProcess2.dp0
+		<@rid#37 = STATE_DISABLED;		// run::Trickle.n2.DataProcess2.dp1
+		<@rid#38 = STATE_DISABLED;		// run::Trickle.n2.DataProcess2.dp2
+		<@rid#39 = STATE_DISABLED;		// run::Trickle.n2.DataProcess2.dp3
+		<@rid#40 = STATE_DISABLED;		// run::Trickle.n3
+		<@rid#41 = STATE_DISABLED;		// run::Trickle.n3.ControlProcess
+		<@rid#42 = STATE_DISABLED;		// run::Trickle.n3.ControlProcess.cp0
+		<@rid#43 = STATE_DISABLED;		// run::Trickle.n3.ControlProcess.cp0_init
+		<@rid#44 = STATE_DISABLED;		// run::Trickle.n3.ControlProcess.cp1
+		<@rid#45 = STATE_DISABLED;		// run::Trickle.n3.ControlProcess.cp2
+		<@rid#46 = STATE_DISABLED;		// run::Trickle.n3.ControlProcess.cp3
+		<@rid#47 = STATE_DISABLED;		// run::Trickle.n3.DataProcess1
+		<@rid#48 = STATE_DISABLED;		// run::Trickle.n3.DataProcess1.dp0
+		<@rid#49 = STATE_DISABLED;		// run::Trickle.n3.DataProcess1.dp1
+		<@rid#50 = STATE_DISABLED;		// run::Trickle.n3.DataProcess1.dp2
+		<@rid#51 = STATE_DISABLED;		// run::Trickle.n3.DataProcess1.dp3
+		<@rid#52 = STATE_DISABLED;		// run::Trickle.n3.DataProcess2
+		<@rid#53 = STATE_DISABLED;		// run::Trickle.n3.DataProcess2.dp0
+		<@rid#54 = STATE_DISABLED;		// run::Trickle.n3.DataProcess2.dp1
+		<@rid#55 = STATE_DISABLED;		// run::Trickle.n3.DataProcess2.dp2
+		<@rid#56 = STATE_DISABLED;		// run::Trickle.n3.DataProcess2.dp3
+
+	runtime:
+	}
+}
