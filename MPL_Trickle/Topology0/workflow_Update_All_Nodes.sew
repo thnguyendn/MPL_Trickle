@@ -59,20 +59,6 @@ workflow {
 					input = 'n3.ControlMsg'
 					formula = (spec::Trickle.n3.coverageProp)
 					
-//					output = 'n1.DataProcess1->DataMsg'
-//					input = 'n2.DataProcess1->DataMsg'
-//					
-//					output = 'n1.DataProcess2->DataMsg'
-//					input = 'n2.DataProcess2->DataMsg'
-//					
-//					output = 'n2.ControlMsg'
-//					input = 'n3.ControlMsg'
-//
-//					output = 'n2.DataProcess1->DataMsg'
-//					input = 'n3.DataProcess1->DataMsg'
-//					output = 'n2.DataProcess2->DataMsg'
-//					input = 'n3.DataProcess2->DataMsg'
-					
 				] // end trace
 				heuristic [
 					hit#consecutive = false
