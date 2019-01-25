@@ -429,11 +429,9 @@ system< and > Trickle {
 		}
 		state o0 {
 			transition u_receive_packet_from_internal --> OK {
-				guard(
-					   spec::Trickle.n1.coverageProp
+				guard( spec::Trickle.n1.coverageProp
 					&& spec::Trickle.n2.coverageProp
-					&& spec::Trickle.n3.coverageProp
-				);
+					&& spec::Trickle.n3.coverageProp );
 				exit("OK");
 			}
 		}
