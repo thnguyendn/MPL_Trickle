@@ -6,11 +6,16 @@
 * **Time instrumentation**
 
 In experimented models, we instrumented the code in order to construct the guards on causal communications of the couple 
-emission/reception **(p!m @Z1)/(p?m @Z2)** where **p** and **m** are respectively the port and the message and **Z1** 
-and **Z2** are the timestamp of emission and reception. For that, we create a parameter that is emitted and received 
-by the port and this parameter denotes the timestamp of emission and the timestamp of reception.
+emission/reception **p!t / p?x** where **p**, **t** and **x** are respectively the port, the term emitted at the emission and the new fresh variable created to store value of the term at the reception.
 
-This instrumentation is presented in the following declaration of a couple of emission/reception. In the workflow file:
+For the purpose of generating timed scenarios (cf. sequence diagram below), we need to instrument the output/input actions in the model as follows **p!(t, localTime) / p?(x, timeEmit)** where **localTime** and **timeEmit** represent respectively the timestamp of emission and the timestamp of reception
+
+![alt text](documentation/figs/Example_SD.png)
+
+In the sequence diagram, the timestamp of emission for ControlMsg is determined as **z_30 + z_6** whereas the timestamp of reception of this message by **n1** is determined as **z_60 + z_76**
+
+
+For an illustration example, this instrumentation is presented in the following declaration of a couple of emission/reception. In the workflow file:
 
 At line 189 , we have the declaration for emission.
 
@@ -19,8 +24,6 @@ At line 189 , we have the declaration for emission.
 At line 108, we have the declaration for corresponding reception.
 
 ![alt text](documentation/figs/input.png)
-
-Where **localTime** and **timeEmit** represent respectively the timestamp of emission and the timestamp of reception
 
 
 * **Sequence of emission/reception and formulas : SEQ1+FOR1**
