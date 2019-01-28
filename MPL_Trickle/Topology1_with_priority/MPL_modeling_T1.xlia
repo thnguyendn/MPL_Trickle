@@ -45,9 +45,6 @@ system< and > Trickle {
 			var bool coverageProp = false;
 			var bool CM_zero_zero = false;
 			var bool CM_one_one = false;
-			var bool DM_all = false;
-			var bool DM1 = false;
-			var bool DM2 = false;
 			
 			const int CTRL_EXPIR = 3;
 			const int DATA_EXPIR = 2;
@@ -189,7 +186,7 @@ system< and > Trickle {
 				}
 			}
 			state cp1 {
-				transition< prior: 1 > cp_sendCM --> cp2 {
+				transition< prior: 2 > cp_sendCM --> cp2 {
 					Tguard( cl == t );
 					Dguard( c < k && e < CTRL_EXPIR );
 					output ControlMsg( myseq_buff, localTime );
@@ -200,7 +197,7 @@ system< and > Trickle {
 				transition< prior: 1 > cp1_receiveCM_inconsistent --> cp1 {
 					analyse_cp1_inconsistent();
 				}
-				transition< prior: 2 > cp_CTRL_EXPIR --> cp3 {
+				transition< prior: 1 > cp_CTRL_EXPIR --> cp3 {
 					Dguard( e == CTRL_EXPIR );
 					output Log(TERMIN);
 				}
@@ -340,7 +337,7 @@ system< and > Trickle {
 				}
 			}
 			state dp1 {
-				transition< prior: 1 > dp_sendDM --> dp2 {
+				transition< prior: 2 > dp_sendDM --> dp2 {
 					Tguard( cl == t );
 					Dguard( c < k && e < DATA_EXPIR && 
 					my_buff[mySeq - MIN_SEQ].fragment != UNDEF_FRAGMENT );
@@ -352,7 +349,7 @@ system< and > Trickle {
 				transition< prior: 1 > dp1_receiveDM_inconsistent --> dp1 {
 					analyse_dp1_inconsistent();
 				}
-				transition< prior: 2 > dp_DATA_EXPIR --> dp3 {
+				transition< prior: 1 > dp_DATA_EXPIR --> dp3 {
 					Dguard( e == DATA_EXPIR );
 				}
 				transition< prior: 2 > dp1_reach_k --> dp2 {
@@ -415,11 +412,6 @@ system< and > Trickle {
 			
 			CM_one_one = ( myseq_buff[0]==1 && myseq_buff[1]==1 );
 			
-			DM_all = ( firmware[0]==FRAGMENT_0 && firmware[1]==FRAGMENT_1 );
-			
-			DM1 = ( firmware[0]==FRAGMENT_0 );
-			
-			DM2 = ( firmware[1]==FRAGMENT_1 );
 		}
 	}
 

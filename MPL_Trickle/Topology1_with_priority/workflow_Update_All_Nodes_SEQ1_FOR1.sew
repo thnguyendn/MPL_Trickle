@@ -46,43 +46,35 @@ workflow {
 					scheduler = '|;|'//'|;|'
 				] // end property
 				point [
-					output#CM#n1 = 'n1.ControlMsg'
-					condition#CM#n1 = (spec::Trickle.n1.CM_one_one)
 					
 					output#n3 = 'n3.ControlMsg'
 					condition#n3 = (spec::Trickle.n3.CM_zero_zero)
 					
-					output#DM#n1 = 'n1.DataMsg'
-					condition#DM#n1 = (spec::Trickle.n1.DM_all)
-					
-					output#DM1#n3 = 'n3.DataMsg'
-					condition#DM1#n3 = (spec::Trickle.n3.DM1)
-					
-					output#DM2#n3 = 'n3.DataMsg'
-					condition#DM2#n3 = (spec::Trickle.n3.DM2)
+					output#n1 = 'n1.ControlMsg'
+					condition#n1 = (spec::Trickle.n1.CM_one_one)
 				]
 				trace [
 					
 					composite#1 = ( "output#n3" && "condition#n3" )
 					input = 'n1.ControlMsg'
 					
-					composite#2 = ( "output#CM#n1" && "condition#CM#n1" )
+					composite#2 = ( "output#n1" && "condition#n1" )
 					input = 'n2.ControlMsg'
 					input = 'n3.ControlMsg'
 					
-					composite#3 = ( "output#DM#n1" && "condition#DM#n1" )
+					output = 'n1.DataMsg'
 					input = 'n2.DataMsg'
 					input = 'n3.DataMsg'
 					
 					output = 'n3.ControlMsg'
 					input = 'n4.ControlMsg'
-					
-					composite#4 = ( "output#DM1#n3" && "condition#DM1#n3" )
+
+					output = 'n3.DataProcess1->DataMsg'
 					input = 'n4.DataProcess1->DataMsg'
 					
-					composite#5 = ( "output#DM2#n3" && "condition#DM2#n3" )
+					output = 'n3.DataProcess2->DataMsg'
 					input = 'n4.DataProcess2->DataMsg'
-					
+
 				] // end trace
 				heuristic [
 					hit#consecutive = false
