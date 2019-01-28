@@ -1,0 +1,1174 @@
+EC:<Id:1;Ev:1;H:0;W:1>{ SC: ( pid_3:initialstate , ( pid_8:cp0 , pid_14:dp0 , pid_19:dp0 ) , ( pid_25:cp0 , pid_31:dp0 , pid_36:dp0 ) , ( pid_42:cp0 , pid_48:dp0 , pid_53:dp0 ) )
+	ALIAS{
+		:ppid_-1:pid_0 = run::#PARAMETERS#; // model is spec::Trickle;
+		:ppid_-1:pid_1 = spec::Trickle;
+		:ppid_1:pid_2 = spec::Trickle.Observer;
+			DATA{
+				:ppid_1:pid_2:$time = spec::Trickle.Observer.$time;
+				:ppid_1:pid_2:z = spec::Trickle.Observer.z;
+				:ppid_1:pid_2:cl_o = spec::Trickle.Observer.cl_o;
+			}
+		:ppid_2:pid_3 = spec::Trickle.Observer.initialstate;
+		:ppid_2:pid_4 = spec::Trickle.Observer.o0;
+		:ppid_2:pid_5 = spec::Trickle.Observer.OK;
+		:ppid_1:pid_6 = run::Trickle.n1; // model is spec::Trickle.Node;
+			BUFFER NUMBER = 1;
+			/*BUFFER{
+				:ppid_1:pid_6:bufferNode = spec::Trickle.Node.bufferNode;
+			}*/
+			DATA{
+				:ppid_1:pid_6:my_buff[0].seq = spec::Trickle.DATA_MESSAGE.seq;
+				:ppid_1:pid_6:my_buff[0].fragment = spec::Trickle.DATA_MESSAGE.fragment;
+				:ppid_1:pid_6:my_buff[0].offset = spec::Trickle.DATA_MESSAGE.offset;
+				:ppid_1:pid_6:my_buff[1].seq = spec::Trickle.DATA_MESSAGE.seq;
+				:ppid_1:pid_6:my_buff[1].fragment = spec::Trickle.DATA_MESSAGE.fragment;
+				:ppid_1:pid_6:my_buff[1].offset = spec::Trickle.DATA_MESSAGE.offset;
+				:ppid_1:pid_6:firmware[0] = spec::Trickle.Node.firmware;
+				:ppid_1:pid_6:firmware[1] = spec::Trickle.Node.firmware;
+				:ppid_1:pid_6:myseq_buff[0] = spec::Trickle.Node.myseq_buff;
+				:ppid_1:pid_6:myseq_buff[1] = spec::Trickle.Node.myseq_buff;
+				:ppid_1:pid_6:mydp_run[0] = spec::Trickle.Node.mydp_run;
+				:ppid_1:pid_6:mydp_run[1] = spec::Trickle.Node.mydp_run;
+				:ppid_1:pid_6:$time = spec::Trickle.Node.$time;
+				:ppid_1:pid_6:z = spec::Trickle.Node.z;
+				:ppid_1:pid_6:coverageProp = spec::Trickle.Node.coverageProp;
+				:ppid_1:pid_6:seq_buff[0] = spec::Trickle.Node.seq_buff;
+				:ppid_1:pid_6:seq_buff[1] = spec::Trickle.Node.seq_buff;
+				:ppid_1:pid_6:i = spec::Trickle.Node.i;
+				:ppid_1:pid_6:localTime = spec::Trickle.Node.localTime;
+				:ppid_1:pid_6:localPC = spec::Trickle.Node.localPC;
+				:ppid_1:pid_6:localPtC = spec::Trickle.Node.localPtC;
+				:ppid_1:pid_6:new_seq_buff = spec::Trickle.Node.new_seq_buff;
+				:ppid_1:pid_6:new_seq = spec::Trickle.Node.new_seq;
+				:ppid_1:pid_6:new_fragment = spec::Trickle.Node.new_fragment;
+				:ppid_1:pid_6:new_offset = spec::Trickle.Node.new_offset;
+				:ppid_1:pid_6:timeEmit = spec::Trickle.Node.timeEmit;
+			}
+			INTERFACE{
+				:ppid_1:pid_6:ControlMsg = spec::Trickle.Node.ControlMsg;
+				:ppid_1:pid_6:DataMsg = spec::Trickle.Node.DataMsg;
+				:ppid_1:pid_6:Log = spec::Trickle.Node.Log;
+			}
+		:ppid_6:pid_7 = spec::Trickle.Node.ControlProcess;
+			DATA{
+				:ppid_6:pid_7:k = spec::Trickle.Node.ControlProcess.k;
+				:ppid_6:pid_7:c = spec::Trickle.Node.ControlProcess.c;
+				:ppid_6:pid_7:e = spec::Trickle.Node.ControlProcess.e;
+				:ppid_6:pid_7:tau = spec::Trickle.Node.ControlProcess.tau;
+				:ppid_6:pid_7:tau_l = spec::Trickle.Node.ControlProcess.tau_l;
+				:ppid_6:pid_7:tau_h = spec::Trickle.Node.ControlProcess.tau_h;
+				:ppid_6:pid_7:i = spec::Trickle.Node.ControlProcess.i;
+				:ppid_6:pid_7:t = spec::Trickle.Node.ControlProcess.t;
+				:ppid_6:pid_7:consistent = spec::Trickle.Node.ControlProcess.consistent;
+				:ppid_6:pid_7:cl = spec::Trickle.Node.ControlProcess.cl;
+			}
+		:ppid_7:pid_8 = spec::Trickle.Node.ControlProcess.cp0;
+		:ppid_7:pid_9 = spec::Trickle.Node.ControlProcess.cp0_init;
+		:ppid_7:pid_10 = spec::Trickle.Node.ControlProcess.cp1;
+		:ppid_7:pid_11 = spec::Trickle.Node.ControlProcess.cp2;
+		:ppid_7:pid_12 = spec::Trickle.Node.ControlProcess.cp3;
+		:ppid_6:pid_13 = run::Trickle.n1.DataProcess1; // model is spec::Trickle.Node.DataProcess;
+			DATA{
+				:ppid_6:pid_13:mySeq = spec::Trickle.Node.DataProcess.mySeq;
+				:ppid_6:pid_13:k = spec::Trickle.Node.DataProcess.k;
+				:ppid_6:pid_13:c = spec::Trickle.Node.DataProcess.c;
+				:ppid_6:pid_13:e = spec::Trickle.Node.DataProcess.e;
+				:ppid_6:pid_13:tau = spec::Trickle.Node.DataProcess.tau;
+				:ppid_6:pid_13:tau_l = spec::Trickle.Node.DataProcess.tau_l;
+				:ppid_6:pid_13:tau_h = spec::Trickle.Node.DataProcess.tau_h;
+				:ppid_6:pid_13:i = spec::Trickle.Node.DataProcess.i;
+				:ppid_6:pid_13:t = spec::Trickle.Node.DataProcess.t;
+				:ppid_6:pid_13:consistent = spec::Trickle.Node.DataProcess.consistent;
+				:ppid_6:pid_13:cl = spec::Trickle.Node.DataProcess.cl;
+				:ppid_6:pid_13:d.seq = spec::Trickle.DATA_MESSAGE.seq;
+				:ppid_6:pid_13:d.fragment = spec::Trickle.DATA_MESSAGE.fragment;
+				:ppid_6:pid_13:d.offset = spec::Trickle.DATA_MESSAGE.offset;
+			}
+		:ppid_13:pid_14 = spec::Trickle.Node.DataProcess.dp0;
+		:ppid_13:pid_15 = spec::Trickle.Node.DataProcess.dp1;
+		:ppid_13:pid_16 = spec::Trickle.Node.DataProcess.dp2;
+		:ppid_13:pid_17 = spec::Trickle.Node.DataProcess.dp3;
+		:ppid_6:pid_18 = run::Trickle.n1.DataProcess2; // model is spec::Trickle.Node.DataProcess;
+			DATA{
+				:ppid_6:pid_18:mySeq = spec::Trickle.Node.DataProcess.mySeq;
+				:ppid_6:pid_18:k = spec::Trickle.Node.DataProcess.k;
+				:ppid_6:pid_18:c = spec::Trickle.Node.DataProcess.c;
+				:ppid_6:pid_18:e = spec::Trickle.Node.DataProcess.e;
+				:ppid_6:pid_18:tau = spec::Trickle.Node.DataProcess.tau;
+				:ppid_6:pid_18:tau_l = spec::Trickle.Node.DataProcess.tau_l;
+				:ppid_6:pid_18:tau_h = spec::Trickle.Node.DataProcess.tau_h;
+				:ppid_6:pid_18:i = spec::Trickle.Node.DataProcess.i;
+				:ppid_6:pid_18:t = spec::Trickle.Node.DataProcess.t;
+				:ppid_6:pid_18:consistent = spec::Trickle.Node.DataProcess.consistent;
+				:ppid_6:pid_18:cl = spec::Trickle.Node.DataProcess.cl;
+				:ppid_6:pid_18:d.seq = spec::Trickle.DATA_MESSAGE.seq;
+				:ppid_6:pid_18:d.fragment = spec::Trickle.DATA_MESSAGE.fragment;
+				:ppid_6:pid_18:d.offset = spec::Trickle.DATA_MESSAGE.offset;
+			}
+		:ppid_18:pid_19 = spec::Trickle.Node.DataProcess.dp0;
+		:ppid_18:pid_20 = spec::Trickle.Node.DataProcess.dp1;
+		:ppid_18:pid_21 = spec::Trickle.Node.DataProcess.dp2;
+		:ppid_18:pid_22 = spec::Trickle.Node.DataProcess.dp3;
+		:ppid_1:pid_23 = run::Trickle.n2; // model is spec::Trickle.Node;
+			BUFFER NUMBER = 1;
+			/*BUFFER{
+				:ppid_1:pid_23:bufferNode = spec::Trickle.Node.bufferNode;
+			}*/
+			DATA{
+				:ppid_1:pid_23:my_buff[0].seq = spec::Trickle.DATA_MESSAGE.seq;
+				:ppid_1:pid_23:my_buff[0].fragment = spec::Trickle.DATA_MESSAGE.fragment;
+				:ppid_1:pid_23:my_buff[0].offset = spec::Trickle.DATA_MESSAGE.offset;
+				:ppid_1:pid_23:my_buff[1].seq = spec::Trickle.DATA_MESSAGE.seq;
+				:ppid_1:pid_23:my_buff[1].fragment = spec::Trickle.DATA_MESSAGE.fragment;
+				:ppid_1:pid_23:my_buff[1].offset = spec::Trickle.DATA_MESSAGE.offset;
+				:ppid_1:pid_23:firmware[0] = spec::Trickle.Node.firmware;
+				:ppid_1:pid_23:firmware[1] = spec::Trickle.Node.firmware;
+				:ppid_1:pid_23:myseq_buff[0] = spec::Trickle.Node.myseq_buff;
+				:ppid_1:pid_23:myseq_buff[1] = spec::Trickle.Node.myseq_buff;
+				:ppid_1:pid_23:mydp_run[0] = spec::Trickle.Node.mydp_run;
+				:ppid_1:pid_23:mydp_run[1] = spec::Trickle.Node.mydp_run;
+				:ppid_1:pid_23:$time = spec::Trickle.Node.$time;
+				:ppid_1:pid_23:z = spec::Trickle.Node.z;
+				:ppid_1:pid_23:coverageProp = spec::Trickle.Node.coverageProp;
+				:ppid_1:pid_23:seq_buff[0] = spec::Trickle.Node.seq_buff;
+				:ppid_1:pid_23:seq_buff[1] = spec::Trickle.Node.seq_buff;
+				:ppid_1:pid_23:i = spec::Trickle.Node.i;
+				:ppid_1:pid_23:localTime = spec::Trickle.Node.localTime;
+				:ppid_1:pid_23:localPC = spec::Trickle.Node.localPC;
+				:ppid_1:pid_23:localPtC = spec::Trickle.Node.localPtC;
+				:ppid_1:pid_23:new_seq_buff = spec::Trickle.Node.new_seq_buff;
+				:ppid_1:pid_23:new_seq = spec::Trickle.Node.new_seq;
+				:ppid_1:pid_23:new_fragment = spec::Trickle.Node.new_fragment;
+				:ppid_1:pid_23:new_offset = spec::Trickle.Node.new_offset;
+				:ppid_1:pid_23:timeEmit = spec::Trickle.Node.timeEmit;
+			}
+			INTERFACE{
+				:ppid_1:pid_23:ControlMsg = spec::Trickle.Node.ControlMsg;
+				:ppid_1:pid_23:DataMsg = spec::Trickle.Node.DataMsg;
+				:ppid_1:pid_23:Log = spec::Trickle.Node.Log;
+			}
+		:ppid_23:pid_24 = spec::Trickle.Node.ControlProcess;
+			DATA{
+				:ppid_23:pid_24:k = spec::Trickle.Node.ControlProcess.k;
+				:ppid_23:pid_24:c = spec::Trickle.Node.ControlProcess.c;
+				:ppid_23:pid_24:e = spec::Trickle.Node.ControlProcess.e;
+				:ppid_23:pid_24:tau = spec::Trickle.Node.ControlProcess.tau;
+				:ppid_23:pid_24:tau_l = spec::Trickle.Node.ControlProcess.tau_l;
+				:ppid_23:pid_24:tau_h = spec::Trickle.Node.ControlProcess.tau_h;
+				:ppid_23:pid_24:i = spec::Trickle.Node.ControlProcess.i;
+				:ppid_23:pid_24:t = spec::Trickle.Node.ControlProcess.t;
+				:ppid_23:pid_24:consistent = spec::Trickle.Node.ControlProcess.consistent;
+				:ppid_23:pid_24:cl = spec::Trickle.Node.ControlProcess.cl;
+			}
+		:ppid_24:pid_25 = spec::Trickle.Node.ControlProcess.cp0;
+		:ppid_24:pid_26 = spec::Trickle.Node.ControlProcess.cp0_init;
+		:ppid_24:pid_27 = spec::Trickle.Node.ControlProcess.cp1;
+		:ppid_24:pid_28 = spec::Trickle.Node.ControlProcess.cp2;
+		:ppid_24:pid_29 = spec::Trickle.Node.ControlProcess.cp3;
+		:ppid_23:pid_30 = run::Trickle.n2.DataProcess1; // model is spec::Trickle.Node.DataProcess;
+			DATA{
+				:ppid_23:pid_30:mySeq = spec::Trickle.Node.DataProcess.mySeq;
+				:ppid_23:pid_30:k = spec::Trickle.Node.DataProcess.k;
+				:ppid_23:pid_30:c = spec::Trickle.Node.DataProcess.c;
+				:ppid_23:pid_30:e = spec::Trickle.Node.DataProcess.e;
+				:ppid_23:pid_30:tau = spec::Trickle.Node.DataProcess.tau;
+				:ppid_23:pid_30:tau_l = spec::Trickle.Node.DataProcess.tau_l;
+				:ppid_23:pid_30:tau_h = spec::Trickle.Node.DataProcess.tau_h;
+				:ppid_23:pid_30:i = spec::Trickle.Node.DataProcess.i;
+				:ppid_23:pid_30:t = spec::Trickle.Node.DataProcess.t;
+				:ppid_23:pid_30:consistent = spec::Trickle.Node.DataProcess.consistent;
+				:ppid_23:pid_30:cl = spec::Trickle.Node.DataProcess.cl;
+				:ppid_23:pid_30:d.seq = spec::Trickle.DATA_MESSAGE.seq;
+				:ppid_23:pid_30:d.fragment = spec::Trickle.DATA_MESSAGE.fragment;
+				:ppid_23:pid_30:d.offset = spec::Trickle.DATA_MESSAGE.offset;
+			}
+		:ppid_30:pid_31 = spec::Trickle.Node.DataProcess.dp0;
+		:ppid_30:pid_32 = spec::Trickle.Node.DataProcess.dp1;
+		:ppid_30:pid_33 = spec::Trickle.Node.DataProcess.dp2;
+		:ppid_30:pid_34 = spec::Trickle.Node.DataProcess.dp3;
+		:ppid_23:pid_35 = run::Trickle.n2.DataProcess2; // model is spec::Trickle.Node.DataProcess;
+			DATA{
+				:ppid_23:pid_35:mySeq = spec::Trickle.Node.DataProcess.mySeq;
+				:ppid_23:pid_35:k = spec::Trickle.Node.DataProcess.k;
+				:ppid_23:pid_35:c = spec::Trickle.Node.DataProcess.c;
+				:ppid_23:pid_35:e = spec::Trickle.Node.DataProcess.e;
+				:ppid_23:pid_35:tau = spec::Trickle.Node.DataProcess.tau;
+				:ppid_23:pid_35:tau_l = spec::Trickle.Node.DataProcess.tau_l;
+				:ppid_23:pid_35:tau_h = spec::Trickle.Node.DataProcess.tau_h;
+				:ppid_23:pid_35:i = spec::Trickle.Node.DataProcess.i;
+				:ppid_23:pid_35:t = spec::Trickle.Node.DataProcess.t;
+				:ppid_23:pid_35:consistent = spec::Trickle.Node.DataProcess.consistent;
+				:ppid_23:pid_35:cl = spec::Trickle.Node.DataProcess.cl;
+				:ppid_23:pid_35:d.seq = spec::Trickle.DATA_MESSAGE.seq;
+				:ppid_23:pid_35:d.fragment = spec::Trickle.DATA_MESSAGE.fragment;
+				:ppid_23:pid_35:d.offset = spec::Trickle.DATA_MESSAGE.offset;
+			}
+		:ppid_35:pid_36 = spec::Trickle.Node.DataProcess.dp0;
+		:ppid_35:pid_37 = spec::Trickle.Node.DataProcess.dp1;
+		:ppid_35:pid_38 = spec::Trickle.Node.DataProcess.dp2;
+		:ppid_35:pid_39 = spec::Trickle.Node.DataProcess.dp3;
+		:ppid_1:pid_40 = run::Trickle.n3; // model is spec::Trickle.Node;
+			BUFFER NUMBER = 1;
+			/*BUFFER{
+				:ppid_1:pid_40:bufferNode = spec::Trickle.Node.bufferNode;
+			}*/
+			DATA{
+				:ppid_1:pid_40:my_buff[0].seq = spec::Trickle.DATA_MESSAGE.seq;
+				:ppid_1:pid_40:my_buff[0].fragment = spec::Trickle.DATA_MESSAGE.fragment;
+				:ppid_1:pid_40:my_buff[0].offset = spec::Trickle.DATA_MESSAGE.offset;
+				:ppid_1:pid_40:my_buff[1].seq = spec::Trickle.DATA_MESSAGE.seq;
+				:ppid_1:pid_40:my_buff[1].fragment = spec::Trickle.DATA_MESSAGE.fragment;
+				:ppid_1:pid_40:my_buff[1].offset = spec::Trickle.DATA_MESSAGE.offset;
+				:ppid_1:pid_40:firmware[0] = spec::Trickle.Node.firmware;
+				:ppid_1:pid_40:firmware[1] = spec::Trickle.Node.firmware;
+				:ppid_1:pid_40:myseq_buff[0] = spec::Trickle.Node.myseq_buff;
+				:ppid_1:pid_40:myseq_buff[1] = spec::Trickle.Node.myseq_buff;
+				:ppid_1:pid_40:mydp_run[0] = spec::Trickle.Node.mydp_run;
+				:ppid_1:pid_40:mydp_run[1] = spec::Trickle.Node.mydp_run;
+				:ppid_1:pid_40:$time = spec::Trickle.Node.$time;
+				:ppid_1:pid_40:z = spec::Trickle.Node.z;
+				:ppid_1:pid_40:coverageProp = spec::Trickle.Node.coverageProp;
+				:ppid_1:pid_40:seq_buff[0] = spec::Trickle.Node.seq_buff;
+				:ppid_1:pid_40:seq_buff[1] = spec::Trickle.Node.seq_buff;
+				:ppid_1:pid_40:i = spec::Trickle.Node.i;
+				:ppid_1:pid_40:localTime = spec::Trickle.Node.localTime;
+				:ppid_1:pid_40:localPC = spec::Trickle.Node.localPC;
+				:ppid_1:pid_40:localPtC = spec::Trickle.Node.localPtC;
+				:ppid_1:pid_40:new_seq_buff = spec::Trickle.Node.new_seq_buff;
+				:ppid_1:pid_40:new_seq = spec::Trickle.Node.new_seq;
+				:ppid_1:pid_40:new_fragment = spec::Trickle.Node.new_fragment;
+				:ppid_1:pid_40:new_offset = spec::Trickle.Node.new_offset;
+				:ppid_1:pid_40:timeEmit = spec::Trickle.Node.timeEmit;
+			}
+			INTERFACE{
+				:ppid_1:pid_40:ControlMsg = spec::Trickle.Node.ControlMsg;
+				:ppid_1:pid_40:DataMsg = spec::Trickle.Node.DataMsg;
+				:ppid_1:pid_40:Log = spec::Trickle.Node.Log;
+			}
+		:ppid_40:pid_41 = spec::Trickle.Node.ControlProcess;
+			DATA{
+				:ppid_40:pid_41:k = spec::Trickle.Node.ControlProcess.k;
+				:ppid_40:pid_41:c = spec::Trickle.Node.ControlProcess.c;
+				:ppid_40:pid_41:e = spec::Trickle.Node.ControlProcess.e;
+				:ppid_40:pid_41:tau = spec::Trickle.Node.ControlProcess.tau;
+				:ppid_40:pid_41:tau_l = spec::Trickle.Node.ControlProcess.tau_l;
+				:ppid_40:pid_41:tau_h = spec::Trickle.Node.ControlProcess.tau_h;
+				:ppid_40:pid_41:i = spec::Trickle.Node.ControlProcess.i;
+				:ppid_40:pid_41:t = spec::Trickle.Node.ControlProcess.t;
+				:ppid_40:pid_41:consistent = spec::Trickle.Node.ControlProcess.consistent;
+				:ppid_40:pid_41:cl = spec::Trickle.Node.ControlProcess.cl;
+			}
+		:ppid_41:pid_42 = spec::Trickle.Node.ControlProcess.cp0;
+		:ppid_41:pid_43 = spec::Trickle.Node.ControlProcess.cp0_init;
+		:ppid_41:pid_44 = spec::Trickle.Node.ControlProcess.cp1;
+		:ppid_41:pid_45 = spec::Trickle.Node.ControlProcess.cp2;
+		:ppid_41:pid_46 = spec::Trickle.Node.ControlProcess.cp3;
+		:ppid_40:pid_47 = run::Trickle.n3.DataProcess1; // model is spec::Trickle.Node.DataProcess;
+			DATA{
+				:ppid_40:pid_47:mySeq = spec::Trickle.Node.DataProcess.mySeq;
+				:ppid_40:pid_47:k = spec::Trickle.Node.DataProcess.k;
+				:ppid_40:pid_47:c = spec::Trickle.Node.DataProcess.c;
+				:ppid_40:pid_47:e = spec::Trickle.Node.DataProcess.e;
+				:ppid_40:pid_47:tau = spec::Trickle.Node.DataProcess.tau;
+				:ppid_40:pid_47:tau_l = spec::Trickle.Node.DataProcess.tau_l;
+				:ppid_40:pid_47:tau_h = spec::Trickle.Node.DataProcess.tau_h;
+				:ppid_40:pid_47:i = spec::Trickle.Node.DataProcess.i;
+				:ppid_40:pid_47:t = spec::Trickle.Node.DataProcess.t;
+				:ppid_40:pid_47:consistent = spec::Trickle.Node.DataProcess.consistent;
+				:ppid_40:pid_47:cl = spec::Trickle.Node.DataProcess.cl;
+				:ppid_40:pid_47:d.seq = spec::Trickle.DATA_MESSAGE.seq;
+				:ppid_40:pid_47:d.fragment = spec::Trickle.DATA_MESSAGE.fragment;
+				:ppid_40:pid_47:d.offset = spec::Trickle.DATA_MESSAGE.offset;
+			}
+		:ppid_47:pid_48 = spec::Trickle.Node.DataProcess.dp0;
+		:ppid_47:pid_49 = spec::Trickle.Node.DataProcess.dp1;
+		:ppid_47:pid_50 = spec::Trickle.Node.DataProcess.dp2;
+		:ppid_47:pid_51 = spec::Trickle.Node.DataProcess.dp3;
+		:ppid_40:pid_52 = run::Trickle.n3.DataProcess2; // model is spec::Trickle.Node.DataProcess;
+			DATA{
+				:ppid_40:pid_52:mySeq = spec::Trickle.Node.DataProcess.mySeq;
+				:ppid_40:pid_52:k = spec::Trickle.Node.DataProcess.k;
+				:ppid_40:pid_52:c = spec::Trickle.Node.DataProcess.c;
+				:ppid_40:pid_52:e = spec::Trickle.Node.DataProcess.e;
+				:ppid_40:pid_52:tau = spec::Trickle.Node.DataProcess.tau;
+				:ppid_40:pid_52:tau_l = spec::Trickle.Node.DataProcess.tau_l;
+				:ppid_40:pid_52:tau_h = spec::Trickle.Node.DataProcess.tau_h;
+				:ppid_40:pid_52:i = spec::Trickle.Node.DataProcess.i;
+				:ppid_40:pid_52:t = spec::Trickle.Node.DataProcess.t;
+				:ppid_40:pid_52:consistent = spec::Trickle.Node.DataProcess.consistent;
+				:ppid_40:pid_52:cl = spec::Trickle.Node.DataProcess.cl;
+				:ppid_40:pid_52:d.seq = spec::Trickle.DATA_MESSAGE.seq;
+				:ppid_40:pid_52:d.fragment = spec::Trickle.DATA_MESSAGE.fragment;
+				:ppid_40:pid_52:d.offset = spec::Trickle.DATA_MESSAGE.offset;
+			}
+		:ppid_52:pid_53 = spec::Trickle.Node.DataProcess.dp0;
+		:ppid_52:pid_54 = spec::Trickle.Node.DataProcess.dp1;
+		:ppid_52:pid_55 = spec::Trickle.Node.DataProcess.dp2;
+		:ppid_52:pid_56 = spec::Trickle.Node.DataProcess.dp3;
+	}
+	PC: true
+	PtC: true
+	DATA{
+		:pid_2:$time = 0;
+		:pid_2:z = $delta#initial;
+		:pid_2:cl_o = 0;
+		:pid_6:my_buff[0].seq = 1;
+		:pid_6:my_buff[0].fragment = FRAGMENT_0;
+		:pid_6:my_buff[0].offset = 0;
+		:pid_6:my_buff[1].seq = 2;
+		:pid_6:my_buff[1].fragment = FRAGMENT_1;
+		:pid_6:my_buff[1].offset = 1;
+		:pid_6:firmware[0] = FRAGMENT_0;
+		:pid_6:firmware[1] = FRAGMENT_1;
+		:pid_6:myseq_buff[0] = 1;
+		:pid_6:myseq_buff[1] = 1;
+		:pid_6:mydp_run[0] = true;
+		:pid_6:mydp_run[1] = true;
+		:pid_6:$time = 0;
+		:pid_6:z = $delta#initial;
+		:pid_6:coverageProp = false;
+		:pid_6:seq_buff[0] = seq_buff[0]_0;
+		:pid_6:seq_buff[1] = seq_buff[1]_0;
+		:pid_6:i = i_0;
+		:pid_6:localTime = 0;
+		:pid_6:localPC = true;
+		:pid_6:localPtC = true;
+		:pid_6:new_seq_buff = new_seq_buff_0;
+		:pid_6:new_seq = new_seq_0;
+		:pid_6:new_fragment = new_fragment_0;
+		:pid_6:new_offset = new_offset_0;
+		:pid_6:timeEmit = timeEmit_0;
+		:pid_7:k = k_0;
+		:pid_7:c = c_0;
+		:pid_7:e = e_0;
+		:pid_7:tau = tau_0;
+		:pid_7:tau_l = tau_l_0;
+		:pid_7:tau_h = tau_h_0;
+		:pid_7:i = i_0;
+		:pid_7:t = t_0;
+		:pid_7:consistent = consistent_0;
+		:pid_7:cl = 0;
+		:pid_13:mySeq = 1;
+		:pid_13:k = k_0;
+		:pid_13:c = c_0;
+		:pid_13:e = e_0;
+		:pid_13:tau = tau_0;
+		:pid_13:tau_l = tau_l_0;
+		:pid_13:tau_h = tau_h_0;
+		:pid_13:i = i_0;
+		:pid_13:t = t_0;
+		:pid_13:consistent = consistent_0;
+		:pid_13:cl = 0;
+		:pid_13:d.seq = d.seq_0;
+		:pid_13:d.fragment = d.fragment_0;
+		:pid_13:d.offset = d.offset_0;
+		:pid_18:mySeq = 2;
+		:pid_18:k = k_1;
+		:pid_18:c = c_1;
+		:pid_18:e = e_1;
+		:pid_18:tau = tau_1;
+		:pid_18:tau_l = tau_l_1;
+		:pid_18:tau_h = tau_h_1;
+		:pid_18:i = i_1;
+		:pid_18:t = t_1;
+		:pid_18:consistent = consistent_1;
+		:pid_18:cl = 0;
+		:pid_18:d.seq = d.seq_1;
+		:pid_18:d.fragment = d.fragment_1;
+		:pid_18:d.offset = d.offset_1;
+		:pid_23:my_buff[0].seq = 0;
+		:pid_23:my_buff[0].fragment = UNDEF_FRAGMENT;
+		:pid_23:my_buff[0].offset = 0;
+		:pid_23:my_buff[1].seq = 0;
+		:pid_23:my_buff[1].fragment = UNDEF_FRAGMENT;
+		:pid_23:my_buff[1].offset = 1;
+		:pid_23:firmware[0] = UNDEF_FRAGMENT;
+		:pid_23:firmware[1] = UNDEF_FRAGMENT;
+		:pid_23:myseq_buff[0] = 0;
+		:pid_23:myseq_buff[1] = 0;
+		:pid_23:mydp_run[0] = false;
+		:pid_23:mydp_run[1] = false;
+		:pid_23:$time = 0;
+		:pid_23:z = $delta#initial;
+		:pid_23:coverageProp = false;
+		:pid_23:seq_buff[0] = seq_buff[0]_1;
+		:pid_23:seq_buff[1] = seq_buff[1]_1;
+		:pid_23:i = i_1;
+		:pid_23:localTime = 0;
+		:pid_23:localPC = true;
+		:pid_23:localPtC = true;
+		:pid_23:new_seq_buff = new_seq_buff_1;
+		:pid_23:new_seq = new_seq_1;
+		:pid_23:new_fragment = new_fragment_1;
+		:pid_23:new_offset = new_offset_1;
+		:pid_23:timeEmit = timeEmit_1;
+		:pid_24:k = k_1;
+		:pid_24:c = c_1;
+		:pid_24:e = e_1;
+		:pid_24:tau = tau_1;
+		:pid_24:tau_l = tau_l_1;
+		:pid_24:tau_h = tau_h_1;
+		:pid_24:i = i_1;
+		:pid_24:t = t_1;
+		:pid_24:consistent = consistent_1;
+		:pid_24:cl = 0;
+		:pid_30:mySeq = 1;
+		:pid_30:k = k_2;
+		:pid_30:c = c_2;
+		:pid_30:e = e_2;
+		:pid_30:tau = tau_2;
+		:pid_30:tau_l = tau_l_2;
+		:pid_30:tau_h = tau_h_2;
+		:pid_30:i = i_2;
+		:pid_30:t = t_2;
+		:pid_30:consistent = consistent_2;
+		:pid_30:cl = 0;
+		:pid_30:d.seq = d.seq_2;
+		:pid_30:d.fragment = d.fragment_2;
+		:pid_30:d.offset = d.offset_2;
+		:pid_35:mySeq = 2;
+		:pid_35:k = k_3;
+		:pid_35:c = c_3;
+		:pid_35:e = e_3;
+		:pid_35:tau = tau_3;
+		:pid_35:tau_l = tau_l_3;
+		:pid_35:tau_h = tau_h_3;
+		:pid_35:i = i_3;
+		:pid_35:t = t_3;
+		:pid_35:consistent = consistent_3;
+		:pid_35:cl = 0;
+		:pid_35:d.seq = d.seq_3;
+		:pid_35:d.fragment = d.fragment_3;
+		:pid_35:d.offset = d.offset_3;
+		:pid_40:my_buff[0].seq = 0;
+		:pid_40:my_buff[0].fragment = UNDEF_FRAGMENT;
+		:pid_40:my_buff[0].offset = 0;
+		:pid_40:my_buff[1].seq = 0;
+		:pid_40:my_buff[1].fragment = UNDEF_FRAGMENT;
+		:pid_40:my_buff[1].offset = 1;
+		:pid_40:firmware[0] = UNDEF_FRAGMENT;
+		:pid_40:firmware[1] = UNDEF_FRAGMENT;
+		:pid_40:myseq_buff[0] = 0;
+		:pid_40:myseq_buff[1] = 0;
+		:pid_40:mydp_run[0] = false;
+		:pid_40:mydp_run[1] = false;
+		:pid_40:$time = 0;
+		:pid_40:z = $delta#initial;
+		:pid_40:coverageProp = false;
+		:pid_40:seq_buff[0] = seq_buff[0]_2;
+		:pid_40:seq_buff[1] = seq_buff[1]_2;
+		:pid_40:i = i_2;
+		:pid_40:localTime = 0;
+		:pid_40:localPC = true;
+		:pid_40:localPtC = true;
+		:pid_40:new_seq_buff = new_seq_buff_2;
+		:pid_40:new_seq = new_seq_2;
+		:pid_40:new_fragment = new_fragment_2;
+		:pid_40:new_offset = new_offset_2;
+		:pid_40:timeEmit = timeEmit_2;
+		:pid_41:k = k_2;
+		:pid_41:c = c_2;
+		:pid_41:e = e_2;
+		:pid_41:tau = tau_2;
+		:pid_41:tau_l = tau_l_2;
+		:pid_41:tau_h = tau_h_2;
+		:pid_41:i = i_2;
+		:pid_41:t = t_2;
+		:pid_41:consistent = consistent_2;
+		:pid_41:cl = 0;
+		:pid_47:mySeq = 1;
+		:pid_47:k = k_4;
+		:pid_47:c = c_4;
+		:pid_47:e = e_4;
+		:pid_47:tau = tau_4;
+		:pid_47:tau_l = tau_l_4;
+		:pid_47:tau_h = tau_h_4;
+		:pid_47:i = i_4;
+		:pid_47:t = t_4;
+		:pid_47:consistent = consistent_4;
+		:pid_47:cl = 0;
+		:pid_47:d.seq = d.seq_4;
+		:pid_47:d.fragment = d.fragment_4;
+		:pid_47:d.offset = d.offset_4;
+		:pid_52:mySeq = 2;
+		:pid_52:k = k_5;
+		:pid_52:c = c_5;
+		:pid_52:e = e_5;
+		:pid_52:tau = tau_5;
+		:pid_52:tau_l = tau_l_5;
+		:pid_52:tau_h = tau_h_5;
+		:pid_52:i = i_5;
+		:pid_52:t = t_5;
+		:pid_52:consistent = consistent_5;
+		:pid_52:cl = 0;
+		:pid_52:d.seq = d.seq_5;
+		:pid_52:d.fragment = d.fragment_5;
+		:pid_52:d.offset = d.offset_5;
+	}
+	BUFFER{
+		:pid_6:bufferNode:<FIFO>#0{ }
+		:pid_23:bufferNode:<FIFO>#0{ }
+		:pid_40:bufferNode:<FIFO>#0{ }
+	}
+	EC:<Id:2;Ev:2;H:1;W:1>{ SC: ( pid_4:o0 , ( pid_9:cp0_init , pid_14:dp0 , pid_19:dp0 ) , ( pid_26:cp0_init , pid_31:dp0 , pid_36:dp0 ) , ( pid_43:cp0_init , pid_48:dp0 , pid_53:dp0 ) )
+		EXE: { |,| { |;| (:pid_42 , run) (:pid_42 , cp_init) } { |;| (:pid_25 , 
+	run) (:pid_25 , cp_init) } { |;| (:pid_8 , run) (:pid_8 , cp_init) } { |;| 
+	(:pid_3 , run) (:pid_3 , o_startup) } }
+		DATA{
+			:pid_2:cl_o = 0;
+			:pid_7:k = 2;
+			:pid_7:c = 0;
+			:pid_7:e = 0;
+			:pid_7:tau = 4;
+			:pid_7:tau_l = 4;
+			:pid_7:tau_h = 8;
+			:pid_24:k = 2;
+			:pid_24:c = 0;
+			:pid_24:e = 0;
+			:pid_24:tau = 4;
+			:pid_24:tau_l = 4;
+			:pid_24:tau_h = 8;
+			:pid_41:k = 2;
+			:pid_41:c = 0;
+			:pid_41:e = 0;
+			:pid_41:tau = 4;
+			:pid_41:tau_l = 4;
+			:pid_41:tau_h = 8;
+		}
+		EC:<Id:7;Ev:7;H:2;W:5>{ SC: ( pid_4:o0 , ( pid_9:cp0_init , pid_14:dp0 , pid_19:dp0 ) , ( pid_26:cp0_init , pid_31:dp0 , pid_36:dp0 ) , ( pid_44:cp1 , pid_48:dp0 , pid_53:dp0 ) )
+			EXE: { |;| (:pid_40 , run) (:pid_41 , run) (:pid_43 , run) (:pid_43 
+	, cp_init) }
+			TRACE: { |;| (:pid_40 , ${ newfresh inst::Trickle.Node.z 
+	param::Trickle.Node.z_2 }) (:pid_43 , ${ newfresh 
+	inst::Trickle.Node.ControlProcess.t param::Trickle.Node.ControlProcess.t_5 }) 
+	(:pid_43 , ${ output#env inst::Trickle.Node.Log 0 } @ z_2) }
+			NC: ((t_5 < 4) && (0 <= (t_5 + -2)))
+			PC: ((t_5 < 4) && (0 <= (t_5 + -2)))
+			DATA{
+				:pid_40:$time = z_2;
+				:pid_40:z = z_2;
+				:pid_40:localTime = z_2;
+				:pid_40:localPC = ((t_5 < 4) && (0 <= (t_5 + -2)));
+				:pid_40:localPtC = ($delta#initial > 0);
+				:pid_41:t = t_5;
+				:pid_41:cl = 0;
+				:pid_47:cl = z_2;
+				:pid_52:cl = z_2;
+			}
+			EC:<Id:27;Ev:27;H:3;W:20>{ SC: ( pid_4:o0 , ( pid_9:cp0_init , pid_15:dp1 , pid_19:dp0 ) , ( pid_26:cp0_init , pid_31:dp0 , pid_36:dp0 ) , ( pid_44:cp1 , pid_48:dp0 , pid_53:dp0 ) )
+				EXE: { |;| (:pid_6 , run) (:pid_13 , run) (:pid_14 , run) 
+	(:pid_14 , dp_init) }
+				TRACE: { |;| (:pid_6 , ${ newfresh inst::Trickle.Node.z 
+	param::Trickle.Node.z_15 }) (:pid_14 , ${ newfresh 
+	inst::Trickle.Node.DataProcess.t param::Trickle.Node.DataProcess.t_34 }) }
+				NC: ((t_34 < 4) && (0 <= (t_34 + -2)))
+				PC: ((t_5 < 4) && (t_34 < 4) && (0 <= (t_5 + -2)) && (0 <= (t_34 + -2)))
+				DATA{
+					:pid_6:$time = z_15;
+					:pid_6:z = z_15;
+					:pid_6:coverageProp = true;
+					:pid_6:localTime = z_15;
+					:pid_6:localPC = ((t_34 < 4) && (0 <= (t_34 + -2)));
+					:pid_6:localPtC = ($delta#initial > 0);
+					:pid_7:cl = z_15;
+					:pid_13:k = 2;
+					:pid_13:c = 0;
+					:pid_13:e = 0;
+					:pid_13:tau = 4;
+					:pid_13:tau_l = 4;
+					:pid_13:tau_h = 8;
+					:pid_13:t = t_34;
+					:pid_13:cl = 0;
+					:pid_18:cl = z_15;
+				}
+				EC:<Id:116;Ev:48;H:4;W:20>{ SC: ( pid_4:o0 , ( pid_9:cp0_init , pid_15:dp1 , pid_20:dp1 ) , ( pid_26:cp0_init , pid_31:dp0 , pid_36:dp0 ) , ( pid_44:cp1 , pid_48:dp0 , pid_53:dp0 ) )
+					EXE: { |;| (:pid_6 , run) (:pid_18 , run) (:pid_19 , run) 
+	(:pid_19 , dp_init) }
+					TRACE: { |;| (:pid_6 , ${ newfresh inst::Trickle.Node.z 
+	param::Trickle.Node.z_75 }) (:pid_19 , ${ newfresh 
+	inst::Trickle.Node.DataProcess.t param::Trickle.Node.DataProcess.t_141 }) }
+					NC: ((t_141 < 4) && (0 <= (t_141 + -2)))
+					PC: ((t_5 < 4) && (t_141 < 4) && (t_34 < 4) && (0 <= (t_5 + -2)) && (0 <= (t_141 + 
+	-2)) && (0 <= (t_34 + -2)))
+					DATA{
+						:pid_6:$time = (z_15 + z_75);
+						:pid_6:z = z_75;
+						:pid_6:localTime = (z_15 + z_75);
+						:pid_6:localPC = ((t_141 < 4) && (t_34 < 4) && (0 <= (t_141 + -2)) && (0 <= (t_34 + -2)));
+						:pid_6:localPtC = (($delta#initial > 0) && (z_15 > 0));
+						:pid_7:cl = (z_15 + z_75);
+						:pid_13:cl = z_75;
+						:pid_18:k = 2;
+						:pid_18:c = 0;
+						:pid_18:e = 0;
+						:pid_18:tau = 4;
+						:pid_18:tau_l = 4;
+						:pid_18:tau_h = 8;
+						:pid_18:t = t_141;
+						:pid_18:cl = 0;
+					}
+					EC:<Id:210;Ev:127;H:5;W:162>{ SC: ( pid_4:o0 , ( pid_10:cp1 , pid_15:dp1 , pid_20:dp1 ) , ( pid_26:cp0_init , pid_31:dp0 , pid_36:dp0 ) , ( pid_44:cp1 , pid_48:dp0 , pid_53:dp0 ) )
+						EXE: { |;| (:pid_6 , run) (:pid_7 , run) (:pid_9 , run) 
+	(:pid_9 , cp_init) }
+						TRACE: { |;| (:pid_6 , ${ newfresh inst::Trickle.Node.z 
+	param::Trickle.Node.z_138 }) (:pid_9 , ${ newfresh 
+	inst::Trickle.Node.ControlProcess.t param::Trickle.Node.ControlProcess.t_92 }) 
+	(:pid_9 , ${ output#env inst::Trickle.Node.Log 0 } @ (z_138 + z_15 + z_75)) }
+						NC: ((t_92 < 4) && (0 <= (t_92 + -2)))
+						PC: ((t_5 < 4) && (t_92 < 4) && (t_141 < 4) && (t_34 < 4) && (0 <= (t_5 + -2)) && (0 
+	<= (t_92 + -2)) && (0 <= (t_141 + -2)) && (0 <= (t_34 + -2)))
+						DATA{
+							:pid_6:mydp_run[0] = false;
+							:pid_6:mydp_run[1] = false;
+							:pid_6:$time = (z_138 + z_15 + z_75);
+							:pid_6:z = z_138;
+							:pid_6:localTime = (z_138 + z_15 + z_75);
+							:pid_6:localPC = ((t_92 < 4) && (t_141 < 4) && (t_34 < 4) && (0 <= (t_92 + -2)) && (0 <= (t_141 + -2)) && (0 <= (t_34 + -2)));
+							:pid_6:localPtC = (($delta#initial > 0) && (z_15 > 0) && (z_75 > 0));
+							:pid_7:t = t_92;
+							:pid_7:cl = 0;
+							:pid_13:cl = (z_138 + z_75);
+							:pid_18:cl = z_138;
+						}
+						EC:<Id:579;Ev:155;H:6;W:452>{ SC: ( pid_4:o0 , ( pid_10:cp1 , pid_15:dp1 , pid_20:dp1 ) , ( pid_27:cp1 , pid_31:dp0 , pid_36:dp0 ) , ( pid_44:cp1 , pid_48:dp0 , pid_53:dp0 ) )
+							EXE: { |;| (:pid_23 , run) (:pid_24 , run) (:pid_26 
+	, run) (:pid_26 , cp_init) }
+							TRACE: { |;| (:pid_23 , ${ newfresh 
+	inst::Trickle.Node.z param::Trickle.Node.z_376 }) (:pid_26 , ${ newfresh 
+	inst::Trickle.Node.ControlProcess.t param::Trickle.Node.ControlProcess.t_228 }) 
+	(:pid_26 , ${ output#env inst::Trickle.Node.Log 0 } @ z_376) }
+							NC: ((t_228 < 4) && (0 <= (t_228 + -2)))
+							PC: ((t_228 < 4) && (t_5 < 4) && (t_92 < 4) && (t_141 < 4) && (t_34 < 4) && (0 <= 
+	(t_228 + -2)) && (0 <= (t_5 + -2)) && (0 <= (t_92 + -2)) && (0 <= (t_141 + -2)) 
+	&& (0 <= (t_34 + -2)))
+							DATA{
+								:pid_23:$time = z_376;
+								:pid_23:z = z_376;
+								:pid_23:localTime = z_376;
+								:pid_23:localPC = ((t_228 < 4) && (0 <= (t_228 + -2)));
+								:pid_23:localPtC = ($delta#initial > 0);
+								:pid_24:t = t_228;
+								:pid_24:cl = 0;
+								:pid_30:cl = z_376;
+								:pid_35:cl = z_376;
+							}
+							EC:<Id:714;Ev:244;H:7;W:559>{ SC: ( pid_4:o0 , ( pid_10:cp1 , pid_15:dp1 , pid_20:dp1 ) , ( pid_28:cp2 , pid_31:dp0 , pid_36:dp0 ) , ( pid_44:cp1 , pid_48:dp0 , pid_53:dp0 ) )
+								EXE: { |;| (:pid_23 , run) (:pid_24 , run) 
+	(:pid_27 , run) (:pid_27 , cp_sendCM) }
+								TRACE: { |;| (:pid_23 , ${ newfresh 
+	inst::Trickle.Node.z param::Trickle.Node.z_460 }) (:pid_27 , ${ output 
+	inst::Trickle.Node.ControlMsg [ 0 , 0 ] ${ + param::Trickle.Node.z_376 
+	param::Trickle.Node.z_460 } } @ (z_376 + z_460)) }
+								DATA{
+									:pid_23:$time = (z_376 + z_460);
+									:pid_23:z = z_460;
+									:pid_23:localTime = (z_376 + z_460);
+									:pid_23:localPC = ((t_228 < 4) && (0 <= (t_228 + -2)));
+									:pid_23:localPtC = ((z_460 == t_228) && ($delta#initial > 0) && (z_376 > 0));
+									:pid_24:cl = z_460;
+									:pid_30:cl = (z_376 + z_460);
+									:pid_35:cl = (z_376 + z_460);
+								}
+								BUFFER{
+									:pid_6:bufferNode:<FIFO>#0{
+										:pid_23:ControlMsg([ 0 , 0 ] , (z_376 + z_460));
+									}
+									:pid_40:bufferNode:<FIFO>#0{
+										:pid_23:ControlMsg([ 0 , 0 ] , (z_376 + z_460));
+									}
+								}
+								EC:<Id:1168;Ev:266;H:8;W:924>{ SC: ( pid_4:o0 , ( pid_11:cp2 , pid_15:dp1 , pid_20:dp1 ) , ( pid_28:cp2 , pid_31:dp0 , pid_36:dp0 ) , ( pid_44:cp1 , pid_48:dp0 , pid_53:dp0 ) )
+									EXE: { |;| (:pid_6 , run) (:pid_7 , run) 
+	(:pid_10 , run) (:pid_10 , cp_sendCM) }
+									TRACE: { |;| (:pid_6 , ${ newfresh 
+	inst::Trickle.Node.z param::Trickle.Node.z_726 }) (:pid_10 , ${ output 
+	inst::Trickle.Node.ControlMsg [ 1 , 1 ] ${ + param::Trickle.Node.z_138 
+	param::Trickle.Node.z_15 param::Trickle.Node.z_726 param::Trickle.Node.z_75 } } 
+	@ (z_138 + z_15 + z_726 + z_75)) }
+									DATA{
+										:pid_6:$time = (z_138 + z_15 + z_726 + z_75);
+										:pid_6:z = z_726;
+										:pid_6:localTime = (z_138 + z_15 + z_726 + z_75);
+										:pid_6:localPC = ((t_92 < 4) && (t_141 < 4) && (t_34 < 4) && (0 <= (t_92 + -2)) && (0 <= (t_141 + -2)) && (0 <= (t_34 + -2)));
+										:pid_6:localPtC = ((z_726 == t_92) && ($delta#initial > 0) && (z_138 > 0) && (z_15 > 0) && (z_75 > 0));
+										:pid_7:cl = z_726;
+										:pid_13:cl = (z_138 + z_726 + z_75);
+										:pid_18:cl = (z_138 + z_726);
+									}
+									BUFFER{
+										:pid_23:bufferNode:<FIFO>#0{
+											:pid_6:ControlMsg([ 1 , 1 ] , (z_138 + z_15 + z_726 + z_75));
+										}
+									}
+									EC:<Id:1291;Ev:341;H:9;W:1025>{ SC: ( pid_4:o0 , ( pid_10:cp1 , pid_15:dp1 , pid_20:dp1 ) , ( pid_28:cp2 , pid_31:dp0 , pid_36:dp0 ) , ( pid_44:cp1 , pid_48:dp0 , pid_53:dp0 ) )
+										EXE: { |;| (:pid_6 , run) (:pid_7 , run) 
+	(:pid_11 , run) (:pid_11 , cp2_receiveCM_inconsistent) }
+										TRACE: { |;| (:pid_6 , ${ newfresh 
+	inst::Trickle.Node.z param::Trickle.Node.z_792 }) (:pid_11 , ${ input 
+	inst::Trickle.Node.ControlMsg [ 0 , 0 ] ${ + param::Trickle.Node.z_376 
+	param::Trickle.Node.z_460 } } @ (z_138 + z_15 + z_726 + z_75 + z_792)) (:pid_11 
+	, ${ newfresh inst::Trickle.Node.ControlProcess.t 
+	param::Trickle.Node.ControlProcess.t_470 }) }
+										NC: ((t_470 < 4) && (0 <= (t_470 + -2)))
+										PC: ((t_228 < 4) && (t_470 < 4) && (t_5 < 4) && (t_92 < 4) && (t_141 < 4) && (t_34 < 
+	4) && (0 <= (t_228 + -2)) && (0 <= (t_470 + -2)) && (0 <= (t_5 + -2)) && (0 <= 
+	(t_92 + -2)) && (0 <= (t_141 + -2)) && (0 <= (t_34 + -2)))
+										DATA{
+											:pid_6:mydp_run[0] = true;
+											:pid_6:mydp_run[1] = true;
+											:pid_6:$time = (z_138 + z_15 + z_726 + z_75 + z_792);
+											:pid_6:z = z_792;
+											:pid_6:seq_buff[0] = 0;
+											:pid_6:seq_buff[1] = 0;
+											:pid_6:localTime = (z_138 + z_15 + z_726 + z_75 + z_792);
+											:pid_6:localPC = ((t_470 < 4) && (t_92 < 4) && (t_141 < 4) && (t_34 < 4) && (0 <= (t_470 + -2)) && (0 <= (t_92 + -2)) && (0 <= (t_141 + -2)) && (0 <= (t_34 + -2)));
+											:pid_6:localPtC = ((z_726 == t_92) && ((z_726 + z_792) < 4) && ((z_376 + z_460) <= (z_138 + z_15 + z_726 + z_75 + z_792)) && ($delta#initial > 0) && (z_138 > 0) && (z_15 > 0) && (z_726 > 0) && (z_75 > 0));
+											:pid_6:timeEmit = (z_376 + z_460);
+											:pid_7:c = 0;
+											:pid_7:e = 0;
+											:pid_7:i = 2;
+											:pid_7:t = t_470;
+											:pid_7:consistent = false;
+											:pid_7:cl = 0;
+											:pid_13:cl = (z_138 + z_726 + z_75 + z_792);
+											:pid_18:cl = (z_138 + z_726 + z_792);
+										}
+										BUFFER{
+											:pid_6:bufferNode:<FIFO>#0{ }
+										}
+										EC:<Id:1726;Ev:406;H:10;W:1385>{ SC: ( pid_4:o0 , ( pid_10:cp1 , pid_16:dp2 , pid_20:dp1 ) , ( pid_28:cp2 , pid_31:dp0 , pid_36:dp0 ) , ( pid_44:cp1 , pid_48:dp0 , pid_53:dp0 ) )
+											EXE: { |;| (:pid_6 , run) (:pid_13 , 
+	run) (:pid_15 , run) (:pid_15 , dp_sendDM) }
+											TRACE: { |;| (:pid_6 , ${ newfresh 
+	inst::Trickle.Node.z param::Trickle.Node.z_1017 }) (:pid_15 , ${ output 
+	inst::Trickle.Node.DataMsg [ 1 , 1 , 0 ] ${ + param::Trickle.Node.z_1017 
+	param::Trickle.Node.z_138 param::Trickle.Node.z_15 param::Trickle.Node.z_726 
+	param::Trickle.Node.z_75 param::Trickle.Node.z_792 } } @ (z_1017 + z_138 + z_15 
+	+ z_726 + z_75 + z_792)) }
+											DATA{
+												:pid_6:$time = (z_1017 + z_138 + z_15 + z_726 + z_75 + z_792);
+												:pid_6:z = z_1017;
+												:pid_6:localTime = (z_1017 + z_138 + z_15 + z_726 + z_75 + z_792);
+												:pid_6:localPC = ((t_470 < 4) && (t_92 < 4) && (t_141 < 4) && (t_34 < 4) && (0 <= (t_470 + -2)) && (0 <= (t_92 + -2)) && (0 <= (t_141 + -2)) && (0 <= (t_34 + -2)));
+												:pid_6:localPtC = (((z_1017 + z_138 + z_726 + z_75 + z_792) == t_34) && (z_726 == t_92) && ((z_726 + z_792) < 4) && ((z_376 + z_460) <= (z_138 + z_15 + z_726 + z_75 + z_792)) && ($delta#initial > 0) && (z_138 > 0) && (z_15 > 0) && (z_726 > 0) && (z_75 > 0) && (z_792 > 0));
+												:pid_7:cl = z_1017;
+												:pid_13:cl = (z_1017 + z_138 + z_726 + z_75 + z_792);
+												:pid_18:cl = (z_1017 + z_138 + z_726 + z_792);
+											}
+											BUFFER{
+												:pid_23:bufferNode:<FIFO>#0{
+													:pid_6:ControlMsg([ 1 , 1 ] , (z_138 + z_15 + z_726 + z_75));
+													:pid_6:DataMsg([ 1 , 1 , 0 ] , (z_1017 + z_138 + z_15 + z_726 + z_75 + z_792));
+												}
+											}
+											EC:<Id:2105;Ev:527;H:11;W:1699>{ SC: ( pid_4:o0 , ( pid_10:cp1 , pid_16:dp2 , pid_20:dp1 ) , ( pid_27:cp1 , pid_31:dp0 , pid_36:dp0 ) , ( pid_44:cp1 , pid_48:dp0 , pid_53:dp0 ) )
+												EXE: { |;| (:pid_23 , run) 
+	(:pid_24 , run) (:pid_28 , run) (:pid_28 , cp2_receiveCM_inconsistent) }
+												TRACE: { |;| (:pid_23 , ${ 
+	newfresh inst::Trickle.Node.z param::Trickle.Node.z_1213 }) (:pid_28 , ${ input 
+	inst::Trickle.Node.ControlMsg [ 1 , 1 ] ${ + param::Trickle.Node.z_138 
+	param::Trickle.Node.z_15 param::Trickle.Node.z_726 param::Trickle.Node.z_75 } } 
+	@ (z_1213 + z_376 + z_460)) (:pid_28 , ${ newfresh 
+	inst::Trickle.Node.ControlProcess.t param::Trickle.Node.ControlProcess.t_740 }) }
+												NC: ((t_740 < 4) && (0 <= (t_740 
+	+ -2)))
+												PC: ((t_228 < 4) && (t_470 < 4) && (t_5 < 4) && (t_740 < 4) && (t_92 < 4) && (t_141 
+	< 4) && (t_34 < 4) && (0 <= (t_228 + -2)) && (0 <= (t_470 + -2)) && (0 <= (t_5 + 
+	-2)) && (0 <= (t_740 + -2)) && (0 <= (t_92 + -2)) && (0 <= (t_141 + -2)) && (0 
+	<= (t_34 + -2)))
+												DATA{
+													:pid_23:mydp_run[0] = true;
+													:pid_23:mydp_run[1] = true;
+													:pid_23:$time = (z_1213 + z_376 + z_460);
+													:pid_23:z = z_1213;
+													:pid_23:seq_buff[0] = 1;
+													:pid_23:seq_buff[1] = 1;
+													:pid_23:localTime = (z_1213 + z_376 + z_460);
+													:pid_23:localPC = ((t_228 < 4) && (t_740 < 4) && (0 <= (t_228 + -2)) && (0 <= (t_740 + -2)));
+													:pid_23:localPtC = ((z_460 == t_228) && ((z_1213 + z_460) < 4) && ((z_138 + z_15 + z_726 + z_75) <= (z_1213 + z_376 + z_460)) && ($delta#initial > 0) && (z_376 > 0) && (z_460 > 0));
+													:pid_23:timeEmit = (z_138 + z_15 + z_726 + z_75);
+													:pid_24:c = 0;
+													:pid_24:e = 0;
+													:pid_24:i = 2;
+													:pid_24:t = t_740;
+													:pid_24:consistent = false;
+													:pid_24:cl = 0;
+													:pid_30:cl = (z_1213 + z_376 + z_460);
+													:pid_35:cl = (z_1213 + z_376 + z_460);
+												}
+												BUFFER{
+													:pid_23:bufferNode:<FIFO>#0{
+														:pid_6:DataMsg([ 1 , 1 , 0 ] , (z_1017 + z_138 + z_15 + z_726 + z_75 + z_792));
+													}
+												}
+												EC:<Id:2892;Ev:545;H:12;W:2365>{ SC: ( pid_4:o0 , ( pid_10:cp1 , pid_16:dp2 , pid_20:dp1 ) , ( pid_27:cp1 , pid_32:dp1 , pid_36:dp0 ) , ( pid_44:cp1 , pid_48:dp0 , pid_53:dp0 ) )
+													EXE: { |;| (:pid_23 , run) 
+	(:pid_30 , run) (:pid_31 , run) (:pid_31 , dp_init) }
+													TRACE: { |;| (:pid_23 , ${ 
+	newfresh inst::Trickle.Node.z param::Trickle.Node.z_1576 }) (:pid_31 , ${ 
+	newfresh inst::Trickle.Node.DataProcess.t param::Trickle.Node.DataProcess.t_2716 
+	}) }
+													NC: ((t_2716 < 4) && (0 <= 
+	(t_2716 + -2)))
+													PC: ((t_228 < 4) && (t_470 < 4) && (t_5 < 4) && (t_740 < 4) && (t_92 < 4) && (t_141 
+	< 4) && (t_2716 < 4) && (t_34 < 4) && (0 <= (t_228 + -2)) && (0 <= (t_470 + -2)) 
+	&& (0 <= (t_5 + -2)) && (0 <= (t_740 + -2)) && (0 <= (t_92 + -2)) && (0 <= 
+	(t_141 + -2)) && (0 <= (t_2716 + -2)) && (0 <= (t_34 + -2)))
+													DATA{
+														:pid_23:$time = (z_1213 + z_1576 + z_376 + z_460);
+														:pid_23:z = z_1576;
+														:pid_23:localTime = (z_1213 + z_1576 + z_376 + z_460);
+														:pid_23:localPC = ((t_228 < 4) && (t_740 < 4) && (t_2716 < 4) && (0 <= (t_228 + -2)) && (0 <= (t_740 + -2)) && (0 <= (t_2716 + -2)));
+														:pid_23:localPtC = ((z_460 == t_228) && ((z_1213 + z_460) < 4) && ((z_138 + z_15 + z_726 + z_75) <= (z_1213 + z_376 + z_460)) && ($delta#initial > 0) && (z_1213 > 0) && (z_376 > 0) && (z_460 > 0));
+														:pid_24:cl = z_1576;
+														:pid_30:k = 2;
+														:pid_30:c = 0;
+														:pid_30:e = 0;
+														:pid_30:tau = 4;
+														:pid_30:tau_l = 4;
+														:pid_30:tau_h = 8;
+														:pid_30:t = t_2716;
+														:pid_30:cl = 0;
+														:pid_35:cl = (z_1213 + z_1576 + z_376 + z_460);
+													}
+													EC:<Id:2997;Ev:618;H:13;W:2452>{ SC: ( pid_4:o0 , ( pid_10:cp1 , pid_16:dp2 , pid_20:dp1 ) , ( pid_27:cp1 , pid_32:dp1 , pid_36:dp0 ) , ( pid_45:cp2 , pid_48:dp0 , pid_53:dp0 ) )
+														EXE: { |;| (:pid_40 , 
+	run) (:pid_41 , run) (:pid_44 , run) (:pid_44 , cp_sendCM) }
+														TRACE: { |;| (:pid_40 , 
+	${ newfresh inst::Trickle.Node.z param::Trickle.Node.z_1631 }) (:pid_44 , ${ 
+	output inst::Trickle.Node.ControlMsg [ 0 , 0 ] ${ + param::Trickle.Node.z_1631 
+	param::Trickle.Node.z_2 } } @ (z_1631 + z_2)) }
+														DATA{
+															:pid_40:$time = (z_1631 + z_2);
+															:pid_40:z = z_1631;
+															:pid_40:localTime = (z_1631 + z_2);
+															:pid_40:localPC = ((t_5 < 4) && (0 <= (t_5 + -2)));
+															:pid_40:localPtC = ((z_1631 == t_5) && ($delta#initial > 0) && (z_2 > 0));
+															:pid_41:cl = z_1631;
+															:pid_47:cl = (z_1631 + z_2);
+															:pid_52:cl = (z_1631 + z_2);
+														}
+														BUFFER{
+															:pid_23:bufferNode:<FIFO>#0{
+																:pid_6:DataMsg([ 1 , 1 , 0 ] , (z_1017 + z_138 + z_15 + z_726 + z_75 + z_792));
+																:pid_40:ControlMsg([ 0 , 0 ] , (z_1631 + z_2));
+															}
+														}
+														EC:<Id:3443;Ev:689;H:14;W:2825>{ SC: ( pid_4:o0 , ( pid_10:cp1 , pid_16:dp2 , pid_20:dp1 ) , ( pid_28:cp2 , pid_32:dp1 , pid_36:dp0 ) , ( pid_45:cp2 , pid_48:dp0 , pid_53:dp0 ) )
+															EXE: { |;| (:pid_23 
+	, run) (:pid_24 , run) (:pid_27 , run) (:pid_27 , cp_sendCM) }
+															TRACE: { |;| 
+	(:pid_23 , ${ newfresh inst::Trickle.Node.z param::Trickle.Node.z_1849 }) 
+	(:pid_27 , ${ output inst::Trickle.Node.ControlMsg [ 0 , 0 ] ${ + 
+	param::Trickle.Node.z_1213 param::Trickle.Node.z_1576 param::Trickle.Node.z_1849 
+	param::Trickle.Node.z_376 param::Trickle.Node.z_460 } } @ (z_1213 + z_1576 + 
+	z_1849 + z_376 + z_460)) }
+															DATA{
+																:pid_23:$time = (z_1213 + z_1576 + z_1849 + z_376 + z_460);
+																:pid_23:z = z_1849;
+																:pid_23:localTime = (z_1213 + z_1576 + z_1849 + z_376 + z_460);
+																:pid_23:localPC = ((t_228 < 4) && (t_740 < 4) && (t_2716 < 4) && (0 <= (t_228 + -2)) && (0 <= (t_740 + -2)) && (0 <= (t_2716 + -2)));
+																:pid_23:localPtC = (((z_1576 + z_1849) == t_740) && (z_460 == t_228) && ((z_1213 + z_460) < 4) && ((z_138 + z_15 + z_726 + z_75) <= (z_1213 + z_376 + z_460)) && ($delta#initial > 0) && (z_1213 > 0) && (z_1576 > 0) && (z_376 > 0) && (z_460 > 0));
+																:pid_24:cl = (z_1576 + z_1849);
+																:pid_30:cl = z_1849;
+																:pid_35:cl = (z_1213 + z_1576 + z_1849 + z_376 + z_460);
+															}
+															BUFFER{
+																:pid_6:bufferNode:<FIFO>#0{
+																	:pid_23:ControlMsg([ 0 , 0 ] , (z_1213 + z_1576 + z_1849 + z_376 + z_460));
+																}
+																:pid_40:bufferNode:<FIFO>#0{
+																	:pid_23:ControlMsg([ 0 , 0 ] , (z_376 + z_460));
+																	:pid_23:ControlMsg([ 0 , 0 ] , (z_1213 + z_1576 + z_1849 + z_376 + z_460));
+																}
+															}
+															EC:<Id:3900;Ev:776;H:15;W:2825>{ SC: ( pid_4:o0 , ( pid_10:cp1 , pid_16:dp2 , pid_21:dp2 ) , ( pid_28:cp2 , pid_32:dp1 , pid_36:dp0 ) , ( pid_45:cp2 , pid_48:dp0 , pid_53:dp0 ) )
+																EXE: { |;| 
+	(:pid_6 , run) (:pid_18 , run) (:pid_20 , run) (:pid_20 , dp_sendDM) }
+																TRACE: { |;| 
+	(:pid_6 , ${ newfresh inst::Trickle.Node.z param::Trickle.Node.z_2061 }) 
+	(:pid_20 , ${ output inst::Trickle.Node.DataMsg [ 2 , 2 , 1 ] ${ + 
+	param::Trickle.Node.z_1017 param::Trickle.Node.z_138 param::Trickle.Node.z_15 
+	param::Trickle.Node.z_2061 param::Trickle.Node.z_726 param::Trickle.Node.z_75 
+	param::Trickle.Node.z_792 } } @ (z_1017 + z_138 + z_15 + z_2061 + z_726 + z_75 + 
+	z_792)) }
+																DATA{
+																	:pid_6:$time = (z_1017 + z_138 + z_15 + z_2061 + z_726 + z_75 + z_792);
+																	:pid_6:z = z_2061;
+																	:pid_6:localTime = (z_1017 + z_138 + z_15 + z_2061 + z_726 + z_75 + z_792);
+																	:pid_6:localPC = ((t_470 < 4) && (t_92 < 4) && (t_141 < 4) && (t_34 < 4) && (0 <= (t_470 + -2)) && (0 <= (t_92 + -2)) && (0 <= (t_141 + -2)) && (0 <= (t_34 + -2)));
+																	:pid_6:localPtC = (((z_1017 + z_138 + z_2061 + z_726 + z_792) == t_141) && ((z_1017 + z_138 + z_726 + z_75 + z_792) == t_34) && (z_726 == t_92) && ((z_726 + z_792) < 4) && ((z_376 + z_460) <= (z_138 + z_15 + z_726 + z_75 + z_792)) && ($delta#initial > 0) && (z_1017 > 0) && (z_138 > 0) && (z_15 > 0) && (z_726 > 0) && (z_75 > 0) && (z_792 > 0));
+																	:pid_7:cl = (z_1017 + z_2061);
+																	:pid_13:cl = (z_1017 + z_138 + z_2061 + z_726 + z_75 + z_792);
+																	:pid_18:cl = (z_1017 + z_138 + z_2061 + z_726 + z_792);
+																}
+																BUFFER{
+																	:pid_23:bufferNode:<FIFO>#0{
+																		:pid_6:DataMsg([ 1 , 1 , 0 ] , (z_1017 + z_138 + z_15 + z_726 + z_75 + z_792));
+																		:pid_40:ControlMsg([ 0 , 0 ] , (z_1631 + z_2));
+																		:pid_6:DataMsg([ 2 , 2 , 1 ] , (z_1017 + z_138 + z_15 + z_2061 + z_726 + z_75 + z_792));
+																	}
+																}
+																EC:<Id:4457;Ev:826;H:16;W:3681>{ SC: ( pid_4:o0 , ( pid_10:cp1 , pid_16:dp2 , pid_21:dp2 ) , ( pid_27:cp1 , pid_32:dp1 , pid_36:dp0 ) , ( pid_45:cp2 , pid_48:dp0 , pid_53:dp0 ) )
+																	EXE: { |;| 
+	(:pid_23 , run) (:pid_24 , run) (:pid_28 , run) (:pid_28 , cp_resetTau) }
+																	TRACE: { |;| 
+	(:pid_23 , ${ newfresh inst::Trickle.Node.z param::Trickle.Node.z_2323 }) 
+	(:pid_28 , ${ newfresh inst::Trickle.Node.ControlProcess.t 
+	param::Trickle.Node.ControlProcess.t_1406 }) }
+																	NC: ((t_1406 
+	< 8) && (0 <= (t_1406 + -4)))
+																	PC: ((t_1406 < 8) && (t_228 < 4) && (t_470 < 4) && (t_5 < 4) && (t_740 < 4) && (t_92 
+	< 4) && (t_141 < 4) && (t_2716 < 4) && (t_34 < 4) && (0 <= (t_1406 + -4)) && (0 
+	<= (t_228 + -2)) && (0 <= (t_470 + -2)) && (0 <= (t_5 + -2)) && (0 <= (t_740 + 
+	-2)) && (0 <= (t_92 + -2)) && (0 <= (t_141 + -2)) && (0 <= (t_2716 + -2)) && (0 
+	<= (t_34 + -2)))
+																	DATA{
+																		:pid_23:$time = (z_1213 + z_1576 + z_1849 + z_2323 + z_376 + z_460);
+																		:pid_23:z = z_2323;
+																		:pid_23:localTime = (z_1213 + z_1576 + z_1849 + z_2323 + z_376 + z_460);
+																		:pid_23:localPC = ((t_1406 < 8) && (t_228 < 4) && (t_740 < 4) && (t_2716 < 4) && (0 <= (t_1406 + -4)) && (0 <= (t_228 + -2)) && (0 <= (t_740 + -2)) && (0 <= (t_2716 + -2)));
+																		:pid_23:localPtC = (((z_1576 + z_1849) == t_740) && ((z_1576 + z_1849 + z_2323) == 4) && (z_460 == t_228) && ((z_1213 + z_460) < 4) && ((z_138 + z_15 + z_726 + z_75) <= (z_1213 + z_376 + z_460)) && ((z_1576 + z_1849 + z_2323) > t_740) && ($delta#initial > 0) && (z_1213 > 0) && (z_1576 > 0) && (z_1849 > 0) && (z_376 > 0) && (z_460 > 0));
+																		:pid_24:e = 1;
+																		:pid_24:tau = 8;
+																		:pid_24:t = t_1406;
+																		:pid_24:cl = 0;
+																		:pid_30:cl = (z_1849 + z_2323);
+																		:pid_35:cl = (z_1213 + z_1576 + z_1849 + z_2323 + z_376 + z_460);
+																	}
+																	EC:<Id:4798;Ev:880;H:17;W:3972>{ SC: ( pid_4:o0 , ( pid_11:cp2 , pid_16:dp2 , pid_21:dp2 ) , ( pid_27:cp1 , pid_32:dp1 , pid_36:dp0 ) , ( pid_45:cp2 , pid_48:dp0 , pid_53:dp0 ) )
+																		EXE: { 
+	|;| (:pid_6 , run) (:pid_7 , run) (:pid_10 , run) (:pid_10 , cp_sendCM) }
+																		TRACE: { 
+	|;| (:pid_6 , ${ newfresh inst::Trickle.Node.z param::Trickle.Node.z_2472 }) 
+	(:pid_10 , ${ output inst::Trickle.Node.ControlMsg [ 1 , 1 ] ${ + 
+	param::Trickle.Node.z_1017 param::Trickle.Node.z_138 param::Trickle.Node.z_15 
+	param::Trickle.Node.z_2061 param::Trickle.Node.z_2472 param::Trickle.Node.z_726 
+	param::Trickle.Node.z_75 param::Trickle.Node.z_792 } } @ (z_1017 + z_138 + z_15 
+	+ z_2061 + z_2472 + z_726 + z_75 + z_792)) }
+																		DATA{
+																			:pid_6:$time = (z_1017 + z_138 + z_15 + z_2061 + z_2472 + z_726 + z_75 + z_792);
+																			:pid_6:z = z_2472;
+																			:pid_6:localTime = (z_1017 + z_138 + z_15 + z_2061 + z_2472 + z_726 + z_75 + z_792);
+																			:pid_6:localPC = ((t_470 < 4) && (t_92 < 4) && (t_141 < 4) && (t_34 < 4) && (0 <= (t_470 + -2)) && (0 <= (t_92 + -2)) && (0 <= (t_141 + -2)) && (0 <= (t_34 + -2)));
+																			:pid_6:localPtC = (((z_1017 + z_138 + z_2061 + z_726 + z_792) == t_141) && ((z_1017 + z_138 + z_726 + z_75 + z_792) == t_34) && ((z_1017 + z_2061 + z_2472) == t_470) && (z_726 == t_92) && ((z_726 + z_792) < 4) && ((z_376 + z_460) <= (z_138 + z_15 + z_726 + z_75 + z_792)) && ($delta#initial > 0) && (z_1017 > 0) && (z_138 > 0) && (z_15 > 0) && (z_2061 > 0) && (z_726 > 0) && (z_75 > 0) && (z_792 > 0));
+																			:pid_7:cl = (z_1017 + z_2061 + z_2472);
+																			:pid_13:cl = (z_1017 + z_138 + z_2061 + z_2472 + z_726 + z_75 + z_792);
+																			:pid_18:cl = (z_1017 + z_138 + z_2061 + z_2472 + z_726 + z_792);
+																		}
+																		BUFFER{
+																			:pid_23:bufferNode:<FIFO>#0{
+																				:pid_6:DataMsg([ 1 , 1 , 0 ] , (z_1017 + z_138 + z_15 + z_726 + z_75 + z_792));
+																				:pid_40:ControlMsg([ 0 , 0 ] , (z_1631 + z_2));
+																				:pid_6:DataMsg([ 2 , 2 , 1 ] , (z_1017 + z_138 + z_15 + z_2061 + z_726 + z_75 + z_792));
+																				:pid_6:ControlMsg([ 1 , 1 ] , (z_1017 + z_138 + z_15 + z_2061 + z_2472 + z_726 + z_75 + z_792));
+																			}
+																		}
+																		EC:<Id:5192;Ev:989;H:18;W:4312>{ SC: ( pid_4:o0 , ( pid_11:cp2 , pid_16:dp2 , pid_21:dp2 ) , ( pid_27:cp1 , pid_32:dp1 , pid_36:dp0 ) , ( pid_45:cp2 , pid_48:dp0 , pid_53:dp0 ) )
+																			EXE: 
+	{ |;| (:pid_23 , run) (:pid_30 , run) (:pid_32 , run) (:pid_32 , 
+	dp1_receiveDM_consistent) }
+																			
+	TRACE: { |;| (:pid_23 , ${ newfresh inst::Trickle.Node.z 
+	param::Trickle.Node.z_2635 }) (:pid_32 , ${ input inst::Trickle.Node.DataMsg [ 1 
+	, 1 , 0 ] ${ + param::Trickle.Node.z_1017 param::Trickle.Node.z_138 
+	param::Trickle.Node.z_15 param::Trickle.Node.z_726 param::Trickle.Node.z_75 
+	param::Trickle.Node.z_792 } } @ (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + 
+	z_376 + z_460)) }
+																			DATA{
+																				:pid_23:my_buff[0].seq = 1;
+																				:pid_23:my_buff[0].fragment = FRAGMENT_0;
+																				:pid_23:my_buff[0].offset = 0;
+																				:pid_23:firmware[0] = FRAGMENT_0;
+																				:pid_23:myseq_buff[0] = 1;
+																				:pid_23:$time = (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_376 + z_460);
+																				:pid_23:z = z_2635;
+																				:pid_23:localTime = (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_376 + z_460);
+																				:pid_23:localPC = ((t_1406 < 8) && (t_228 < 4) && (t_740 < 4) && (t_2716 < 4) && (0 <= (t_1406 + -4)) && (0 <= (t_228 + -2)) && (0 <= (t_740 + -2)) && (0 <= (t_2716 + -2)));
+																				:pid_23:localPtC = (((z_1576 + z_1849) == t_740) && ((z_1576 + z_1849 + z_2323) == 4) && (z_460 == t_228) && ((z_1213 + z_460) < 4) && ((z_1849 + z_2323 + z_2635) < t_2716) && ((z_1017 + z_138 + z_15 + z_726 + z_75 + z_792) <= (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_376 + z_460)) && ((z_138 + z_15 + z_726 + z_75) <= (z_1213 + z_376 + z_460)) && ((z_1576 + z_1849 + z_2323) > t_740) && ($delta#initial > 0) && (z_1213 > 0) && (z_1576 > 0) && (z_1849 > 0) && (z_2323 > 0) && (z_376 > 0) && (z_460 > 0));
+																				:pid_23:timeEmit = (z_1017 + z_138 + z_15 + z_726 + z_75 + z_792);
+																				:pid_24:cl = z_2635;
+																				:pid_30:c = 1;
+																				:pid_30:consistent = true;
+																				:pid_30:cl = (z_1849 + z_2323 + z_2635);
+																				:pid_30:d.seq = 1;
+																				:pid_30:d.fragment = FRAGMENT_0;
+																				:pid_30:d.offset = 0;
+																				:pid_35:cl = (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_376 + z_460);
+																			}
+																			BUFFER{
+																				:pid_23:bufferNode:<FIFO>#0{
+																					:pid_40:ControlMsg([ 0 , 0 ] , (z_1631 + z_2));
+																					:pid_6:DataMsg([ 2 , 2 , 1 ] , (z_1017 + z_138 + z_15 + z_2061 + z_726 + z_75 + z_792));
+																					:pid_6:ControlMsg([ 1 , 1 ] , (z_1017 + z_138 + z_15 + z_2061 + z_2472 + z_726 + z_75 + z_792));
+																				}
+																			}
+																			EC:<Id:5970;Ev:1045;H:19;W:4981>{ SC: ( pid_4:o0 , ( pid_11:cp2 , pid_16:dp2 , pid_21:dp2 ) , ( pid_27:cp1 , pid_32:dp1 , pid_37:dp1 ) , ( pid_45:cp2 , pid_48:dp0 , pid_53:dp0 ) )
+																				
+	EXE: { |;| (:pid_23 , run) (:pid_35 , run) (:pid_36 , run) (:pid_36 , dp_init) }
+																				
+	TRACE: { |;| (:pid_23 , ${ newfresh inst::Trickle.Node.z 
+	param::Trickle.Node.z_2962 }) (:pid_36 , ${ newfresh 
+	inst::Trickle.Node.DataProcess.t param::Trickle.Node.DataProcess.t_4821 }) }
+																				
+	NC: ((t_4821 < 4) && (0 <= (t_4821 + -2)))
+																				PC: ((t_1406 < 8) && (t_228 < 4) && (t_470 < 4) && (t_5 < 4) && (t_740 < 4) && (t_92 
+	< 4) && (t_141 < 4) && (t_2716 < 4) && (t_34 < 4) && (t_4821 < 4) && (0 <= 
+	(t_1406 + -4)) && (0 <= (t_228 + -2)) && (0 <= (t_470 + -2)) && (0 <= (t_5 + -2))
+	 && (0 <= (t_740 + -2)) && (0 <= (t_92 + -2)) && (0 <= (t_141 + -2)) && (0 <= 
+	(t_2716 + -2)) && (0 <= (t_34 + -2)) && (0 <= (t_4821 + -2)))
+																				DATA{
+																					:pid_23:$time = (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_2962 + z_376 + z_460);
+																					:pid_23:z = z_2962;
+																					:pid_23:localTime = (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_2962 + z_376 + z_460);
+																					:pid_23:localPC = ((t_1406 < 8) && (t_228 < 4) && (t_740 < 4) && (t_2716 < 4) && (t_4821 < 4) && (0 <= (t_1406 + -4)) && (0 <= (t_228 + -2)) && (0 <= (t_740 + -2)) && (0 <= (t_2716 + -2)) && (0 <= (t_4821 + -2)));
+																					:pid_23:localPtC = (((z_1576 + z_1849) == t_740) && ((z_1576 + z_1849 + z_2323) == 4) && (z_460 == t_228) && ((z_1213 + z_460) < 4) && ((z_1849 + z_2323 + z_2635) < t_2716) && ((z_1017 + z_138 + z_15 + z_726 + z_75 + z_792) <= (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_376 + z_460)) && ((z_138 + z_15 + z_726 + z_75) <= (z_1213 + z_376 + z_460)) && ((z_1576 + z_1849 + z_2323) > t_740) && ($delta#initial > 0) && (z_1213 > 0) && (z_1576 > 0) && (z_1849 > 0) && (z_2323 > 0) && (z_2635 > 0) && (z_376 > 0) && (z_460 > 0));
+																					:pid_24:cl = (z_2635 + z_2962);
+																					:pid_30:cl = (z_1849 + z_2323 + z_2635 + z_2962);
+																					:pid_35:k = 2;
+																					:pid_35:c = 0;
+																					:pid_35:e = 0;
+																					:pid_35:tau = 4;
+																					:pid_35:tau_l = 4;
+																					:pid_35:tau_h = 8;
+																					:pid_35:t = t_4821;
+																					:pid_35:cl = 0;
+																				}
+																				EC:<Id:6383;Ev:1153;H:20;W:5338>{ SC: ( pid_4:o0 , ( pid_11:cp2 , pid_16:dp2 , pid_21:dp2 ) , ( pid_27:cp1 , pid_32:dp1 , pid_37:dp1 ) , ( pid_45:cp2 , pid_48:dp0 , pid_53:dp0 ) )
+																					
+	EXE: { |;| (:pid_40 , run) (:pid_41 , run) (:pid_45 , run) (:pid_45 , 
+	cp2_receiveCM_consistent) }
+																					
+	TRACE: { |;| (:pid_40 , ${ newfresh inst::Trickle.Node.z 
+	param::Trickle.Node.z_3131 }) (:pid_45 , ${ input inst::Trickle.Node.ControlMsg 
+	[ 0 , 0 ] ${ + param::Trickle.Node.z_376 param::Trickle.Node.z_460 } } @ (z_1631 
+	+ z_2 + z_3131)) }
+																					DATA{
+																						:pid_40:$time = (z_1631 + z_2 + z_3131);
+																						:pid_40:z = z_3131;
+																						:pid_40:seq_buff[0] = 0;
+																						:pid_40:seq_buff[1] = 0;
+																						:pid_40:localTime = (z_1631 + z_2 + z_3131);
+																						:pid_40:localPC = ((t_5 < 4) && (0 <= (t_5 + -2)));
+																						:pid_40:localPtC = ((z_1631 == t_5) && ((z_1631 + z_3131) < 4) && ((z_376 + z_460) <= (z_1631 + z_2 + z_3131)) && ($delta#initial > 0) && (z_1631 > 0) && (z_2 > 0));
+																						:pid_40:timeEmit = (z_376 + z_460);
+																						:pid_41:c = 1;
+																						:pid_41:i = 2;
+																						:pid_41:consistent = true;
+																						:pid_41:cl = (z_1631 + z_3131);
+																						:pid_47:cl = (z_1631 + z_2 + z_3131);
+																						:pid_52:cl = (z_1631 + z_2 + z_3131);
+																					}
+																					BUFFER{
+																						:pid_40:bufferNode:<FIFO>#0{
+																							:pid_23:ControlMsg([ 0 , 0 ] , (z_1213 + z_1576 + z_1849 + z_376 + z_460));
+																						}
+																					}
+																					EC:<Id:7165;Ev:1205;H:21;W:6012>{ SC: ( pid_4:o0 , ( pid_11:cp2 , pid_16:dp2 , pid_21:dp2 ) , ( pid_27:cp1 , pid_32:dp1 , pid_37:dp1 ) , ( pid_45:cp2 , pid_48:dp0 , pid_53:dp0 ) )
+																					
+		EXE: { |;| (:pid_23 , run) (:pid_24 , run) (:pid_27 , run) (:pid_27 , 
+	cp1_receiveCM_inconsistent) }
+																					
+		TRACE: { |;| (:pid_23 , ${ newfresh inst::Trickle.Node.z 
+	param::Trickle.Node.z_3454 }) (:pid_27 , ${ input inst::Trickle.Node.ControlMsg 
+	[ 0 , 0 ] ${ + param::Trickle.Node.z_1631 param::Trickle.Node.z_2 } } @ (z_1213 
+	+ z_1576 + z_1849 + z_2323 + z_2635 + z_2962 + z_3454 + z_376 + z_460)) (:pid_27 
+	, ${ newfresh inst::Trickle.Node.ControlProcess.t 
+	param::Trickle.Node.ControlProcess.t_2194 }) }
+																					
+		NC: ((t_2194 < 4) && (0 <= (t_2194 + -2)))
+																						PC: ((t_1406 < 8) && (t_2194 < 4) && (t_228 < 4) && (t_470 < 4) && (t_5 < 4) && 
+	(t_740 < 4) && (t_92 < 4) && (t_141 < 4) && (t_2716 < 4) && (t_34 < 4) && 
+	(t_4821 < 4) && (0 <= (t_1406 + -4)) && (0 <= (t_2194 + -2)) && (0 <= (t_228 + 
+	-2)) && (0 <= (t_470 + -2)) && (0 <= (t_5 + -2)) && (0 <= (t_740 + -2)) && (0 <= 
+	(t_92 + -2)) && (0 <= (t_141 + -2)) && (0 <= (t_2716 + -2)) && (0 <= (t_34 + -2))
+	 && (0 <= (t_4821 + -2)))
+																						DATA{
+																							:pid_23:$time = (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_2962 + z_3454 + z_376 + z_460);
+																							:pid_23:z = z_3454;
+																							:pid_23:seq_buff[0] = 0;
+																							:pid_23:seq_buff[1] = 0;
+																							:pid_23:localTime = (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_2962 + z_3454 + z_376 + z_460);
+																							:pid_23:localPC = ((t_1406 < 8) && (t_2194 < 4) && (t_228 < 4) && (t_740 < 4) && (t_2716 < 4) && (t_4821 < 4) && (0 <= (t_1406 + -4)) && (0 <= (t_2194 + -2)) && (0 <= (t_228 + -2)) && (0 <= (t_740 + -2)) && (0 <= (t_2716 + -2)) && (0 <= (t_4821 + -2)));
+																							:pid_23:localPtC = (((z_1576 + z_1849) == t_740) && ((z_1576 + z_1849 + z_2323) == 4) && (z_460 == t_228) && ((z_1213 + z_460) < 4) && ((z_1849 + z_2323 + z_2635) < t_2716) && ((z_2635 + z_2962 + z_3454) < t_1406) && ((z_1017 + z_138 + z_15 + z_726 + z_75 + z_792) <= (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_376 + z_460)) && ((z_138 + z_15 + z_726 + z_75) <= (z_1213 + z_376 + z_460)) && ((z_1631 + z_2) <= (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_2962 + z_3454 + z_376 + z_460)) && ((z_1576 + z_1849 + z_2323) > t_740) && ($delta#initial > 0) && (z_1213 > 0) && (z_1576 > 0) && (z_1849 > 0) && (z_2323 > 0) && (z_2635 > 0) && (z_2962 > 0) && (z_376 > 0) && (z_460 > 0));
+																							:pid_23:timeEmit = (z_1631 + z_2);
+																							:pid_24:c = 0;
+																							:pid_24:e = 0;
+																							:pid_24:tau = 4;
+																							:pid_24:i = 2;
+																							:pid_24:t = t_2194;
+																							:pid_24:cl = 0;
+																							:pid_30:cl = (z_1849 + z_2323 + z_2635 + z_2962 + z_3454);
+																							:pid_35:cl = z_3454;
+																						}
+																						BUFFER{
+																							:pid_23:bufferNode:<FIFO>#0{
+																								:pid_6:DataMsg([ 2 , 2 , 1 ] , (z_1017 + z_138 + z_15 + z_2061 + z_726 + z_75 + z_792));
+																								:pid_6:ControlMsg([ 1 , 1 ] , (z_1017 + z_138 + z_15 + z_2061 + z_2472 + z_726 + z_75 + z_792));
+																							}
+																						}
+																						EC:<Id:7553;Ev:1322;H:22;W:6348>{ SC: ( pid_4:o0 , ( pid_11:cp2 , pid_16:dp2 , pid_21:dp2 ) , ( pid_27:cp1 , pid_32:dp1 , pid_37:dp1 ) , ( pid_45:cp2 , pid_48:dp0 , pid_53:dp0 ) )
+																					
+			EXE: { |;| (:pid_23 , run) (:pid_35 , run) (:pid_37 , run) (:pid_37 , 
+	dp1_receiveDM_consistent) }
+																					
+			TRACE: { |;| (:pid_23 , ${ newfresh inst::Trickle.Node.z 
+	param::Trickle.Node.z_3610 }) (:pid_37 , ${ input inst::Trickle.Node.DataMsg [ 2 
+	, 2 , 1 ] ${ + param::Trickle.Node.z_1017 param::Trickle.Node.z_138 
+	param::Trickle.Node.z_15 param::Trickle.Node.z_2061 param::Trickle.Node.z_726 
+	param::Trickle.Node.z_75 param::Trickle.Node.z_792 } } @ (z_1213 + z_1576 + 
+	z_1849 + z_2323 + z_2635 + z_2962 + z_3454 + z_3610 + z_376 + z_460)) }
+																							/*FLAGS{ COVERAGE-ELEMENT }*/
+																							INFO{
+																								<ID:"sew:/workflow.behavior#selection.behavior_coverage",kind="tpid#1" as trace="tpid#1">
+																							}
+																							DATA{
+																								:pid_23:my_buff[1].seq = 2;
+																								:pid_23:my_buff[1].fragment = FRAGMENT_1;
+																								:pid_23:my_buff[1].offset = 1;
+																								:pid_23:firmware[1] = FRAGMENT_1;
+																								:pid_23:myseq_buff[1] = 1;
+																								:pid_23:$time = (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_2962 + z_3454 + z_3610 + z_376 + z_460);
+																								:pid_23:z = z_3610;
+																								:pid_23:coverageProp = true;
+																								:pid_23:localTime = (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_2962 + z_3454 + z_3610 + z_376 + z_460);
+																								:pid_23:localPC = ((t_1406 < 8) && (t_2194 < 4) && (t_228 < 4) && (t_740 < 4) && (t_2716 < 4) && (t_4821 < 4) && (0 <= (t_1406 + -4)) && (0 <= (t_2194 + -2)) && (0 <= (t_228 + -2)) && (0 <= (t_740 + -2)) && (0 <= (t_2716 + -2)) && (0 <= (t_4821 + -2)));
+																								:pid_23:localPtC = (((z_1576 + z_1849) == t_740) && ((z_1576 + z_1849 + z_2323) == 4) && (z_460 == t_228) && ((z_1213 + z_460) < 4) && ((z_1849 + z_2323 + z_2635) < t_2716) && ((z_2635 + z_2962 + z_3454) < t_1406) && ((z_3454 + z_3610) < t_4821) && ((z_1017 + z_138 + z_15 + z_2061 + z_726 + z_75 + z_792) <= (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_2962 + z_3454 + z_3610 + z_376 + z_460)) && ((z_1017 + z_138 + z_15 + z_726 + z_75 + z_792) <= (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_376 + z_460)) && ((z_138 + z_15 + z_726 + z_75) <= (z_1213 + z_376 + z_460)) && ((z_1631 + z_2) <= (z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_2962 + z_3454 + z_376 + z_460)) && ((z_1576 + z_1849 + z_2323) > t_740) && ($delta#initial > 0) && (z_1213 > 0) && (z_1576 > 0) && (z_1849 > 0) && (z_2323 > 0) && (z_2635 > 0) && (z_2962 > 0) && (z_3454 > 0) && (z_376 > 0) && (z_460 > 0));
+																								:pid_23:timeEmit = (z_1017 + z_138 + z_15 + z_2061 + z_726 + z_75 + z_792);
+																								:pid_24:cl = z_3610;
+																								:pid_30:cl = (z_1849 + z_2323 + z_2635 + z_2962 + z_3454 + z_3610);
+																								:pid_35:c = 1;
+																								:pid_35:consistent = true;
+																								:pid_35:cl = (z_3454 + z_3610);
+																								:pid_35:d.seq = 2;
+																								:pid_35:d.fragment = FRAGMENT_1;
+																								:pid_35:d.offset = 1;
+																							}
+																							BUFFER{
+																								:pid_23:bufferNode:<FIFO>#0{
+																									:pid_6:ControlMsg([ 1 , 1 ] , (z_1017 + z_138 + z_15 + z_2061 + z_2472 + z_726 + z_75 + z_792));
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,507 @@
+digraph fscn {
+EC1 [
+	label="EC#1<Ev:1 , H:0>
+( Observer:initialstate , ( n1:cp0 , n1:dp0 , n1:dp0 ) , ( n2:cp0 , n2:dp0 , n2:dp0 ) , ( n3:cp0 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC1 -> ED1
+ED1 [
+	label="ControlProcess.e=e_0
+	ControlProcess.tau=tau_0
+	ControlProcess.cl=0
+	DataProcess1.e=e_0
+	DataProcess1.tau=tau_0
+	DataProcess1.cl=0
+	DataProcess2.e=e_1
+	DataProcess2.tau=tau_1
+	DataProcess2.cl=0
+	ControlProcess.e=e_1
+	ControlProcess.tau=tau_1
+	ControlProcess.cl=0
+	DataProcess1.e=e_2
+	DataProcess1.tau=tau_2
+	DataProcess1.cl=0
+	DataProcess2.e=e_3
+	DataProcess2.tau=tau_3
+	DataProcess2.cl=0
+	ControlProcess.e=e_2
+	ControlProcess.tau=tau_2
+	ControlProcess.cl=0
+	DataProcess1.e=e_4
+	DataProcess1.tau=tau_4
+	DataProcess1.cl=0
+	DataProcess2.e=e_5
+	DataProcess2.tau=tau_5
+	DataProcess2.cl=0
+	"
+	shape=box
+]
+EC1 -> EC2 [
+	label="fired cp0->cp_init
+	fired cp0->cp_init
+	fired cp0->cp_init
+	fired initialstate->o_startup
+	"
+]
+EC2 [
+	label="EC#2<Ev:2 , H:1>
+( Observer:o0 , ( n1:cp0_init , n1:dp0 , n1:dp0 ) , ( n2:cp0_init , n2:dp0 , n2:dp0 ) , ( n3:cp0_init , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC2 -> ED2
+ED2 [
+	label="ControlProcess.e=0
+	ControlProcess.tau=4
+	ControlProcess.e=0
+	ControlProcess.tau=4
+	ControlProcess.e=0
+	ControlProcess.tau=4
+	"
+	shape=box
+]
+EC2 -> EC7 [
+	label="fired cp0_init->cp_init
+	OUTPUT n3:Log( INIT )
+	"
+]
+EC7 [
+	label="EC#7<Ev:7 , H:2>
+( Observer:o0 , ( n1:cp0_init , n1:dp0 , n1:dp0 ) , ( n2:cp0_init , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC7 -> ED7
+ED7 [
+	label="NC: ((t_5 < 4) && (0 <= (t_5 + -2)))
+	DataProcess1.cl=z_2
+	DataProcess2.cl=z_2
+	"
+	shape=box
+]
+EC7 -> EC27 [
+	label="fired dp0->dp_init
+	"
+]
+EC27 [
+	label="EC#27<Ev:27 , H:3>
+( Observer:o0 , ( n1:cp0_init , n1:dp1 , n1:dp0 ) , ( n2:cp0_init , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC27 -> ED27
+ED27 [
+	label="NC: ((t_34 < 4) && (0 <= (t_34 + -2)))
+	ControlProcess.cl=z_15
+	DataProcess1.e=0
+	DataProcess1.tau=4
+	DataProcess2.cl=z_15
+	"
+	shape=box
+]
+EC27 -> EC116 [
+	label="fired dp0->dp_init
+	"
+]
+EC116 [
+	label="EC#116<Ev:48 , H:4>
+( Observer:o0 , ( n1:cp0_init , n1:dp1 , n1:dp1 ) , ( n2:cp0_init , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC116 -> ED116
+ED116 [
+	label="NC: ((t_141 < 4) && (0 <= (t_141 + -2)))
+	ControlProcess.cl=(z_15 + z_75)
+	DataProcess1.cl=z_75
+	DataProcess2.e=0
+	DataProcess2.tau=4
+	DataProcess2.cl=0
+	"
+	shape=box
+]
+EC116 -> EC210 [
+	label="fired cp0_init->cp_init
+	OUTPUT n1:Log( INIT )
+	"
+]
+EC210 [
+	label="EC#210<Ev:127 , H:5>
+( Observer:o0 , ( n1:cp1 , n1:dp1 , n1:dp1 ) , ( n2:cp0_init , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC210 -> ED210
+ED210 [
+	label="NC: ((t_92 < 4) && (0 <= (t_92 + -2)))
+	ControlProcess.cl=0
+	DataProcess1.cl=(z_138 + z_75)
+	DataProcess2.cl=z_138
+	"
+	shape=box
+]
+EC210 -> EC579 [
+	label="fired cp0_init->cp_init
+	OUTPUT n2:Log( INIT )
+	"
+]
+EC579 [
+	label="EC#579<Ev:155 , H:6>
+( Observer:o0 , ( n1:cp1 , n1:dp1 , n1:dp1 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC579 -> ED579
+ED579 [
+	label="NC: ((t_228 < 4) && (0 <= (t_228 + -2)))
+	DataProcess1.cl=z_376
+	DataProcess2.cl=z_376
+	"
+	shape=box
+]
+EC579 -> EC714 [
+	label="fired cp1->cp_sendCM
+	output n2:ControlMsg( [ 0 , 0 ] , (z_376 + z_460) )
+	"
+]
+EC714 [
+	label="EC#714<Ev:244 , H:7>
+( Observer:o0 , ( n1:cp1 , n1:dp1 , n1:dp1 ) , ( n2:cp2 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC714 -> ED714
+ED714 [
+	label="ControlProcess.cl=z_460
+	DataProcess1.cl=(z_376 + z_460)
+	DataProcess2.cl=(z_376 + z_460)
+	"
+	shape=box
+]
+EC714 -> EC1168 [
+	label="fired cp1->cp_sendCM
+	output n1:ControlMsg( [ 1 , 1 ] , (z_138 + z_15 + z_726 + z_75) )
+	"
+]
+EC1168 [
+	label="EC#1168<Ev:266 , H:8>
+( Observer:o0 , ( n1:cp2 , n1:dp1 , n1:dp1 ) , ( n2:cp2 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC1168 -> ED1168
+ED1168 [
+	label="ControlProcess.cl=z_726
+	DataProcess1.cl=(z_138 + z_726 + z_75)
+	DataProcess2.cl=(z_138 + z_726)
+	"
+	shape=box
+]
+EC1168 -> EC1291 [
+	label="fired cp2->cp2_receiveCM_inconsistent
+	input n1:ControlMsg( [ 0 , 0 ] , (z_376 + z_460) )
+	"
+]
+EC1291 [
+	label="EC#1291<Ev:341 , H:9>
+( Observer:o0 , ( n1:cp1 , n1:dp1 , n1:dp1 ) , ( n2:cp2 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC1291 -> ED1291
+ED1291 [
+	label="NC: ((t_470 < 4) && (0 <= (t_470 + -2)))
+	ControlProcess.cl=0
+	DataProcess1.cl=(z_138 + z_726 + z_75 + z_792)
+	DataProcess2.cl=(z_138 + z_726 + z_792)
+	"
+	shape=box
+]
+EC1291 -> EC1726 [
+	label="fired dp1->dp_sendDM
+	output n1:DataMsg( { 1 , FRAGMENT_0 , 0 } , (z_1017 + z_138 + z_15 + z_726 + 
+	z_75 + z_792) )
+	"
+]
+EC1726 [
+	label="EC#1726<Ev:406 , H:10>
+( Observer:o0 , ( n1:cp1 , n1:dp2 , n1:dp1 ) , ( n2:cp2 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC1726 -> ED1726
+ED1726 [
+	label="ControlProcess.cl=z_1017
+	DataProcess1.cl=(z_1017 + z_138 + z_726 + z_75 + z_792)
+	DataProcess2.cl=(z_1017 + z_138 + z_726 + z_792)
+	"
+	shape=box
+]
+EC1726 -> EC2105 [
+	label="fired cp2->cp2_receiveCM_inconsistent
+	input n2:ControlMsg( [ 1 , 1 ] , (z_138 + z_15 + z_726 + z_75) )
+	"
+]
+EC2105 [
+	label="EC#2105<Ev:527 , H:11>
+( Observer:o0 , ( n1:cp1 , n1:dp2 , n1:dp1 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC2105 -> ED2105
+ED2105 [
+	label="NC: ((t_740 < 4) && (0 <= (t_740 + -2)))
+	ControlProcess.cl=0
+	DataProcess1.cl=(z_1213 + z_376 + z_460)
+	DataProcess2.cl=(z_1213 + z_376 + z_460)
+	"
+	shape=box
+]
+EC2105 -> EC2892 [
+	label="fired dp0->dp_init
+	"
+]
+EC2892 [
+	label="EC#2892<Ev:545 , H:12>
+( Observer:o0 , ( n1:cp1 , n1:dp2 , n1:dp1 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC2892 -> ED2892
+ED2892 [
+	label="NC: ((t_2716 < 4) && (0 <= (t_2716 + -2)))
+	ControlProcess.cl=z_1576
+	DataProcess1.e=0
+	DataProcess1.tau=4
+	DataProcess1.cl=0
+	DataProcess2.cl=(z_1213 + z_1576 + z_376 + z_460)
+	"
+	shape=box
+]
+EC2892 -> EC2997 [
+	label="fired cp1->cp_sendCM
+	output n3:ControlMsg( [ 0 , 0 ] , (z_1631 + z_2) )
+	"
+]
+EC2997 [
+	label="EC#2997<Ev:618 , H:13>
+( Observer:o0 , ( n1:cp1 , n1:dp2 , n1:dp1 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp2 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC2997 -> ED2997
+ED2997 [
+	label="ControlProcess.cl=z_1631
+	DataProcess1.cl=(z_1631 + z_2)
+	DataProcess2.cl=(z_1631 + z_2)
+	"
+	shape=box
+]
+EC2997 -> EC3443 [
+	label="fired cp1->cp_sendCM
+	output n2:ControlMsg( [ 0 , 0 ] , (z_1213 + z_1576 + z_1849 + z_376 + z_460) )
+	"
+]
+EC3443 [
+	label="EC#3443<Ev:689 , H:14>
+( Observer:o0 , ( n1:cp1 , n1:dp2 , n1:dp1 ) , ( n2:cp2 , n2:dp1 , n2:dp0 ) , ( n3:cp2 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC3443 -> ED3443
+ED3443 [
+	label="ControlProcess.cl=(z_1576 + z_1849)
+	DataProcess1.cl=z_1849
+	DataProcess2.cl=(z_1213 + z_1576 + z_1849 + z_376 + z_460)
+	"
+	shape=box
+]
+EC3443 -> EC3900 [
+	label="fired dp1->dp_sendDM
+	output n1:DataMsg( { 2 , FRAGMENT_1 , 1 } , (z_1017 + z_138 + z_15 + z_2061 + 
+	z_726 + z_75 + z_792) )
+	"
+]
+EC3900 [
+	label="EC#3900<Ev:776 , H:15>
+( Observer:o0 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp1 , n2:dp0 ) , ( n3:cp2 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC3900 -> ED3900
+ED3900 [
+	label="ControlProcess.cl=(z_1017 + z_2061)
+	DataProcess1.cl=(z_1017 + z_138 + z_2061 + z_726 + z_75 + z_792)
+	DataProcess2.cl=(z_1017 + z_138 + z_2061 + z_726 + z_792)
+	"
+	shape=box
+]
+EC3900 -> EC4457 [
+	label="fired cp2->cp_resetTau
+	"
+]
+EC4457 [
+	label="EC#4457<Ev:826 , H:16>
+( Observer:o0 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp2 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC4457 -> ED4457
+ED4457 [
+	label="NC: ((t_1406 < 8) && (0 <= (t_1406 + -4)))
+	ControlProcess.e=1
+	ControlProcess.tau=8
+	ControlProcess.cl=0
+	DataProcess1.cl=(z_1849 + z_2323)
+	DataProcess2.cl=(z_1213 + z_1576 + z_1849 + z_2323 + z_376 + z_460)
+	"
+	shape=box
+]
+EC4457 -> EC4798 [
+	label="fired cp1->cp_sendCM
+	output n1:ControlMsg( [ 1 , 1 ] , (z_1017 + z_138 + z_15 + z_2061 + z_2472 + 
+	z_726 + z_75 + z_792) )
+	"
+]
+EC4798 [
+	label="EC#4798<Ev:880 , H:17>
+( Observer:o0 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp2 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC4798 -> ED4798
+ED4798 [
+	label="ControlProcess.cl=(z_1017 + z_2061 + z_2472)
+	DataProcess1.cl=(z_1017 + z_138 + z_2061 + z_2472 + z_726 + z_75 + z_792)
+	DataProcess2.cl=(z_1017 + z_138 + z_2061 + z_2472 + z_726 + z_792)
+	"
+	shape=box
+]
+EC4798 -> EC5192 [
+	label="fired dp1->dp1_receiveDM_consistent
+	input n2:DataMsg( { 1 , FRAGMENT_0 , 0 } , (z_1017 + z_138 + z_15 + z_726 + z_75 
+	+ z_792) )
+	"
+]
+EC5192 [
+	label="EC#5192<Ev:989 , H:18>
+( Observer:o0 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp2 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC5192 -> ED5192
+ED5192 [
+	label="ControlProcess.cl=z_2635
+	DataProcess1.cl=(z_1849 + z_2323 + z_2635)
+	DataProcess2.cl=(z_1213 + z_1576 + z_1849 + z_2323 + z_2635 + z_376 + z_460)
+	"
+	shape=box
+]
+EC5192 -> EC5970 [
+	label="fired dp0->dp_init
+	"
+]
+EC5970 [
+	label="EC#5970<Ev:1045 , H:19>
+( Observer:o0 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC5970 -> ED5970
+ED5970 [
+	label="NC: ((t_4821 < 4) && (0 <= (t_4821 + -2)))
+	ControlProcess.cl=(z_2635 + z_2962)
+	DataProcess1.cl=(z_1849 + z_2323 + z_2635 + z_2962)
+	DataProcess2.e=0
+	DataProcess2.tau=4
+	DataProcess2.cl=0
+	"
+	shape=box
+]
+EC5970 -> EC6383 [
+	label="fired cp2->cp2_receiveCM_consistent
+	input n3:ControlMsg( [ 0 , 0 ] , (z_376 + z_460) )
+	"
+]
+EC6383 [
+	label="EC#6383<Ev:1153 , H:20>
+( Observer:o0 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC6383 -> ED6383
+ED6383 [
+	label="ControlProcess.cl=(z_1631 + z_3131)
+	DataProcess1.cl=(z_1631 + z_2 + z_3131)
+	DataProcess2.cl=(z_1631 + z_2 + z_3131)
+	"
+	shape=box
+]
+EC6383 -> EC7165 [
+	label="fired cp1->cp1_receiveCM_inconsistent
+	input n2:ControlMsg( [ 0 , 0 ] , (z_1631 + z_2) )
+	"
+]
+EC7165 [
+	label="EC#7165<Ev:1205 , H:21>
+( Observer:o0 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp0 , n3:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC7165 -> ED7165
+ED7165 [
+	label="NC: ((t_2194 < 4) && (0 <= (t_2194 + -2)))
+	ControlProcess.e=0
+	ControlProcess.tau=4
+	ControlProcess.cl=0
+	DataProcess1.cl=(z_1849 + z_2323 + z_2635 + z_2962 + z_3454)
+	DataProcess2.cl=z_3454
+	"
+	shape=box
+]
+EC7165 -> EC7553 [
+	label="fired dp1->dp1_receiveDM_consistent
+	input n2:DataMsg( { 2 , FRAGMENT_1 , 1 } , (z_1017 + z_138 + z_15 + z_2061 + 
+	z_726 + z_75 + z_792) )
+	"
+]
+EC7553 [
+	label="EC#7553<Ev:1322 , H:22>
+( Observer:o0 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp0 , n3:dp0 ) )
+tpid#1"
+	color=yellow
+	shape=ellipse
+	style=filled
+]
+EC7553 -> ED7553
+ED7553 [
+	label="ControlProcess.cl=z_3610
+	DataProcess1.cl=(z_1849 + z_2323 + z_2635 + z_2962 + z_3454 + z_3610)
+	DataProcess2.cl=(z_3454 + z_3610)
+	"
+	shape=box
+]
+}

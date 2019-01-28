@@ -1,0 +1,17 @@
+@startuml
+
+skinparam note{
+	BackgroundColor White
+	BorderColor White
+}
+
+skinparam BackgroundColor transparent
+
+box "Trickle" #transparent
+participant "n1" as n1
+participant "n2" as n2
+participant "n3" as n3
+end box
+
+
+@enduml
