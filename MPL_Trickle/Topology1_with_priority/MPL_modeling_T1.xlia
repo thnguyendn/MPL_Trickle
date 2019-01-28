@@ -36,13 +36,19 @@ system< and > Trickle {
 		@public:
 			// The waiting queue (FIFO) used to store received messages which have not been
 			// consumed yet
-			buffer fifo<1> bufferNode;
+			buffer fifo<*> bufferNode;
 		
 			port output Log( INFO_KIND information );
 			port inout ControlMsg( int[BUFF_SIZE] seqBuff, time< pos_rational > emit_time );
 			port inout DataMsg( DATA_MESSAGE dataMessage, time< pos_rational > emit_time );
 		
 			var bool coverageProp = false;
+			var bool CM_zero_zero = false;
+			var bool CM_one_one = false;
+			var bool DM_all = false;
+			var bool DM1 = false;
+			var bool DM2 = false;
+			
 			const int CTRL_EXPIR = 3;
 			const int DATA_EXPIR = 2;
 			const int MIN_SEQ = 1;
@@ -404,6 +410,16 @@ system< and > Trickle {
 		@run{
 			schedule;
 			coverageProp = ( myseq_buff[0]==1 && myseq_buff[1]==1 );
+			
+			CM_zero_zero = ( myseq_buff[0]==0 && myseq_buff[1]==0 );
+			
+			CM_one_one = ( myseq_buff[0]==1 && myseq_buff[1]==1 );
+			
+			DM_all = ( firmware[0]==FRAGMENT_0 && firmware[1]==FRAGMENT_1 );
+			
+			DM1 = ( firmware[0]==FRAGMENT_0 );
+			
+			DM2 = ( firmware[1]==FRAGMENT_1 );
 		}
 	}
 
@@ -412,35 +428,35 @@ system< and > Trickle {
 	// When the value of boolean variable coverageProp for each node is assigned 
 	// with true, i.e. each node has already received two fragments of firmware (line 405),
 	// the coverage is finished
-//	lifeline timed statemachine< and > Observer {
-//		
-//		@public:
-//			
-//		@private:
-//			var clock pos_rational cl_o; // Observer's clock
-//			
-//		@region:
-//
-//		state<initial> initialstate {
-//			transition o_startup --> o0 {
-//				cl_o := 0;
-//			}
-//		}
-//		state o0 {
-//			transition u_receive_packet_from_internal --> OK {
-//				guard(
-//					   spec::Trickle.n1.coverageProp
-//					&& spec::Trickle.n2.coverageProp
-//					&& spec::Trickle.n3.coverageProp
-//					&& spec::Trickle.n4.coverageProp
-//				);
-//				exit("OK");
-//			}
-//		}
-//		state< final > OK {
-//			
-//		}
-//	}
+	lifeline timed statemachine< and > Observer {
+		
+		@public:
+			
+		@private:
+			var clock pos_rational cl_o; // Observer's clock
+			
+		@region:
+
+		state<initial> initialstate {
+			transition o_startup --> o0 {
+				cl_o := 0;
+			}
+		}
+		state o0 {
+			transition u_receive_packet_from_internal --> OK {
+				guard(
+					   spec::Trickle.n1.coverageProp
+					&& spec::Trickle.n2.coverageProp
+					&& spec::Trickle.n3.coverageProp
+					&& spec::Trickle.n4.coverageProp
+				);
+				exit("OK");
+			}
+		}
+		state< final > OK {
+			
+		}
+	}
 
 	// Declaration of instance node n1 in the network
 	// At the beginning, we suppose that n1 possesses two Data Messages, containing
