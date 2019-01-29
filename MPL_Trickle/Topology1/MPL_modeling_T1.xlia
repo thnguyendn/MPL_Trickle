@@ -36,13 +36,16 @@ system< and > Trickle {
 		@public:
 			// The waiting queue (FIFO) used to store received messages which have not been
 			// consumed yet
-			buffer fifo<*> bufferNode;
+			buffer fifo<1> bufferNode;
 		
 			port output Log( INFO_KIND information );
 			port inout ControlMsg( int[BUFF_SIZE] seqBuff, time< pos_rational > emit_time );
 			port inout DataMsg( DATA_MESSAGE dataMessage, time< pos_rational > emit_time );
 		
 			var bool coverageProp = false;
+			var bool CM_zero_zero = false;
+			var bool CM_one_one = false;
+			
 			const int CTRL_EXPIR = 3;
 			const int DATA_EXPIR = 2;
 			const int MIN_SEQ = 1;
@@ -220,7 +223,6 @@ system< and > Trickle {
 					analyse_cp2_inconsistent();
 				}
 			}
-			
 			state <final> cp3 {
 				
 			}
@@ -405,6 +407,10 @@ system< and > Trickle {
 		@run{
 			schedule;
 			coverageProp = ( myseq_buff[0]==1 && myseq_buff[1]==1 );
+			
+			CM_zero_zero = ( myseq_buff[0]==0 && myseq_buff[1]==0 );
+			
+			CM_one_one = ( myseq_buff[0]==1 && myseq_buff[1]==1 );
 		}
 	}
 
