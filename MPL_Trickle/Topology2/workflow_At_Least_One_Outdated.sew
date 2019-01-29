@@ -17,7 +17,7 @@ workflow {
 		] // end manifest
 		project 'path of input model' [
 			source = "."
-			model  = "MPL_Trickle.xlia"
+			model  = "MPL_modeling_T2.xlia"
 		] // end project
 		supervisor {
 			limit 'of graph exploration' [
