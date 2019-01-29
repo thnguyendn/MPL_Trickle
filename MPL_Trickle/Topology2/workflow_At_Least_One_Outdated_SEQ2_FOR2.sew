@@ -117,23 +117,23 @@ workflow {
 
 					line#wrap#width = '[*]';
 					
-//					variable = 'n1.localPC'
-//					variable = 'n1.localPtC'
+					variable = 'n1.localPC'
+					variable = 'n1.localPtC'
 					variable = 'n1.DataProcess1.e'
 					variable = 'n1.DataProcess2.e'
 					
-//					variable = 'n2.localPC'
-//					variable = 'n2.localPtC'
+					variable = 'n2.localPC'
+					variable = 'n2.localPtC'
 					variable = 'n2.DataProcess1.e'
 					variable = 'n2.DataProcess2.e'
-//					
-//					variable = 'n3.localPC'
-//					variable = 'n3.localPtC'
+					
+					variable = 'n3.localPC'
+					variable = 'n3.localPtC'
 					variable = 'n3.DataProcess1.e'
 					variable = 'n3.DataProcess2.e'
-//					
-//					variable = 'n4.localPC'
-//					variable = 'n4.localPtC'
+					
+					variable = 'n4.localPC'
+					variable = 'n4.localPtC'
 					variable = 'n4.DataProcess1.e'
 					variable = 'n4.DataProcess2.e'
 				] // end trace
