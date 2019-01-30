@@ -68,7 +68,7 @@ workflow {
 					composite#3 = ( "output#n4" && "condition#n4" )
 					input = 'n2.ControlMsg'
 					
-					formula = ( spec::Trickle.n1.reach_DATA_EXPIR_DM1 
+					formula = ( ( spec::Trickle.n1.reach_DATA_EXPIR_DM1 
 							&& spec::Trickle.n1.reach_DATA_EXPIR_DM2
 							&& spec::Trickle.n2.reach_DATA_EXPIR_DM1 
 							&& spec::Trickle.n2.reach_DATA_EXPIR_DM2
@@ -76,7 +76,13 @@ workflow {
 							&& spec::Trickle.n3.reach_DATA_EXPIR_DM2
 							&& spec::Trickle.n4.reach_DATA_EXPIR_DM1 
 							&& spec::Trickle.n4.reach_DATA_EXPIR_DM2
-					)
+							)
+							&& ( ! spec::Trickle.n1.coverageProp
+							|| ! spec::Trickle.n2.coverageProp
+							|| ! spec::Trickle.n3.coverageProp
+							|| ! spec::Trickle.n4.coverageProp
+							)
+							)
 					
 				] // end trace
 				heuristic [
@@ -86,7 +92,7 @@ workflow {
 					hit#max     = false
 					hit#final   = true
 					jump#slice  = false
-					jump#height = 2
+					jump#height = 3
 					jump#trials#limit = 100
 					hit#count  = 10
 					jump#count = 10
@@ -117,23 +123,23 @@ workflow {
 
 					line#wrap#width = '[*]';
 					
-//					variable = 'n1.localPC'
-//					variable = 'n1.localPtC'
+					variable = 'n1.localPC'
+					variable = 'n1.localPtC'
 					variable = 'n1.DataProcess1.e'
 					variable = 'n1.DataProcess2.e'
 					
-//					variable = 'n2.localPC'
-//					variable = 'n2.localPtC'
+					variable = 'n2.localPC'
+					variable = 'n2.localPtC'
 					variable = 'n2.DataProcess1.e'
 					variable = 'n2.DataProcess2.e'
-//					
-//					variable = 'n3.localPC'
-//					variable = 'n3.localPtC'
+					
+					variable = 'n3.localPC'
+					variable = 'n3.localPtC'
 					variable = 'n3.DataProcess1.e'
 					variable = 'n3.DataProcess2.e'
-//					
-//					variable = 'n4.localPC'
-//					variable = 'n4.localPtC'
+					
+					variable = 'n4.localPC'
+					variable = 'n4.localPtC'
 					variable = 'n4.DataProcess1.e'
 					variable = 'n4.DataProcess2.e'
 				] // end trace
