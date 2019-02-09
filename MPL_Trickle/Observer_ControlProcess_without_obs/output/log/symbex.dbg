@@ -1,0 +1,15 @@
+
+step:00 , context:00 , height:00 , width:00
+step:  1 , context:  1 , height:  0 , width:  1
+step:  2 , context:  2 , height:  1 , width:  1
+step:  3 , context:  3 , height:  2 , width:  1
+step:  4 , context:  4 , height:  2 , width:  2
+step:  5 , context:  5 , height:  2 , width:  3
+step:  6 , context:  6 , height:  2 , width:  4
+step:  7 , context:  7 , height:  2 , width:  5
+step:  8 , context:  8 , height:  2 , width:  6
+step:  9 , context:  9 , height:  2 , width:  7
+step: 10 , context: 10 , height:  2 , width:  8
+step: 11 , context: 11 , height:  2 , width:  9<<<<< HoJ Coverage : 2 / 2 >>>>>
+
+stop: 11 , context: 77 , height:  2 , width:  9

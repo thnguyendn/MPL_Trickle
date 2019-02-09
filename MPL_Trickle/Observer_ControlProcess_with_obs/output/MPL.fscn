@@ -1,0 +1,206 @@
+EC:<Id:1;Ev:1;H:0;W:1>{ SC: ( pid_3:cp0 , pid_8:startup )
+	ALIAS{
+		:ppid_-1:pid_0 = run::#PARAMETERS#; // model is spec::Trickle;
+		:ppid_-1:pid_1 = spec::Trickle;
+		:ppid_1:pid_2 = spec::Trickle.ControlProcess;
+			DATA{
+				:ppid_1:pid_2:$time = spec::Trickle.ControlProcess.$time;
+				:ppid_1:pid_2:z = spec::Trickle.ControlProcess.z;
+				:ppid_1:pid_2:myseq_buff[0] = spec::Trickle.ControlProcess.myseq_buff;
+				:ppid_1:pid_2:myseq_buff[1] = spec::Trickle.ControlProcess.myseq_buff;
+				:ppid_1:pid_2:mydp_run[0] = spec::Trickle.ControlProcess.mydp_run;
+				:ppid_1:pid_2:mydp_run[1] = spec::Trickle.ControlProcess.mydp_run;
+				:ppid_1:pid_2:k = spec::Trickle.ControlProcess.k;
+				:ppid_1:pid_2:c = spec::Trickle.ControlProcess.c;
+				:ppid_1:pid_2:e = spec::Trickle.ControlProcess.e;
+				:ppid_1:pid_2:tau = spec::Trickle.ControlProcess.tau;
+				:ppid_1:pid_2:tau_l = spec::Trickle.ControlProcess.tau_l;
+				:ppid_1:pid_2:tau_h = spec::Trickle.ControlProcess.tau_h;
+				:ppid_1:pid_2:i = spec::Trickle.ControlProcess.i;
+				:ppid_1:pid_2:t = spec::Trickle.ControlProcess.t;
+				:ppid_1:pid_2:consistent = spec::Trickle.ControlProcess.consistent;
+				:ppid_1:pid_2:cl = spec::Trickle.ControlProcess.cl;
+				:ppid_1:pid_2:seq_buff[0] = spec::Trickle.ControlProcess.seq_buff;
+				:ppid_1:pid_2:seq_buff[1] = spec::Trickle.ControlProcess.seq_buff;
+				:ppid_1:pid_2:localTime = spec::Trickle.ControlProcess.localTime;
+				:ppid_1:pid_2:localPC = spec::Trickle.ControlProcess.localPC;
+				:ppid_1:pid_2:localPtC = spec::Trickle.ControlProcess.localPtC;
+				:ppid_1:pid_2:new_seq_buff = spec::Trickle.ControlProcess.new_seq_buff;
+				:ppid_1:pid_2:new_seq = spec::Trickle.ControlProcess.new_seq;
+				:ppid_1:pid_2:new_offset = spec::Trickle.ControlProcess.new_offset;
+				:ppid_1:pid_2:timeEmit = spec::Trickle.ControlProcess.timeEmit;
+			}
+			INTERFACE{
+				:ppid_1:pid_2:ControlMsg = spec::Trickle.ControlProcess.ControlMsg;
+				:ppid_1:pid_2:Log = spec::Trickle.ControlProcess.Log;
+			}
+		:ppid_2:pid_3 = spec::Trickle.ControlProcess.cp0;
+		:ppid_2:pid_4 = spec::Trickle.ControlProcess.cp1;
+		:ppid_2:pid_5 = spec::Trickle.ControlProcess.cp2;
+		:ppid_2:pid_6 = spec::Trickle.ControlProcess.cp3;
+		:ppid_1:pid_7 = spec::Trickle.Observer;
+			DATA{
+				:ppid_1:pid_7:$time = spec::Trickle.Observer.$time;
+				:ppid_1:pid_7:z = spec::Trickle.Observer.z;
+				:ppid_1:pid_7:seqBuff[0] = spec::Trickle.Observer.seqBuff;
+				:ppid_1:pid_7:seqBuff[1] = spec::Trickle.Observer.seqBuff;
+				:ppid_1:pid_7:cl_obs = spec::Trickle.Observer.cl_obs;
+				:ppid_1:pid_7:localTime = spec::Trickle.Observer.localTime;
+			}
+		:ppid_7:pid_8 = spec::Trickle.Observer.startup;
+		:ppid_7:pid_9 = spec::Trickle.Observer.o0;
+		:ppid_7:pid_10 = spec::Trickle.Observer.o1;
+		:ppid_7:pid_11 = spec::Trickle.Observer.o2;
+	}
+	PC: true
+	PtC: true
+	DATA{
+		:pid_2:$time = 0;
+		:pid_2:z = inst::Trickle.ControlProcess.$delta#initial;
+		:pid_2:myseq_buff[0] = param::Trickle.ControlProcess.myseq_buff[0]_0;
+		:pid_2:myseq_buff[1] = param::Trickle.ControlProcess.myseq_buff[1]_0;
+		:pid_2:mydp_run[0] = param::Trickle.ControlProcess.mydp_run[0]_0;
+		:pid_2:mydp_run[1] = param::Trickle.ControlProcess.mydp_run[1]_0;
+		:pid_2:k = param::Trickle.ControlProcess.k_0;
+		:pid_2:c = param::Trickle.ControlProcess.c_0;
+		:pid_2:e = param::Trickle.ControlProcess.e_0;
+		:pid_2:tau = param::Trickle.ControlProcess.tau_0;
+		:pid_2:tau_l = param::Trickle.ControlProcess.tau_l_0;
+		:pid_2:tau_h = param::Trickle.ControlProcess.tau_h_0;
+		:pid_2:i = param::Trickle.ControlProcess.i_0;
+		:pid_2:t = param::Trickle.ControlProcess.t_0;
+		:pid_2:consistent = param::Trickle.ControlProcess.consistent_0;
+		:pid_2:cl = 0;
+		:pid_2:seq_buff[0] = param::Trickle.ControlProcess.seq_buff[0]_0;
+		:pid_2:seq_buff[1] = param::Trickle.ControlProcess.seq_buff[1]_0;
+		:pid_2:localTime = 0;
+		:pid_2:localPC = true;
+		:pid_2:localPtC = true;
+		:pid_2:new_seq_buff = param::Trickle.ControlProcess.new_seq_buff_0;
+		:pid_2:new_seq = param::Trickle.ControlProcess.new_seq_0;
+		:pid_2:new_offset = param::Trickle.ControlProcess.new_offset_0;
+		:pid_2:timeEmit = param::Trickle.ControlProcess.timeEmit_0;
+		:pid_7:$time = 0;
+		:pid_7:z = inst::Trickle.Observer.$delta#initial;
+		:pid_7:seqBuff[0] = param::Trickle.Observer.seqBuff[0]_0;
+		:pid_7:seqBuff[1] = param::Trickle.Observer.seqBuff[1]_0;
+		:pid_7:cl_obs = 0;
+		:pid_7:localTime = 0;
+	}
+	EC:<Id:2;Ev:2;H:1;W:1>{ SC: ( pid_4:cp1 , pid_9:o0 )
+		EXE: { |,| { |;| (:pid_8 , run) (:pid_8 , o_startup) } { |;| (:pid_3 , 
+	run) (:pid_3 , cp_init) } }
+		TRACE: { |;| (:pid_3 , ${ newfresh inst::Trickle.ControlProcess.t 
+	param::Trickle.ControlProcess.t_1 }) (:pid_3 , ${ output#env 
+	inst::Trickle.ControlProcess.Log 0 } @ 0) }
+		NC: ((ControlProcess.t_1 < 4) && (0 <= (ControlProcess.t_1 + -2)))
+		PC: ((ControlProcess.t_1 < 4) && (0 <= (ControlProcess.t_1 + -2)))
+		DATA{
+			:pid_2:mydp_run[0] = false;
+			:pid_2:mydp_run[1] = false;
+			:pid_2:k = 2;
+			:pid_2:c = 0;
+			:pid_2:e = 0;
+			:pid_2:tau = 4;
+			:pid_2:tau_l = 4;
+			:pid_2:tau_h = 8;
+			:pid_2:t = param::Trickle.ControlProcess.t_1;
+			:pid_2:cl = 0;
+		}
+		EC:<Id:5;Ev:5;H:2;W:3>{ SC: ( pid_4:cp1 , pid_10:o1 )
+			EXE: { |;| (:pid_2 , run) (:pid_4 , run) (:pid_4 , 
+	cp1_receiveCM_inconsistent) (:pid_7 , run) (:pid_9 , run) (:pid_9 , receive_CM_1)
+	 }
+			TRACE: { |;| (:pid_2 , ${ newfresh inst::Trickle.ControlProcess.z 
+	param::Trickle.ControlProcess.z_0 }) (:pid_4 , ${ input#env 
+	inst::Trickle.ControlProcess.ControlMsg [ 
+	param::Trickle.ControlProcess.seq_buff[0]_2 , 
+	param::Trickle.ControlProcess.seq_buff[1]_2 ] 
+	param::Trickle.ControlProcess.timeEmit_2 } @ param::Trickle.ControlProcess.z_0) 
+	(:pid_4 , ${ newfresh inst::Trickle.ControlProcess.t 
+	param::Trickle.ControlProcess.t_2 }) (:pid_7 , ${ newfresh 
+	inst::Trickle.Observer.z param::Trickle.Observer.z_2 }) }
+			/*FLAGS{ COVERAGE-ELEMENT }*/
+			INFO{
+				<ID:"sew:/workflow.behavior#selection.behavior_coverage",kind="tpid#1->Observer.o0->receive_CM_1" as trace="tpid#1->Observer.o0->receive_CM_1">
+			}
+			NC: ((ControlProcess.seq_buff[0]_2 == 1) && 
+	(ControlProcess.seq_buff[1]_2 == 1) && (ControlProcess.myseq_buff[0]_0 != 
+	ControlProcess.seq_buff[0]_2) && (ControlProcess.myseq_buff[1]_0 != 
+	ControlProcess.seq_buff[1]_2) && (ControlProcess.t_2 < 4) && (0 <= 
+	(ControlProcess.t_2 + -2)))
+			NtC: ((ControlProcess.z_0 < ControlProcess.t_1) && 
+	(ControlProcess.timeEmit_2 <= ControlProcess.z_0) && (Observer.z_2 <= 10))
+			PC: ((ControlProcess.seq_buff[0]_2 == 1) && (ControlProcess.seq_buff[1]_2 == 1) && 
+	(ControlProcess.myseq_buff[0]_0 != ControlProcess.seq_buff[0]_2) && 
+	(ControlProcess.myseq_buff[1]_0 != ControlProcess.seq_buff[1]_2) && 
+	(ControlProcess.t_1 < 4) && (ControlProcess.t_2 < 4) && (0 <= 
+	(ControlProcess.t_1 + -2)) && (0 <= (ControlProcess.t_2 + -2)))
+			PtC: ((ControlProcess.z_0 < ControlProcess.t_1) && (ControlProcess.timeEmit_2 <= 
+	ControlProcess.z_0) && (Observer.z_2 <= 10))
+			DATA{
+				:pid_2:$time = param::Trickle.ControlProcess.z_0;
+				:pid_2:z = param::Trickle.ControlProcess.z_0;
+				:pid_2:mydp_run[0] = true;
+				:pid_2:mydp_run[1] = true;
+				:pid_2:c = 0;
+				:pid_2:e = 0;
+				:pid_2:i = 2;
+				:pid_2:t = param::Trickle.ControlProcess.t_2;
+				:pid_2:consistent = false;
+				:pid_2:cl = 0;
+				:pid_2:seq_buff[0] = param::Trickle.ControlProcess.seq_buff[0]_2;
+				:pid_2:seq_buff[1] = param::Trickle.ControlProcess.seq_buff[1]_2;
+				:pid_2:localTime = param::Trickle.ControlProcess.z_0;
+				:pid_2:timeEmit = param::Trickle.ControlProcess.timeEmit_2;
+				:pid_7:$time = param::Trickle.Observer.z_2;
+				:pid_7:z = param::Trickle.Observer.z_2;
+				:pid_7:seqBuff[0] = param::Trickle.ControlProcess.seq_buff[0]_2;
+				:pid_7:seqBuff[1] = param::Trickle.ControlProcess.seq_buff[1]_2;
+				:pid_7:cl_obs = param::Trickle.Observer.z_2;
+				:pid_7:localTime = param::Trickle.ControlProcess.timeEmit_2;
+			}
+			EC:<Id:22;Ev:0;H:3;W:17>{ SC: ( pid_5:cp2 , pid_11:o2 )
+				EXE: { |;| (:pid_2 , run) (:pid_4 , run) (:pid_4 , cp_sendCM) 
+	(:pid_7 , run) (:pid_10 , run) (:pid_10 , send_CM_2) }
+				TRACE: { |;| (:pid_2 , ${ newfresh 
+	inst::Trickle.ControlProcess.z param::Trickle.ControlProcess.z_3 }) (:pid_4 , ${ 
+	output#env inst::Trickle.ControlProcess.ControlMsg [ 
+	param::Trickle.ControlProcess.myseq_buff[0]_0 , 
+	param::Trickle.ControlProcess.myseq_buff[1]_0 ] ${ + 
+	param::Trickle.ControlProcess.z_0 param::Trickle.ControlProcess.z_3 } } @ 
+	(ControlProcess.z_0 + ControlProcess.z_3)) (:pid_7 , ${ newfresh 
+	inst::Trickle.Observer.z param::Trickle.Observer.z_19 }) }
+				/*FLAGS{ COVERAGE-ELEMENT & OBJECTIVE-ACHIEVED }*/
+				INFO{
+					<ID:"sew:/workflow.behavior#selection.behavior_coverage",kind="tpid#2->Observer.o1->send_CM_2" as trace="tpid#2->Observer.o1->send_CM_2">
+				}
+				NC: ((ControlProcess.myseq_buff[0]_0 == 0) && 
+	(ControlProcess.myseq_buff[1]_0 == 0))
+				NtC: ((ControlProcess.z_3 == ControlProcess.t_2) && 
+	((Observer.z_19 + Observer.z_2) <= 5))
+				PC: ((ControlProcess.myseq_buff[0]_0 == 0) && (ControlProcess.myseq_buff[1]_0 == 0) 
+	&& (ControlProcess.seq_buff[0]_2 == 1) && (ControlProcess.seq_buff[1]_2 == 1) && 
+	(ControlProcess.myseq_buff[0]_0 != ControlProcess.seq_buff[0]_2) && 
+	(ControlProcess.myseq_buff[1]_0 != ControlProcess.seq_buff[1]_2) && 
+	(ControlProcess.t_1 < 4) && (ControlProcess.t_2 < 4) && (0 <= 
+	(ControlProcess.t_1 + -2)) && (0 <= (ControlProcess.t_2 + -2)))
+				PtC: ((ControlProcess.z_3 == ControlProcess.t_2) && (ControlProcess.z_0 < 
+	ControlProcess.t_1) && ((Observer.z_19 + Observer.z_2) <= 5) && 
+	(ControlProcess.timeEmit_2 <= ControlProcess.z_0) && (Observer.z_2 <= 10))
+				DATA{
+					:pid_2:$time = (ControlProcess.z_0 + ControlProcess.z_3);
+					:pid_2:z = param::Trickle.ControlProcess.z_3;
+					:pid_2:cl = param::Trickle.ControlProcess.z_3;
+					:pid_2:localTime = (ControlProcess.z_0 + ControlProcess.z_3);
+					:pid_7:$time = (Observer.z_19 + Observer.z_2);
+					:pid_7:z = param::Trickle.Observer.z_19;
+					:pid_7:seqBuff[0] = param::Trickle.ControlProcess.myseq_buff[0]_0;
+					:pid_7:seqBuff[1] = param::Trickle.ControlProcess.myseq_buff[1]_0;
+					:pid_7:cl_obs = (Observer.z_19 + Observer.z_2);
+					:pid_7:localTime = (ControlProcess.z_0 + ControlProcess.z_3);
+				}
+			}
+		}
+	}
+}

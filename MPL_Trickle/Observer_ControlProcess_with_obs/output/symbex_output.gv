@@ -1,0 +1,88 @@
+digraph fscn {
+EC1 [
+	label="EC#1<Ev:1 , H:0>
+( ControlProcess:cp0 , Observer:startup )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC1 -> EC2 [
+	label="fired Observer.o_startup
+	fired ControlProcess.cp_init
+	OUTPUT ControlProcess:Log( INIT )
+	"
+]
+EC2 [
+	label="EC#2<Ev:2 , H:1>
+( ControlProcess:cp1 , Observer:o0 )
+
+PC: ((ControlProcess.t_1 < 4) && (0 <= (ControlProcess.t_1 + -2)))
+	NC: ((ControlProcess.t_1 < 4) && (0 <= (ControlProcess.t_1 + -2)))
+	"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC2 -> EC5 [
+	label="fired ControlProcess.cp1_receiveCM_inconsistent
+	fired Observer.receive_CM_1
+	INPUT ControlProcess:ControlMsg( [ param::Trickle.ControlProcess.seq_buff[0]_2 , 
+	param::Trickle.ControlProcess.seq_buff[1]_2 ] , 
+	param::Trickle.ControlProcess.timeEmit_2 )
+	"
+]
+EC5 [
+	label="EC#5<Ev:5 , H:2>
+( ControlProcess:cp1 , Observer:o1 )
+
+PC: ((ControlProcess.seq_buff[0]_2 == 1) && (ControlProcess.seq_buff[1]_2 == 1) 
+	&& (ControlProcess.myseq_buff[0]_0 != ControlProcess.seq_buff[0]_2) && 
+	(ControlProcess.myseq_buff[1]_0 != ControlProcess.seq_buff[1]_2) && 
+	(ControlProcess.t_1 < 4) && (ControlProcess.t_2 < 4) && (0 <= 
+	(ControlProcess.t_1 + -2)) && (0 <= (ControlProcess.t_2 + -2)))
+	PtC: ((ControlProcess.z_0 < ControlProcess.t_1) && (ControlProcess.timeEmit_2 <= 
+	ControlProcess.z_0) && (Observer.z_2 <= 10))
+	NC: ((ControlProcess.seq_buff[0]_2 == 1) && (ControlProcess.seq_buff[1]_2 == 1) 
+	&& (ControlProcess.myseq_buff[0]_0 != ControlProcess.seq_buff[0]_2) && 
+	(ControlProcess.myseq_buff[1]_0 != ControlProcess.seq_buff[1]_2) && 
+	(ControlProcess.t_2 < 4) && (0 <= (ControlProcess.t_2 + -2)))
+	NtC: ((ControlProcess.z_0 < ControlProcess.t_1) && (ControlProcess.timeEmit_2 <= 
+	ControlProcess.z_0) && (Observer.z_2 <= 10))
+	
+tpid#1->Observer.o0->receive_CM_1"
+	color=yellow
+	shape=ellipse
+	style=filled
+]
+EC5 -> EC22 [
+	label="fired ControlProcess.cp_sendCM
+	fired Observer.send_CM_2
+	OUTPUT ControlProcess:ControlMsg( [ param::Trickle.ControlProcess.myseq_buff[0]
+	_0 , param::Trickle.ControlProcess.myseq_buff[1]_0 ] , (ControlProcess.z_0 + 
+	ControlProcess.z_3) )
+	"
+]
+EC22 [
+	label="EC#22<Ev:0 , H:3>
+( ControlProcess:cp2 , Observer:o2 )
+
+PC: ((ControlProcess.myseq_buff[0]_0 == 0) && (ControlProcess.myseq_buff[1]_0 == 
+	0) && (ControlProcess.seq_buff[0]_2 == 1) && (ControlProcess.seq_buff[1]_2 == 1) 
+	&& (ControlProcess.myseq_buff[0]_0 != ControlProcess.seq_buff[0]_2) && 
+	(ControlProcess.myseq_buff[1]_0 != ControlProcess.seq_buff[1]_2) && 
+	(ControlProcess.t_1 < 4) && (ControlProcess.t_2 < 4) && (0 <= 
+	(ControlProcess.t_1 + -2)) && (0 <= (ControlProcess.t_2 + -2)))
+	PtC: ((ControlProcess.z_3 == ControlProcess.t_2) && (ControlProcess.z_0 < 
+	ControlProcess.t_1) && ((Observer.z_19 + Observer.z_2) <= 5) && 
+	(ControlProcess.timeEmit_2 <= ControlProcess.z_0) && (Observer.z_2 <= 10))
+	NC: ((ControlProcess.myseq_buff[0]_0 == 0) && (ControlProcess.myseq_buff[1]_0 == 
+	0))
+	NtC: ((ControlProcess.z_3 == ControlProcess.t_2) && ((Observer.z_19 + 
+	Observer.z_2) <= 5))
+	
+tpid#2->Observer.o1->send_CM_2"
+	color=lawngreen
+	shape=tripleoctagon
+	style=filled
+]
+}

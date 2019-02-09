@@ -1,0 +1,102 @@
+digraph "Trickle" {
+compound = true;
+fontsize = 12
+ subgraph "cluster_spec::Trickle" {
+  label = "SYSTEM spec::Trickle"
+
+  subgraph "cluster_spec::Trickle.ControlProcess" {
+   label = "ControlProcess"
+   style=dashed;
+
+   "spec::Trickle.ControlProcess"
+   [
+    label = "ControlProcess"
+    shape=point, style=invisible, color=white
+   ];
+
+   "spec::Trickle.ControlProcess.cp0"
+   [
+    label = "cp0"
+    shape=oval, style="filled", fillcolor=green
+   ];
+
+   "spec::Trickle.ControlProcess.cp0" -> "spec::Trickle.ControlProcess.cp1" [ label = "cp_init" ];
+
+   "spec::Trickle.ControlProcess.cp1"
+   [
+    label = "cp1"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.ControlProcess.cp1" -> "spec::Trickle.ControlProcess.cp2" [ label = "cp_sendCM" ];
+
+   "spec::Trickle.ControlProcess.cp1" -> "spec::Trickle.ControlProcess.cp1" [ label = "cp1_receiveCM_consistent" ];
+
+   "spec::Trickle.ControlProcess.cp1" -> "spec::Trickle.ControlProcess.cp1" [ label = "cp1_receiveCM_inconsistent" ];
+
+   "spec::Trickle.ControlProcess.cp1" -> "spec::Trickle.ControlProcess.cp3" [ label = "cp_CTRL_EXPIR" ];
+
+   "spec::Trickle.ControlProcess.cp1" -> "spec::Trickle.ControlProcess.cp2" [ label = "cp1_reach_k" ];
+
+   "spec::Trickle.ControlProcess.cp2"
+   [
+    label = "cp2"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.ControlProcess.cp2" -> "spec::Trickle.ControlProcess.cp1" [ label = "cp_resetTau" ];
+
+   "spec::Trickle.ControlProcess.cp2" -> "spec::Trickle.ControlProcess.cp2" [ label = "cp2_receiveCM_consistent" ];
+
+   "spec::Trickle.ControlProcess.cp2" -> "spec::Trickle.ControlProcess.cp1" [ label = "cp2_receiveCM_inconsistent" ];
+
+   "spec::Trickle.ControlProcess.cp3"
+   [
+    label = "cp3"
+    shape=octagon, style="bold,filled", fillcolor=red
+   ];
+  }
+
+  subgraph "cluster_spec::Trickle.Observer" {
+   label = "Observer"
+   style=dashed;
+
+   "spec::Trickle.Observer"
+   [
+    label = "Observer"
+    shape=point, style=invisible, color=white
+   ];
+
+   "spec::Trickle.Observer.startup"
+   [
+    label = "startup"
+    shape=oval, style="filled", fillcolor=green
+   ];
+
+   "spec::Trickle.Observer.startup" -> "spec::Trickle.Observer.o0" [ label = "o_startup" ];
+
+   "spec::Trickle.Observer.o0"
+   [
+    label = "o0"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.Observer.o0" -> "spec::Trickle.Observer.o1" [ label = "receive_CM_1" ];
+
+   "spec::Trickle.Observer.o1"
+   [
+    label = "o1"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.Observer.o1" -> "spec::Trickle.Observer.o2" [ label = "send_CM_2" ];
+
+   "spec::Trickle.Observer.o2"
+   [
+    label = "o2"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+  }
+ }
+}
+

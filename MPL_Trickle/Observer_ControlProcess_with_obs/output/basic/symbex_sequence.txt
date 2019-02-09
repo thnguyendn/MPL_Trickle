@@ -1,0 +1,20 @@
+@startuml
+
+skinparam note{
+	BackgroundColor White
+	BorderColor White
+}
+
+skinparam BackgroundColor transparent
+
+box "Trickle" #transparent
+participant "ControlProcess" as ControlProcess
+end box
+
+== PATH 1 ==
+<[#black]- ControlProcess : Log ! INIT
+-[#black]> ControlProcess : ControlMsg ? [ \n<font color =>param::Trickle.ControlProcess.seq_buff[0]_2 , \n<font color =>param::Trickle.ControlProcess.seq_buff[1]_2 ], param::Trickle.ControlProcess.timeEmit_2
+<[#black]- ControlProcess : ControlMsg ! [ \n<font color =>param::Trickle.ControlProcess.myseq_buff[0]_0 , \n<font color =>param::Trickle.ControlProcess.myseq_buff[1]_0 ], (ControlProcess.z_0 + \n<font color =>ControlProcess.z_3)
+
+
+@enduml

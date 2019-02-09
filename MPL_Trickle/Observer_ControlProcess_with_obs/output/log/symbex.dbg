@@ -1,0 +1,26 @@
+:219 -> 221
+Warning:> No eval code for << state o2 >> which is not FINAL!
+
+
+step:00 , context:00 , height:00 , width:00
+step:  1 , context:  1 , height:  0 , width:  1
+step:  2 , context:  2 , height:  1 , width:  1OBS :> ((seq_buff[0]_2 == 1) && (seq_buff[1]_2 == 1))
+OBS :> ((seq_buff[0]_2 == 1) && (seq_buff[1]_2 == 1))
+OBS :> ((seq_buff[0]_2 == 1) && (seq_buff[1]_2 == 1))
+OBS :> ((seq_buff[0]_1 == 1) && (seq_buff[1]_1 == 1))
+
+step:  3 , context:  3 , height:  2 , width:  1OBS :> ((myseq_buff[0]_0 == 0) && (myseq_buff[1]_0 == 0))
+
+step:  4 , context:  4 , height:  2 , width:  2OBS :> ((myseq_buff[0]_0 == 0) && (myseq_buff[1]_0 == 0))
+
+step:  5 , context:  5 , height:  2 , width:  3OBS :> ((myseq_buff[0]_0 == 0) && (myseq_buff[1]_0 == 0))
+
+step:  6 , context:  6 , height:  2 , width:  4OBS :> ((myseq_buff[0]_0 == 0) && (myseq_buff[1]_0 == 0))
+
+step:  7 , context:  7 , height:  2 , width:  5OBS :> ((seq_buff[0]_12 == 1) && (seq_buff[1]_12 == 1))
+OBS :> ((seq_buff[0]_12 == 1) && (seq_buff[1]_12 == 1))
+OBS :> ((seq_buff[0]_12 == 1) && (seq_buff[1]_12 == 1))
+OBS :> ((seq_buff[0]_11 == 1) && (seq_buff[1]_11 == 1))
+<<<<< HoJ Coverage : 2 / 2 >>>>>
+
+stop:  7 , context: 33 , height:  2 , width:  5

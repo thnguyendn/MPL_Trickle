@@ -1,0 +1,161 @@
+digraph fscn {
+EC1 [
+	label="EC#1<Ev:1 , H:0>
+( ControlProcess:cp0 , Observer:startup )
+
+ControlProcess.$time=0
+	ControlProcess.z=inst::Trickle.ControlProcess.$delta#initial
+	ControlProcess.myseq_buff[0]=param::Trickle.ControlProcess.myseq_buff[0]_0
+	ControlProcess.myseq_buff[1]=param::Trickle.ControlProcess.myseq_buff[1]_0
+	ControlProcess.mydp_run[0]=param::Trickle.ControlProcess.mydp_run[0]_0
+	ControlProcess.mydp_run[1]=param::Trickle.ControlProcess.mydp_run[1]_0
+	ControlProcess.k=param::Trickle.ControlProcess.k_0
+	ControlProcess.c=param::Trickle.ControlProcess.c_0
+	ControlProcess.e=param::Trickle.ControlProcess.e_0
+	ControlProcess.tau=param::Trickle.ControlProcess.tau_0
+	ControlProcess.tau_l=param::Trickle.ControlProcess.tau_l_0
+	ControlProcess.tau_h=param::Trickle.ControlProcess.tau_h_0
+	ControlProcess.i=param::Trickle.ControlProcess.i_0
+	ControlProcess.t=param::Trickle.ControlProcess.t_0
+	ControlProcess.consistent=param::Trickle.ControlProcess.consistent_0
+	ControlProcess.cl=0
+	ControlProcess.seq_buff[0]=param::Trickle.ControlProcess.seq_buff[0]_0
+	ControlProcess.seq_buff[1]=param::Trickle.ControlProcess.seq_buff[1]_0
+	ControlProcess.localTime=0
+	ControlProcess.localPC=true
+	ControlProcess.localPtC=true
+	ControlProcess.new_seq_buff=param::Trickle.ControlProcess.new_seq_buff_0
+	ControlProcess.new_seq=param::Trickle.ControlProcess.new_seq_0
+	ControlProcess.new_offset=param::Trickle.ControlProcess.new_offset_0
+	ControlProcess.timeEmit=param::Trickle.ControlProcess.timeEmit_0
+	Observer.$time=0
+	Observer.z=inst::Trickle.Observer.$delta#initial
+	Observer.seqBuff[0]=param::Trickle.Observer.seqBuff[0]_0
+	Observer.seqBuff[1]=param::Trickle.Observer.seqBuff[1]_0
+	Observer.cl_obs=0
+	Observer.localTime=0
+	"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC1 -> EC2 [
+	label="fired Observer.o_startup
+	fired ControlProcess.cp_init
+	OUTPUT ControlProcess:Log( INIT )
+	"
+]
+EC2 [
+	label="EC#2<Ev:2 , H:1>
+( ControlProcess:cp1 , Observer:o0 )
+
+PC: ((ControlProcess.t_1 < 4) && (0 <= (ControlProcess.t_1 + -2)))
+	NC: ((ControlProcess.t_1 < 4) && (0 <= (ControlProcess.t_1 + -2)))
+	ControlProcess.mydp_run[0]=false
+	ControlProcess.mydp_run[1]=false
+	ControlProcess.k=2
+	ControlProcess.c=0
+	ControlProcess.e=0
+	ControlProcess.tau=4
+	ControlProcess.tau_l=4
+	ControlProcess.tau_h=8
+	ControlProcess.t=param::Trickle.ControlProcess.t_1
+	"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC2 -> EC7 [
+	label="fired ControlProcess.cp1_receiveCM_inconsistent
+	fired Observer.receive_CM_env_1a
+	input ControlProcess:ControlMsg( [ 1 , 1 ] , param::Trickle.Observer.localTime_0 
+	)
+	INPUT Observer:ControlMsg_env( [ param::Trickle.Observer.seqBuff[0]_1 , 
+	param::Trickle.Observer.seqBuff[1]_1 ] , param::Trickle.Observer.localTime_0 )
+	output Observer:ControlMsg_rdv( [ 1 , 1 ] , param::Trickle.Observer.localTime_0 )
+	"
+]
+EC7 [
+	label="EC#7<Ev:7 , H:2>
+( ControlProcess:cp1 , Observer:o1 )
+
+PC: ((Observer.seqBuff[0]_1 == 1) && (Observer.seqBuff[1]_1 == 1) && 
+	(ControlProcess.myseq_buff[0]_0 != 1) && (ControlProcess.myseq_buff[1]_0 != 1) 
+	&& (ControlProcess.t_1 < 4) && (ControlProcess.t_2 < 4) && (0 <= 
+	(ControlProcess.t_1 + -2)) && (0 <= (ControlProcess.t_2 + -2)))
+	PtC: ((ControlProcess.z_0 < ControlProcess.t_1) && (Observer.localTime_0 <= 
+	ControlProcess.z_0) && (Observer.z_0 <= 10))
+	NC: ((Observer.seqBuff[0]_1 == 1) && (Observer.seqBuff[1]_1 == 1) && 
+	(ControlProcess.myseq_buff[0]_0 != 1) && (ControlProcess.myseq_buff[1]_0 != 1) 
+	&& (ControlProcess.t_2 < 4) && (0 <= (ControlProcess.t_2 + -2)))
+	NtC: ((ControlProcess.z_0 < ControlProcess.t_1) && (Observer.localTime_0 <= 
+	ControlProcess.z_0) && (Observer.z_0 <= 10))
+	ControlProcess.$time=param::Trickle.ControlProcess.z_0
+	ControlProcess.z=param::Trickle.ControlProcess.z_0
+	ControlProcess.mydp_run[0]=true
+	ControlProcess.mydp_run[1]=true
+	ControlProcess.i=2
+	ControlProcess.t=param::Trickle.ControlProcess.t_2
+	ControlProcess.consistent=false
+	ControlProcess.seq_buff[0]=1
+	ControlProcess.seq_buff[1]=1
+	ControlProcess.localTime=param::Trickle.ControlProcess.z_0
+	ControlProcess.timeEmit=param::Trickle.Observer.localTime_0
+	Observer.$time=param::Trickle.Observer.z_0
+	Observer.z=param::Trickle.Observer.z_0
+	Observer.seqBuff[0]=1
+	Observer.seqBuff[1]=1
+	Observer.cl_obs=param::Trickle.Observer.z_0
+	Observer.localTime=param::Trickle.Observer.localTime_0
+	
+tpid#1->Observer.o0->receive_CM_env_1a"
+	color=yellow
+	shape=ellipse
+	style=filled
+]
+EC7 -> EC36 [
+	label="fired ControlProcess.cp_sendCM
+	fired Observer.receive_CM_rdv_2a
+	output ControlProcess:ControlMsg( [ param::Trickle.ControlProcess.myseq_buff[0]
+	_0 , param::Trickle.ControlProcess.myseq_buff[1]_0 ] , (ControlProcess.z_0 + 
+	ControlProcess.z_5) )
+	input Observer:ControlMsg_rdv( [ param::Trickle.ControlProcess.myseq_buff[0]_0 , 
+	param::Trickle.ControlProcess.myseq_buff[1]_0 ] , (ControlProcess.z_0 + 
+	ControlProcess.z_5) )
+	OUTPUT Observer:ControlMsg_env( [ 0 , 0 ] , (ControlProcess.z_0 + 
+	ControlProcess.z_5) )
+	"
+]
+EC36 [
+	label="EC#36<Ev:0 , H:3>
+( ControlProcess:cp2 , Observer:o2 )
+
+PC: ((ControlProcess.myseq_buff[0]_0 == 0) && (ControlProcess.myseq_buff[1]_0 == 
+	0) && (Observer.seqBuff[0]_1 == 1) && (Observer.seqBuff[1]_1 == 1) && 
+	(ControlProcess.myseq_buff[0]_0 != 1) && (ControlProcess.myseq_buff[1]_0 != 1) 
+	&& (ControlProcess.t_1 < 4) && (ControlProcess.t_2 < 4) && (0 <= 
+	(ControlProcess.t_1 + -2)) && (0 <= (ControlProcess.t_2 + -2)))
+	PtC: ((ControlProcess.z_5 == ControlProcess.t_2) && (ControlProcess.z_0 < 
+	ControlProcess.t_1) && ((Observer.z_0 + Observer.z_5) <= 5) && 
+	(Observer.localTime_0 <= ControlProcess.z_0) && (Observer.z_0 <= 10))
+	NC: ((ControlProcess.myseq_buff[0]_0 == 0) && (ControlProcess.myseq_buff[1]_0 == 
+	0))
+	NtC: ((ControlProcess.z_5 == ControlProcess.t_2) && ((Observer.z_0 + 
+	Observer.z_5) <= 5))
+	ControlProcess.$time=(ControlProcess.z_0 + ControlProcess.z_5)
+	ControlProcess.z=param::Trickle.ControlProcess.z_5
+	ControlProcess.cl=param::Trickle.ControlProcess.z_5
+	ControlProcess.localTime=(ControlProcess.z_0 + ControlProcess.z_5)
+	Observer.$time=(Observer.z_0 + Observer.z_5)
+	Observer.z=param::Trickle.Observer.z_5
+	Observer.seqBuff[0]=0
+	Observer.seqBuff[1]=0
+	Observer.cl_obs=(Observer.z_0 + Observer.z_5)
+	Observer.localTime=(ControlProcess.z_0 + ControlProcess.z_5)
+	
+tpid#2->Observer.o1->receive_CM_rdv_2a"
+	color=lawngreen
+	shape=tripleoctagon
+	style=filled
+]
+}

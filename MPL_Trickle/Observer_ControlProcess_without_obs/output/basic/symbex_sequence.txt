@@ -1,0 +1,25 @@
+@startuml
+
+skinparam note{
+	BackgroundColor White
+	BorderColor White
+}
+
+skinparam BackgroundColor transparent
+
+box "Trickle" #transparent
+participant "ControlProcess" as ControlProcess
+participant "Observer" as Observer
+end box
+
+== PATH 1 ==
+<[#black]- ControlProcess : Log ! INIT
+NO_RECEIVER -[#469990]> NO_RECEIVER : <font color = #469990> ControlMsg ? [ \n<font color =#469990>1 , 1 ], param::Trickle.Observer.localTime_0 @$timestamp
+-[#black]> Observer : ControlMsg_env ? [ param::Trickle.Observer.seqBuff[0]\n<font color =>_1 , param::Trickle.Observer.seqBuff[1]_1 ], param::Trickle.Observer.localTime_0
+Observer -[#469990]> NO_RECEIVER : <font color = #469990> ControlMsg_rdv ! \n<font color =#469990>[ 1 , 1 ], param::Trickle.Observer.localTime_0 @$timestamp
+ControlProcess -[#469990]> NO_RECEIVER : <font color = #469990> ControlMsg \n<font color =#469990>! [ param::Trickle.ControlProcess.myseq_buff[0]_0 , \n<font color =#469990>param::Trickle.ControlProcess.myseq_buff[1]_0 ], (ControlProcess.z_0 + \n<font color =#469990>ControlProcess.z_5) @$timestamp
+NO_RECEIVER -[#469990]> NO_RECEIVER : <font color = #469990> ControlMsg_rdv \n<font color =#469990>? [ param::Trickle.ControlProcess.myseq_buff[0]_0 , \n<font color =#469990>param::Trickle.ControlProcess.myseq_buff[1]_0 ], (ControlProcess.z_0 + \n<font color =#469990>ControlProcess.z_5) @$timestamp
+<[#black]- Observer : ControlMsg_env ! [ 0 , 0 ], (ControlProcess.z_0 + \n<font color =>ControlProcess.z_5)
+
+
+@enduml

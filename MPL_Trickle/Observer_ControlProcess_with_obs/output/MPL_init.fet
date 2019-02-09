@@ -1,0 +1,105 @@
+ec( Id:0 , Pr:0 , Ev:0 , H:0 , W:1 , Q:0 ) {
+	ed( pid_3:cp0 , pid_8:startup ) {
+		exec_status = AEES_OK;
+		@init{ |and|
+			init prot::Trickle.ControlProcess;
+			init prot::Trickle.Observer;
+		}
+		@schedule{
+			schedule $self;
+		}
+		rid = run::pid_1:Trickle;
+
+	runtime#state:
+		<@rid#0 = STATE_UNDEFINED;		// run::#PARAMETERS#
+		<@rid#1 = STATE_RUNNING;		// run::Trickle
+		<@rid#2 = STATE_DISABLED;		// run::Trickle.ControlProcess
+		<@rid#3 = STATE_DISABLED;		// run::Trickle.ControlProcess.cp0
+		<@rid#4 = STATE_DISABLED;		// run::Trickle.ControlProcess.cp1
+		<@rid#5 = STATE_DISABLED;		// run::Trickle.ControlProcess.cp2
+		<@rid#6 = STATE_DISABLED;		// run::Trickle.ControlProcess.cp3
+		<@rid#7 = STATE_DISABLED;		// run::Trickle.Observer
+		<@rid#8 = STATE_DISABLED;		// run::Trickle.Observer.startup
+		<@rid#9 = STATE_DISABLED;		// run::Trickle.Observer.o0
+		<@rid#10 = STATE_DISABLED;		// run::Trickle.Observer.o1
+		<@rid#11 = STATE_DISABLED;		// run::Trickle.Observer.o2
+
+	runtime:
+		runtime ppid_0.pid_0 run::#PARAMETERS# as &inst::#PARAMETERS# {
+		}
+		runtime ppid_0.pid_1 run::Trickle as &prot::Trickle {
+			@schedule{ |;;|
+				run run::pid_2:Trickle.ControlProcess;
+				run run::pid_7:Trickle.Observer;
+			}
+
+		router:
+			router prot::Trickle {
+			}
+		}
+		runtime ppid_1.pid_2 run::Trickle.ControlProcess as &prot::Trickle.ControlProcess {
+			@schedule{
+				run run::pid_3:Trickle.ControlProcess.cp0;
+			}
+
+		variable:
+			$time := 0;
+			z := inst::Trickle.ControlProcess.$delta#initial;
+			myseq_buff := [ param::Trickle.ControlProcess.myseq_buff[0]_0 , param::Trickle.ControlProcess.myseq_buff[1]_0 ];
+			mydp_run := [ param::Trickle.ControlProcess.mydp_run[0]_0 , param::Trickle.ControlProcess.mydp_run[1]_0 ];
+			k := param::Trickle.ControlProcess.k_0;
+			c := param::Trickle.ControlProcess.c_0;
+			e := param::Trickle.ControlProcess.e_0;
+			tau := param::Trickle.ControlProcess.tau_0;
+			tau_l := param::Trickle.ControlProcess.tau_l_0;
+			tau_h := param::Trickle.ControlProcess.tau_h_0;
+			i := param::Trickle.ControlProcess.i_0;
+			t := param::Trickle.ControlProcess.t_0;
+			consistent := param::Trickle.ControlProcess.consistent_0;
+			cl := 0;
+			seq_buff := [ param::Trickle.ControlProcess.seq_buff[0]_0 , param::Trickle.ControlProcess.seq_buff[1]_0 ];
+			localTime := 0;
+			localPC := true;
+			localPtC := true;
+			new_seq_buff := param::Trickle.ControlProcess.new_seq_buff_0;
+			new_seq := param::Trickle.ControlProcess.new_seq_0;
+			new_offset := param::Trickle.ControlProcess.new_offset_0;
+			timeEmit := param::Trickle.ControlProcess.timeEmit_0;
+
+		router:
+			router prot::Trickle.ControlProcess {
+			input:
+				routing< env , mid:1 > pid_1:Trickle->inst::Trickle.ControlProcess.ControlMsg {
+					connector = inst::Trickle._#connector_0;
+				}
+			output:
+				routing< env , mid:1 > pid_1:Trickle->inst::Trickle.ControlProcess.ControlMsg {
+					connector = inst::Trickle._#connector_0;
+				}
+				routing< env , mid:0 > pid_1:Trickle->inst::Trickle.ControlProcess.Log {
+					connector = $null<connector>;
+				}
+			}
+		}
+		runtime ppid_2.pid_3 run::Trickle.ControlProcess.cp0 as &prot::Trickle.ControlProcess.cp0;
+		runtime ppid_2.pid_4 run::Trickle.ControlProcess.cp1 as &prot::Trickle.ControlProcess.cp1;
+		runtime ppid_2.pid_5 run::Trickle.ControlProcess.cp2 as &prot::Trickle.ControlProcess.cp2;
+		runtime ppid_2.pid_6 run::Trickle.ControlProcess.cp3 as &prot::Trickle.ControlProcess.cp3;
+		runtime ppid_1.pid_7 run::Trickle.Observer as &prot::Trickle.Observer {
+			@schedule{
+				run run::pid_8:Trickle.Observer.startup;
+			}
+
+		variable:
+			$time := 0;
+			z := inst::Trickle.Observer.$delta#initial;
+			seqBuff := [ param::Trickle.Observer.seqBuff[0]_0 , param::Trickle.Observer.seqBuff[1]_0 ];
+			cl_obs := 0;
+			localTime := 0;
+		}
+		runtime ppid_7.pid_8 run::Trickle.Observer.startup as &prot::Trickle.Observer.startup;
+		runtime ppid_7.pid_9 run::Trickle.Observer.o0 as &prot::Trickle.Observer.o0;
+		runtime ppid_7.pid_10 run::Trickle.Observer.o1 as &prot::Trickle.Observer.o1;
+		runtime ppid_7.pid_11 run::Trickle.Observer.o2 as &prot::Trickle.Observer.o2;
+	}
+}

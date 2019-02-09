@@ -1,0 +1,240 @@
+@xlia< system , 1.0 >:
+
+system< and > Trickle {
+@private:
+	const int BUFF_SIZE = 2;
+	
+	type INFO_KIND enum { INIT , TERMIN }
+	
+@machine:
+
+	// Template model for a node which could be instanced to create many nodes
+	lifeline timed statemachine< and > ControlProcess {
+		
+	@public:
+		port output Log( INFO_KIND information );
+		port inout ControlMsg( int[BUFF_SIZE] seqBuff, time< pos_rational > emit_time );
+		const int CTRL_EXPIR = 2;
+		const int DATA_EXPIR = 2;
+		const int MIN_SEQ = 1;
+			
+	@private:
+		var int[BUFF_SIZE] myseq_buff;
+		
+		var bool[BUFF_SIZE] mydp_run;
+		
+		var uinteger k;
+		var uinteger c;
+		var uinteger e;
+		var urational tau;
+		var urational tau_l;
+		var urational tau_h;
+		var uinteger i;
+		var urational t;
+		var boolean consistent;
+		
+		var clock pos_rational cl;
+		
+		var int[BUFF_SIZE] seq_buff;
+		
+		// INSTRUMENTATION
+		// This variable represents time elapsed in each node
+		var clock pos_rational localTime = 0;
+		
+		var boolean localPC = true;
+		var boolean localPtC = true;
+		var int new_seq_buff;
+		var int new_seq;
+		var int new_offset;
+
+		var time< pos_rational > timeEmit;
+		// END OF INSTRUMENTATION
+		
+	@macro:
+		routine doubleTau() {
+			if ( 2*tau <= tau_h ){
+				tau := 2*tau;
+			}
+			elseif ( 2*tau > tau_h ){
+				tau := tau_h;
+			}
+		}
+		routine analyse_seq() {
+			guard( e < CTRL_EXPIR );
+			input ControlMsg( seq_buff, timeEmit );
+
+			tguard( timeEmit <= localTime );
+			consistent := true;
+			
+			for( i = 0 ; i < BUFF_SIZE ; i++ ) {
+				if ( myseq_buff[i] != seq_buff[i] ){
+					consistent := false;
+					if ( not mydp_run[i] ){
+						mydp_run[i] := true;
+					}
+				}
+			}
+		}
+		routine analyse_cp1_consistent() {
+			tguard( cl < t );
+			
+			analyse_seq();
+			
+			guard( consistent );
+			c++;
+		}
+		routine analyse_cp1_inconsistent() {
+			tguard( cl < t );
+			
+			analyse_seq();
+			
+			guard( ! consistent );
+			tau := tau_l;
+			newfresh(t);
+			guard( tau/2 <= t < tau );
+			cl := 0;
+			c := 0;
+			e := 0;
+		}
+		routine analyse_cp2_consistent() {
+			tguard( cl < tau );
+			
+			analyse_seq();
+			
+			guard( consistent );
+			c++;
+		}
+		routine analyse_cp2_inconsistent() {
+			tguard( cl < tau );
+			
+			analyse_seq();
+			
+			guard( ! consistent );
+			tau := tau_l;
+			newfresh(t);
+			guard( tau/2 <= t < tau );
+			cl := 0;
+			c := 0;
+			e := 0;
+		}
+			
+	@region:
+		state<initial> cp0 {
+			transition cp_init --> cp1 {
+				k := 2;
+				c := 0;
+				e := 0;
+				tau_l := 4;
+				tau_h := 8;
+				tau := tau_l;
+
+				newfresh(t);
+				guard( tau/2 <= t < tau );
+				output Log( INIT );
+				cl := 0;
+				mydp_run := false;
+				
+//				myseq_buff := 0;
+			}
+		}
+		state cp1 {
+			transition cp_sendCM --> cp2 {
+				tguard( cl == t );
+				guard( c < k && e < CTRL_EXPIR );
+				output ControlMsg( myseq_buff, localTime );
+			}
+			transition cp1_receiveCM_consistent --> cp1 {
+				analyse_cp1_consistent();
+			}
+			transition cp1_receiveCM_inconsistent --> cp1 {
+				analyse_cp1_inconsistent();
+			}
+			transition cp_CTRL_EXPIR --> cp3 {
+				guard( e == CTRL_EXPIR );
+				output Log(TERMIN);
+			}
+			transition cp1_reach_k --> cp2 {
+				tguard( cl == t );
+				guard( c >= k && e < CTRL_EXPIR );
+			}
+		}
+		state cp2 {
+			transition cp_resetTau --> cp1 {
+				tguard( cl > t && cl == tau );
+				guard( e < CTRL_EXPIR );
+				doubleTau();
+				newfresh(t);
+				guard( tau/2 <= t < tau );
+				e++;
+				cl := 0;
+			}
+			transition cp2_receiveCM_consistent --> cp2 {
+				analyse_cp2_consistent();
+			}
+			transition cp2_receiveCM_inconsistent --> cp1 {
+				analyse_cp2_inconsistent();
+			}
+		}
+		state <final> cp3 {
+			
+		}
+	}
+	
+	// Automaton Observer is used to determine when the coverage is finished,
+	// When the value of boolean variable coverageProp for each node is assigned 
+	// with true, i.e. each node has already received two fragments of firmware (line 405),
+	// the coverage is finished
+	lifeline timed statemachine< and > Observer {
+		
+	@private:
+		var int[BUFF_SIZE] seqBuff;
+		
+		var clock pos_rational cl_obs;
+		
+		// INSTRUMENTATION
+		// This variable represents time elapsed in each node
+		var clock pos_rational localTime = 0;
+		// END OF INSTRUMENTATION
+		
+	@region:
+		state<initial> startup {
+			transition o_startup --> o0;
+		}
+		state o0 {
+			transition receive_CM_1 --> o1 {
+				@obs {
+					input ControlProcess.ControlMsg( seqBuff, localTime );
+				} [ seqBuff[0]==1 && seqBuff[1]==1 ];
+				tguard( cl_obs <= 10 );
+			}
+		}
+		state o1 {
+			transition send_CM_2 --> o2 {
+				@obs {
+					output ControlProcess.ControlMsg( seqBuff, localTime );
+				} [ seqBuff[0]==0 && seqBuff[1]==0 ];
+				tguard( cl_obs <= 5 );
+			}
+		}
+		state o2 {
+			
+		}
+	}
+
+@moe:
+	@schedule{|;;|
+		{|i|
+			run ControlProcess;
+		}
+		run Observer;
+	}
+	
+// Declaration of connections
+@com:
+	// Connection rdv
+	connect< env >{
+		output ControlProcess->ControlMsg;
+		input ControlProcess->ControlMsg;
+	}
+}
+

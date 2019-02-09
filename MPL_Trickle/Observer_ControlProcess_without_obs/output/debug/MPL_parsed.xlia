@@ -1,0 +1,483 @@
+@FormalML< system , 1.0 >:
+
+system< and > Trickle {
+@property:
+	const integer BUFF_SIZE = 2;
+	type INFO_KIND enum {
+		INIT,
+		TERMIN
+	}
+
+@composite:
+	timed lifeline statemachine< #STS > ControlProcess {
+	@property:
+		public static const time< urational > $time#initial = 0;
+		var time< urational > $time = spec::Trickle.ControlProcess.$time#initial;
+		public static const time< pos_rational > $delta#initial;
+		var time< pos_rational > z = spec::Trickle.ControlProcess.$delta#initial;
+		public output port Log(INFO_KIND information);
+		public inout port ControlMsg(integer[ 2 ] seqBuff, time< pos_rational > emit_time);
+		public const integer CTRL_EXPIR = 2;
+		public const integer DATA_EXPIR = 2;
+		public const integer MIN_SEQ = 1;
+		var integer[ 2 ] myseq_buff;
+		var boolean[ 2 ] mydp_run;
+		var uinteger k;
+		var uinteger c;
+		var uinteger e;
+		var urational tau;
+		var urational tau_l;
+		var urational tau_h;
+		var uinteger i;
+		var urational t;
+		var boolean consistent;
+		public volatile var clock< pos_rational > cl = 0;
+		var integer[ 2 ] seq_buff;
+		public volatile var clock< pos_rational > localTime = 0;
+		var boolean localPC = true;
+		var boolean localPtC = true;
+		var integer new_seq_buff;
+		var integer new_seq;
+		var integer new_offset;
+		var time< pos_rational > timeEmit;
+
+	@routine:
+		macro #model routine time#get --> ($0: transient parameter time< urational > _time_){
+			return ControlProcess.$time;
+		}
+		macro #model routine delta#get --> ($0: transient parameter time< pos_rational > _delta_){
+			return ControlProcess.z;
+		}
+		macro #model routine time#reset{
+			ControlProcess.$time := 0;
+		}
+		macro #model routine clock#reset($0: transient clock< uinteger > _clock_){
+			clock#reset._clock_ := 0;
+		}
+		macro #model routine clock#update($0: transient clock< uinteger > _clock_){
+			clock#update._clock_ := (clock#update._clock_ + ControlProcess.z);
+		}
+		macro #model routine doubleTau{
+			if ((2 * ControlProcess.tau) <= ControlProcess.tau_h)
+			{
+				ControlProcess.tau := (2 * ControlProcess.tau);
+			}
+			else
+			{
+				if ((2 * ControlProcess.tau) > ControlProcess.tau_h)
+				{
+					ControlProcess.tau := ControlProcess.tau_h;
+				}
+			}
+		}
+		macro #model routine analyse_seq{ |;|
+			guard (ControlProcess.e < ControlProcess.CTRL_EXPIR);
+			input ControlProcess.ControlMsg(ControlProcess.seq_buff, ControlProcess.timeEmit);
+			tguard (ControlProcess.timeEmit <= ControlProcess.localTime);
+			ControlProcess.consistent := true;
+			for( ControlProcess.i := 0 ; (ControlProcess.i < spec::Trickle.BUFF_SIZE) ; ControlProcess.i := (+ 1) )
+			{
+				if (&spec::Trickle.ControlProcess.myseq_buff[&spec::Trickle.ControlProcess.i] != &spec::Trickle.ControlProcess.seq_buff[&spec::Trickle.ControlProcess.i])
+				{ |;|
+					ControlProcess.consistent := false;
+					if (! &spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i])
+					{
+						&spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i] := true;
+					}
+				}
+			}
+		}
+		macro #model routine analyse_cp1_consistent{ |;|
+			tguard (ControlProcess.cl < ControlProcess.t);
+			{ |;|
+				guard (ControlProcess.e < ControlProcess.CTRL_EXPIR);
+				input ControlProcess.ControlMsg(ControlProcess.seq_buff, ControlProcess.timeEmit);
+				tguard (ControlProcess.timeEmit <= ControlProcess.localTime);
+				ControlProcess.consistent := true;
+				for( ControlProcess.i := 0 ; (ControlProcess.i < spec::Trickle.BUFF_SIZE) ; ControlProcess.i := (+ 1) )
+				{
+					if (&spec::Trickle.ControlProcess.myseq_buff[&spec::Trickle.ControlProcess.i] != &spec::Trickle.ControlProcess.seq_buff[&spec::Trickle.ControlProcess.i])
+					{ |;|
+						ControlProcess.consistent := false;
+						if (! &spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i])
+						{
+							&spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i] := true;
+						}
+					}
+				}
+			}
+			guard ControlProcess.consistent;
+			ControlProcess.c := (+ 1);
+		}
+		macro #model routine analyse_cp1_inconsistent{ |;|
+			tguard (ControlProcess.cl < ControlProcess.t);
+			{ |;|
+				guard (ControlProcess.e < ControlProcess.CTRL_EXPIR);
+				input ControlProcess.ControlMsg(ControlProcess.seq_buff, ControlProcess.timeEmit);
+				tguard (ControlProcess.timeEmit <= ControlProcess.localTime);
+				ControlProcess.consistent := true;
+				for( ControlProcess.i := 0 ; (ControlProcess.i < spec::Trickle.BUFF_SIZE) ; ControlProcess.i := (+ 1) )
+				{
+					if (&spec::Trickle.ControlProcess.myseq_buff[&spec::Trickle.ControlProcess.i] != &spec::Trickle.ControlProcess.seq_buff[&spec::Trickle.ControlProcess.i])
+					{ |;|
+						ControlProcess.consistent := false;
+						if (! &spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i])
+						{
+							&spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i] := true;
+						}
+					}
+				}
+			}
+			guard (! ControlProcess.consistent);
+			ControlProcess.tau := ControlProcess.tau_l;
+			invoke#method ControlProcess.t newfresh;
+			guard (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau));
+			ControlProcess.cl := 0;
+			ControlProcess.c := 0;
+			ControlProcess.e := 0;
+		}
+		macro #model routine analyse_cp2_consistent{ |;|
+			tguard (ControlProcess.cl < ControlProcess.tau);
+			{ |;|
+				guard (ControlProcess.e < ControlProcess.CTRL_EXPIR);
+				input ControlProcess.ControlMsg(ControlProcess.seq_buff, ControlProcess.timeEmit);
+				tguard (ControlProcess.timeEmit <= ControlProcess.localTime);
+				ControlProcess.consistent := true;
+				for( ControlProcess.i := 0 ; (ControlProcess.i < spec::Trickle.BUFF_SIZE) ; ControlProcess.i := (+ 1) )
+				{
+					if (&spec::Trickle.ControlProcess.myseq_buff[&spec::Trickle.ControlProcess.i] != &spec::Trickle.ControlProcess.seq_buff[&spec::Trickle.ControlProcess.i])
+					{ |;|
+						ControlProcess.consistent := false;
+						if (! &spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i])
+						{
+							&spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i] := true;
+						}
+					}
+				}
+			}
+			guard ControlProcess.consistent;
+			ControlProcess.c := (+ 1);
+		}
+		macro #model routine analyse_cp2_inconsistent{ |;|
+			tguard (ControlProcess.cl < ControlProcess.tau);
+			{ |;|
+				guard (ControlProcess.e < ControlProcess.CTRL_EXPIR);
+				input ControlProcess.ControlMsg(ControlProcess.seq_buff, ControlProcess.timeEmit);
+				tguard (ControlProcess.timeEmit <= ControlProcess.localTime);
+				ControlProcess.consistent := true;
+				for( ControlProcess.i := 0 ; (ControlProcess.i < spec::Trickle.BUFF_SIZE) ; ControlProcess.i := (+ 1) )
+				{
+					if (&spec::Trickle.ControlProcess.myseq_buff[&spec::Trickle.ControlProcess.i] != &spec::Trickle.ControlProcess.seq_buff[&spec::Trickle.ControlProcess.i])
+					{ |;|
+						ControlProcess.consistent := false;
+						if (! &spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i])
+						{
+							&spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i] := true;
+						}
+					}
+				}
+			}
+			guard (! ControlProcess.consistent);
+			ControlProcess.tau := ControlProcess.tau_l;
+			invoke#method ControlProcess.t newfresh;
+			guard (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau));
+			ControlProcess.cl := 0;
+			ControlProcess.c := 0;
+			ControlProcess.e := 0;
+		}
+		macro #model routine time#update{ |§|
+			newfresh(ControlProcess.z)
+			ControlProcess.$time := (ControlProcess.$time + ControlProcess.z);
+			{ |§|
+				ControlProcess.cl := (ControlProcess.cl + ControlProcess.z);
+				ControlProcess.localTime := (ControlProcess.localTime + ControlProcess.z);
+			}
+		}
+
+	@region:
+		state< initial > cp0 {
+			transition cp_init --> cp1 { |;|
+				ControlProcess.k := 2;
+				ControlProcess.c := 0;
+				ControlProcess.e := 0;
+				ControlProcess.tau_l := 4;
+				ControlProcess.tau_h := 8;
+				ControlProcess.tau := ControlProcess.tau_l;
+				invoke#method ControlProcess.t newfresh;
+				guard (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau));
+				output ControlProcess.Log(INIT);
+				ControlProcess.cl := 0;
+				ControlProcess.mydp_run := false;
+			}
+		}
+
+		state cp1 {
+			transition cp_sendCM --> cp2 { |;|
+				tguard (ControlProcess.cl == ControlProcess.t);
+				guard ((ControlProcess.c < ControlProcess.k) && (ControlProcess.e < ControlProcess.CTRL_EXPIR));
+				output ControlProcess.ControlMsg(ControlProcess.myseq_buff, ControlProcess.localTime);
+			}
+			transition cp1_receiveCM_consistent --> cp1 { |;|
+				tguard (ControlProcess.cl < ControlProcess.t);
+				{ |;|
+					guard (ControlProcess.e < ControlProcess.CTRL_EXPIR);
+					input ControlProcess.ControlMsg(ControlProcess.seq_buff, ControlProcess.timeEmit);
+					tguard (ControlProcess.timeEmit <= ControlProcess.localTime);
+					ControlProcess.consistent := true;
+					for( ControlProcess.i := 0 ; (ControlProcess.i < spec::Trickle.BUFF_SIZE) ; ControlProcess.i := (+ 1) )
+					{
+						if (&spec::Trickle.ControlProcess.myseq_buff[&spec::Trickle.ControlProcess.i] != &spec::Trickle.ControlProcess.seq_buff[&spec::Trickle.ControlProcess.i])
+						{ |;|
+							ControlProcess.consistent := false;
+							if (! &spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i])
+							{
+								&spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i] := true;
+							}
+						}
+					}
+				}
+				guard ControlProcess.consistent;
+				ControlProcess.c := (+ 1);
+			}
+			transition cp1_receiveCM_inconsistent --> cp1 { |;|
+				tguard (ControlProcess.cl < ControlProcess.t);
+				{ |;|
+					guard (ControlProcess.e < ControlProcess.CTRL_EXPIR);
+					input ControlProcess.ControlMsg(ControlProcess.seq_buff, ControlProcess.timeEmit);
+					tguard (ControlProcess.timeEmit <= ControlProcess.localTime);
+					ControlProcess.consistent := true;
+					for( ControlProcess.i := 0 ; (ControlProcess.i < spec::Trickle.BUFF_SIZE) ; ControlProcess.i := (+ 1) )
+					{
+						if (&spec::Trickle.ControlProcess.myseq_buff[&spec::Trickle.ControlProcess.i] != &spec::Trickle.ControlProcess.seq_buff[&spec::Trickle.ControlProcess.i])
+						{ |;|
+							ControlProcess.consistent := false;
+							if (! &spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i])
+							{
+								&spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i] := true;
+							}
+						}
+					}
+				}
+				guard (! ControlProcess.consistent);
+				ControlProcess.tau := ControlProcess.tau_l;
+				invoke#method ControlProcess.t newfresh;
+				guard (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau));
+				ControlProcess.cl := 0;
+				ControlProcess.c := 0;
+				ControlProcess.e := 0;
+			}
+			transition cp_CTRL_EXPIR --> cp3 { |;|
+				guard (ControlProcess.e == ControlProcess.CTRL_EXPIR);
+				output ControlProcess.Log(TERMIN);
+			}
+			transition cp1_reach_k --> cp2 { |;|
+				tguard (ControlProcess.cl == ControlProcess.t);
+				guard ((ControlProcess.c >= ControlProcess.k) && (ControlProcess.e < ControlProcess.CTRL_EXPIR));
+			}
+		}
+
+		state cp2 {
+			transition cp_resetTau --> cp1 { |;|
+				tguard ((ControlProcess.cl > ControlProcess.t) && (ControlProcess.cl == ControlProcess.tau));
+				guard (ControlProcess.e < ControlProcess.CTRL_EXPIR);
+				if ((2 * ControlProcess.tau) <= ControlProcess.tau_h)
+				{
+					ControlProcess.tau := (2 * ControlProcess.tau);
+				}
+				else
+				{
+					if ((2 * ControlProcess.tau) > ControlProcess.tau_h)
+					{
+						ControlProcess.tau := ControlProcess.tau_h;
+					}
+				}
+				invoke#method ControlProcess.t newfresh;
+				guard (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau));
+				ControlProcess.e := (+ 1);
+				ControlProcess.cl := 0;
+			}
+			transition cp2_receiveCM_consistent --> cp2 { |;|
+				tguard (ControlProcess.cl < ControlProcess.tau);
+				{ |;|
+					guard (ControlProcess.e < ControlProcess.CTRL_EXPIR);
+					input ControlProcess.ControlMsg(ControlProcess.seq_buff, ControlProcess.timeEmit);
+					tguard (ControlProcess.timeEmit <= ControlProcess.localTime);
+					ControlProcess.consistent := true;
+					for( ControlProcess.i := 0 ; (ControlProcess.i < spec::Trickle.BUFF_SIZE) ; ControlProcess.i := (+ 1) )
+					{
+						if (&spec::Trickle.ControlProcess.myseq_buff[&spec::Trickle.ControlProcess.i] != &spec::Trickle.ControlProcess.seq_buff[&spec::Trickle.ControlProcess.i])
+						{ |;|
+							ControlProcess.consistent := false;
+							if (! &spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i])
+							{
+								&spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i] := true;
+							}
+						}
+					}
+				}
+				guard ControlProcess.consistent;
+				ControlProcess.c := (+ 1);
+			}
+			transition cp2_receiveCM_inconsistent --> cp1 { |;|
+				tguard (ControlProcess.cl < ControlProcess.tau);
+				{ |;|
+					guard (ControlProcess.e < ControlProcess.CTRL_EXPIR);
+					input ControlProcess.ControlMsg(ControlProcess.seq_buff, ControlProcess.timeEmit);
+					tguard (ControlProcess.timeEmit <= ControlProcess.localTime);
+					ControlProcess.consistent := true;
+					for( ControlProcess.i := 0 ; (ControlProcess.i < spec::Trickle.BUFF_SIZE) ; ControlProcess.i := (+ 1) )
+					{
+						if (&spec::Trickle.ControlProcess.myseq_buff[&spec::Trickle.ControlProcess.i] != &spec::Trickle.ControlProcess.seq_buff[&spec::Trickle.ControlProcess.i])
+						{ |;|
+							ControlProcess.consistent := false;
+							if (! &spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i])
+							{
+								&spec::Trickle.ControlProcess.mydp_run[&spec::Trickle.ControlProcess.i] := true;
+							}
+						}
+					}
+				}
+				guard (! ControlProcess.consistent);
+				ControlProcess.tau := ControlProcess.tau_l;
+				invoke#method ControlProcess.t newfresh;
+				guard (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau));
+				ControlProcess.cl := 0;
+				ControlProcess.c := 0;
+				ControlProcess.e := 0;
+			}
+		}
+
+		state< final > cp3 {		}
+
+	@moe:
+		@init{ |§|
+			ControlProcess.$time := ControlProcess.$time#initial;
+			ControlProcess.z := ControlProcess.$delta#initial;
+		}
+		@run{ |§|
+			newfresh(ControlProcess.z)
+			ControlProcess.$time := (ControlProcess.$time + ControlProcess.z);
+			{ |§|
+				ControlProcess.cl := (ControlProcess.cl + ControlProcess.z);
+				ControlProcess.localTime := (ControlProcess.localTime + ControlProcess.z);
+			}
+		}
+	}
+
+	timed lifeline statemachine< #STS > Observer {
+	@property:
+		public static const time< urational > $time#initial = 0;
+		var time< urational > $time = spec::Trickle.Observer.$time#initial;
+		public static const time< pos_rational > $delta#initial;
+		var time< pos_rational > z = spec::Trickle.Observer.$delta#initial;
+		public inout port ControlMsg_rdv(integer[ 2 ] seqBuff, time< pos_rational > emit_time);
+		public inout port ControlMsg_env(integer[ 2 ] seqBuff, time< pos_rational > emit_time);
+		var integer[ 2 ] seqBuff;
+		public volatile var clock< pos_rational > cl_obs = 0;
+		public volatile var clock< pos_rational > localTime = 0;
+
+	@routine:
+		macro #model routine time#get --> ($0: transient parameter time< urational > _time_){
+			return Observer.$time;
+		}
+		macro #model routine delta#get --> ($0: transient parameter time< pos_rational > _delta_){
+			return Observer.z;
+		}
+		macro #model routine time#reset{
+			Observer.$time := 0;
+		}
+		macro #model routine clock#reset($0: transient clock< uinteger > _clock_){
+			clock#reset._clock_ := 0;
+		}
+		macro #model routine clock#update($0: transient clock< uinteger > _clock_){
+			clock#update._clock_ := (clock#update._clock_ + Observer.z);
+		}
+		macro #model routine time#update{ |§|
+			newfresh(Observer.z)
+			Observer.$time := (Observer.$time + Observer.z);
+			{ |§|
+				Observer.cl_obs := (Observer.cl_obs + Observer.z);
+				Observer.localTime := (Observer.localTime + Observer.z);
+			}
+		}
+
+	@region:
+		state< initial > startup {
+			transition o_startup --> o0;
+		}
+
+		state o0 {
+			transition receive_CM_env_1a --> o1 { |;|
+				input Observer.ControlMsg_env(Observer.seqBuff, Observer.localTime);
+				guard ((&spec::Trickle.Observer.seqBuff[0] == 1) && (&spec::Trickle.Observer.seqBuff[1] == 1));
+				output Observer.ControlMsg_rdv(Observer.seqBuff, Observer.localTime);
+				tguard (Observer.cl_obs <= 10);
+			}
+			transition receive_CM_env_1b --> o0 { |;|
+				input Observer.ControlMsg_env(Observer.seqBuff, Observer.localTime);
+				guard ((&spec::Trickle.Observer.seqBuff[0] != 1) || (&spec::Trickle.Observer.seqBuff[1] != 1));
+				output Observer.ControlMsg_rdv(Observer.seqBuff, Observer.localTime);
+			}
+			transition receive_CM_rdv_1 --> o0 { |;|
+				input Observer.ControlMsg_rdv(Observer.seqBuff, Observer.localTime);
+				output Observer.ControlMsg_env(Observer.seqBuff, Observer.localTime);
+			}
+		}
+
+		state o1 {
+			transition receive_CM_rdv_2a --> o2 { |;|
+				input Observer.ControlMsg_rdv(Observer.seqBuff, Observer.localTime);
+				guard ((&spec::Trickle.Observer.seqBuff[0] == 0) && (&spec::Trickle.Observer.seqBuff[1] == 0));
+				output Observer.ControlMsg_env(Observer.seqBuff, Observer.localTime);
+				tguard (Observer.cl_obs <= 5);
+			}
+			transition receive_CM_rdv_2b --> o2 { |;|
+				input Observer.ControlMsg_rdv(Observer.seqBuff, Observer.localTime);
+				guard ((&spec::Trickle.Observer.seqBuff[0] != 0) || (&spec::Trickle.Observer.seqBuff[1] != 0));
+				output Observer.ControlMsg_env(Observer.seqBuff, Observer.localTime);
+			}
+			transition receive_CM_env_2 --> o1 { |;|
+				input Observer.ControlMsg_env(Observer.seqBuff, Observer.localTime);
+				output Observer.ControlMsg_rdv(Observer.seqBuff, Observer.localTime);
+			}
+		}
+
+		state o2 {
+			transition receive_CM_rdv_3 --> o2 { |;|
+				input Observer.ControlMsg_rdv(Observer.seqBuff, Observer.localTime);
+				output Observer.ControlMsg_env(Observer.seqBuff, Observer.localTime);
+			}
+			transition receive_CM_env_3 --> o2 { |;|
+				input Observer.ControlMsg_env(Observer.seqBuff, Observer.localTime);
+				output Observer.ControlMsg_rdv(Observer.seqBuff, Observer.localTime);
+			}
+		}
+
+	@moe:
+		@init{ |§|
+			Observer.$time := Observer.$time#initial;
+			Observer.z := Observer.$delta#initial;
+		}
+		@run{ |§|
+			newfresh(Observer.z)
+			Observer.$time := (Observer.$time + Observer.z);
+			{ |§|
+				Observer.cl_obs := (Observer.cl_obs + Observer.z);
+				Observer.localTime := (Observer.localTime + Observer.z);
+			}
+		}
+	}
+
+@com:
+	connector< env > _#connector_0 {
+		inout ControlMsg_env;
+	}
+	connector< rdv , unicast > _#connector_1 {
+		output ControlMsg;
+		input ControlMsg_rdv;
+	}
+	connector< rdv , unicast > _#connector_2 {
+		output ControlMsg_rdv;
+		input ControlMsg;
+	}
+}

@@ -1,0 +1,11 @@
+TRACE NUMBER 1
+	fired transition startup:o_startup
+	fired transition cp0:cp_init
+	OUTPUT ControlProcess:Log(INIT)
+	fired transition cp1:cp1_receiveCM_inconsistent
+	fired transition o0:receive_CM_1
+	INPUT  ControlProcess:ControlMsg([ 1 , 1 ],1/3)
+	fired transition cp1:cp_sendCM
+	fired transition o1:send_CM_2
+	OUTPUT ControlProcess:ControlMsg([ 0 , 0 ],7/3)
+

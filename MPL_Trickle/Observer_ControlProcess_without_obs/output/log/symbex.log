@@ -1,0 +1,99 @@
+[SEW] Symbolic Execution based Workflow analysis ... START
+[SEW] Location: /home/thang/Dropbox/Implementation_Diversity/Diversity_workspace/MPL_Trickle_WP/Observer_ControlProcess_without_obs/workflow_Observer_ControlProcess_without_obs.sew
+[SEW] Console verbosity level: 'MINIMUM'
+[SEW] Developer debug level: 'MEDIUM'
+[SEW] Developer debug flags: 'NOTHING'
+[SEW] The launch! folder: /home/thang/Dropbox/Implementation_Diversity/Diversity_workspace/MPL_Trickle_WP/Observer_ControlProcess_without_obs/Scripts
+[SEW] The working folder: <launch>:/.
+[SEW] The <wroot> folder: /home/thang/Dropbox/Implementation_Diversity/Diversity_workspace/MPL_Trickle_WP/Observer_ControlProcess_without_obs
+[SEW] The source! folder: <wroot>:/.
+[SEW] The output! folder: <wroot>:/output
+[SEW] The logger! folder: <wroot>:/output/log
+[SEW] The !debug! folder: <wroot>:/output/debug
+[SEW] The default solver: < checksat=true , CVC4 > |=> CVC4
+[SEW] Computing resource: < multitasking=false , thread=2 >
+[SEW] Symbolic Execution Workflow analysis ... DONE
+
+[SEW] Configure Engine director: sew:/workflow.behavior#selection
+[SEW] Checking the specification ...
+[SEW] File location:> <wroot>:/Observer_ControlProcess_without_obs.xlia ==> DONE
+
+[SEW] < start > Parsing ...
+[SEW] Parsing: Observer_ControlProcess_without_obs.xlia ...
+[SEW] Done ==> 0 syntax error found.
+[SEW] < end > Parsing ... done.
+[DBG] Saving of the Specification in text format --> parsed
+	path: <wroot>:/output/debug/MPL_parsed.xlia... OK
+
+[SEW] < start > Building ...
+[SEW] Compilation report:> 0 error 0 warning
+[SEW] Saving of the Executable in text format
+	path: <wroot>:/output/MPL.fexe... OK
+[SEW] Saving of the specification representation in GraphViz format 
+	path: <wroot>:/output/MPL.gv... OK
+	path: <wroot>:/output/MPL_init.fet... OK
+[SEW] < end > Building ... done.
+[SEW] < start > SymbexControllerUnitManager::configure ...
+ProcessorUnitFactory::autoconfigure <sew:/workflow.behavior#selection>
+moe:
+ supervisor = [p:0]sew:/workflow.behavior#selection.supervisor;
+ queue = [p:0]sew:/workflow.behavior#selection.supervisor;
+ redundancy = [p:100]sew:/workflow.behavior#selection.supervisor;
+
+ pre_processor = { |;|
+  [p:40]sew:/workflow.behavior#selection.behavior_coverage
+  [p:75]sew:/workflow.behavior#selection.model2graphiz
+ }
+
+ pre_filter = { |;|
+  [p:40]sew:/workflow.behavior#selection.behavior_coverage
+ }
+ post_filter = { |;|
+ }
+
+ post_processor = { |;|
+  [p:75]sew:/workflow.behavior#selection.basic_trace_generator
+  [p:75]sew:/workflow.behavior#selection.symbex2graphiz
+  [p:75]sew:/workflow.behavior#selection.basic_trace_generator
+ }
+[SEW] < end > SymbexControllerUnitManager::configure ... done.
+
+[SEW] < start > Computing ...
+
+[SBX] < start > Computing ...
+
+
+
+time:(real: 950ms user: 930ms system: 20ms steady: 947ms333us313ns system: 947ms333us295ns) --> 947ms333us407ns@ Sat Feb  9 10:18:41 2019
+time:(real: 948ms cpu: 1s934ms user: 931ms system: 16ms) --> 947ms334us @ Sat Feb  9 10:18:41 2019
+
+
+
+
+REPORT
+ STOP CRITERIA  PROCESSOR
+  The CONTEXT  count : 77
+  The RUN EVAL count : 11
+  The RUN STEP count : 12
+
+  The Max HEIGHT reaching : 2
+  The Max WIDTH  reaching : 9
+ HIT OR JUMP Coverage 2 / 2 ==> DONE !
+ hit<covered> { |;|
+  tpid#1 pid_9:o0 transition run::Trickle.Observer.o0->receive_CM_env_1a
+  tpid#2 pid_10:o1 transition run::Trickle.Observer.o1->receive_CM_rdv_2a
+ }
+ SEQUENCE_DIAGRAM TRACE GENERATOR
+  The TRACE count : 1
+  DONE !
+ BASIC TRACE GENERATOR
+  The TRACE count : 1
+  DONE !
+
+[SEW] Saving of the trace of the execution specification representation in textual format 
+	path: <wroot>:/output/MPL.fscn... OK
+
+[SBX] < end > Computing ... done.
+
+
+[SEW] < end >Computing ... done.
