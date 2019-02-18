@@ -36,9 +36,9 @@ system< and > Trickle {
 		@public:
 			// The waiting queue (FIFO) used to store received messages which have not been
 			// consumed yet
-			buffer fifo<*> bufferNode;
-//			buffer fifo<*> bufferNode1;
-//			buffer fifo<*> bufferNode2;
+			buffer fifo<*> bufferCM;
+			buffer fifo<*> bufferDM1;
+			buffer fifo<*> bufferDM2;
 		
 			port output Log( INFO_KIND information );
 			port inout ControlMsg( int[BUFF_SIZE] seqBuff, time< pos_rational > emit_time );
@@ -859,80 +859,82 @@ system< and > Trickle {
 	connect< multicast >{
 		output n1->ControlMsg;
 		
-		input< buffer< n2.bufferNode > > n2->ControlMsg;
-		input< buffer< n3.bufferNode > > n3->ControlMsg;
+		input< buffer< n2.bufferCM > > n2->ControlMsg;
+		input< buffer< n3.bufferCM > > n3->ControlMsg;
 	}
 	connect< multicast >{
 		output n1->DataMsg1;
 	
-		input< buffer< n2.bufferNode > > n2->DataMsg1;
-//		input< buffer< n2.bufferNode > > n2->DataMsg2;
-		input< buffer< n3.bufferNode > > n3->DataMsg1;
-//		input< buffer< n3.bufferNode > > n3->DataMsg2;
+		input< buffer< n2.bufferDM1 > > n2->DataMsg1;
+		input< buffer< n2.bufferDM2 > > n2->DataMsg2;
+		input< buffer< n3.bufferDM1 > > n3->DataMsg1;
+		input< buffer< n3.bufferDM2 > > n3->DataMsg2;
 	}
 	connect< multicast >{
 		output n1->DataMsg2;
 	
-//		input< buffer< n2.bufferNode > > n2->DataMsg1;
-		input< buffer< n2.bufferNode > > n2->DataMsg2;
-//		input< buffer< n3.bufferNode > > n3->DataMsg1;
-		input< buffer< n3.bufferNode > > n3->DataMsg2;
+		input< buffer< n2.bufferDM1 > > n2->DataMsg1;
+		input< buffer< n2.bufferDM2 > > n2->DataMsg2;
+		input< buffer< n3.bufferDM1 > > n3->DataMsg1;
+		input< buffer< n3.bufferDM2 > > n3->DataMsg2;
 	}
 	/* Node2 */
 	connect< multicast >{
 		output n2->ControlMsg;
 	
-		input< buffer< n3.bufferNode > > n3->ControlMsg;
+		input< buffer< n3.bufferCM > > n3->ControlMsg;
 	}
 	connect< multicast >{
 		output n2->DataMsg1;
 	
-		input< buffer< n3.bufferNode > > n3->DataMsg1;
-//		input< buffer< n3.bufferNode > > n3->DataMsg2;
+		input< buffer< n3.bufferDM1 > > n3->DataMsg1;
+		input< buffer< n3.bufferDM2 > > n3->DataMsg2;
 	}
 	connect< multicast >{
 		output n2->DataMsg2;
 	
-//		input< buffer< n3.bufferNode > > n3->DataMsg1;
-		input< buffer< n3.bufferNode > > n3->DataMsg2;
+		input< buffer< n3.bufferDM1 > > n3->DataMsg1;
+		input< buffer< n3.bufferDM2 > > n3->DataMsg2;
 	}
 	/* Node3 */
 	connect< multicast >{
 		output n3->ControlMsg;
 	
-		input< buffer< n1.bufferNode > > n1->ControlMsg;
-		input< buffer< n4.bufferNode > > n4->ControlMsg;
+		input< buffer< n1.bufferCM > > n1->ControlMsg;
+		input< buffer< n4.bufferCM > > n4->ControlMsg;
 	}
 	connect< multicast >{
 		output n3->DataMsg1;
 		
-		input< buffer< n1.bufferNode > > n1->DataMsg1;
-		input< buffer< n4.bufferNode > > n4->DataMsg1;
-//		input< buffer< n4.bufferNode > > n4->DataMsg2;
+		input< buffer< n1.bufferDM1 > > n1->DataMsg1;
+		input< buffer< n1.bufferDM2 > > n1->DataMsg2;
+		input< buffer< n4.bufferDM1 > > n4->DataMsg1;
+		input< buffer< n4.bufferDM2 > > n4->DataMsg2;
 	}
 	connect< multicast >{
 		output n3->DataMsg2;
 		
-//		input< buffer< n1.bufferNode > > n1->DataMsg1;
-		input< buffer< n1.bufferNode > > n1->DataMsg2;
-		input< buffer< n4.bufferNode > > n4->DataMsg2;
+		input< buffer< n1.bufferDM1 > > n1->DataMsg1;
+		input< buffer< n1.bufferDM2 > > n1->DataMsg2;
+		input< buffer< n4.bufferDM1 > > n1->DataMsg1;
+		input< buffer< n4.bufferDM2 > > n4->DataMsg2;
 	}
 	/* Node4 */
 	connect< multicast >{
 		output n4->ControlMsg;
 	
-		input< buffer< n2.bufferNode > > n2->ControlMsg;
+		input< buffer< n2.bufferCM > > n2->ControlMsg;
 	}
 	connect< multicast >{
 		output n4->DataMsg1;
 		
-		input< buffer< n2.bufferNode > > n2->DataMsg1;
-//		input< buffer< n2.bufferNode > > n2->DataMsg2;
+		input< buffer< n2.bufferDM1 > > n2->DataMsg1;
+		input< buffer< n2.bufferDM2 > > n2->DataMsg2;
 	}
 	connect< multicast >{
 		output n4->DataMsg2;
 		
-//		input< buffer< n2.bufferNode > > n2->DataMsg1;
-		input< buffer< n2.bufferNode > > n2->DataMsg2;
+		input< buffer< n2.bufferDM1 > > n2->DataMsg1;
+		input< buffer< n2.bufferDM2 > > n2->DataMsg2;
 	}
 }

@@ -5,7 +5,7 @@
 // CEA - LIST
 workflow {
 	workspace [
-		root   = "/home/thang/Dropbox/Implementation_Diversity/Diversity_workspace/MPL_Trickle_With_New_Connectors/Topology2_Using_Observer_with_obs"
+		root   = "/home/thang/Dropbox/Implementation_Diversity/Diversity_workspace/MPL_Trickle_With_New_Connectors/Topology2_with_obs_ports_all_connected"
 		output = "output"
 		log    = "log"
 		debug  = "debug"

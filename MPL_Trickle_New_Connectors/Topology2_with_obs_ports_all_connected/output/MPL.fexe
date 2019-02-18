@@ -60,93 +60,153 @@ executable:
 		}
 
 	alias:
-		public buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:0 > fifo<*> alias::Trickle.n2.bufferCM {
+			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferCM;
 		path#machine:
 			inst::Trickle.n2
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:0 > fifo<*> alias::Trickle.n3.bufferCM {
+			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferCM;
 		path#machine:
 			inst::Trickle.n3
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:1 > fifo<*> alias::Trickle.n2.bufferDM1 {
+			target = buffer< id:1 > fifo<*> inst::Trickle.Node.bufferDM1;
 		path#machine:
 			inst::Trickle.n2
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
-		path#machine:
-			inst::Trickle.n3
-		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:2 > fifo<*> alias::Trickle.n2.bufferDM2 {
+			target = buffer< id:2 > fifo<*> inst::Trickle.Node.bufferDM2;
 		path#machine:
 			inst::Trickle.n2
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:1 > fifo<*> alias::Trickle.n3.bufferDM1 {
+			target = buffer< id:1 > fifo<*> inst::Trickle.Node.bufferDM1;
 		path#machine:
 			inst::Trickle.n3
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:2 > fifo<*> alias::Trickle.n3.bufferDM2 {
+			target = buffer< id:2 > fifo<*> inst::Trickle.Node.bufferDM2;
 		path#machine:
 			inst::Trickle.n3
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:1 > fifo<*> alias::Trickle.n2.bufferDM1 {
+			target = buffer< id:1 > fifo<*> inst::Trickle.Node.bufferDM1;
+		path#machine:
+			inst::Trickle.n2
+		}
+		public buffer< id:2 > fifo<*> alias::Trickle.n2.bufferDM2 {
+			target = buffer< id:2 > fifo<*> inst::Trickle.Node.bufferDM2;
+		path#machine:
+			inst::Trickle.n2
+		}
+		public buffer< id:1 > fifo<*> alias::Trickle.n3.bufferDM1 {
+			target = buffer< id:1 > fifo<*> inst::Trickle.Node.bufferDM1;
 		path#machine:
 			inst::Trickle.n3
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:2 > fifo<*> alias::Trickle.n3.bufferDM2 {
+			target = buffer< id:2 > fifo<*> inst::Trickle.Node.bufferDM2;
 		path#machine:
 			inst::Trickle.n3
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n1.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:0 > fifo<*> alias::Trickle.n3.bufferCM {
+			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferCM;
+		path#machine:
+			inst::Trickle.n3
+		}
+		public buffer< id:1 > fifo<*> alias::Trickle.n3.bufferDM1 {
+			target = buffer< id:1 > fifo<*> inst::Trickle.Node.bufferDM1;
+		path#machine:
+			inst::Trickle.n3
+		}
+		public buffer< id:2 > fifo<*> alias::Trickle.n3.bufferDM2 {
+			target = buffer< id:2 > fifo<*> inst::Trickle.Node.bufferDM2;
+		path#machine:
+			inst::Trickle.n3
+		}
+		public buffer< id:1 > fifo<*> alias::Trickle.n3.bufferDM1 {
+			target = buffer< id:1 > fifo<*> inst::Trickle.Node.bufferDM1;
+		path#machine:
+			inst::Trickle.n3
+		}
+		public buffer< id:2 > fifo<*> alias::Trickle.n3.bufferDM2 {
+			target = buffer< id:2 > fifo<*> inst::Trickle.Node.bufferDM2;
+		path#machine:
+			inst::Trickle.n3
+		}
+		public buffer< id:0 > fifo<*> alias::Trickle.n1.bufferCM {
+			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferCM;
 		path#machine:
 			inst::Trickle.n1
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n4.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:0 > fifo<*> alias::Trickle.n4.bufferCM {
+			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferCM;
 		path#machine:
 			inst::Trickle.n4
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n1.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:1 > fifo<*> alias::Trickle.n1.bufferDM1 {
+			target = buffer< id:1 > fifo<*> inst::Trickle.Node.bufferDM1;
 		path#machine:
 			inst::Trickle.n1
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n4.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
-		path#machine:
-			inst::Trickle.n4
-		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n1.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:2 > fifo<*> alias::Trickle.n1.bufferDM2 {
+			target = buffer< id:2 > fifo<*> inst::Trickle.Node.bufferDM2;
 		path#machine:
 			inst::Trickle.n1
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n4.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:1 > fifo<*> alias::Trickle.n4.bufferDM1 {
+			target = buffer< id:1 > fifo<*> inst::Trickle.Node.bufferDM1;
 		path#machine:
 			inst::Trickle.n4
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:2 > fifo<*> alias::Trickle.n4.bufferDM2 {
+			target = buffer< id:2 > fifo<*> inst::Trickle.Node.bufferDM2;
+		path#machine:
+			inst::Trickle.n4
+		}
+		public buffer< id:1 > fifo<*> alias::Trickle.n1.bufferDM1 {
+			target = buffer< id:1 > fifo<*> inst::Trickle.Node.bufferDM1;
+		path#machine:
+			inst::Trickle.n1
+		}
+		public buffer< id:2 > fifo<*> alias::Trickle.n1.bufferDM2 {
+			target = buffer< id:2 > fifo<*> inst::Trickle.Node.bufferDM2;
+		path#machine:
+			inst::Trickle.n1
+		}
+		public buffer< id:1 > fifo<*> alias::Trickle.n4.bufferDM1 {
+			target = buffer< id:1 > fifo<*> inst::Trickle.Node.bufferDM1;
+		path#machine:
+			inst::Trickle.n4
+		}
+		public buffer< id:2 > fifo<*> alias::Trickle.n4.bufferDM2 {
+			target = buffer< id:2 > fifo<*> inst::Trickle.Node.bufferDM2;
+		path#machine:
+			inst::Trickle.n4
+		}
+		public buffer< id:0 > fifo<*> alias::Trickle.n2.bufferCM {
+			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferCM;
 		path#machine:
 			inst::Trickle.n2
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:1 > fifo<*> alias::Trickle.n2.bufferDM1 {
+			target = buffer< id:1 > fifo<*> inst::Trickle.Node.bufferDM1;
 		path#machine:
 			inst::Trickle.n2
 		}
-		public buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode {
-			target = buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:2 > fifo<*> alias::Trickle.n2.bufferDM2 {
+			target = buffer< id:2 > fifo<*> inst::Trickle.Node.bufferDM2;
+		path#machine:
+			inst::Trickle.n2
+		}
+		public buffer< id:1 > fifo<*> alias::Trickle.n2.bufferDM1 {
+			target = buffer< id:1 > fifo<*> inst::Trickle.Node.bufferDM1;
+		path#machine:
+			inst::Trickle.n2
+		}
+		public buffer< id:2 > fifo<*> alias::Trickle.n2.bufferDM2 {
+			target = buffer< id:2 > fifo<*> inst::Trickle.Node.bufferDM2;
 		path#machine:
 			inst::Trickle.n2
 		}
@@ -170,13 +230,17 @@ executable:
 			output inst::Trickle.n1->DataMsg1;
 			input {
 				inst::Trickle.n2->DataMsg1;
+				inst::Trickle.n2->DataMsg2;
 				inst::Trickle.n3->DataMsg1;
+				inst::Trickle.n3->DataMsg2;
 			}
 		}
 		connector< id:3 , mid:4 , multicast > inst::Trickle._#connector_3 {
 			output inst::Trickle.n1->DataMsg2;
 			input {
+				inst::Trickle.n2->DataMsg1;
 				inst::Trickle.n2->DataMsg2;
+				inst::Trickle.n3->DataMsg1;
 				inst::Trickle.n3->DataMsg2;
 			}
 		}
@@ -186,11 +250,17 @@ executable:
 		}
 		connector< id:5 , mid:6 , multicast > inst::Trickle._#connector_5 {
 			output inst::Trickle.n2->DataMsg1;
-			input inst::Trickle.n3->DataMsg1;
+			input {
+				inst::Trickle.n3->DataMsg1;
+				inst::Trickle.n3->DataMsg2;
+			}
 		}
 		connector< id:6 , mid:7 , multicast > inst::Trickle._#connector_6 {
 			output inst::Trickle.n2->DataMsg2;
-			input inst::Trickle.n3->DataMsg2;
+			input {
+				inst::Trickle.n3->DataMsg1;
+				inst::Trickle.n3->DataMsg2;
+			}
 		}
 		connector< id:7 , mid:8 , multicast > inst::Trickle._#connector_7 {
 			output inst::Trickle.n3->ControlMsg;
@@ -203,13 +273,17 @@ executable:
 			output inst::Trickle.n3->DataMsg1;
 			input {
 				inst::Trickle.n1->DataMsg1;
+				inst::Trickle.n1->DataMsg2;
 				inst::Trickle.n4->DataMsg1;
+				inst::Trickle.n4->DataMsg2;
 			}
 		}
 		connector< id:9 , mid:10 , multicast > inst::Trickle._#connector_9 {
 			output inst::Trickle.n3->DataMsg2;
 			input {
+				inst::Trickle.n1->DataMsg1;
 				inst::Trickle.n1->DataMsg2;
+				inst::Trickle.n1->DataMsg1;
 				inst::Trickle.n4->DataMsg2;
 			}
 		}
@@ -219,11 +293,17 @@ executable:
 		}
 		connector< id:11 , mid:12 , multicast > inst::Trickle._#connector_11 {
 			output inst::Trickle.n4->DataMsg1;
-			input inst::Trickle.n2->DataMsg1;
+			input {
+				inst::Trickle.n2->DataMsg1;
+				inst::Trickle.n2->DataMsg2;
+			}
 		}
 		connector< id:12 , mid:13 , multicast > inst::Trickle._#connector_12 {
 			output inst::Trickle.n4->DataMsg2;
-			input inst::Trickle.n2->DataMsg2;
+			input {
+				inst::Trickle.n2->DataMsg1;
+				inst::Trickle.n2->DataMsg2;
+			}
 		}
 	router:
 		router inst::Trickle.$this< exec::Trickle > {
@@ -234,36 +314,54 @@ executable:
 		input:
 			routing< multicast , mid:8 > inst::Trickle.n1->inst::Trickle.Node.ControlMsg {
 				connector = inst::Trickle._#connector_7;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n1.bufferNode |];
+				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n1.bufferCM |];
 			}
 			routing< multicast , mid:9 > inst::Trickle.n1->inst::Trickle.Node.DataMsg1 {
 				connector = inst::Trickle._#connector_8;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n1.bufferNode |];
+				buffer = [| buffer< id:1 > fifo<*> alias::Trickle.n1.bufferDM1 |];
+
+				routing< multicast , mid:10 > inst::Trickle.n1->inst::Trickle.Node.DataMsg1 {
+					connector = inst::Trickle._#connector_9;
+					buffer = [| buffer< id:1 > fifo<*> alias::Trickle.n1.bufferDM1 |];
+				}
+				routing< multicast , mid:10 > inst::Trickle.n1->inst::Trickle.Node.DataMsg1 {
+					connector = inst::Trickle._#connector_9;
+					buffer = [| buffer< id:1 > fifo<*> alias::Trickle.n4.bufferDM1 |];
+				}
 			}
-			routing< multicast , mid:10 > inst::Trickle.n1->inst::Trickle.Node.DataMsg2 {
-				connector = inst::Trickle._#connector_9;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n1.bufferNode |];
+			routing< multicast , mid:9 > inst::Trickle.n1->inst::Trickle.Node.DataMsg2 {
+				connector = inst::Trickle._#connector_8;
+				buffer = [| buffer< id:2 > fifo<*> alias::Trickle.n1.bufferDM2 |];
+
+				routing< multicast , mid:10 > inst::Trickle.n1->inst::Trickle.Node.DataMsg2 {
+					connector = inst::Trickle._#connector_9;
+					buffer = [| buffer< id:2 > fifo<*> alias::Trickle.n1.bufferDM2 |];
+				}
 			}
 		output:
 			routing< multicast , mid:2 > inst::Trickle.n1->inst::Trickle.Node.ControlMsg {
 				connector = inst::Trickle._#connector_1;
 				buffer = [|
-					buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode
-					buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode
+					buffer< id:0 > fifo<*> alias::Trickle.n2.bufferCM
+					buffer< id:0 > fifo<*> alias::Trickle.n3.bufferCM
 				|];
 			}
 			routing< multicast , mid:3 > inst::Trickle.n1->inst::Trickle.Node.DataMsg1 {
 				connector = inst::Trickle._#connector_2;
 				buffer = [|
-					buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode
-					buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode
+					buffer< id:1 > fifo<*> alias::Trickle.n2.bufferDM1
+					buffer< id:2 > fifo<*> alias::Trickle.n2.bufferDM2
+					buffer< id:1 > fifo<*> alias::Trickle.n3.bufferDM1
+					buffer< id:2 > fifo<*> alias::Trickle.n3.bufferDM2
 				|];
 			}
 			routing< multicast , mid:4 > inst::Trickle.n1->inst::Trickle.Node.DataMsg2 {
 				connector = inst::Trickle._#connector_3;
 				buffer = [|
-					buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode
-					buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode
+					buffer< id:1 > fifo<*> alias::Trickle.n2.bufferDM1
+					buffer< id:2 > fifo<*> alias::Trickle.n2.bufferDM2
+					buffer< id:1 > fifo<*> alias::Trickle.n3.bufferDM1
+					buffer< id:2 > fifo<*> alias::Trickle.n3.bufferDM2
 				|];
 			}
 			routing< env , mid:1 > inst::Trickle.n1->inst::Trickle.Node.Log {
@@ -275,43 +373,65 @@ executable:
 		input:
 			routing< multicast , mid:2 > inst::Trickle.n2->inst::Trickle.Node.ControlMsg {
 				connector = inst::Trickle._#connector_1;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode |];
+				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n2.bufferCM |];
 
 				routing< multicast , mid:11 > inst::Trickle.n2->inst::Trickle.Node.ControlMsg {
 					connector = inst::Trickle._#connector_10;
-					buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode |];
+					buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n2.bufferCM |];
 				}
 			}
 			routing< multicast , mid:3 > inst::Trickle.n2->inst::Trickle.Node.DataMsg1 {
 				connector = inst::Trickle._#connector_2;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode |];
+				buffer = [| buffer< id:1 > fifo<*> alias::Trickle.n2.bufferDM1 |];
 
+				routing< multicast , mid:4 > inst::Trickle.n2->inst::Trickle.Node.DataMsg1 {
+					connector = inst::Trickle._#connector_3;
+					buffer = [| buffer< id:1 > fifo<*> alias::Trickle.n2.bufferDM1 |];
+				}
 				routing< multicast , mid:12 > inst::Trickle.n2->inst::Trickle.Node.DataMsg1 {
 					connector = inst::Trickle._#connector_11;
-					buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode |];
+					buffer = [| buffer< id:1 > fifo<*> alias::Trickle.n2.bufferDM1 |];
+				}
+				routing< multicast , mid:13 > inst::Trickle.n2->inst::Trickle.Node.DataMsg1 {
+					connector = inst::Trickle._#connector_12;
+					buffer = [| buffer< id:1 > fifo<*> alias::Trickle.n2.bufferDM1 |];
 				}
 			}
-			routing< multicast , mid:4 > inst::Trickle.n2->inst::Trickle.Node.DataMsg2 {
-				connector = inst::Trickle._#connector_3;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode |];
+			routing< multicast , mid:3 > inst::Trickle.n2->inst::Trickle.Node.DataMsg2 {
+				connector = inst::Trickle._#connector_2;
+				buffer = [| buffer< id:2 > fifo<*> alias::Trickle.n2.bufferDM2 |];
 
+				routing< multicast , mid:4 > inst::Trickle.n2->inst::Trickle.Node.DataMsg2 {
+					connector = inst::Trickle._#connector_3;
+					buffer = [| buffer< id:2 > fifo<*> alias::Trickle.n2.bufferDM2 |];
+				}
+				routing< multicast , mid:12 > inst::Trickle.n2->inst::Trickle.Node.DataMsg2 {
+					connector = inst::Trickle._#connector_11;
+					buffer = [| buffer< id:2 > fifo<*> alias::Trickle.n2.bufferDM2 |];
+				}
 				routing< multicast , mid:13 > inst::Trickle.n2->inst::Trickle.Node.DataMsg2 {
 					connector = inst::Trickle._#connector_12;
-					buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode |];
+					buffer = [| buffer< id:2 > fifo<*> alias::Trickle.n2.bufferDM2 |];
 				}
 			}
 		output:
 			routing< multicast , mid:5 > inst::Trickle.n2->inst::Trickle.Node.ControlMsg {
 				connector = inst::Trickle._#connector_4;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode |];
+				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n3.bufferCM |];
 			}
 			routing< multicast , mid:6 > inst::Trickle.n2->inst::Trickle.Node.DataMsg1 {
 				connector = inst::Trickle._#connector_5;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode |];
+				buffer = [|
+					buffer< id:1 > fifo<*> alias::Trickle.n3.bufferDM1
+					buffer< id:2 > fifo<*> alias::Trickle.n3.bufferDM2
+				|];
 			}
 			routing< multicast , mid:7 > inst::Trickle.n2->inst::Trickle.Node.DataMsg2 {
 				connector = inst::Trickle._#connector_6;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode |];
+				buffer = [|
+					buffer< id:1 > fifo<*> alias::Trickle.n3.bufferDM1
+					buffer< id:2 > fifo<*> alias::Trickle.n3.bufferDM2
+				|];
 			}
 			routing< env , mid:1 > inst::Trickle.n2->inst::Trickle.Node.Log {
 				connector = inst::Trickle._#connector_0;
@@ -322,51 +442,71 @@ executable:
 		input:
 			routing< multicast , mid:2 > inst::Trickle.n3->inst::Trickle.Node.ControlMsg {
 				connector = inst::Trickle._#connector_1;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode |];
+				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n3.bufferCM |];
 
 				routing< multicast , mid:5 > inst::Trickle.n3->inst::Trickle.Node.ControlMsg {
 					connector = inst::Trickle._#connector_4;
-					buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode |];
+					buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n3.bufferCM |];
 				}
 			}
 			routing< multicast , mid:3 > inst::Trickle.n3->inst::Trickle.Node.DataMsg1 {
 				connector = inst::Trickle._#connector_2;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode |];
+				buffer = [| buffer< id:1 > fifo<*> alias::Trickle.n3.bufferDM1 |];
 
+				routing< multicast , mid:4 > inst::Trickle.n3->inst::Trickle.Node.DataMsg1 {
+					connector = inst::Trickle._#connector_3;
+					buffer = [| buffer< id:1 > fifo<*> alias::Trickle.n3.bufferDM1 |];
+				}
 				routing< multicast , mid:6 > inst::Trickle.n3->inst::Trickle.Node.DataMsg1 {
 					connector = inst::Trickle._#connector_5;
-					buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode |];
+					buffer = [| buffer< id:1 > fifo<*> alias::Trickle.n3.bufferDM1 |];
+				}
+				routing< multicast , mid:7 > inst::Trickle.n3->inst::Trickle.Node.DataMsg1 {
+					connector = inst::Trickle._#connector_6;
+					buffer = [| buffer< id:1 > fifo<*> alias::Trickle.n3.bufferDM1 |];
 				}
 			}
-			routing< multicast , mid:4 > inst::Trickle.n3->inst::Trickle.Node.DataMsg2 {
-				connector = inst::Trickle._#connector_3;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode |];
+			routing< multicast , mid:3 > inst::Trickle.n3->inst::Trickle.Node.DataMsg2 {
+				connector = inst::Trickle._#connector_2;
+				buffer = [| buffer< id:2 > fifo<*> alias::Trickle.n3.bufferDM2 |];
 
+				routing< multicast , mid:4 > inst::Trickle.n3->inst::Trickle.Node.DataMsg2 {
+					connector = inst::Trickle._#connector_3;
+					buffer = [| buffer< id:2 > fifo<*> alias::Trickle.n3.bufferDM2 |];
+				}
+				routing< multicast , mid:6 > inst::Trickle.n3->inst::Trickle.Node.DataMsg2 {
+					connector = inst::Trickle._#connector_5;
+					buffer = [| buffer< id:2 > fifo<*> alias::Trickle.n3.bufferDM2 |];
+				}
 				routing< multicast , mid:7 > inst::Trickle.n3->inst::Trickle.Node.DataMsg2 {
 					connector = inst::Trickle._#connector_6;
-					buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n3.bufferNode |];
+					buffer = [| buffer< id:2 > fifo<*> alias::Trickle.n3.bufferDM2 |];
 				}
 			}
 		output:
 			routing< multicast , mid:8 > inst::Trickle.n3->inst::Trickle.Node.ControlMsg {
 				connector = inst::Trickle._#connector_7;
 				buffer = [|
-					buffer< id:0 > fifo<*> alias::Trickle.n1.bufferNode
-					buffer< id:0 > fifo<*> alias::Trickle.n4.bufferNode
+					buffer< id:0 > fifo<*> alias::Trickle.n1.bufferCM
+					buffer< id:0 > fifo<*> alias::Trickle.n4.bufferCM
 				|];
 			}
 			routing< multicast , mid:9 > inst::Trickle.n3->inst::Trickle.Node.DataMsg1 {
 				connector = inst::Trickle._#connector_8;
 				buffer = [|
-					buffer< id:0 > fifo<*> alias::Trickle.n1.bufferNode
-					buffer< id:0 > fifo<*> alias::Trickle.n4.bufferNode
+					buffer< id:1 > fifo<*> alias::Trickle.n1.bufferDM1
+					buffer< id:2 > fifo<*> alias::Trickle.n1.bufferDM2
+					buffer< id:1 > fifo<*> alias::Trickle.n4.bufferDM1
+					buffer< id:2 > fifo<*> alias::Trickle.n4.bufferDM2
 				|];
 			}
 			routing< multicast , mid:10 > inst::Trickle.n3->inst::Trickle.Node.DataMsg2 {
 				connector = inst::Trickle._#connector_9;
 				buffer = [|
-					buffer< id:0 > fifo<*> alias::Trickle.n1.bufferNode
-					buffer< id:0 > fifo<*> alias::Trickle.n4.bufferNode
+					buffer< id:1 > fifo<*> alias::Trickle.n1.bufferDM1
+					buffer< id:2 > fifo<*> alias::Trickle.n1.bufferDM2
+					buffer< id:1 > fifo<*> alias::Trickle.n4.bufferDM1
+					buffer< id:2 > fifo<*> alias::Trickle.n4.bufferDM2
 				|];
 			}
 			routing< env , mid:1 > inst::Trickle.n3->inst::Trickle.Node.Log {
@@ -378,28 +518,39 @@ executable:
 		input:
 			routing< multicast , mid:8 > inst::Trickle.n4->inst::Trickle.Node.ControlMsg {
 				connector = inst::Trickle._#connector_7;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n4.bufferNode |];
+				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n4.bufferCM |];
 			}
 			routing< multicast , mid:9 > inst::Trickle.n4->inst::Trickle.Node.DataMsg1 {
 				connector = inst::Trickle._#connector_8;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n4.bufferNode |];
+				buffer = [| buffer< id:1 > fifo<*> alias::Trickle.n4.bufferDM1 |];
 			}
-			routing< multicast , mid:10 > inst::Trickle.n4->inst::Trickle.Node.DataMsg2 {
-				connector = inst::Trickle._#connector_9;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n4.bufferNode |];
+			routing< multicast , mid:9 > inst::Trickle.n4->inst::Trickle.Node.DataMsg2 {
+				connector = inst::Trickle._#connector_8;
+				buffer = [| buffer< id:2 > fifo<*> alias::Trickle.n4.bufferDM2 |];
+
+				routing< multicast , mid:10 > inst::Trickle.n4->inst::Trickle.Node.DataMsg2 {
+					connector = inst::Trickle._#connector_9;
+					buffer = [| buffer< id:2 > fifo<*> alias::Trickle.n4.bufferDM2 |];
+				}
 			}
 		output:
 			routing< multicast , mid:11 > inst::Trickle.n4->inst::Trickle.Node.ControlMsg {
 				connector = inst::Trickle._#connector_10;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode |];
+				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n2.bufferCM |];
 			}
 			routing< multicast , mid:12 > inst::Trickle.n4->inst::Trickle.Node.DataMsg1 {
 				connector = inst::Trickle._#connector_11;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode |];
+				buffer = [|
+					buffer< id:1 > fifo<*> alias::Trickle.n2.bufferDM1
+					buffer< id:2 > fifo<*> alias::Trickle.n2.bufferDM2
+				|];
 			}
 			routing< multicast , mid:13 > inst::Trickle.n4->inst::Trickle.Node.DataMsg2 {
 				connector = inst::Trickle._#connector_12;
-				buffer = [| buffer< id:0 > fifo<*> alias::Trickle.n2.bufferNode |];
+				buffer = [|
+					buffer< id:1 > fifo<*> alias::Trickle.n2.bufferDM1
+					buffer< id:2 > fifo<*> alias::Trickle.n2.bufferDM2
+				|];
 			}
 			routing< env , mid:1 > inst::Trickle.n4->inst::Trickle.Node.Log {
 				connector = inst::Trickle._#connector_0;
@@ -831,7 +982,9 @@ executable:
 			parameter var< id:0, ptr:std > INFO_KIND information;
 		}
 	buffer:
-		public buffer< id:0 > fifo<*> inst::Trickle.Node.bufferNode;
+		public buffer< id:0 > fifo<*> inst::Trickle.Node.bufferCM;
+		public buffer< id:1 > fifo<*> inst::Trickle.Node.bufferDM1;
+		public buffer< id:2 > fifo<*> inst::Trickle.Node.bufferDM2;
 	router:
 		router model::Trickle.Node {
 		input:

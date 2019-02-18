@@ -719,9 +719,9 @@ system< and > Trickle {
 			transition not_all_updated --> o#18 {
 				guard(
 						( 
-						 spec::Trickle.n4.reach_CTRL_EXPIR 
+						spec::Trickle.n4.reach_CTRL_EXPIR 
 						&& 
-						 spec::Trickle.n4.reach_DATA_EXPIR_DM1 
+						spec::Trickle.n4.reach_DATA_EXPIR_DM1 
 						&& 
 						spec::Trickle.n4.reach_DATA_EXPIR_DM2
 						)
@@ -866,16 +866,12 @@ system< and > Trickle {
 		output n1->DataMsg1;
 	
 		input< buffer< n2.bufferNode > > n2->DataMsg1;
-//		input< buffer< n2.bufferNode > > n2->DataMsg2;
 		input< buffer< n3.bufferNode > > n3->DataMsg1;
-//		input< buffer< n3.bufferNode > > n3->DataMsg2;
 	}
 	connect< multicast >{
 		output n1->DataMsg2;
 	
-//		input< buffer< n2.bufferNode > > n2->DataMsg1;
 		input< buffer< n2.bufferNode > > n2->DataMsg2;
-//		input< buffer< n3.bufferNode > > n3->DataMsg1;
 		input< buffer< n3.bufferNode > > n3->DataMsg2;
 	}
 	/* Node2 */
@@ -888,12 +884,10 @@ system< and > Trickle {
 		output n2->DataMsg1;
 	
 		input< buffer< n3.bufferNode > > n3->DataMsg1;
-//		input< buffer< n3.bufferNode > > n3->DataMsg2;
 	}
 	connect< multicast >{
 		output n2->DataMsg2;
 	
-//		input< buffer< n3.bufferNode > > n3->DataMsg1;
 		input< buffer< n3.bufferNode > > n3->DataMsg2;
 	}
 	/* Node3 */
@@ -908,12 +902,10 @@ system< and > Trickle {
 		
 		input< buffer< n1.bufferNode > > n1->DataMsg1;
 		input< buffer< n4.bufferNode > > n4->DataMsg1;
-//		input< buffer< n4.bufferNode > > n4->DataMsg2;
 	}
 	connect< multicast >{
 		output n3->DataMsg2;
 		
-//		input< buffer< n1.bufferNode > > n1->DataMsg1;
 		input< buffer< n1.bufferNode > > n1->DataMsg2;
 		input< buffer< n4.bufferNode > > n4->DataMsg2;
 	}
@@ -927,12 +919,10 @@ system< and > Trickle {
 		output n4->DataMsg1;
 		
 		input< buffer< n2.bufferNode > > n2->DataMsg1;
-//		input< buffer< n2.bufferNode > > n2->DataMsg2;
 	}
 	connect< multicast >{
 		output n4->DataMsg2;
 		
-//		input< buffer< n2.bufferNode > > n2->DataMsg1;
 		input< buffer< n2.bufferNode > > n2->DataMsg2;
 	}
 }

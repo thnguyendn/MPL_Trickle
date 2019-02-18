@@ -27,29 +27,29 @@ EC2 [
 	shape=ellipse
 	style=filled
 ]
-EC2 -> EC6 [
-	label="fired n1.cp_init
-	OUTPUT n1:Log( INIT )
+EC2 -> EC3 [
+	label="fired n4.cp_init
+	OUTPUT n4:Log( INIT )
 	"
 ]
-EC6 [
-	label="EC#6<Ev:3 , H:2>
-( Observer:o#0 , ( n1:cp1 , n1:dp0 , n1:dp0 ) , ( n2:cp0_init , n2:dp0 , n2:dp0 ) , ( n3:cp0_init , n3:dp0 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC3 [
+	label="EC#3<Ev:3 , H:2>
+( Observer:o#0 , ( n1:cp0_init , n1:dp0 , n1:dp0 ) , ( n2:cp0_init , n2:dp0 , n2:dp0 ) , ( n3:cp0_init , n3:dp0 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 
-NC: ((t_4 < 4) && (0 <= (t_4 + -2)))
+NC: ((t_7 < 4) && (0 <= (t_7 + -2)))
 	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC6 -> EC11 [
-	label="fired n2.cp_init
-	OUTPUT n2:Log( INIT )
+EC3 -> EC12 [
+	label="fired n1.cp_init
+	OUTPUT n1:Log( INIT )
 	"
 ]
-EC11 [
-	label="EC#11<Ev:6 , H:3>
-( Observer:o#0 , ( n1:cp1 , n1:dp0 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp0_init , n3:dp0 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC12 [
+	label="EC#12<Ev:7 , H:3>
+( Observer:o#0 , ( n1:cp1 , n1:dp0 , n1:dp0 ) , ( n2:cp0_init , n2:dp0 , n2:dp0 ) , ( n3:cp0_init , n3:dp0 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 
 NC: ((t_8 < 4) && (0 <= (t_8 + -2)))
 	"
@@ -57,566 +57,649 @@ NC: ((t_8 < 4) && (0 <= (t_8 + -2)))
 	shape=ellipse
 	style=filled
 ]
-EC11 -> EC35 [
+EC12 -> EC42 [
 	label="fired n1.cp_sendCM
 	fired Observer.n1_out_CM
-	output n1:ControlMsg( [ 1 , 1 ] , (z_0 + z_16) )
+	output n1:ControlMsg( [ 1 , 1 ] , (z_20 + z_4) )
 	"
 ]
-EC35 [
-	label="EC#35<Ev:10 , H:4>
-( Observer:o#1 , ( n1:cp2 , n1:dp0 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp0_init , n3:dp0 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC42 [
+	label="EC#42<Ev:10 , H:4>
+( Observer:o#1 , ( n1:cp2 , n1:dp0 , n1:dp0 ) , ( n2:cp0_init , n2:dp0 , n2:dp0 ) , ( n3:cp0_init , n3:dp0 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 tpid#1->run::pid_5:Trickle.Observer.o#1->prot::Trickle.Observer.o#1"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC35 -> EC60 [
-	label="fired n1.cp_resetTau
+EC42 -> EC59 [
+	label="fired n2.cp_init
+	OUTPUT n2:Log( INIT )
 	"
 ]
-EC60 [
-	label="EC#60<Ev:15 , H:5>
-( Observer:o#1 , ( n1:cp1 , n1:dp0 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp0_init , n3:dp0 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC59 [
+	label="EC#59<Ev:13 , H:5>
+( Observer:o#1 , ( n1:cp2 , n1:dp0 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp0_init , n3:dp0 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 
-NC: ((t_27 < 8) && (0 <= (t_27 + -4)))
+NC: ((t_28 < 4) && (0 <= (t_28 + -2)))
 	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC60 -> EC115 [
+EC59 -> EC92 [
 	label="fired n2.cp1_receiveCM_inconsistent
 	fired Observer.n2_in_CM
-	input n2:ControlMsg( [ 1 , 1 ] , (z_0 + z_16) )
+	input n2:ControlMsg( [ 1 , 1 ] , (z_20 + z_4) )
 	"
 ]
-EC115 [
-	label="EC#115<Ev:18 , H:6>
-( Observer:o#2 , ( n1:cp1 , n1:dp0 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp0_init , n3:dp0 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC92 [
+	label="EC#92<Ev:17 , H:6>
+( Observer:o#2 , ( n1:cp2 , n1:dp0 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp0_init , n3:dp0 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 
-NC: ((t_46 < 4) && (0 <= (t_46 + -2)))
+NC: ((t_38 < 4) && (0 <= (t_38 + -2)))
 	
 tpid#2->run::pid_6:Trickle.Observer.o#2->prot::Trickle.Observer.o#2"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC115 -> EC152 [
+EC92 -> EC139 [
 	label="fired n3.cp_init
 	OUTPUT n3:Log( INIT )
 	"
 ]
-EC152 [
-	label="EC#152<Ev:20 , H:7>
-( Observer:o#2 , ( n1:cp1 , n1:dp0 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC139 [
+	label="EC#139<Ev:19 , H:7>
+( Observer:o#2 , ( n1:cp2 , n1:dp0 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 
-NC: ((t_57 < 4) && (0 <= (t_57 + -2)))
+NC: ((t_49 < 4) && (0 <= (t_49 + -2)))
 	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC152 -> EC177 [
+EC139 -> EC166 [
 	label="fired n3.cp1_receiveCM_inconsistent
 	fired Observer.n3_in_CM
-	input n3:ControlMsg( [ 1 , 1 ] , (z_0 + z_16) )
+	input n3:ControlMsg( [ 1 , 1 ] , (z_20 + z_4) )
 	"
 ]
-EC177 [
-	label="EC#177<Ev:27 , H:8>
-( Observer:o#3 , ( n1:cp1 , n1:dp0 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC166 [
+	label="EC#166<Ev:26 , H:8>
+( Observer:o#3 , ( n1:cp2 , n1:dp0 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 
-NC: ((t_60 < 4) && (0 <= (t_60 + -2)))
+NC: ((t_54 < 4) && (0 <= (t_54 + -2)))
 	
 tpid#3->run::pid_7:Trickle.Observer.o#3->prot::Trickle.Observer.o#3"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC177 -> EC298 [
+EC166 -> EC285 [
 	label="fired n1.dp_init
 	"
 ]
-EC298 [
-	label="EC#298<Ev:36 , H:9>
-( Observer:o#3 , ( n1:cp1 , n1:dp1 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC285 [
+	label="EC#285<Ev:35 , H:9>
+( Observer:o#3 , ( n1:cp2 , n1:dp1 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 
-NC: ((t_200 < 4) && (0 <= (t_200 + -2)))
+NC: ((t_192 < 4) && (0 <= (t_192 + -2)))
 	DataProcess1.e=0
 	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC298 -> EC476 [
+EC285 -> EC463 [
 	label="fired n1.dp_sendDM
 	fired Observer.n1_out_DM
-	output n1:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_0 + z_100 + z_136 + z_16 + z_32) 
-	)
+	output n1:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_132 + z_20 + z_4 + z_96) )
 	"
 ]
-EC476 [
-	label="EC#476<Ev:38 , H:10>
-( Observer:o#4 , ( n1:cp1 , n1:dp2 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC463 [
+	label="EC#463<Ev:37 , H:10>
+( Observer:o#4 , ( n1:cp2 , n1:dp2 , n1:dp0 ) , ( n2:cp1 , n2:dp0 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 tpid#4->run::pid_8:Trickle.Observer.o#4->prot::Trickle.Observer.o#4"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC476 -> EC512 [
+EC463 -> EC499 [
 	label="fired n2.dp_init
 	"
 ]
-EC512 [
-	label="EC#512<Ev:44 , H:11>
-( Observer:o#4 , ( n1:cp1 , n1:dp2 , n1:dp0 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC499 [
+	label="EC#499<Ev:43 , H:11>
+( Observer:o#4 , ( n1:cp2 , n1:dp2 , n1:dp0 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 
-NC: ((t_284 < 4) && (0 <= (t_284 + -2)))
+NC: ((t_276 < 4) && (0 <= (t_276 + -2)))
 	DataProcess1.e=0
 	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC512 -> EC626 [
+EC499 -> EC615 [
 	label="fired n2.dp1_receiveDM_consistent
 	fired Observer.n2_in_DM
-	input n2:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_0 + z_100 + z_136 + z_16 + z_32) )
+	input n2:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_132 + z_20 + z_4 + z_96) )
 	"
 ]
-EC626 [
-	label="EC#626<Ev:49 , H:12>
-( Observer:o#5 , ( n1:cp1 , n1:dp2 , n1:dp0 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC615 [
+	label="EC#615<Ev:48 , H:12>
+( Observer:o#5 , ( n1:cp2 , n1:dp2 , n1:dp0 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp1 , n3:dp0 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 tpid#5->run::pid_9:Trickle.Observer.o#5->prot::Trickle.Observer.o#5"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC626 -> EC724 [
+EC615 -> EC713 [
 	label="fired n3.dp_init
 	"
 ]
-EC724 [
-	label="EC#724<Ev:52 , H:13>
-( Observer:o#5 , ( n1:cp1 , n1:dp2 , n1:dp0 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp1 , n3:dp1 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC713 [
+	label="EC#713<Ev:51 , H:13>
+( Observer:o#5 , ( n1:cp2 , n1:dp2 , n1:dp0 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp1 , n3:dp1 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 
-NC: ((t_367 < 4) && (0 <= (t_367 + -2)))
+NC: ((t_359 < 4) && (0 <= (t_359 + -2)))
 	DataProcess1.e=0
 	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC724 -> EC776 [
+EC713 -> EC769 [
 	label="fired n3.dp1_receiveDM_consistent
 	fired Observer.n3_in_DM
-	input n3:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_0 + z_100 + z_136 + z_16 + z_32) )
+	input n3:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_132 + z_20 + z_4 + z_96) )
 	"
 ]
-EC776 [
-	label="EC#776<Ev:60 , H:14>
-( Observer:o#6 , ( n1:cp1 , n1:dp2 , n1:dp0 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp1 , n3:dp1 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC769 [
+	label="EC#769<Ev:59 , H:14>
+( Observer:o#6 , ( n1:cp2 , n1:dp2 , n1:dp0 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp1 , n3:dp1 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 tpid#6->run::pid_10:Trickle.Observer.o#6->prot::Trickle.Observer.o#6"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC776 -> EC946 [
+EC769 -> EC937 [
 	label="fired n1.dp_init
 	"
 ]
-EC946 [
-	label="EC#946<Ev:70 , H:15>
-( Observer:o#6 , ( n1:cp1 , n1:dp2 , n1:dp1 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp1 , n3:dp1 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC937 [
+	label="EC#937<Ev:69 , H:15>
+( Observer:o#6 , ( n1:cp2 , n1:dp2 , n1:dp1 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp1 , n3:dp1 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 
-NC: ((t_438 < 4) && (0 <= (t_438 + -2)))
+NC: ((t_430 < 4) && (0 <= (t_430 + -2)))
 	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC946 -> EC1148 [
+EC937 -> EC1139 [
 	label="fired n1.dp_sendDM
 	fired Observer.n1_out_DM
-	output n1:DataMsg2( { 2 , FRAGMENT_1 , 1 } , (z_0 + z_100 + z_136 + z_16 + z_232 
-	+ z_272 + z_32) )
+	output n1:DataMsg2( { 2 , FRAGMENT_1 , 1 } , (z_132 + z_20 + z_228 + z_268 + z_4 
+	+ z_96) )
 	"
 ]
-EC1148 [
-	label="EC#1148<Ev:71 , H:16>
-( Observer:o#7 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp1 , n3:dp1 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC1139 [
+	label="EC#1139<Ev:70 , H:16>
+( Observer:o#7 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp0 ) , ( n3:cp1 , n3:dp1 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 tpid#7->run::pid_11:Trickle.Observer.o#7->prot::Trickle.Observer.o#7"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC1148 -> EC1164 [
+EC1139 -> EC1155 [
 	label="fired n2.dp_init
 	"
 ]
-EC1164 [
-	label="EC#1164<Ev:78 , H:17>
-( Observer:o#7 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC1155 [
+	label="EC#1155<Ev:77 , H:17>
+( Observer:o#7 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 
-NC: ((t_503 < 4) && (0 <= (t_503 + -2)))
+NC: ((t_495 < 4) && (0 <= (t_495 + -2)))
 	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC1164 -> EC1300 [
+EC1155 -> EC1293 [
 	label="fired n2.dp1_receiveDM_consistent
 	fired Observer.n2_in_DM
-	input n2:DataMsg2( { 2 , FRAGMENT_1 , 1 } , (z_0 + z_100 + z_136 + z_16 + z_232 
-	+ z_272 + z_32) )
+	input n2:DataMsg2( { 2 , FRAGMENT_1 , 1 } , (z_132 + z_20 + z_228 + z_268 + z_4 
+	+ z_96) )
 	"
 ]
-EC1300 [
-	label="EC#1300<Ev:82 , H:18>
-( Observer:o#8 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp0 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC1293 [
+	label="EC#1293<Ev:81 , H:18>
+( Observer:o#8 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp0 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 tpid#8->run::pid_12:Trickle.Observer.o#8->prot::Trickle.Observer.o#8"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC1300 -> EC1378 [
+EC1293 -> EC1371 [
 	label="fired n3.dp_init
 	"
 ]
-EC1378 [
-	label="EC#1378<Ev:86 , H:19>
-( Observer:o#8 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC1371 [
+	label="EC#1371<Ev:85 , H:19>
+( Observer:o#8 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 
-NC: ((t_567 < 4) && (0 <= (t_567 + -2)))
+NC: ((t_559 < 4) && (0 <= (t_559 + -2)))
 	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC1378 -> EC1452 [
+EC1371 -> EC1449 [
 	label="fired n3.dp1_receiveDM_consistent
 	fired Observer.n3_in_DM
-	input n3:DataMsg2( { 2 , FRAGMENT_1 , 1 } , (z_0 + z_100 + z_136 + z_16 + z_232 
-	+ z_272 + z_32) )
+	input n3:DataMsg2( { 2 , FRAGMENT_1 , 1 } , (z_132 + z_20 + z_228 + z_268 + z_4 
+	+ z_96) )
 	"
 ]
-EC1452 [
-	label="EC#1452<Ev:93 , H:20>
-( Observer:o#9 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC1449 [
+	label="EC#1449<Ev:92 , H:20>
+( Observer:o#9 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 tpid#9->run::pid_13:Trickle.Observer.o#9->prot::Trickle.Observer.o#9"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC1452 -> EC1596 [
-	label="fired n2.cp_sendCM
-	output n2:ControlMsg( [ 1 , 1 ] , (z_145 + z_169 + z_277 + z_305 + z_365 + z_5 + 
-	z_53) )
-	"
-]
-EC1596 [
-	label="EC#1596<Ev:98 , H:21>
-( Observer:o#9 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp1 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )"
-	color=lightblue
-	shape=ellipse
-	style=filled
-]
-EC1596 -> EC1675 [
+EC1449 -> EC1588 [
 	label="fired n3.cp_sendCM
 	fired Observer.n3_out_CM
-	output n3:ControlMsg( [ 1 , 1 ] , (z_190 + z_202 + z_322 + z_338 + z_386 + z_66 
-	+ z_74) )
+	output n3:ControlMsg( [ 1 , 1 ] , (z_186 + z_198 + z_318 + z_334 + z_362 + z_62 
+	+ z_70) )
 	"
 ]
-EC1675 [
-	label="EC#1675<Ev:104 , H:22>
-( Observer:o#10 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp0_init , n4:dp0 , n4:dp0 ) )
+EC1588 [
+	label="EC#1588<Ev:94 , H:21>
+( Observer:o#10 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 tpid#10->run::pid_14:Trickle.Observer.o#10->prot::Trickle.Observer.o#10"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC1675 -> EC1798 [
-	label="fired n4.cp_init
-	OUTPUT n4:Log( INIT )
-	"
-]
-EC1798 [
-	label="EC#1798<Ev:105 , H:23>
-( Observer:o#10 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
-
-NC: ((t_181 < 4) && (0 <= (t_181 + -2)))
-	"
-	color=lightblue
-	shape=ellipse
-	style=filled
-]
-EC1798 -> EC1811 [
+EC1588 -> EC1619 [
 	label="fired n4.cp1_receiveCM_inconsistent
 	fired Observer.n4_in_CM
-	input n4:ControlMsg( [ 1 , 1 ] , (z_190 + z_202 + z_322 + z_338 + z_386 + z_66 + 
-	z_74) )
+	input n4:ControlMsg( [ 1 , 1 ] , (z_186 + z_198 + z_318 + z_334 + z_362 + z_62 + 
+	z_70) )
 	"
 ]
-EC1811 [
-	label="EC#1811<Ev:117 , H:24>
-( Observer:o#11 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
+EC1619 [
+	label="EC#1619<Ev:103 , H:22>
+( Observer:o#11 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp0 , n4:dp0 ) )
 
-NC: ((t_184 < 4) && (0 <= (t_184 + -2)))
+NC: ((t_163 < 4) && (0 <= (t_163 + -2)))
 	
 tpid#11->run::pid_15:Trickle.Observer.o#11->prot::Trickle.Observer.o#11"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC1811 -> EC2097 [
-	label="fired n4.cp_sendCM
-	fired Observer.n4_out_CM
-	output n4:ControlMsg( [ 0 , 0 ] , (z_411 + z_415 + z_463) )
-	"
-]
-EC2097 [
-	label="EC#2097<Ev:118 , H:25>
-( Observer:o#12 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp0 , n4:dp0 ) )"
-	color=lightblue
-	shape=ellipse
-	style=filled
-]
-EC2097 -> EC2112 [
+EC1619 -> EC1793 [
 	label="fired n4.dp_init
 	"
 ]
-EC2112 [
-	label="EC#2112<Ev:132 , H:26>
-( Observer:o#12 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
+EC1793 [
+	label="EC#1793<Ev:105 , H:23>
+( Observer:o#11 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp1 , n4:dp0 ) )
 
-NC: ((t_726 < 4) && (0 <= (t_726 + -2)))
+NC: ((t_660 < 4) && (0 <= (t_660 + -2)))
 	DataProcess1.e=0
 	
-tpid#12->Node.DataProcess1->dp0.dp_init\ntpid#13->run::pid_16:Trickle.Observer.o#12->prot::Trickle.Observer.o#12"
+tpid#12->Node.DataProcess1->dp0.dp_init"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC2112 -> EC2484 [
-	label="fired n2.dp_sendDM
-	fired Observer.n2_out_DM
-	output n2:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_145 + z_169 + z_277 + z_305 + 
-	z_365 + z_5 + z_521 + z_53) )
+EC1793 -> EC1819 [
+	label="fired n4.cp_sendCM
+	fired Observer.n4_out_CM
+	output n4:ControlMsg( [ 0 , 0 ] , (z_3 + z_371 + z_407 + z_415) )
 	"
 ]
-EC2484 [
-	label="EC#2484<Ev:142 , H:27>
-( Observer:o#13 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
+EC1819 [
+	label="EC#1819<Ev:117 , H:24>
+( Observer:o#12 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
+tpid#13->run::pid_16:Trickle.Observer.o#12->prot::Trickle.Observer.o#12"
+	color=yellow
+	shape=ellipse
+	style=filled
+]
+EC1819 -> EC2131 [
+	label="fired n2.dp_sendDM
+	fired Observer.n2_out_DM
+	output n2:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_141 + z_165 + z_273 + z_301 + 
+	z_33 + z_45 + z_461) )
+	"
+]
+EC2131 [
+	label="EC#2131<Ev:126 , H:25>
+( Observer:o#13 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp2 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
 tpid#14->run::pid_17:Trickle.Observer.o#13->prot::Trickle.Observer.o#13"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC2484 -> EC2648 [
-	label="fired n2.dp_sendDM
-	output n2:DataMsg2( { 2 , FRAGMENT_1 , 1 } , (z_145 + z_169 + z_277 + z_305 + 
-	z_365 + z_5 + z_521 + z_53 + z_561) )
-	"
-]
-EC2648 [
-	label="EC#2648<Ev:148 , H:28>
-( Observer:o#13 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp2 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )"
-	color=lightblue
-	shape=ellipse
-	style=filled
-]
-EC2648 -> EC2731 [
-	label="fired n3.cp2_receiveCM_consistent
-	input n3:ControlMsg( [ 1 , 1 ] , (z_145 + z_169 + z_277 + z_305 + z_365 + z_5 + 
-	z_53) )
-	"
-]
-EC2731 [
-	label="EC#2731<Ev:153 , H:29>
-( Observer:o#13 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp2 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )"
-	color=lightblue
-	shape=ellipse
-	style=filled
-]
-EC2731 -> EC2822 [
+EC2131 -> EC2360 [
 	label="fired n3.dp1_receiveDM_consistent
 	fired Observer.n3_in_DM
-	input n3:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_145 + z_169 + z_277 + z_305 + 
-	z_365 + z_5 + z_521 + z_53) )
+	input n3:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_141 + z_165 + z_273 + z_301 + 
+	z_33 + z_45 + z_461) )
 	"
 ]
-EC2822 [
-	label="EC#2822<Ev:164 , H:30>
-( Observer:o#14 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp2 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
+EC2360 [
+	label="EC#2360<Ev:132 , H:26>
+( Observer:o#14 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp2 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
 tpid#15->run::pid_18:Trickle.Observer.o#14->prot::Trickle.Observer.o#14"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC2822 -> EC2981 [
+EC2360 -> EC2505 [
 	label="fired n4.cp_resetTau
 	"
 ]
-EC2981 [
-	label="EC#2981<Ev:165 , H:31>
-( Observer:o#14 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp2 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp1 , n4:dp0 ) )
+EC2505 [
+	label="EC#2505<Ev:133 , H:27>
+( Observer:o#14 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp2 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp1 , n4:dp0 ) )
 
-NC: ((t_371 < 8) && (0 <= (t_371 + -4)))
+NC: ((t_261 < 8) && (0 <= (t_261 + -4)))
 	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC2981 -> EC2996 [
+EC2505 -> EC2519 [
 	label="fired n4.cp_sendCM
 	fired Observer.n4_out_CM
-	output n4:ControlMsg( [ 0 , 0 ] , (z_411 + z_415 + z_463 + z_467 + z_651 + z_655)
-	 )
+	output n4:ControlMsg( [ 0 , 0 ] , (z_3 + z_371 + z_407 + z_415 + z_523 + z_527) )
 	"
 ]
-EC2996 [
-	label="EC#2996<Ev:180 , H:32>
-( Observer:o#15 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp2 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
+EC2519 [
+	label="EC#2519<Ev:147 , H:28>
+( Observer:o#15 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp2 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
 tpid#16->run::pid_19:Trickle.Observer.o#15->prot::Trickle.Observer.o#15"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC2996 -> EC3448 [
+EC2519 -> EC2918 [
 	label="fired n2.dp_resetTau
 	"
 ]
-EC3448 [
-	label="EC#3448<Ev:190 , H:33>
-( Observer:o#15 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp1 , n2:dp2 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
+EC2918 [
+	label="EC#2918<Ev:156 , H:29>
+( Observer:o#15 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
 
-NC: ((t_988 < 8) && (0 <= (t_988 + -4)))
+NC: ((t_823 < 8) && (0 <= (t_823 + -4)))
 	DataProcess1.e=1
 	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC3448 -> EC3731 [
+EC2918 -> EC3158 [
 	label="fired n2.dp_sendDM
 	fired Observer.n2_out_DM
-	output n2:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_145 + z_169 + z_277 + z_305 + 
-	z_365 + z_5 + z_521 + z_53 + z_561 + z_713 + z_753) )
+	output n2:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_141 + z_165 + z_273 + z_301 + 
+	z_33 + z_45 + z_461 + z_581 + z_617) )
 	"
 ]
-EC3731 [
-	label="EC#3731<Ev:196 , H:34>
-( Observer:o#16 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp2 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
+EC3158 [
+	label="EC#3158<Ev:162 , H:30>
+( Observer:o#16 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp2 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
 tpid#17->run::pid_20:Trickle.Observer.o#16->prot::Trickle.Observer.o#16"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC3731 -> EC3905 [
-	label="fired n3.dp1_receiveDM_consistent
-	input n3:DataMsg2( { 2 , FRAGMENT_1 , 1 } , (z_145 + z_169 + z_277 + z_305 + 
-	z_365 + z_5 + z_521 + z_53 + z_561) )
+EC3158 -> EC3320 [
+	label="fired n3.cp_resetTau
 	"
 ]
-EC3905 [
-	label="EC#3905<Ev:203 , H:35>
-( Observer:o#16 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp2 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )"
+EC3320 [
+	label="EC#3320<Ev:166 , H:31>
+( Observer:o#16 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp2 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
+
+NC: ((t_375 < 8) && (0 <= (t_375 + -4)))
+	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC3905 -> EC4098 [
+EC3320 -> EC3423 [
 	label="fired n3.dp1_receiveDM_consistent
 	fired Observer.n3_in_DM
-	input n3:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_145 + z_169 + z_277 + z_305 + 
-	z_365 + z_5 + z_521 + z_53 + z_561 + z_713 + z_753) )
+	input n3:DataMsg1( { 1 , FRAGMENT_0 , 0 } , (z_141 + z_165 + z_273 + z_301 + 
+	z_33 + z_45 + z_461 + z_581 + z_617) )
 	"
 ]
-EC4098 [
-	label="EC#4098<Ev:212 , H:36>
-( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp2 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
+EC3423 [
+	label="EC#3423<Ev:178 , H:32>
+( Observer:o#17 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp2 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
 tpid#18->run::pid_21:Trickle.Observer.o#17->prot::Trickle.Observer.o#17"
 	color=yellow
 	shape=ellipse
 	style=filled
 ]
-EC4098 -> EC4362 [
-	label="fired n4.dp1_reach_k
-	"
-]
-EC4362 [
-	label="EC#4362<Ev:214 , H:37>
-( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp2 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp2 , n4:dp0 ) )"
-	color=lightblue
-	shape=ellipse
-	style=filled
-]
-EC4362 -> EC4412 [
+EC3423 -> EC3758 [
 	label="fired n2.dp_resetTau
 	"
 ]
-EC4412 [
-	label="EC#4412<Ev:227 , H:38>
-( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp2 , n4:dp0 ) )
+EC3758 [
+	label="EC#3758<Ev:187 , H:33>
+( Observer:o#17 , ( n1:cp2 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
 
-NC: ((t_1155 < 8) && (0 <= (t_1155 + -4)))
+NC: ((t_947 < 8) && (0 <= (t_947 + -4)))
+	DataProcess1.e=2
 	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC4412 -> EC4768 [
+EC3758 -> EC4005 [
+	label="fired n1.dp_resetTau
+	"
+]
+EC4005 [
+	label="EC#4005<Ev:193 , H:34>
+( Observer:o#17 , ( n1:cp2 , n1:dp2 , n1:dp1 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
+
+NC: ((t_984 < 8) && (0 <= (t_984 + -4)))
+	"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC4005 -> EC4163 [
+	label="fired n3.cp_sendCM
+	output n3:ControlMsg( [ 1 , 1 ] , (z_186 + z_198 + z_318 + z_334 + z_362 + z_498 
+	+ z_62 + z_642 + z_658 + z_70 + z_766) )
+	"
+]
+EC4163 [
+	label="EC#4163<Ev:197 , H:35>
+( Observer:o#17 , ( n1:cp2 , n1:dp2 , n1:dp1 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC4163 -> EC4227 [
+	label="fired n1.cp_resetTau
+	"
+]
+EC4227 [
+	label="EC#4227<Ev:208 , H:36>
+( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp1 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
+
+NC: ((t_492 < 8) && (0 <= (t_492 + -4)))
+	"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC4227 -> EC4384 [
+	label="fired n1.cp1_receiveCM_consistent
+	input n1:ControlMsg( [ 1 , 1 ] , (z_186 + z_198 + z_318 + z_334 + z_362 + z_62 + 
+	z_70) )
+	"
+]
+EC4384 [
+	label="EC#4384<Ev:221 , H:37>
+( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp1 ) , ( n2:cp1 , n2:dp1 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC4384 -> EC4576 [
+	label="fired n2.dp_DATA_EXPIR
+	"
+]
+EC4576 [
+	label="EC#4576<Ev:224 , H:38>
+( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp1 ) , ( n2:cp1 , <final>n2:dp3 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC4576 -> EC4620 [
+	label="fired n2.cp_sendCM
+	output n2:ControlMsg( [ 1 , 1 ] , (z_141 + z_165 + z_273 + z_301 + z_33 + z_45 + 
+	z_461 + z_581 + z_617 + z_705 + z_877 + z_889) )
+	"
+]
+EC4620 [
+	label="EC#4620<Ev:232 , H:39>
+( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp1 ) , ( n2:cp2 , <final>n2:dp3 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC4620 -> EC4727 [
+	label="fired n3.cp_resetTau
+	"
+]
+EC4727 [
+	label="EC#4727<Ev:239 , H:40>
+( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp1 ) , ( n2:cp2 , <final>n2:dp3 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
+
+NC: ((t_617 < 8) && (0 <= (t_617 + -4)))
+	"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC4727 -> EC4826 [
+	label="fired n4.dp1_reach_k
+	"
+]
+EC4826 [
+	label="EC#4826<Ev:242 , H:41>
+( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp1 ) , ( n2:cp2 , <final>n2:dp3 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp2 , n4:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC4826 -> EC4877 [
+	label="fired n1.dp_sendDM
+	output n1:DataMsg2( { 2 , FRAGMENT_1 , 1 } , (z_132 + z_20 + z_228 + z_268 + z_4 
+	+ z_740 + z_780 + z_824 + z_96 + z_960) )
+	"
+]
+EC4877 [
+	label="EC#4877<Ev:254 , H:42>
+( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , <final>n2:dp3 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp2 , n4:dp0 ) )"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC4877 -> EC5038 [
+	label="fired n2.cp2_receiveCM_inconsistent
+	input n2:ControlMsg( [ 0 , 0 ] , (z_3 + z_371 + z_407 + z_415) )
+	"
+]
+EC5038 [
+	label="EC#5038<Ev:263 , H:43>
+( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , <final>n2:dp3 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp2 , n4:dp0 ) )
+
+NC: ((t_701 < 4) && (0 <= (t_701 + -2)))
+	"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC5038 -> EC5153 [
+	label="fired n4.cp_resetTau
+	"
+]
+EC5153 [
+	label="EC#5153<Ev:269 , H:44>
+( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , <final>n2:dp3 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp2 , n4:dp0 ) )
+
+NC: ((t_732 < 8) && (0 <= (t_732 + -4)))
+	"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC5153 -> EC5237 [
 	label="fired n4.dp_resetTau
 	"
 ]
-EC4768 [
-	label="EC#4768<Ev:229 , H:39>
-( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp1 , n4:dp0 ) )
+EC5237 [
+	label="EC#5237<Ev:271 , H:45>
+( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp1 , <final>n2:dp3 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp1 , n4:dp0 ) )
 
-NC: ((t_1218 < 8) && (0 <= (t_1218 + -4)))
+NC: ((t_1200 < 8) && (0 <= (t_1200 + -4)))
 	DataProcess1.e=1
 	"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC4768 -> EC4796 [
+EC5237 -> EC5272 [
+	label="fired n1.dp_resetTau
+	"
+]
+EC5272 [
+	label="EC#5272<Ev:283 , H:46>
+( Observer:o#17 , ( n1:cp1 , n1:dp1 , n1:dp2 ) , ( n2:cp1 , <final>n2:dp3 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp1 , n4:dp0 ) )
+
+NC: ((t_1206 < 8) && (0 <= (t_1206 + -4)))
+	DataProcess1.e=1
+	"
+	color=lightblue
+	shape=ellipse
+	style=filled
+]
+EC5272 -> EC5416 [
 	label="fired n4.dp1_reach_k
 	"
 ]
-EC4796 [
-	label="EC#4796<Ev:242 , H:40>
-( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp2 , n4:dp2 , n4:dp0 ) )"
+EC5416 [
+	label="EC#5416<Ev:285 , H:47>
+( Observer:o#17 , ( n1:cp1 , n1:dp1 , n1:dp2 ) , ( n2:cp1 , <final>n2:dp3 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp2 , n4:dp0 ) )"
 	color=lightblue
 	shape=ellipse
 	style=filled
 ]
-EC4796 -> EC4978 [
-	label="fired n4.cp_resetTau
-	"
-]
-EC4978 [
-	label="EC#4978<Ev:243 , H:41>
-( Observer:o#17 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp2 , n4:dp0 ) )
-
-NC: ((t_667 < 8) && (0 <= (t_667 + -4)))
-	"
-	color=lightblue
-	shape=ellipse
-	style=filled
-]
-EC4978 -> EC4993 [
+EC5416 -> EC5441 [
 	label="fired n4.dp_resetTau
 	fired Observer.not_all_updated
 	"
 ]
-EC4993 [
-	label="EC#4993<Ev:257 , H:42>
-( Observer:o#18 , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp1 , n4:dp0 ) )
+EC5441 [
+	label="EC#5441<Ev:297 , H:48>
+( Observer:o#18 , ( n1:cp1 , n1:dp1 , n1:dp2 ) , ( n2:cp1 , <final>n2:dp3 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( n4:cp1 , n4:dp1 , n4:dp0 ) )
 
-NC: ((e_7 == 2) && (t_1296 < 8) && (0 <= (t_1296 + -4)))
+NC: ((e_7 == 2) && (t_1258 < 8) && (0 <= (t_1258 + -4)))
 	DataProcess1.e=2
 	
 tpid#19->run::pid_22:Trickle.Observer.o#18->prot::Trickle.Observer.o#18"
@@ -624,15 +707,15 @@ tpid#19->run::pid_22:Trickle.Observer.o#18->prot::Trickle.Observer.o#18"
 	shape=ellipse
 	style=filled
 ]
-EC4993 -> EC5203 [
+EC5441 -> EC5608 [
 	label="fired n4.cp_CTRL_EXPIR
 	fired Observer.n4_out_TERMIN
 	OUTPUT n4:Log( TERMIN )
 	"
 ]
-EC5203 [
-	label="EC#5203<Ev:0 , H:43>
-( <final>Observer:PASS , ( n1:cp1 , n1:dp2 , n1:dp2 ) , ( n2:cp2 , n2:dp2 , n2:dp1 ) , ( n3:cp2 , n3:dp1 , n3:dp1 ) , ( <final>n4:cp3 , n4:dp1 , n4:dp0 ) )
+EC5608 [
+	label="EC#5608<Ev:0 , H:49>
+( <final>Observer:PASS , ( n1:cp1 , n1:dp1 , n1:dp2 ) , ( n2:cp1 , <final>n2:dp3 , n2:dp1 ) , ( n3:cp1 , n3:dp1 , n3:dp1 ) , ( <final>n4:cp3 , n4:dp1 , n4:dp0 ) )
 @EXIT_ALL\ntpid#20->run::pid_23:Trickle.Observer.PASS->prot::Trickle.Observer.PASS"
 	color=lawngreen
 	shape=tripleoctagon
