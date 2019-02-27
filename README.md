@@ -41,7 +41,7 @@ First, you execute this command in your console (Ubuntu plateform)
 ./avm.exe /your_Absolute_Path_To_the_Workflow_File
 ```
 In my case, this would be : 
-![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/Commande.png)
+![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/Commande_line.png)
 
 And the next step is just waiting for the execution finishing.
 At the end of execution, you will see a succesful message as below with a resume of all covered elements.
