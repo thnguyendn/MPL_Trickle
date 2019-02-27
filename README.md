@@ -4,7 +4,7 @@ This directory contains sources for modeling different elements in a Wireless Se
 
 Among these files, there is :
 - A .xlia extension(stands for eXecutable Language for Interaction & Assemblage) file (**MPL_modeling_T1.xlia**) for modeling a node and interactions between all nodes in topology T1
-- A workflow file (**workflow_Update_All_Nodes.sew**) for executing our heuristics to cover the sequence SEQ1 + FOR1 detailed in the paper. This objective coverage finishes when all nodes in the topology are updated
+- A workflow file (**workflow_All_Update_SEL1.sew**) for executing our heuristics to cover the sequence Sel1 detailed in the paper. This objective coverage finishes when all nodes in the topology are updated
 
 
 ## Getting Started
@@ -25,9 +25,9 @@ The next prerequisite is our executable which is used to execute the given workf
 
 This executable can be downloaded at the following link.
 
-<!---https://drive.google.com/open?id=1B6Q-n3oGo1dRf0RrOWswmpW_5SQmIv5l--->
+<!---https://drive.google.com/open?id=1uoM8DbIkjhYQQyIU6sbH5t5SSBbmNoDC--->
 
-https://drive.google.com/open?id=1Fx9BiexZFcy2H32ecVoJc0TYRk2K82Ma
+https://drive.google.com/open?id=1uoM8DbIkjhYQQyIU6sbH5t5SSBbmNoDC
 
 You download this executable, then extract preferably in the same folder of your MPL_Trickle folder.
 
@@ -92,6 +92,7 @@ Please visit https://projects.eclipse.org/proposals/eclipse-formal-modeling-proj
 * **Ngo Minh Thang Nguyen** (ngo-minh-thang.nguyen@cea.fr)
 * **Boutheïna Bannour** (boutheina.bannour@cea.fr)
 * **Arnault Lapitre** (arnault.lapitre@cea.fr)
+* **Christophe Gaston** (christophe.gaston@cea.fr)
 * **Pascale Le Gall** (pascale.legall@centralesupelec.fr)
 
 ## License
