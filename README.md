@@ -1,10 +1,10 @@
 # MPL_Trickle
 
-This directory contains sources for modeling different elements in a Wireless Sensor Network (WSN) applying Trickle algorithm and generating interesting scenarios. These scenarios are relevant to many elements in the network and are selected to illustrate interesting features in the WSN.
+This directory contains sources for modeling different elements in a Wireless Sensor Network (WSN) applying Trickle algorithm and generating scenarios. These scenarios are relevant to many elements in the network and are selected to illustrate interesting features in the WSN.
 
 Among these files, there is :
-- A .xlia extension(stands for eXecutable Language for Interaction & Assemblage) file (**MPL_modeling_T1.xlia**) for modeling a node and interactions between all nodes in topology T1
-- A workflow file (**workflow_All_Update_SEL1.sew**) for executing our heuristics to cover the sequence Sel1 detailed in the paper. This objective coverage finishes when all nodes in the topology are updated
+- A .xlia extension(stands for eXecutable Language for Interaction & Assemblage) file (**MPL_Trickle/Updated_Topology1/MPL_T1.xlia**) for modeling nodes and interactions between them in a topology called T1
+- A workflow file (**MPL_Trickle/Updated_Topology1/workflow_All_Update_SEL1.sew**) for executing our heuristics to cover the sequence Sel1. The objectif of this selector is to update all nodes in T1
 
 
 ## Getting Started
@@ -48,7 +48,7 @@ At the end of execution, you will see a succesful message as below with a resume
 
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/Result.png)
 
-Once the execution finished, the result are generated inside of the directory **/MPL_Trickle/Topology1/output**.
+Once the execution finished, the result are generated inside of the directory **/MPL_Trickle/Updated_Topology1/output**.
 
 With PlantUML, we can visualize our result as follows:
 
@@ -56,9 +56,9 @@ First, you execute PlantUML directly on a Windows or Linux plateform from the fi
 
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/PlantUML.png)
 
-The last step consists of clicking on the button "Change Directory", then going to the directory which stores your result which could be readable by PlantUML. This file is stored at the location **/MPL_Trickle/Topology1/output/basic/symbex_sequence.txt**.
+The last step consists of clicking on the button "Change Directory", then going to the directory which stores your result which could be readable by PlantUML. This file is stored at the location **/MPL_Trickle/Updated_Topology1/output/basic/symbex_sequence.txt**.
 
-By default, PlantUML generates the graphical result with the extension .png. You can also generate also other formats as .svg, .pdf,... In this example, we chose to generate a .svg extension file (**/MPL_Trickle/Topology1/output/basic/symbex_sequence.svg**)
+By default, PlantUML generates the graphical result with the extension .png. You can also generate also other formats as .svg, .pdf,... In this example, we chose to generate a .svg extension file (**/MPL_Trickle/Updated_Topology1/output/basic/symbex_sequence.svg**)
 
 
 <!---## Differences between theorical models and experimentation--->
