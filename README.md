@@ -48,7 +48,7 @@ At the end of execution, you will see a succesful message as below with a resume
 
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/Result.png)
 
-Once the execution finished, the generated result are found at the directory **/MPL_Trickle/Topology1/output**.
+Once the execution finished, the result are generated inside of the directory **/MPL_Trickle/Topology1/output**.
 
 With PlantUML, we can visualize our result as follows:
 
