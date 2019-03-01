@@ -17,7 +17,7 @@ For this, you need to download PlantUML here : http://plantuml.com/download
 
 Then choose "PlantUML compiled Jar (Version 1.2019.0)" and wait for the download finishing (you should accept the security message appeared as the downloaded file is a .jar extension)
 
-To use PlantUML, you need to double-click on the donwloaded file.
+To use PlantUML, you need to double-click on the downloaded file.
 
 * Executable
 
