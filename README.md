@@ -17,7 +17,7 @@ For this, you need to download PlantUML here : http://plantuml.com/download
 
 Then choose "PlantUML compiled Jar (Version 1.2019.0)" and wait for the download finishing (you should accept the security message appeared as the downloaded file is a .jar extension)
 
-To use PlantUML, you just need to double-click on the donwloaded file.
+To use PlantUML, you need to double-click on the donwloaded file.
 
 * Executable
 
@@ -33,7 +33,7 @@ You download this executable, then extract preferably in the same folder of your
 
 ### Execution
 
-A following serie of steps tells you how to execute the given workflow (workflow_Update_All_Nodes.sew) and use PlantUML to visualize our result.
+The following serie of steps shows you how to execute the given workflow (workflow_All_Updated_SEL1.sew) and use PlantUML to visualize the result.
 
 First, you execute this command in your console (Ubuntu plateform)
 
