@@ -179,7 +179,6 @@ workflow {
 	] // end symbex
 	console [
 		verbose = 'MINIMUM'
-//		verbose = 'MEDIUM'
 	] // end console
 }
 
