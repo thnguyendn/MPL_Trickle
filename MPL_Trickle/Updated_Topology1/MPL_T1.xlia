@@ -294,13 +294,11 @@ system< and > Trickle {
 				
 				consistent := true;
 				
-				// La version de mon packet est plus rÃƒÂ©cente => j'envoie mon packet
 				if ( mySeq == d.seq ){
 					my_buff[d.seq - MIN_SEQ] := d;
 					myseq_buff[d.seq - MIN_SEQ] := 1;
 					firmware[d.offset] := d.fragment;
 				}
-				// La version de mon packet est plus ancienne
 				else {
 					consistent := false;
 				}
@@ -702,7 +700,6 @@ system< and > Trickle {
 				@obs {
 					input spec::Trickle.n4.DataMsg2(dataMessage);
 				}[ true ];
-//				[ dataMessage.seq == 2 ];
 			}
 			transition<else> n4_in_DM2_failed --> FAILED {
 				guard( uncoveredExit > L );
@@ -734,9 +731,6 @@ system< and > Trickle {
 					input spec::Trickle.n4.DataMsg1(dataMessage);
 				}
 				[ true ];
-//				[ dataMessage.seq == 1 ];
-				
-//				tguard( spec::Trickle.n4.localTime - timeStamp <= spec::Trickle.n3.DataProcess1.tau );
 			}
 			transition<else> n4_in_DM1_failed --> FAILED {
 				guard( uncoveredExit > L );
