@@ -1,0 +1,833 @@
+@startuml
+
+skinparam backgroundColor White
+
+skinparam state {
+	StartColor Green
+	EndColor Red
+
+	'Attribut pour les transitions
+	ArrowColor Black
+	ArrowColor<< Else >> Orange
+
+	'Attribut par défaut pour les états
+	BorderColor Gray
+	BackgroundColor Wheat
+
+	'Attribut pour les états composites
+	BackgroundColor<< Composite >> SpringGreen
+
+	'Attribut pour les états simples
+	BackgroundColor<< Simple >> PaleTurquoise
+	BackgroundColor<< Start >> Green
+	BackgroundColor<< Final >> Red
+	BackgroundColor<< Sync >> Aqua
+
+	'Attribut pour les pseudo-états
+	BackgroundColor<< Pseudo >> Lavender
+	BackgroundColor<< Initial >> GreenYellow
+	BackgroundColor<< Junction >> GreenYellow
+	BackgroundColor<< Choice >> Orange
+	BackgroundColor<< Fork >> SpringGreen
+	BackgroundColor<< Junction >> SpringGreen
+	BackgroundColor<< DeepHistory >> SpringGreen
+	BackgroundColor<< ShallowHistory >> SpringGreen
+	BackgroundColor<< Return >>  OrangeRed
+	BackgroundColor<< Terminal >> Red
+
+	FontColor Black
+	FontName Times
+	FontSize 14
+}
+
+state "System Trickle" as Trickle_289410072 {
+	state "Node" as Node_289698248 {
+		Node_289698248 : Parameters 		Node_289698248 : \tinputDATA_MESSAGE[ 2 ] my_buff
+		Node_289698248 : \tinputFRAGMENT[ 2 ] firmware
+		Node_289698248 : \tinputinteger[ 2 ] myseq_buff
+		Node_289698248 : \tinputboolean[ 2 ] mydp_run
+		state "ControlProcess" as ControlProcess_290610072 {
+			state "cp0" as cp0_292157240 << Initial >>
+
+			cp0_292157240--> cp0_init_292200984
+			note on link #white
+				**cp_init:**
+				{ |;|
+					ControlProcess.k := 2;
+					ControlProcess.c := 0;
+					ControlProcess.e := 0;
+					ControlProcess.tau_l := 4;
+					ControlProcess.tau_h := 8;
+					ControlProcess.tau := ControlProcess.tau_l;
+				}
+			end note
+
+			state "cp0_init" as cp0_init_292200984 << Simple >>
+
+			cp0_init_292200984--> cp1_292245768
+			note on link #white
+				**cp_init:**
+				{ |;|
+					invoke#method ControlProcess.t newfresh;
+					{ |;|
+						guard (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau));
+						Node.localPC := (Node.localPC && (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau)));
+					}
+					output Node.Log(INIT, Node.localTime);
+					spec::Trickle.cptOutput := (+ 1);
+					ControlProcess.cl := 0;
+				}
+			end note
+
+			state "cp1" as cp1_292245768 << Simple >>
+
+			cp1_292245768--> cp2_292342184
+			note on link #white
+				**cp_sendCM:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && (ControlProcess.cl == ControlProcess.t));
+					{ |;|
+						guard ((ControlProcess.c < ControlProcess.k) && (ControlProcess.e < Node.CTRL_EXPIR));
+						Node.localPC := (Node.localPC && ((ControlProcess.c < ControlProcess.k) && (ControlProcess.e < Node.CTRL_EXPIR)));
+					}
+					output Node.ControlMsg(Node.myseq_buff, Node.localTime);
+					spec::Trickle.cptOutput := (+ 1);
+				}
+			end note
+
+			cp1_292245768--> cp1_292245768
+			note on link #white
+				**cp1_receiveCM_consistent:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && (ControlProcess.cl < ControlProcess.t));
+					{ |;|
+						{ |;|
+							guard (ControlProcess.e < Node.CTRL_EXPIR);
+							Node.localPC := (Node.localPC && (ControlProcess.e < Node.CTRL_EXPIR));
+						}
+						input Node.ControlMsg(Node.seq_buff, Node.timeEmit);
+						spec::Trickle.cptInput := (+ 1);
+						Node.localPtC := (Node.localPtC && (Node.timeEmit <= Node.localTime));
+						ControlProcess.consistent := true;
+						for( ControlProcess.i := 0 ; (ControlProcess.i < spec::Trickle.BUFF_SIZE) ; ControlProcess.i := (+ 1) )
+						{
+							if (&spec::Trickle.Node.myseq_buff[&spec::Trickle.Node.ControlProcess.i] != &spec::Trickle.Node.seq_buff[&spec::Trickle.Node.ControlProcess.i])
+							{ |;|
+								ControlProcess.consistent := false;
+								if (! &spec::Trickle.Node.mydp_run[&spec::Trickle.Node.ControlProcess.i])
+								{
+									&spec::Trickle.Node.mydp_run[&spec::Trickle.Node.ControlProcess.i] := true;
+								}
+							}
+						}
+					}
+					guard ControlProcess.consistent;
+					ControlProcess.c := (+ 1);
+				}
+			end note
+
+			cp1_292245768--> cp1_292245768
+			note on link #white
+				**cp1_receiveCM_inconsistent:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && (ControlProcess.cl < ControlProcess.t));
+					{ |;|
+						{ |;|
+							guard (ControlProcess.e < Node.CTRL_EXPIR);
+							Node.localPC := (Node.localPC && (ControlProcess.e < Node.CTRL_EXPIR));
+						}
+						input Node.ControlMsg(Node.seq_buff, Node.timeEmit);
+						spec::Trickle.cptInput := (+ 1);
+						Node.localPtC := (Node.localPtC && (Node.timeEmit <= Node.localTime));
+						ControlProcess.consistent := true;
+						for( ControlProcess.i := 0 ; (ControlProcess.i < spec::Trickle.BUFF_SIZE) ; ControlProcess.i := (+ 1) )
+						{
+							if (&spec::Trickle.Node.myseq_buff[&spec::Trickle.Node.ControlProcess.i] != &spec::Trickle.Node.seq_buff[&spec::Trickle.Node.ControlProcess.i])
+							{ |;|
+								ControlProcess.consistent := false;
+								if (! &spec::Trickle.Node.mydp_run[&spec::Trickle.Node.ControlProcess.i])
+								{
+									&spec::Trickle.Node.mydp_run[&spec::Trickle.Node.ControlProcess.i] := true;
+								}
+							}
+						}
+					}
+					guard (! ControlProcess.consistent);
+					ControlProcess.tau := ControlProcess.tau_l;
+					invoke#method ControlProcess.t newfresh;
+					{ |;|
+						guard (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau));
+						Node.localPC := (Node.localPC && (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau)));
+					}
+					ControlProcess.cl := 0;
+					ControlProcess.c := 0;
+					ControlProcess.e := 0;
+				}
+			end note
+
+			cp1_292245768--> cp3_292430584
+			note on link #white
+				**cp_CTRL_EXPIR:**
+				{ |;|
+					{ |;|
+						guard (ControlProcess.e == Node.CTRL_EXPIR);
+						Node.localPC := (Node.localPC && (ControlProcess.e == Node.CTRL_EXPIR));
+					}
+					output Node.Log(TERMIN);
+					spec::Trickle.cptOutput := (+ 1);
+				}
+			end note
+
+			cp1_292245768--> cp2_292342184
+			note on link #white
+				**cp1_reach_k:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && (ControlProcess.cl == ControlProcess.t));
+					{ |;|
+						guard ((ControlProcess.c >= ControlProcess.k) && (ControlProcess.e < Node.CTRL_EXPIR));
+						Node.localPC := (Node.localPC && ((ControlProcess.c >= ControlProcess.k) && (ControlProcess.e < Node.CTRL_EXPIR)));
+					}
+				}
+			end note
+
+			state "cp2" as cp2_292342184 << Simple >>
+
+			cp2_292342184--> cp1_292245768
+			note on link #white
+				**cp_resetTau:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && ((ControlProcess.cl > ControlProcess.t) && (ControlProcess.cl == ControlProcess.tau)));
+					{ |;|
+						guard (ControlProcess.e < Node.CTRL_EXPIR);
+						Node.localPC := (Node.localPC && (ControlProcess.e < Node.CTRL_EXPIR));
+					}
+					if ((2 * ControlProcess.tau) <= ControlProcess.tau_h)
+					{
+						ControlProcess.tau := (2 * ControlProcess.tau);
+					}
+					else
+					{
+						if ((2 * ControlProcess.tau) > ControlProcess.tau_h)
+						{
+							ControlProcess.tau := ControlProcess.tau_h;
+						}
+					}
+					invoke#method ControlProcess.t newfresh;
+					{ |;|
+						guard (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau));
+						Node.localPC := (Node.localPC && (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau)));
+					}
+					ControlProcess.e := (+ 1);
+					ControlProcess.cl := 0;
+					ControlProcess.c := 0;
+				}
+			end note
+
+			cp2_292342184--> cp2_292342184
+			note on link #white
+				**cp2_receiveCM_consistent:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && (ControlProcess.cl < ControlProcess.tau));
+					{ |;|
+						{ |;|
+							guard (ControlProcess.e < Node.CTRL_EXPIR);
+							Node.localPC := (Node.localPC && (ControlProcess.e < Node.CTRL_EXPIR));
+						}
+						input Node.ControlMsg(Node.seq_buff, Node.timeEmit);
+						spec::Trickle.cptInput := (+ 1);
+						Node.localPtC := (Node.localPtC && (Node.timeEmit <= Node.localTime));
+						ControlProcess.consistent := true;
+						for( ControlProcess.i := 0 ; (ControlProcess.i < spec::Trickle.BUFF_SIZE) ; ControlProcess.i := (+ 1) )
+						{
+							if (&spec::Trickle.Node.myseq_buff[&spec::Trickle.Node.ControlProcess.i] != &spec::Trickle.Node.seq_buff[&spec::Trickle.Node.ControlProcess.i])
+							{ |;|
+								ControlProcess.consistent := false;
+								if (! &spec::Trickle.Node.mydp_run[&spec::Trickle.Node.ControlProcess.i])
+								{
+									&spec::Trickle.Node.mydp_run[&spec::Trickle.Node.ControlProcess.i] := true;
+								}
+							}
+						}
+					}
+					guard ControlProcess.consistent;
+					ControlProcess.c := (+ 1);
+				}
+			end note
+
+			cp2_292342184--> cp1_292245768
+			note on link #white
+				**cp2_receiveCM_inconsistent:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && (ControlProcess.cl < ControlProcess.tau));
+					{ |;|
+						{ |;|
+							guard (ControlProcess.e < Node.CTRL_EXPIR);
+							Node.localPC := (Node.localPC && (ControlProcess.e < Node.CTRL_EXPIR));
+						}
+						input Node.ControlMsg(Node.seq_buff, Node.timeEmit);
+						spec::Trickle.cptInput := (+ 1);
+						Node.localPtC := (Node.localPtC && (Node.timeEmit <= Node.localTime));
+						ControlProcess.consistent := true;
+						for( ControlProcess.i := 0 ; (ControlProcess.i < spec::Trickle.BUFF_SIZE) ; ControlProcess.i := (+ 1) )
+						{
+							if (&spec::Trickle.Node.myseq_buff[&spec::Trickle.Node.ControlProcess.i] != &spec::Trickle.Node.seq_buff[&spec::Trickle.Node.ControlProcess.i])
+							{ |;|
+								ControlProcess.consistent := false;
+								if (! &spec::Trickle.Node.mydp_run[&spec::Trickle.Node.ControlProcess.i])
+								{
+									&spec::Trickle.Node.mydp_run[&spec::Trickle.Node.ControlProcess.i] := true;
+								}
+							}
+						}
+					}
+					guard (! ControlProcess.consistent);
+					ControlProcess.tau := ControlProcess.tau_l;
+					invoke#method ControlProcess.t newfresh;
+					{ |;|
+						guard (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau));
+						Node.localPC := (Node.localPC && (((ControlProcess.tau / 2) <= ControlProcess.t) && (ControlProcess.t < ControlProcess.tau)));
+					}
+					ControlProcess.cl := 0;
+					ControlProcess.c := 0;
+					ControlProcess.e := 0;
+				}
+			end note
+
+			state "cp3" as cp3_292430584 << Final >>
+
+		}
+
+		state "DataProcess" as DataProcess_292433528 {
+			DataProcess_292433528 : Parameters 			DataProcess_292433528 : \tinputinteger mySeq
+			state "dp0" as dp0_292670184 << Start >>
+
+			dp0_292670184--> dp1_292287976
+			note on link #white
+				**dp_init:**
+				{ |;|
+					DataProcess.k := 2;
+					DataProcess.c := 0;
+					DataProcess.e := 0;
+					DataProcess.tau_l := 4;
+					DataProcess.tau_h := 8;
+					DataProcess.tau := DataProcess.tau_l;
+					invoke#method DataProcess.t newfresh;
+					{ |;|
+						guard (((DataProcess.tau / 2) <= DataProcess.t) && (DataProcess.t < DataProcess.tau));
+						Node.localPC := (Node.localPC && (((DataProcess.tau / 2) <= DataProcess.t) && (DataProcess.t < DataProcess.tau)));
+					}
+					guard &spec::Trickle.Node.mydp_run[(DataProcess.mySeq + (- Node.MIN_SEQ))];
+					DataProcess.cl := 0;
+				}
+			end note
+
+			state "dp1" as dp1_292287976 << Simple >>
+
+			dp1_292287976--> dp2_292855080
+			note on link #white
+				**dp_sendDM:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && (DataProcess.cl == DataProcess.t));
+					{ |;|
+						guard ((DataProcess.c < DataProcess.k) && (DataProcess.e < Node.DATA_EXPIR) && (&spec::Trickle.Node.my_buff[(DataProcess.mySeq + (- Node.MIN_SEQ))].fragment != UNDEF_FRAGMENT));
+						Node.localPC := (Node.localPC && ((DataProcess.c < DataProcess.k) && (DataProcess.e < Node.DATA_EXPIR) && (&spec::Trickle.Node.my_buff[(DataProcess.mySeq + (- Node.MIN_SEQ))].fragment != UNDEF_FRAGMENT)));
+					}
+					{ |;|
+						if (DataProcess.mySeq == 1)
+						{
+							output Node.DataMsg1(&spec::Trickle.Node.my_buff[(DataProcess.mySeq + (- Node.MIN_SEQ))], Node.localTime);
+						}
+						else
+						{
+							if (DataProcess.mySeq == 2)
+							{
+								output Node.DataMsg2(&spec::Trickle.Node.my_buff[(DataProcess.mySeq + (- Node.MIN_SEQ))], Node.localTime);
+							}
+						}
+						spec::Trickle.cptOutput := (+ 1);
+					}
+				}
+			end note
+
+			dp1_292287976--> dp1_292287976
+			note on link #white
+				**dp1_receiveDM_consistent:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && (DataProcess.cl < DataProcess.t));
+					{ |;|
+						{ |;|
+							guard (DataProcess.e < Node.DATA_EXPIR);
+							Node.localPC := (Node.localPC && (DataProcess.e < Node.DATA_EXPIR));
+						}
+						{ |;|
+							if (DataProcess.mySeq == 1)
+							{
+								input Node.DataMsg1(DataProcess.d, Node.timeEmit);
+							}
+							else
+							{
+								input Node.DataMsg2(DataProcess.d, Node.timeEmit);
+							}
+							spec::Trickle.cptInput := (+ 1);
+						}
+						Node.localPtC := (Node.localPtC && (Node.timeEmit <= Node.localTime));
+						DataProcess.consistent := true;
+						if (DataProcess.mySeq == &spec::Trickle.Node.DataProcess.d.seq)
+						{ |;|
+							&spec::Trickle.Node.my_buff[(&spec::Trickle.Node.DataProcess.d.seq + (- Node.MIN_SEQ))] := DataProcess.d;
+							&spec::Trickle.Node.myseq_buff[(&spec::Trickle.Node.DataProcess.d.seq + (- Node.MIN_SEQ))] := 1;
+							&spec::Trickle.Node.firmware[&spec::Trickle.Node.DataProcess.d.offset] := &spec::Trickle.Node.DataProcess.d.fragment;
+						}
+						else
+						{
+							DataProcess.consistent := false;
+						}
+					}
+					guard DataProcess.consistent;
+					DataProcess.c := (+ 1);
+				}
+			end note
+
+			dp1_292287976--> dp1_292287976
+			note on link #white
+				**dp1_receiveDM_inconsistent:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && (DataProcess.cl < DataProcess.t));
+					{ |;|
+						{ |;|
+							guard (DataProcess.e < Node.DATA_EXPIR);
+							Node.localPC := (Node.localPC && (DataProcess.e < Node.DATA_EXPIR));
+						}
+						{ |;|
+							if (DataProcess.mySeq == 1)
+							{
+								input Node.DataMsg1(DataProcess.d, Node.timeEmit);
+							}
+							else
+							{
+								input Node.DataMsg2(DataProcess.d, Node.timeEmit);
+							}
+							spec::Trickle.cptInput := (+ 1);
+						}
+						Node.localPtC := (Node.localPtC && (Node.timeEmit <= Node.localTime));
+						DataProcess.consistent := true;
+						if (DataProcess.mySeq == &spec::Trickle.Node.DataProcess.d.seq)
+						{ |;|
+							&spec::Trickle.Node.my_buff[(&spec::Trickle.Node.DataProcess.d.seq + (- Node.MIN_SEQ))] := DataProcess.d;
+							&spec::Trickle.Node.myseq_buff[(&spec::Trickle.Node.DataProcess.d.seq + (- Node.MIN_SEQ))] := 1;
+							&spec::Trickle.Node.firmware[&spec::Trickle.Node.DataProcess.d.offset] := &spec::Trickle.Node.DataProcess.d.fragment;
+						}
+						else
+						{
+							DataProcess.consistent := false;
+						}
+					}
+					guard (! DataProcess.consistent);
+					DataProcess.tau := DataProcess.tau_l;
+					invoke#method DataProcess.t newfresh;
+					{ |;|
+						guard (((DataProcess.tau / 2) <= DataProcess.t) && (DataProcess.t < DataProcess.tau));
+						Node.localPC := (Node.localPC && (((DataProcess.tau / 2) <= DataProcess.t) && (DataProcess.t < DataProcess.tau)));
+					}
+					DataProcess.cl := 0;
+					DataProcess.c := 0;
+					DataProcess.e := 0;
+				}
+			end note
+
+			dp1_292287976--> dp3_292949800
+			note on link #white
+				**dp_DATA_EXPIR:**
+				{ |;|
+					guard (DataProcess.e == Node.DATA_EXPIR);
+					Node.localPC := (Node.localPC && (DataProcess.e == Node.DATA_EXPIR));
+				}
+			end note
+
+			dp1_292287976--> dp2_292855080
+			note on link #white
+				**dp1_reach_k:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && (DataProcess.cl == DataProcess.t));
+					{ |;|
+						guard (((DataProcess.c >= DataProcess.k) || (&spec::Trickle.Node.my_buff[(DataProcess.mySeq + (- Node.MIN_SEQ))].fragment == UNDEF_FRAGMENT)) && (DataProcess.e < Node.DATA_EXPIR));
+						Node.localPC := (Node.localPC && (((DataProcess.c >= DataProcess.k) || (&spec::Trickle.Node.my_buff[(DataProcess.mySeq + (- Node.MIN_SEQ))].fragment == UNDEF_FRAGMENT)) && (DataProcess.e < Node.DATA_EXPIR)));
+					}
+				}
+			end note
+
+			state "dp2" as dp2_292855080 << Simple >>
+
+			dp2_292855080--> dp1_292287976
+			note on link #white
+				**dp_resetTau:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && ((DataProcess.cl > DataProcess.t) && (DataProcess.cl == DataProcess.tau)));
+					{ |;|
+						guard (DataProcess.e < Node.DATA_EXPIR);
+						Node.localPC := (Node.localPC && (DataProcess.e < Node.DATA_EXPIR));
+					}
+					if ((2 * DataProcess.tau) <= DataProcess.tau_h)
+					{
+						DataProcess.tau := (2 * DataProcess.tau);
+					}
+					else
+					{
+						if ((2 * DataProcess.tau) > DataProcess.tau_h)
+						{
+							DataProcess.tau := DataProcess.tau_h;
+						}
+					}
+					invoke#method DataProcess.t newfresh;
+					{ |;|
+						guard (((DataProcess.tau / 2) <= DataProcess.t) && (DataProcess.t < DataProcess.tau));
+						Node.localPC := (Node.localPC && (((DataProcess.tau / 2) <= DataProcess.t) && (DataProcess.t < DataProcess.tau)));
+					}
+					DataProcess.e := (+ 1);
+					DataProcess.cl := 0;
+					DataProcess.c := 0;
+				}
+			end note
+
+			dp2_292855080--> dp2_292855080
+			note on link #white
+				**dp2_receiveDM_consistent:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && (DataProcess.cl < DataProcess.tau));
+					{ |;|
+						{ |;|
+							guard (DataProcess.e < Node.DATA_EXPIR);
+							Node.localPC := (Node.localPC && (DataProcess.e < Node.DATA_EXPIR));
+						}
+						{ |;|
+							if (DataProcess.mySeq == 1)
+							{
+								input Node.DataMsg1(DataProcess.d, Node.timeEmit);
+							}
+							else
+							{
+								input Node.DataMsg2(DataProcess.d, Node.timeEmit);
+							}
+							spec::Trickle.cptInput := (+ 1);
+						}
+						Node.localPtC := (Node.localPtC && (Node.timeEmit <= Node.localTime));
+						DataProcess.consistent := true;
+						if (DataProcess.mySeq == &spec::Trickle.Node.DataProcess.d.seq)
+						{ |;|
+							&spec::Trickle.Node.my_buff[(&spec::Trickle.Node.DataProcess.d.seq + (- Node.MIN_SEQ))] := DataProcess.d;
+							&spec::Trickle.Node.myseq_buff[(&spec::Trickle.Node.DataProcess.d.seq + (- Node.MIN_SEQ))] := 1;
+							&spec::Trickle.Node.firmware[&spec::Trickle.Node.DataProcess.d.offset] := &spec::Trickle.Node.DataProcess.d.fragment;
+						}
+						else
+						{
+							DataProcess.consistent := false;
+						}
+					}
+					guard DataProcess.consistent;
+					DataProcess.c := (+ 1);
+				}
+			end note
+
+			dp2_292855080--> dp1_292287976
+			note on link #white
+				**dp2_receiveDM_inconsistent:**
+				{ |;|
+					Node.localPtC := (Node.localPtC && (DataProcess.cl < DataProcess.tau));
+					{ |;|
+						{ |;|
+							guard (DataProcess.e < Node.DATA_EXPIR);
+							Node.localPC := (Node.localPC && (DataProcess.e < Node.DATA_EXPIR));
+						}
+						{ |;|
+							if (DataProcess.mySeq == 1)
+							{
+								input Node.DataMsg1(DataProcess.d, Node.timeEmit);
+							}
+							else
+							{
+								input Node.DataMsg2(DataProcess.d, Node.timeEmit);
+							}
+							spec::Trickle.cptInput := (+ 1);
+						}
+						Node.localPtC := (Node.localPtC && (Node.timeEmit <= Node.localTime));
+						DataProcess.consistent := true;
+						if (DataProcess.mySeq == &spec::Trickle.Node.DataProcess.d.seq)
+						{ |;|
+							&spec::Trickle.Node.my_buff[(&spec::Trickle.Node.DataProcess.d.seq + (- Node.MIN_SEQ))] := DataProcess.d;
+							&spec::Trickle.Node.myseq_buff[(&spec::Trickle.Node.DataProcess.d.seq + (- Node.MIN_SEQ))] := 1;
+							&spec::Trickle.Node.firmware[&spec::Trickle.Node.DataProcess.d.offset] := &spec::Trickle.Node.DataProcess.d.fragment;
+						}
+						else
+						{
+							DataProcess.consistent := false;
+						}
+					}
+					guard (! DataProcess.consistent);
+					DataProcess.tau := DataProcess.tau_l;
+					invoke#method DataProcess.t newfresh;
+					{ |;|
+						guard (((DataProcess.tau / 2) <= DataProcess.t) && (DataProcess.t < DataProcess.tau));
+						Node.localPC := (Node.localPC && (((DataProcess.tau / 2) <= DataProcess.t) && (DataProcess.t < DataProcess.tau)));
+					}
+					DataProcess.cl := 0;
+					DataProcess.c := 0;
+					DataProcess.e := 0;
+				}
+			end note
+
+			state "dp3" as dp3_292949800 << Final >>
+
+		}
+
+		state "DataProcess1" as DataProcess1_292952472
+		DataProcess1_292952472 : model DataProcess
+		state "DataProcess2" as DataProcess2_292982408
+		DataProcess2_292982408 : model DataProcess
+	}
+	--
+	state "Observer" as Observer_293094616 {
+		state "startup" as startup_293106424 << Initial >>
+
+		startup_293106424--> o#0_293134488 : o_startup
+
+
+		state "o#0" as o#0_293134488 << Simple >>
+
+		o#0_293134488--> o#1_293167864
+		note on link #white
+			**n1_out_Log:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					output spec::Trickle.n1.Log(Observer.mess, Observer.emit_time_INIT_n1);
+				} [ (Observer.mess == INIT) ];
+				@debug \"Couverture o#1\" }
+			}
+		end note
+
+		state "o#1" as o#1_293167864 << Simple >>
+
+		o#1_293167864--> o#2_293200776
+		note on link #white
+			**n2_out_Log:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					output spec::Trickle.n2.Log(Observer.mess);
+				} [ (Observer.mess == INIT) ];
+				@debug \"Couverture o#2\" }
+			}
+		end note
+
+		state "o#2" as o#2_293200776 << Simple >>
+
+		o#2_293200776--> o#3_293235768
+		note on link #white
+			**n3_out_Log:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					output spec::Trickle.n3.Log(Observer.mess);
+				} [ (Observer.mess == INIT) ];
+				@debug (\"Couverture o#3 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#3" as o#3_293235768 << Simple >>
+
+		o#3_293235768--> o#4_293270760
+		note on link #white
+			**n4_out_Log:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					output spec::Trickle.n4.Log(Observer.mess);
+				} [ (Observer.mess == INIT) ];
+				@debug (\"Couverture o#4 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#4" as o#4_293270760 << Simple >>
+
+		o#4_293270760--> o#5_293313336
+		note on link #white
+			**n1_out_CM:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					output spec::Trickle.n1.ControlMsg(Observer.seqBuff, Observer.timeStamp);
+				} [ ((&spec::Trickle.Observer.seqBuff[0] == 1) && (&spec::Trickle.Observer.seqBuff[1] == 1)) ];
+				@debug (\"Couverture o#5 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#5" as o#5_293313336 << Simple >>
+
+		o#5_293313336--> o#6_293362968
+		note on link #white
+			**n2_in_CM:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					input spec::Trickle.n2.ControlMsg(Observer.seqBuff);
+				} [ ((&spec::Trickle.Observer.seqBuff[0] == 1) && (&spec::Trickle.Observer.seqBuff[1] == 1)) ];
+				tguard ((spec::Trickle.n2.localTime + (- Observer.timeStamp)) <= spec::Trickle.n2.ControlProcess.tau_l);
+				@debug (\"Couverture o#6 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#6" as o#6_293362968 << Simple >>
+
+		o#6_293362968--> o#7_293412408
+		note on link #white
+			**n3_in_CM:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					input spec::Trickle.n3.ControlMsg(Observer.seqBuff);
+				} [ ((&spec::Trickle.Observer.seqBuff[0] == 1) && (&spec::Trickle.Observer.seqBuff[1] == 1)) ];
+				tguard ((spec::Trickle.n3.localTime + (- Observer.timeStamp)) <= spec::Trickle.n3.ControlProcess.tau_l);
+				@debug (\"Couverture o#7 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#7" as o#7_293412408 << Simple >>
+
+		o#7_293412408--> o#8_293448456
+		note on link #white
+			**n1_out_DM1:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					output spec::Trickle.n1.DataMsg1(Observer.dataMessage);
+				} [ (&spec::Trickle.Observer.dataMessage.seq == 1) ];
+				@debug (\"Couverture o#8 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#8" as o#8_293448456 << Simple >>
+
+		o#8_293448456--> o#9_293484088
+		note on link #white
+			**n2_in_DM1:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					input spec::Trickle.n2.DataMsg1(Observer.dataMessage);
+				} [ (&spec::Trickle.Observer.dataMessage.seq == 1) ];
+				@debug (\"Couverture o#9 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#9" as o#9_293484088 << Simple >>
+
+		o#9_293484088--> o#10_293519720
+		note on link #white
+			**n3_in_DM1:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					input spec::Trickle.n3.DataMsg1(Observer.dataMessage);
+				} [ (&spec::Trickle.Observer.dataMessage.seq == 1) ];
+				@debug (\"Couverture o#10 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#10" as o#10_293519720 << Simple >>
+
+		o#10_293519720--> o#11_293555352
+		note on link #white
+			**n1_out_DM2:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					output spec::Trickle.n1.DataMsg2(Observer.dataMessage);
+				} [ (&spec::Trickle.Observer.dataMessage.seq == 2) ];
+				@debug (\"Couverture o#11 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#11" as o#11_293555352 << Simple >>
+
+		o#11_293555352--> o#12_293590984
+		note on link #white
+			**n2_in_DM2:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					input spec::Trickle.n2.DataMsg2(Observer.dataMessage);
+				} [ (&spec::Trickle.Observer.dataMessage.seq == 2) ];
+				@debug (\"Couverture o#12 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#12" as o#12_293590984 << Simple >>
+
+		o#12_293590984--> o#13_293626632
+		note on link #white
+			**n3_in_DM2:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					input spec::Trickle.n3.DataMsg2(Observer.dataMessage);
+				} [ (&spec::Trickle.Observer.dataMessage.seq == 2) ];
+				@debug (\"Couverture o#13 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#13" as o#13_293626632 << Simple >>
+
+		o#13_293626632--> o#14_293660056
+		note on link #white
+			**n3_out_DM2:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					output spec::Trickle.n3.DataMsg2(Observer.dataMessage, Observer.timeStamp);
+				} [ true ];
+				@debug (\"Couverture o#14 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#14" as o#14_293660056 << Simple >>
+
+		o#14_293660056--> o#15_293693224
+		note on link #white
+			**n4_in_DM2:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					input spec::Trickle.n4.DataMsg2(Observer.dataMessage);
+				} [ true ];
+				@debug (\"Couverture o#15 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#15" as o#15_293693224 << Simple >>
+
+		o#15_293693224--> o#16_293727416
+		note on link #white
+			**n3_out_DM1:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					output spec::Trickle.n3.DataMsg1(Observer.dataMessage, Observer.timeStamp);
+				} [ true ];
+				@debug (\"Couverture o#16 cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "o#16" as o#16_293727416 << Simple >>
+
+		o#16_293727416--> PASS_293763064
+		note on link #white
+			**n4_in_DM1:**
+			{ |;|
+				@observe( ctx: spec::Trickle ) {
+					input spec::Trickle.n4.DataMsg1(Observer.dataMessage);
+				} [ (&spec::Trickle.Observer.dataMessage.seq == 2) ];
+				@debug (\"Couverture PASS cptInput = \" + spec::Trickle.cptInput + \"  cptOutput = \" + spec::Trickle.cptOutput) }
+			}
+		end note
+
+		state "PASS" as PASS_293763064 << Final >>
+
+		state "FAILED" as FAILED_293790088 << Final >>
+
+	}
+	--
+	state "n1" as n1_293792824
+	n1_293792824 : model Node	--
+	state "n2" as n2_292746104
+	n2_292746104 : model Node	--
+	state "n3" as n3_293924280
+	n3_293924280 : model Node	--
+	state "n4" as n4_293981672
+	n4_293981672 : model Node
+}
+@enduml
+

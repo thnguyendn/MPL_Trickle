@@ -1,0 +1,712 @@
+
+	SYMBEX< DIVERSITY > Git-Version< ba0bfc6 > @ Feb 22 2019
+	2010 - 2016 CEA List
+	All Rights Reserved
+	Launch @ Sun Feb 24 14:23:17 2019
+
+[SEW] Symbolic Execution based Workflow analysis ... START
+[SEW] Location: /home/thang/Dropbox/Implementation_Diversity/Diversity_workspace/MPL_Trickle_With_New_Connectors/BFS/Sel1/AL
+[SEW] Workflow: workflow_All_Updated_SEL1.sew
+[SEW] Symbolic Execution based Workflow analysis ... DONE
+
+[DBG] Saving of the Specification in text format --> parsed
+[SEW] Compilation report:> 0 error 1 warning
+
+step:00 , context:00 , height:00 , width:00
+@debug{
+"Couverture o#1"
+}
+
+@debug{
+"Couverture o#2"
+}
+
+@debug{
+"Couverture o#3"
+}
+
+@debug{
+"Couverture o#4"
+}
+
+@debug{
+"Couverture o#5"
+}
+
+@debug{
+"Couverture o#6"
+}
+
+@debug{
+"Couverture o#7"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#8"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#10"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+@debug{
+"Couverture o#9"
+}
+
+stop:1000 , context:11426 , height: 13 , width:1952
+
+time:(real: 46s480ms user: 45s300ms system: 1s170ms steady: 46s479ms674us198ns system: 46s479ms674us304ns) --> 46s479ms674us188ns@ Sun Feb 24 14:24:04 2019
+time:(real: 46s480ms cpu: 47ms user: 45s302ms system: 1s176ms) --> 46s479ms675us999ns @ Sun Feb 24 14:24:04 2019
+

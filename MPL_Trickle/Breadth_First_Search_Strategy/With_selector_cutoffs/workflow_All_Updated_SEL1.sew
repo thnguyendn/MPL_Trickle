@@ -1,0 +1,142 @@
+@sew< workflow , 1.0 >:
+
+// Symbolic Execution Workflow
+// Diversity Tool Configuration
+// CEA - LIST
+workflow {
+	workspace [
+		root   = "/home/thang/Dropbox/Implementation_Diversity/Diversity_workspace/MPL_Trickle_With_New_Connectors/GitHub/Breadth_First_Search_Strategy/With_selector_cutoffs"
+		output = "output"
+		log    = "log"
+		debug  = "debug"
+	] // end workspace
+	director behavior#selection 'as main execution objective' {
+		manifest [
+			autoconf  = true
+			autostart = true
+		] // end manifest
+		project 'path of input model' [
+			source = "."
+			model  = "MPL_T1.xlia"
+		] // end project
+		supervisor {
+			limit 'of graph exploration' [
+				step = -1
+				eval = -1
+				report = 10000
+			] // end limit
+			queue 'defining the exploration/search strategy' [
+				strategy = 'WEIGHT#BREADTH_FIRST_SEARCH'
+				heuristic = true
+			] // end queue
+			redundancy 'detection strategy' [
+				loop#detection#trivial = true
+			] // end redundancy
+			console [
+				format = "\nstep:%1% , context:%2% , height:%3% , width:%4%"
+				report = "\nstop:%1% , context:%2% , height:%3% , width:%4%\n"
+			] // end console
+		}
+	}
+	symbex 'option' [
+		name_id_separator = "_"   // default "#"
+		newfresh_param_name_pid = false
+		pretty_printer_var_name = true   // default false
+		
+		time_name_id = '$time'
+		time_initial_value = 0
+		delta_name_id = "z"
+		
+		node_condition_enabled = false   // default false
+		separation_of_pc_disjunction = false
+		check_pathcondition_satisfiability = true
+		constraint_solver = 'CVC4'  // Z3
+	] // end symbex
+	console [
+		verbose = 'SILENT'
+	] // end console
+	shell [
+		// Stop stop the current execution if it detects the creation of the above file !
+		stop = "symbex.stop"
+	] // end shell
+}
+
+//EOF of @sew< workflow , 1.0 >:
+
+/*
+# Grammar Reference
+
+## Trace Specification
+- [*] , use for ANY element
+- com_element_id ::= <port_name_id> | <signal_name_id>
+- com = <com_element_id>
+- input = <com_element_id>
+- output = <com_element_id>
+- input#env = <com_element_id>
+- output#env = <com_element_id>
+
+- variable = <variable_name_id>
+- newfresh = <variable_name_id>
+- state = <state_name_id>
+- transition = <transition_name_id>
+- statemachine = <statemachine_name_id>
+
+
+## Trace Format Specification
+- line#wrap#width = 80
+- line#wrap#separator = "\n\	"
+
+// %1% --> ec#id
+// %2% --> ec#eval
+// %3% --> ec#hight
+// %4% --> ec#width
+// %5% --> ec#weight
+// %6% --> statemachine configuration i.e. control node
+- context#ufid = "ctx< %1% > %6%"
+
+// %1% --> trace number
+// %2% --> execution context leaf identifier
+- file#header = "TRACE NUMBER %1%"
+- file#begin  = ""
+- file#end    = ""
+
+// %1% --> trace number
+// %2% --> execution context leaf identifier
+- testcase#header = "TRACE NUMBER %1%"
+- testcase#begin  = ""
+- testcase#end    = ""
+- testcase#end    = ""
+- init#begin = "\t// Initialization parameter values:"
+- init#end   = "\n"
+
+// %1% --> string message
+// %2% --> execution context identifier
+- comment   = "//%1%"
+- separator = "%1%"
+- newline   = "\n%1%"
+
+// %1% --> step identifier
+// %2% --> execution context identifier
+- step#begin = "\t#step#begin %1%"
+- step#end   = "\t#step#end %1%"
+
+// %1% --> condition
+// %2% --> execution context identifier
+- path#condition = "\tPC: %1%"
+- path#timed#condition = "\tPtC: %1%"
+- node#condition = "\tNC: %1%"
+- node#timed#condition = "\tNtC: %1%"
+
+// %1% --> machine runtime pid
+// %2% --> machine container identifier
+// %3% --> port | signal | variable | machine | transition | routine
+// %4% --> value
+- time   = "\t%4%"
+- assign = "\t%2%:%3% = %4%"
+- newfresh = "\tnewfresh %2%->%3%( %4% )"
+- input  = "\tinput  %2%->%3%%4%"
+- output = "\toutput %2%->%3%%4%"
+- input#env  = "\tINPUT  %2%->%3%%4%"
+- output#env = "\tOUTPUT %2%->%3%%4%"
+
+*/
