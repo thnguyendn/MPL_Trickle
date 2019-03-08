@@ -1,0 +1,50 @@
+@startuml
+
+skinparam note{
+	BackgroundColor White
+	BorderColor White
+}
+
+skinparam BackgroundColor transparent
+
+box "Trickle" #transparent
+participant "n1" as n1
+participant "n2" as n2
+participant "n3" as n3
+participant "n4" as n4
+end box
+
+== PATH 1 ==
+<[#black]- n1 : Log ! INIT @(z_0 + z_4)
+n1 -[#3cb44b]> n2 : <font color = #3cb44b> \n<font color =#3cb44b>ControlMsg ! [ 1 , 1 ] @(z_0 + z_20 + z_4)
+n1 -[#3cb44b]> n3 : <font color = #3cb44b> \n<font color =#3cb44b>ControlMsg ! [ 1 , 1 ] @(z_0 + z_20 + z_4)
+<[#black]- n2 : Log ! INIT @z_33
+n2 -[#3cb44b]> n2 : <font color = #3cb44b> \n<font color =#3cb44b>ControlMsg ? [ 1 , 1 ] @(z_33 + z_45)
+<[#black]- n3 : Log ! INIT @z_62
+n3 -[#3cb44b]> n3 : <font color = #3cb44b> \n<font color =#3cb44b>ControlMsg ? [ 1 , 1 ] @(z_62 + z_70)
+n1 -[#4363d8]> n2 : <font color = #4363d8> \n<font color =#4363d8>DataMsg1 ! { 1 , FRAGMENT_0 , 0 } @(z_0 + \n<font color =#4363d8>z_132 + z_20 + z_4 + z_96)
+n1 -[#4363d8]> n3 : <font color = #4363d8> \n<font color =#4363d8>DataMsg1 ! { 1 , FRAGMENT_0 , 0 } @(z_0 + \n<font color =#4363d8>z_132 + z_20 + z_4 + z_96)
+n2 -[#4363d8]> n2 : <font color = #4363d8> \n<font color =#4363d8>DataMsg1 ? { 1 , FRAGMENT_0 , 0 } @(z_141 + \n<font color =#4363d8>z_165 + z_33 + z_45)
+n3 -[#4363d8]> n3 : <font color = #4363d8> \n<font color =#4363d8>DataMsg1 ? { 1 , FRAGMENT_0 , 0 } @(z_186 + \n<font color =#4363d8>z_198 + z_62 + z_70)
+n1 -[#f58231]> n2 : <font color = #f58231> \n<font color =#f58231>DataMsg2 ! { 2 , FRAGMENT_1 , 1 } @(z_0 + \n<font color =#f58231>z_132 + z_20 + z_4 + z_492 + z_96)
+n1 -[#f58231]> n3 : <font color = #f58231> \n<font color =#f58231>DataMsg2 ! { 2 , FRAGMENT_1 , 1 } @(z_0 + \n<font color =#f58231>z_132 + z_20 + z_4 + z_492 + z_96)
+n2 -[#f58231]> n2 : <font color = #f58231> \n<font color =#f58231>DataMsg2 ? { 2 , FRAGMENT_1 , 1 } @(z_141 + \n<font color =#f58231>z_165 + z_229 + z_33 + z_45 + z_497)
+n3 -[#f58231]> n3 : <font color = #f58231> \n<font color =#f58231>DataMsg2 ? { 2 , FRAGMENT_1 , 1 } @(z_186 + \n<font color =#f58231>z_198 + z_258 + z_502 + z_62 + z_70)
+n3 -[#911eb4]> n4 : <font color = #911eb4> \n<font color =#911eb4>ControlMsg ! [ 1 , 1 ] @(z_186 + z_198 + \n<font color =#911eb4>z_258 + z_502 + z_506 + z_62 + z_70)
+n3 -[#911eb4]> n2 : <font color = #911eb4> \n<font color =#911eb4>ControlMsg ! [ 1 , 1 ] @(z_186 + z_198 + \n<font color =#911eb4>z_258 + z_502 + z_506 + z_62 + z_70)
+<[#black]- n4 : Log ! INIT @z_511
+n4 -[#911eb4]> n4 : <font color = #911eb4> \n<font color =#911eb4>ControlMsg ? [ 1 , 1 ] @(z_511 + z_515)
+n4 -[#469990]> n2 : <font color = #469990> \n<font color =#469990>ControlMsg ! [ 0 , 0 ] @(z_511 + z_515 + \n<font color =#469990>z_563)
+n2 -[#800000]> n3 : <font color = #800000> \n<font color =#800000>DataMsg1 ! { 1 , FRAGMENT_0 , 0 } @(z_141 + \n<font color =#800000>z_165 + z_229 + z_33 + z_45 + z_497 + z_565)
+n2 -[#911eb4]> n2 : <font color = #911eb4> \n<font color =#911eb4>ControlMsg ? [ 1 , 1 ] @(z_141 + z_165 + \n<font color =#911eb4>z_229 + z_33 + z_45 + z_497 + z_565 + z_621)
+n3 -[#800000]> n3 : <font color = #800000> \n<font color =#800000>DataMsg1 ? { 1 , FRAGMENT_0 , 0 } @(z_186 + \n<font color =#800000>z_198 + z_258 + z_502 + z_506 + z_62 + z_658 \n<font color =#800000>+ z_70)
+n4 -[#808000]> n2 : <font color = #808000> \n<font color =#808000>ControlMsg ! [ 0 , 0 ] @(z_511 + z_515 + \n<font color =#808000>z_563 + z_687 + z_691)
+n2 -[#e6194b]> n3 : <font color = #e6194b> \n<font color =#e6194b>DataMsg1 ! { 1 , FRAGMENT_0 , 0 } @(z_141 + \n<font color =#e6194b>z_165 + z_229 + z_33 + z_45 + z_497 + z_565 + \n<font color =#e6194b>z_621 + z_745 + z_781)
+n3 -[#e6194b]> n3 : <font color = #e6194b> \n<font color =#e6194b>DataMsg1 ? { 1 , FRAGMENT_0 , 0 } @(z_186 + \n<font color =#e6194b>z_198 + z_258 + z_502 + z_506 + z_62 + z_658 \n<font color =#e6194b>+ z_70 + z_806)
+n2 -[#3cb44b]> n3 : <font color = #3cb44b> \n<font color =#3cb44b>DataMsg2 ! { 2 , FRAGMENT_1 , 1 } @(z_141 + \n<font color =#3cb44b>z_165 + z_229 + z_33 + z_45 + z_497 + z_565 + \n<font color =#3cb44b>z_621 + z_745 + z_781 + z_825)
+<[#black]- n4 : Log ! TERMIN_CM @(z_511 + \n<font color =>z_515 + z_563 + z_687 + z_691 + z_871 + z_875)
+<[#black]- n4 : Log ! TERMIN_DM1 @(z_1055 + \n<font color =>z_1059 + z_511 + z_515 + z_563 + z_687 + \n<font color =>z_691 + z_871 + z_875 + z_935 + z_939 + z_995 \n<font color =>+ z_999)
+<[#black]- n4 : Log ! TERMIN_DM2 @(z_1055 + \n<font color =>z_1059 + z_1115 + z_1119 + z_1171 + z_1175 + \n<font color =>z_1227 + z_1231 + z_511 + z_515 + z_563 + \n<font color =>z_687 + z_691 + z_871 + z_875 + z_935 + z_939 \n<font color =>+ z_995 + z_999)
+
+
+@enduml
