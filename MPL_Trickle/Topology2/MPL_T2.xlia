@@ -478,7 +478,6 @@ system< and > Trickle {
 		var INFO_KIND mess;
 		var int[BUFF_SIZE] seqBuff;
 		var DATA_MESSAGE dataMessage;
-		var time< pos_rational > timeStamp;
 		
 	@region:
 		state<initial> startup {
@@ -487,201 +486,213 @@ system< and > Trickle {
 		state o#0 {
 			@enable{
 				uncoveredExit = 0;
-				
-				L = 0;
 			}
-			transition n1_out_CM --> o#1 {
+			transition n1_out_Log --> o#1 {
 				@obs {
-					output spec::Trickle.n1.ControlMsg(seqBuff, timeStamp);
-				} [ seqBuff[0]==1 && seqBuff[1]==1 ];
+					output spec::Trickle.n1.Log(mess, timeStamp);
+				} [ mess == INIT ];
 			}
 			transition<else> n1_out_CM_failed --> FAILED {
-				guard( uncoveredExit == L );
-				exit( "Unfound Trace point< output n1->ControlMsg >" );
+				guard( uncoveredExit > 1 );
+				exit( "Unfound Trace point< output n1->Log >" );
 			}
 		}
 		state o#1 {
 			@enable{
 				uncoveredExit = 0;
 			}
-			transition n2_in_CM --> o#2 {
+			transition n2_out_Log --> o#2 {
 				@obs {
-					input spec::Trickle.n2.ControlMsg(seqBuff, timeStamp);
-				} [ seqBuff[0]==1 && seqBuff[1]==1 ];
+					output spec::Trickle.n2.Log(mess);
+				} [ mess == INIT ];
 			}
-			transition<else> n2_in_CM_failed --> FAILED {
-				guard( uncoveredExit == L );
-				exit( "Unfound Trace point< input n2->ControlMsg >" );
+			transition<else> n2_out_CM_failed --> FAILED {
+				guard( uncoveredExit > 1 );
+				exit( "Unfound Trace point< output n2->Log >" );
 			}
 		}
 		state o#2 {
 			@enable{
 				uncoveredExit = 0;
 			}
-			transition n3_in_CM --> o#3 {
+			transition n3_out_Log --> o#3 {
 				@obs {
-					input spec::Trickle.n3.ControlMsg(seqBuff, timeStamp);
-				} [ seqBuff[0]==1 && seqBuff[1]==1 ];
+					output spec::Trickle.n3.Log(mess);
+				} [ mess == INIT ];
 			}
-			transition<else> n3_in_CM_failed --> FAILED {
-				guard( uncoveredExit == L );
-				exit( "Unfound Trace point< input n3->ControlMsg >" );
+			transition<else> n3_out_CM_failed --> FAILED {
+				guard( uncoveredExit > 1 );
+				exit( "Unfound Trace point< output n3->Log >" );
 			}
 		}
 		state o#3 {
 			@enable{
 				uncoveredExit = 0;
-				
-				L = 3;
 			}
-			transition n1_out_DM --> o#4 {
+			transition n4_out_Log --> o#4 {
 				@obs {
-					output spec::Trickle.n1.DataMsg1(dataMessage, timeStamp);
-				} [ dataMessage.seq == 1 ];
+					output spec::Trickle.n4.Log(mess);
+				} [ mess == INIT ];
 			}
-			transition<else> n1_out_DM_failed --> FAILED {
-				guard( uncoveredExit == L );
-				exit( "Unfound Trace point< output n1->DataMsg1 >" );
+			transition<else> n4_out_CM_failed --> FAILED {
+				guard( uncoveredExit > 1 );
+				exit( "Unfound Trace point< output n4->Log >" );
 			}
 		}
 		state o#4 {
 			@enable{
 				uncoveredExit = 0;
 			}
-			transition n2_in_DM --> o#5 {
+			transition n1_out_CM --> o#5 {
 				@obs {
-					input spec::Trickle.n2.DataMsg1(dataMessage, timeStamp);
-				} [ dataMessage.seq == 1 ];
+					output spec::Trickle.n1.ControlMsg(seqBuff);
+				} [ seqBuff[0]==1 && seqBuff[1]==1 ];
 			}
-			transition<else> n2_in_DM_failed --> FAILED {
-				guard( uncoveredExit == L );
-				exit( "Unfound Trace point< input n2->DataMsg1 >" );
+			transition<else> n1_out_CM_failed --> FAILED {
+				guard( uncoveredExit > 1 );
+				exit( "Unfound Trace point< output n1->ControlMsg >" );
 			}
 		}
 		state o#5 {
 			@enable{
 				uncoveredExit = 0;
 			}
-			transition n3_in_DM --> o#6 {
+			transition n2_in_CM --> o#6 {
 				@obs {
-					input spec::Trickle.n3.DataMsg1(dataMessage, timeStamp);
-				} [ dataMessage.seq == 1 ];
+					input spec::Trickle.n2.ControlMsg(seqBuff);
+				} [ seqBuff[0]==1 && seqBuff[1]==1 ];
 			}
-			transition<else> n3_in_DM_failed --> FAILED {
-				guard( uncoveredExit == L );
-				exit( "Unfound Trace point< input n3->DataMsg1 >" );
+			transition<else> n2_in_CM_failed --> FAILED {
+				guard( uncoveredExit > 1 );
+				exit( "Unfound Trace point< input n2->ControlMsg >" );
 			}
 		}
 		state o#6 {
 			@enable{
 				uncoveredExit = 0;
 			}
-			transition n1_out_DM --> o#7 {
+			transition n3_in_CM --> o#7 {
 				@obs {
-					output spec::Trickle.n1.DataMsg2(dataMessage, timeStamp);
-				} [ dataMessage.seq == 2 ];
+					input spec::Trickle.n3.ControlMsg(seqBuff);
+				} [ seqBuff[0]==1 && seqBuff[1]==1 ];
 			}
-			transition<else> n1_out_DM_failed --> FAILED {
-				guard( uncoveredExit == L );
-				exit( "Unfound Trace point< output n1->DataMsg2 >" );
+			transition<else> n3_in_CM_failed --> FAILED {
+				guard( uncoveredExit > 1 );
+				exit( "Unfound Trace point< input n3->ControlMsg >" );
 			}
 		}
 		state o#7 {
 			@enable{
 				uncoveredExit = 0;
-			}
-			transition n2_in_DM --> o#8 {
-				@obs {
-					input spec::Trickle.n2.DataMsg2(dataMessage, timeStamp);
-				} [ dataMessage.seq == 2 ];
 				
-				tguard( spec::Trickle.n2.localTime - timeStamp <= spec::Trickle.n2.DataProcess2.tau_l );
+				L = 3;
 			}
-			transition<else> n2_in_DM_failed --> FAILED {
-				guard( uncoveredExit == L );
-				exit( "Unfound Trace point< input n2->DataMsg2 >" );
+			transition n1_out_DM --> o#8 {
+				@obs {
+					output spec::Trickle.n1.DataMsg1(dataMessage);
+				} [ dataMessage.seq == 1 ];
 			}
-			transition<else> n2_in_DM_failed --> FAILED {
-				tguard( spec::Trickle.n2.localTime - timeStamp > spec::Trickle.n2.DataProcess2.tau_l );
-				exit( "Timeout Trace point< input n2->DataMsg2 >" );
+			transition<else> n1_out_DM_failed --> FAILED {
+				guard( uncoveredExit > 3 );
+				exit( "Unfound Trace point< output n1->DataMsg1 >" );
 			}
 		}
 		state o#8 {
 			@enable{
 				uncoveredExit = 0;
 			}
-			transition n3_in_DM --> o#9 {
+			transition n2_in_DM --> o#9 {
 				@obs {
-					input spec::Trickle.n3.DataMsg2(dataMessage, timeStamp);
-				} [ dataMessage.seq == 2 ];
-				
-				tguard( spec::Trickle.n3.localTime - timeStamp <= spec::Trickle.n3.ControlProcess.tau_l );
+					input spec::Trickle.n2.DataMsg1(dataMessage);
+				} [ dataMessage.seq == 1 ];
 			}
-			transition<else> n3_in_DM_failed --> FAILED {
-				guard( uncoveredExit == L );
-				exit( "Unfound Trace point< input n3->DataMsg2 >" );
-			}
-			transition<else> n3_in_DM_failed --> FAILED {
-				tguard( spec::Trickle.n3.localTime - timeStamp > spec::Trickle.n3.DataProcess2.tau_l );
-				exit( "Timeout Trace point< input n3->DataMsg2 >" );
+			transition<else> n2_in_DM_failed --> FAILED {
+				guard( uncoveredExit > 3 );
+				exit( "Unfound Trace point< input n2->DataMsg1 >" );
 			}
 		}
 		state o#9 {
 			@enable{
 				uncoveredExit = 0;
 			}
-			transition n3_out_CM --> o#10 {
+			transition n3_in_DM --> o#10 {
 				@obs {
-					output spec::Trickle.n3.ControlMsg(seqBuff, timeStamp);
-				} [ seqBuff[0]==1 && seqBuff[1]==1 ];
+					input spec::Trickle.n3.DataMsg1(dataMessage, timeStamp);
+				} [ dataMessage.seq == 1 ];
 			}
-			transition<else> n3_out_CM_failed --> FAILED {
-				guard( uncoveredExit == L );
-				exit( "Unfound Trace point< output n3->ControlMsg >" );
+			transition<else> n3_in_DM_failed --> FAILED {
+				guard( uncoveredExit > 3 );
+				exit( "Unfound Trace point< input n3->DataMsg1 >" );
 			}
 		}
 		state o#10 {
 			@enable{
 				uncoveredExit = 0;
 			}
-			transition n4_in_CM --> o#11 {
+			transition n1_out_DM --> o#11 {
 				@obs {
-					input spec::Trickle.n4.ControlMsg(seqBuff, timeStamp);
-				} [	true ];
+					output spec::Trickle.n1.DataMsg2(dataMessage, timeStamp);
+				} [ dataMessage.seq == 2 ];
 			}
-			transition<else> n4_in_CM_failed --> FAILED {
-				guard( uncoveredExit == L );
-				exit( "Unfound Trace point< input n4->ControlMsg >" );
+			transition<else> n1_out_DM_failed --> FAILED {
+				guard( uncoveredExit > 3 );
+				exit( "Unfound Trace point< output n1->DataMsg2 >" );
 			}
 		}
 		state o#11 {
 			@enable{
 				uncoveredExit = 0;
-				
-				L = 4;
 			}
-			transition n4_out_CM --> o#12 {
+			transition n2_in_DM --> o#12 {
 				@obs {
-					output spec::Trickle.n4.ControlMsg(seqBuff, timeStamp);
-				} [ seqBuff[0]==0 && seqBuff[1]==0 ];
+					input spec::Trickle.n2.DataMsg2(dataMessage, timeStamp);
+				} [ dataMessage.seq == 2 ];
 			}
-			transition<else> n4_out_CM_failed --> FAILED {
-				guard( uncoveredExit == L );
-				exit( "Unfound Trace point< output n4->ControlMsg >" );
+			transition<else> n2_in_DM_failed --> FAILED {
+				guard( uncoveredExit > 3 );
+				exit( "Unfound Trace point< input n2->DataMsg2 >" );
 			}
 		}
 		state o#12 {
 			@enable{
 				uncoveredExit = 0;
 			}
-			transition n2_out_DM --> o#13 {
+			transition n3_in_DM --> o#13 {
 				@obs {
-					output spec::Trickle.n2.DataMsg1(dataMessage, timeStamp);
-				} [ dataMessage.seq == 1 ];
+					input spec::Trickle.n3.DataMsg2(dataMessage, timeStamp);
+				} [ dataMessage.seq == 2 ];
 			}
-			transition<else> n2_out_DM_failed --> FAILED {
-				guard( uncoveredExit == L );
-				exit( "Unfound Trace point< output n2->DataMsg1 >" );
+			transition<else> n3_in_DM_failed --> FAILED {
+				guard( uncoveredExit > 3 );
+				exit( "Unfound Trace point< input n3->DataMsg2 >" );
+			}
+		}
+		state o#13 {
+			@enable{
+				uncoveredExit = 0;
+			}
+			transition n4_out_CM --> o#14 {
+				@obs {
+					output spec::Trickle.n4.ControlMsg(seqBuff);
+				} [ seqBuff[0]==0 && seqBuff[1]==0 ];
+			}
+			transition<else> n4_out_CM_failed --> FAILED {
+				guard( uncoveredExit > 5 );
+				exit( "Unfound Trace point< output n4->ControlMsg >" );
+			}
+		}
+		state o#14 {
+			@enable{
+				uncoveredExit = 0;
+			}
+			transition n4_in_CM --> o#15 {
+				@obs {
+					input spec::Trickle.n2.ControlMsg(seqBuff);
+				} [ seqBuff[0]==0 && seqBuff[1]==0 ];
+			}
+			transition<else> n4_in_CM_failed --> FAILED {
+				guard( uncoveredExit > 5 );
+				exit( "Unfound Trace point< input n4->ControlMsg >" );
 			}
 		}
 		state o#13 {
