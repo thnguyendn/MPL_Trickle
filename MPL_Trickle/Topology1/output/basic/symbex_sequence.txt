@@ -14,7 +14,7 @@ participant "n3" as n3
 participant "n4" as n4
 end box
 
-== PATH 1 ec< 43533 > ==
+== PATH 1 ec< 43334 > ==
 <[#black]- n1 : Log ! INIT, z_0 @z_0
 <[#black]- n2 : Log ! INIT, z_5 @z_5
 <[#black]- n3 : Log ! INIT, z_18 @z_18
@@ -28,17 +28,14 @@ n3 -[#4363d8]> n3 : <font color = #4363d8> DataMsg1 ? \n<font color = #4363d8>{ 
 n1 -[#f58231]> n2 : <font color = #f58231> DataMsg2 ! { 2 , FRAGMENT_1 \n<font color = #f58231>, 1 }, (z_0 + z_104 + z_200 + z_240 + z_36 + z_68) @(z_0 + z_104 + \n<font color = #f58231>z_200 + z_240 + z_36 + z_68)
 n1 -[#f58231]> n3 : <font color = #f58231> DataMsg2 ! { 2 , FRAGMENT_1 , \n<font color = #f58231>1 }, (z_0 + z_104 + z_200 + z_240 + z_36 + z_68) @(z_0 + z_104 + z_200 + \n<font color = #f58231>z_240 + z_36 + z_68)
 n3 -[#f58231]> n3 : <font color = #f58231> DataMsg2 ? { 2 \n<font color = #f58231>, FRAGMENT_1 , 1 }, (z_0 + z_104 + z_200 + z_240 + z_36 + \n<font color = #f58231>z_68) @(z_158 + z_170 + z_18 + z_290 + z_306 + z_66)
-n3 -[#911eb4]> n1 : <font color = #911eb4> DataMsg2 ! { 2 , FRAGMENT_1 , 1 \n<font color = #911eb4>}, (z_158 + z_170 + z_18 + z_290 + z_306 + z_334 + z_66) @(z_158 + z_170 + \n<font color = #911eb4>z_18 + z_290 + z_306 + z_334 + z_66)
-n3 -[#911eb4]> n4 : <font color = #911eb4> DataMsg2 ! { 2 , FRAGMENT_1 , 1 }\n<font color = #911eb4>, (z_158 + z_170 + z_18 + z_290 + z_306 + z_334 + z_66) @(z_158 + z_170 + \n<font color = #911eb4>z_18 + z_290 + z_306 + z_334 + z_66)
-n2 -[#469990]> n1 : <font color = #469990> ControlMsg ! [ 1 , 1 ], (z_113 + \n<font color = #469990>z_137 + z_245 + z_273 + z_381 + z_5 + z_61) @(z_113 + z_137 + z_245 + z_273 + \n<font color = #469990>z_381 + z_5 + z_61)
-n1 -[#911eb4]> n1 : <font color = #911eb4> DataMsg2 ? { 2 , \n<font color = #911eb4>FRAGMENT_1 , 1 }, (z_158 + z_170 + z_18 + z_290 + z_306 + z_334 \n<font color = #911eb4>+ z_66) @(z_0 + z_104 + z_200 + z_240 + z_348 + z_36 + z_460 + \n<font color = #911eb4>z_68)
-n1 -[#800000]> n2 : <font color = #800000> DataMsg1 ! { 1 , FRAGMENT_0 , 0 }, \n<font color = #800000>(z_0 + z_104 + z_200 + z_240 + z_348 + z_36 + z_460 + z_492 + z_68) @(z_0 + \n<font color = #800000>z_104 + z_200 + z_240 + z_348 + z_36 + z_460 + z_492 + z_68)
-n2 -[#808000]> n1 : <font color = #808000> DataMsg1 ! { 1 , FRAGMENT_0 , 0 }, \n<font color = #808000>(z_113 + z_137 + z_245 + z_273 + z_381 + z_5 + z_541 + z_61) @(z_113 + z_137 + \n<font color = #808000>z_245 + z_273 + z_381 + z_5 + z_541 + z_61)
-n3 -[#e6194b]> n4 : <font color = #e6194b> ControlMsg ! [ 1 , 1 ], (z_158 + z_170 + \n<font color = #e6194b>z_18 + z_290 + z_306 + z_334 + z_610 + z_66) @(z_158 + z_170 + z_18 + z_290 + z_306 \n<font color = #e6194b>+ z_334 + z_610 + z_66)
-n4 -[#911eb4]> n4 : <font color = #911eb4> DataMsg2 ? { 2 , \n<font color = #911eb4>FRAGMENT_1 , 1 }, (z_158 + z_170 + z_18 + z_290 + z_306 + z_334 + \n<font color = #911eb4>z_66) @(z_11855 + z_11867 + z_35 + z_675)
-n3 -[#3cb44b]> n4 : <font color = #3cb44b> DataMsg1 ! { 1 , FRAGMENT_0 , 0 }, (z_11930 \n<font color = #3cb44b>+ z_158 + z_170 + z_18 + z_290 + z_306 + z_334 + z_610 + z_66) @(z_11930 + z_158 + \n<font color = #3cb44b>z_170 + z_18 + z_290 + z_306 + z_334 + z_610 + z_66)
-n2 -[#800000]> n2 : <font color = #800000> DataMsg1 ? { 1 , FRAGMENT_0 \n<font color = #800000>, 0 }, (z_0 + z_104 + z_200 + z_240 + z_348 + z_36 + z_460 + z_492 + \n<font color = #800000>z_68) @(z_113 + z_11953 + z_137 + z_245 + z_273 + z_381 + z_5 + z_541 + \n<font color = #800000>z_61)
-n4 -[#3cb44b]> n4 : <font color = #3cb44b> DataMsg1 ? { 1 , FRAGMENT_0 \n<font color = #3cb44b>, 0 }, (z_11930 + z_158 + z_170 + z_18 + z_290 + z_306 + z_334 + z_610 \n<font color = #3cb44b>+ z_66) @(z_11855 + z_11867 + z_12007 + z_12019 + z_35 + z_675)
+n4 -[#911eb4]> n1 : <font color = #911eb4> ControlMsg ! [ 0 , 0 ], (z_335 \n<font color = #911eb4>+ z_35) @(z_335 + z_35)
+n3 -[#469990]> n1 : <font color = #469990> DataMsg2 ! { 2 , FRAGMENT_1 , 1 }\n<font color = #469990>, (z_158 + z_170 + z_18 + z_290 + z_306 + z_338 + z_66) @(z_158 + z_170 + \n<font color = #469990>z_18 + z_290 + z_306 + z_338 + z_66)
+n3 -[#469990]> n4 : <font color = #469990> DataMsg2 ! { 2 , FRAGMENT_1 , 1 }, \n<font color = #469990>(z_158 + z_170 + z_18 + z_290 + z_306 + z_338 + z_66) @(z_158 + z_170 + z_18 + \n<font color = #469990>z_290 + z_306 + z_338 + z_66)
+n2 -[#800000]> n1 : <font color = #800000> ControlMsg ! [ 1 , 1 ], (z_113 + \n<font color = #800000>z_137 + z_245 + z_273 + z_381 + z_5 + z_61) @(z_113 + z_137 + z_245 + z_273 + \n<font color = #800000>z_381 + z_5 + z_61)
+n1 -[#469990]> n1 : <font color = #469990> DataMsg2 ? { 2 , \n<font color = #469990>FRAGMENT_1 , 1 }, (z_158 + z_170 + z_18 + z_290 + z_306 + z_338 + \n<font color = #469990>z_66) @(z_0 + z_104 + z_200 + z_240 + z_36 + z_492 + z_616 + z_68)
+n3 -[#808000]> n4 : <font color = #808000> ControlMsg ! [ 1 , 1 ], (z_158 + z_170 \n<font color = #808000>+ z_18 + z_290 + z_306 + z_338 + z_450 + z_66 + z_734) @(z_158 + z_170 + z_18 + \n<font color = #808000>z_290 + z_306 + z_338 + z_450 + z_66 + z_734)
+n4 -[#469990]> n4 : <font color = #469990> DataMsg2 ? { 2 , \n<font color = #469990>FRAGMENT_1 , 1 }, (z_158 + z_170 + z_18 + z_290 + z_306 + z_338 + \n<font color = #469990>z_66) @(z_11223 + z_11231 + z_12135 + z_335 + z_35 + z_487)
+n3 -[#e6194b]> n4 : <font color = #e6194b> DataMsg1 ! { 1 , FRAGMENT_0 , 0 }, \n<font color = #e6194b>(z_12138 + z_158 + z_170 + z_18 + z_290 + z_306 + z_338 + z_450 + z_66 + z_734) \n<font color = #e6194b>@(z_12138 + z_158 + z_170 + z_18 + z_290 + z_306 + z_338 + z_450 + z_66 + z_734)
 
 
 @enduml
