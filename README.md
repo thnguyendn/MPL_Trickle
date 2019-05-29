@@ -4,7 +4,7 @@ This directory contains sources for modeling different elements in a Wireless Se
 
 Among these files, there is :
 - A .xlia extension(stands for eXecutable Language for Interaction & Assemblage) file (**MPL_Trickle/Topology1/MPL_T1.xlia**) for modeling nodes and interactions between them in a topology called T1
-- A workflow file (**MPL_Trickle/Topology1/workflow_All_Update_SEQ1.sew**) for executing our heuristics to cover the sequence Sel1. The objectif of this selector is to update all nodes in T1
+- A workflow file (**MPL_Trickle/Topology1/workflow_All_Update_SEQ1.sew**) for executing our heuristics to cover the sequence SEQ1. The objectif of this selector is to update all nodes in T1.
 
 
 ## Getting Started
@@ -35,7 +35,7 @@ You download this executable, then extract preferably in the same folder of your
 
 ### Execution
 
-The following serie of steps shows you how to execute the given workflow (workflow_All_Updated_SEL1.sew) and use PlantUML to visualize the result.
+The following serie of steps shows you how to execute the given workflow (workflow_All_Updated_SEQ1.sew) and use PlantUML to visualize the result.
 
 First, you execute this command in your console (Ubuntu plateform)
 
