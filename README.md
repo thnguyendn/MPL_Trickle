@@ -3,8 +3,8 @@
 This directory contains sources for modeling different elements in a Wireless Sensor Network (WSN) applying Trickle algorithm and generating scenarios. These scenarios are relevant to many elements in the network and are selected to illustrate interesting features in the WSN.
 
 Among these files, there is :
-- A .xlia extension(stands for eXecutable Language for Interaction & Assemblage) file (**MPL_Trickle/Updated_Topology1/MPL_T1.xlia**) for modeling nodes and interactions between them in a topology called T1
-- A workflow file (**MPL_Trickle/Updated_Topology1/workflow_All_Update_SEL1.sew**) for executing our heuristics to cover the sequence Sel1. The objectif of this selector is to update all nodes in T1
+- A .xlia extension(stands for eXecutable Language for Interaction & Assemblage) file (**MPL_Trickle/Topology1/MPL_T1.xlia**) for modeling nodes and interactions between them in a topology called T1
+- A workflow file (**MPL_Trickle/Topology1/workflow_All_Update_SEQ1.sew**) for executing our heuristics to cover the sequence Sel1. The objectif of this selector is to update all nodes in T1
 
 
 ## Getting Started
@@ -58,9 +58,9 @@ First, you execute PlantUML directly on a Windows or Linux plateform from the fi
 
 ![alt text](https://github.com/ngo-minh-thang-nguyen/MPL_Trickle/blob/master/documentation/figs/PlantUML.png)
 
-The last step consists of clicking on the button "Change Directory", then going to the directory which stores your result which could be readable by PlantUML. This file is stored at the location **/MPL_Trickle/Updated_Topology1/output/basic/symbex_sequence.txt**.
+The last step consists of clicking on the button "Change Directory", then going to the directory which stores your result which could be readable by PlantUML. This file is stored at the location **/MPL_Trickle/Topology1/output/basic/symbex_sequence.txt**.
 
-By default, PlantUML generates the graphical result with the extension .png. You can also generate also other formats as .svg, .pdf,... In this example, we chose to generate a .svg extension file (**/MPL_Trickle/Updated_Topology1/output/basic/symbex_sequence.svg**)
+By default, PlantUML generates the graphical result with the extension .png. You can also generate also other formats as .svg, .pdf,... In this example, we chose to generate a .svg extension file (**/MPL_Trickle/Topology1/output/basic/symbex_sequence.svg**)
 
 
 <!---## Differences between theorical models and experimentation--->
