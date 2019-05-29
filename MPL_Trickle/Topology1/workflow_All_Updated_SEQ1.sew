@@ -5,7 +5,7 @@
 // CEA - LIST
 workflow {
 	workspace [
-		root   = "C:/Users/NN245105/Desktop/Diversity_rcp/Diversity_workspace/MPL_Trickle_With_New_Connectors/MPL_Trickle/Topology1"
+		root   = "/home/thang/GitHub/MPL_Trickle/MPL_Trickle/Topology1/"
 		output = "output"
 		log    = "log"
 		debug  = "debug"

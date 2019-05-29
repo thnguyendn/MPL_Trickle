@@ -6,107 +6,108 @@ TRACE NUMBER 1
 	fired transition startup:o_startup
 	fired transition cp0_init:cp_init
 	fired transition o#0:n1_out_Log
-	delta = 83
-	OUTPUT cp0_init:Log(INIT,83)
+	delta = 123
+	OUTPUT cp0_init:Log(INIT)
 	fired transition cp0_init:cp_init
 	fired transition o#1:n2_out_Log
-	delta = 83
-	OUTPUT cp0_init:Log(INIT,83)
+	delta = 100
+	OUTPUT cp0_init:Log(INIT)
 	fired transition cp0_init:cp_init
 	fired transition o#2:n3_out_Log
-	delta = 83
-	OUTPUT cp0_init:Log(INIT,83)
+	delta = 113
+	OUTPUT cp0_init:Log(INIT)
 	fired transition cp0_init:cp_init
 	fired transition o#3:n4_out_Log
-	delta = 83
-	OUTPUT cp0_init:Log(INIT,83)
+	delta = 57
+	OUTPUT cp0_init:Log(INIT)
 	fired transition cp1:cp_sendCM
 	fired transition o#4:n1_out_CM
-	delta = 83
-	output cp1:ControlMsg([ 1 , 1 ],166)
+	delta = 35
+	output cp1:ControlMsg([ 1 , 1 ])
 	fired transition cp1:cp1_receiveCM_inconsistent
 	fired transition o#5:n2_in_CM
-	delta = 83
-	input  cp1:ControlMsg([ 1 , 1 ],166)
+	delta = 118
+	input  cp1:ControlMsg([ 1 , 1 ])
 	fired transition cp1:cp1_receiveCM_inconsistent
 	fired transition o#6:n3_in_CM
-	delta = 83
-	input  cp1:ControlMsg([ 1 , 1 ],166)
+	delta = 96
+	input  cp1:ControlMsg([ 1 , 1 ])
 	fired transition dp0:dp_init
-	delta = 83
+	delta = 5
 	fired transition dp1:dp_sendDM
 	fired transition o#7:n1_out_DM1
-	delta = 83
-	output dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 },332)
+	delta = 109
+	output dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 })
 	fired transition dp0:dp_init
-	delta = 83
+	delta = 62
 	fired transition dp1:dp1_receiveDM_consistent
 	fired transition o#8:n2_in_DM1
-	delta = 83
-	input  dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 },332)
+	delta = 102
+	input  dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 })
 	fired transition dp0:dp_init
-	delta = 83
+	delta = 93
 	fired transition dp1:dp1_receiveDM_consistent
 	fired transition o#9:n3_in_DM1
-	delta = 83
-	input  dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 },332)
+	delta = 103
+	input  dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 })
 	fired transition dp0:dp_init
-	delta = 83
+	delta = 10
 	fired transition dp1:dp_sendDM
 	fired transition o#10:n1_out_DM2
-	delta = 83
-	output dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 },498)
+	delta = 80
+	output dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 })
 	fired transition dp0:dp_init
-	delta = 83
+	delta = 125
 	fired transition dp1:dp1_receiveDM_consistent
 	fired transition o#11:n2_in_DM2
-	delta = 83
-	input  dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 },498)
+	delta = 38
+	input  dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 })
 	fired transition dp0:dp_init
-	delta = 83
+	delta = 19
 	fired transition dp1:dp1_receiveDM_consistent
 	fired transition o#12:n3_in_DM2
-	delta = 83
-	input  dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 },498)
+	delta = 0
+	input  dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 })
 	fired transition cp1:cp_sendCM
-	delta = 83
-	output cp1:ControlMsg([ 0 , 0 ],166)
+	delta = 60
+	output cp1:ControlMsg([ 1 , 1 ])
 	fired transition dp1:dp_sendDM
 	fired transition o#13:n3_out_DM2
-	delta = 83
-	output dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 },581)
-	fired transition cp1:cp_sendCM
-	delta = 83
-	output cp1:ControlMsg([ 1 , 1 ],581)
+	delta = 39
+	output dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 })
+	fired transition cp1:cp1_receiveCM_consistent
+	delta = 14
+	input  cp1:ControlMsg([ 1 , 1 ])
 	fired transition dp2:dp_resetTau
-	delta = 83
+	delta = 103
+	fired transition dp1:dp_sendDM
+	delta = 11
+	output dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 })
 	fired transition cp2:cp_resetTau
-	delta = 83
-	fired transition dp2:dp_resetTau
-	delta = 83
+	delta = 97
 	fired transition dp2:dp2_receiveDM_consistent
-	delta = 83
-	input  dp2:DataMsg2({ 2 , FRAGMENT_1 , 1 },581)
+	delta = 105
+	input  dp2:DataMsg2({ 2 , FRAGMENT_1 , 1 })
 	fired transition cp1:cp_sendCM
-	delta = 83
-	output cp1:ControlMsg([ 1 , 1 ],747)
+	delta = 42
+	output cp1:ControlMsg([ 1 , 1 ])
 	fired transition cp1:cp1_receiveCM_inconsistent
-	delta = 83
-	input  cp1:ControlMsg([ 1 , 1 ],747)
+	delta = 11
+	input  cp1:ControlMsg([ 1 , 1 ])
 	fired transition dp0:dp_init
-	delta = 83
+	delta = 73
 	fired transition dp1:dp1_receiveDM_consistent
 	fired transition o#14:n4_in_DM2
-	delta = 97
-	input  dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 },581)
+	delta = 96
+	input  dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 })
 	fired transition dp1:dp_sendDM
 	fired transition o#15:n3_out_DM1
-	delta = 97
-	output dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 },844)
+	delta = 126
+	output dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 })
 	fired transition dp0:dp_init
-	delta = 97
+	delta = 77
 	fired transition dp1:dp1_receiveDM_consistent
 	fired transition o#16:n4_in_DM1
-	delta = 97
-	input  dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 },844)
+	delta = 123
+	input  dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 })
 
