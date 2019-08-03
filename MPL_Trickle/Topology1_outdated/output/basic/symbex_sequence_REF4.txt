@@ -1,0 +1,64 @@
+@startuml
+
+skinparam note{
+	BackgroundColor White
+	BorderColor White
+}
+
+skinparam BackgroundColor transparent
+
+box "Trickle" #transparent
+participant "n1:Node" as n1
+participant "n2:Node" as n2
+participant "n3:Node" as n3
+participant "n4:Node" as n4
+end box
+
+'== PATH 1 ec< 5638 > ==
+'hnote over of n3 #yellow : n3.localPC = true
+'hnote over of n3 #yellow : n3.localPtC = true
+'hnote over of n3 #yellow : (z_2 > 0)
+<[#black]- n1 : Log ! INIT @(z_0 + z_4)
+<[#black]- n2 : Log ! INIT @(z_1 + z_9)
+hnote over of n3 #yellow : ((t_15 < 4) && (0 <= (t_15 + -2)))
+<[#black]- n3 : Log ! INIT @(z_2 + z_22)
+<[#black]- n4 : Log ! INIT @(z_3 + z_39)
+n1 -[#3cb44b]> n2 : <font color = #3cb44b> ControlMsg ! [ 1 , \n<font color = #3cb44b>1 ] @(z_0 + z_4 + z_40)
+n1 -[#3cb44b]> n3 : <font color = #3cb44b> ControlMsg ! [ 1 , 1 ]\n<font color = #3cb44b> @(z_0 + z_4 + z_40)
+n2 -[#3cb44b]> n2 : <font color = #3cb44b> \n<font color = #3cb44b>ControlMsg ? [ 1 , 1 ] @(z_1 + z_65 + z_9)
+hnote over of n3 #yellow : ((t_15 < 4) && (t_54 < 4) && (0 <= (t_15 + -2)) && (0 <= \n (t_54 + -2)) && ((z_0 + z_4 + z_40) <= (z_2 + z_22 + z_82)))
+'hnote over of n3 #yellow : ((z_82 < t_15) && ((z_0 + z_4 + z_40) <= (z_22 + z_82)) && (z_2 \n > 0) && (z_22 > 0))
+n3 -[#3cb44b]> n3 : <font color = #3cb44b> \n<font color = #3cb44b>ControlMsg ? [ 1 , 1 ] @(z_2 + z_22 + z_82)
+n1 -[#4363d8]> n2 : <font color = #4363d8> DataMsg1 ! { 1 , \n<font color = #4363d8>FRAGMENT_0 , 0 } @(z_0 + z_100 + z_136 + z_4 + z_40)
+n1 -[#4363d8]> n3 : <font color = #4363d8> DataMsg1 ! { 1 , \n<font color = #4363d8>FRAGMENT_0 , 0 } @(z_0 + z_100 + z_136 + z_4 + z_40)
+n2 -[#4363d8]> n2 : <font color = #4363d8> DataMsg1 ? \n<font color = #4363d8>{ 1 , FRAGMENT_0 , 0 } @(z_1 + z_145 + z_169 + z_65 + \n<font color = #4363d8>z_9)
+'hnote over of n3 #yellow : ((t_15 < 4) && (t_54 < 4) && (t_177 < 4) && (0 <= (t_15 + -2)) && \n (0 <= (t_54 + -2)) && (0 <= (t_177 + -2)))
+'hnote over of n3 #yellow : ((z_82 < t_15) && ((z_4 + z_40) <= (z_22 + z_82)) && (z_2 > 0) \n && (z_22 > 0) && (z_82 > 0))
+'hnote over of n3 #yellow : ((z_202 < t_177) && (z_82 < t_15) && ((z_100 + z_136 + z_4 + \n z_40) <= (z_190 + z_202 + z_22 + z_82)) && ((z_4 + \n z_40) <= (z_22 + z_82)) && (z_190 > 0) && (z_2 > 0) \n && (z_22 > 0) && (z_82 > 0))
+n3 -[#4363d8]> n3 : <font color = #4363d8> DataMsg1 ? \n<font color = #4363d8>{ 1 , FRAGMENT_0 , 0 } @(z_190 + z_2 + z_202 + z_22 + \n<font color = #4363d8>z_82)
+n1 -[#f58231]> n2 : <font color = #f58231> DataMsg2 ! { 2 , FRAGMENT_1 \n<font color = #f58231>, 1 } @(z_0 + z_100 + z_136 + z_232 + z_264 + z_4 + z_40)
+n1 -[#f58231]> n3 : <font color = #f58231> DataMsg2 ! { 2 , FRAGMENT_1 , \n<font color = #f58231>1 } @(z_0 + z_100 + z_136 + z_232 + z_264 + z_4 + z_40)
+n2 -[#f58231]> n2 : <font color = #f58231> DataMsg2 ? { 2 \n<font color = #f58231>, FRAGMENT_1 , 1 } @(z_1 + z_145 + z_169 + z_277 + z_297 \n<font color = #f58231>+ z_65 + z_9)
+hnote over of n3 #yellow : ((t_15 < 4) && (t_54 < 4) && (t_177 < 4) && (t_311 < 4) && (0 <= (t_15 + \n -2)) && (0 <= (t_54 + -2)) && (0 <= (t_177 + -2)) && (0 \n <= (t_311 + -2)))
+hnote over of n3 #yellow : ((z_202 < t_177) && (z_82 < t_15) && ((z_100 + z_136 + z_4 + z_40) <= \n (z_190 + z_202 + z_22 + z_82)) && ((z_4 + z_40) <= (z_22 \n + z_82)) && (z_190 > 0) && (z_2 > 0) && (z_202 > 0) && \n (z_22 > 0) && (z_82 > 0))
+hnote over of n3 #yellow : ((z_202 < t_177) && (z_330 < t_311) && (z_82 < t_15) && ((z_100 + z_136 + \n z_232 + z_264 + z_4 + z_40) <= (z_190 + z_202 + z_22 + \n z_322 + z_330 + z_82)) && ((z_100 + z_136 + z_4 + z_40) \n <= (z_190 + z_202 + z_22 + z_82)) && ((z_4 + z_40) <= \n (z_22 + z_82)) && (z_190 > 0) && (z_2 > 0) && (z_202 > 0) \n && (z_22 > 0) && (z_322 > 0) && (z_82 > 0))
+n3 -[#f58231]> n3 : <font color = #f58231> DataMsg2 ? { 2 \n<font color = #f58231>, FRAGMENT_1 , 1 } @(z_190 + z_2 + z_202 + z_22 + z_322 + \n<font color = #f58231>z_330 + z_82)
+hnote over of n3 #yellow : n3.localPtC = (((z_202 + z_322 \n + z_330 + z_366) == t_177) && (z_202 < t_177) && (z_330 < \n t_311) && (z_82 < t_15) && ((z_100 + z_136 + z_232 + \n z_264 + z_4 + z_40) <= (z_190 + z_202 + z_22 + z_322 + \n z_330 + z_82)) && ((z_100 + z_136 + z_4 + z_40) <= (z_190 \n + z_202 + z_22 + z_82)) && ((z_4 + z_40) <= (z_22 + z_82))\n  && (z_190 > 0) && (z_2 > 0) && (z_202 > 0) && (z_22 > 0) \n && (z_322 > 0) && (z_330 > 0) && (z_82 > 0))
+n3 -[#911eb4]> n4 : <font color = #911eb4> DataMsg1 ! { 1 , FRAGMENT_0 , 0 \n<font color = #911eb4>} @(z_190 + z_2 + z_202 + z_22 + z_322 + z_330 + z_366 + z_82)
+hnote over of n3 #yellow : n3.localPtC = (((z_202 + z_322 + \n z_330 + z_366) == t_177) && ((z_330 + z_366 + z_378) == \n t_311) && (z_202 < t_177) && (z_330 < t_311) && (z_82 < \n t_15) && ((z_100 + z_136 + z_232 + z_264 + z_4 + z_40) <= \n (z_190 + z_202 + z_22 + z_322 + z_330 + z_82)) && ((z_100 + \n z_136 + z_4 + z_40) <= (z_190 + z_202 + z_22 + z_82)) && \n ((z_4 + z_40) <= (z_22 + z_82)) && (z_190 > 0) && (z_2 > 0) \n && (z_202 > 0) && (z_22 > 0) && (z_322 > 0) && (z_330 > 0) \n && (z_366 > 0) && (z_82 > 0))
+n3 -[#469990]> n1 : <font color = #469990> DataMsg2 ! { 2 , FRAGMENT_1 , 1 } \n<font color = #469990>@(z_190 + z_2 + z_202 + z_22 + z_322 + z_330 + z_366 + z_378 + z_82)
+n3 -[#469990]> n2 : <font color = #469990> DataMsg2 ! { 2 , FRAGMENT_1 , 1 } \n<font color = #469990>@(z_190 + z_2 + z_202 + z_22 + z_322 + z_330 + z_366 + z_378 + z_82)
+n3 -[#469990]> n4 : <font color = #469990> DataMsg2 ! { 2 , FRAGMENT_1 , 1 } \n<font color = #469990>@(z_190 + z_2 + z_202 + z_22 + z_322 + z_330 + z_366 + z_378 + z_82)
+n1 -[#469990]> n1 : <font color = #469990> DataMsg2 ? { 2 , \n<font color = #469990>FRAGMENT_1 , 1 } @(z_0 + z_100 + z_136 + z_232 + z_264 + z_4 + \n<font color = #469990>z_40 + z_408)
+n2 -[#469990]> n2 : <font color = #469990> DataMsg2 ? { 2 , \n<font color = #469990>FRAGMENT_1 , 1 } @(z_1 + z_145 + z_169 + z_277 + z_297 + z_469 + \n<font color = #469990>z_65 + z_9)
+hnote over of n3 #yellow : n3.localPtC = (((z_190 + z_202 + z_322 \n + z_330 + z_366 + z_378 + z_530) == t_54) && ((z_202 + z_322 + \n z_330 + z_366) == t_177) && ((z_330 + z_366 + z_378) == t_311) && \n (z_202 < t_177) && (z_330 < t_311) && (z_82 < t_15) && ((z_100 + \n z_136 + z_232 + z_264 + z_4 + z_40) <= (z_190 + z_202 + z_22 + \n z_322 + z_330 + z_82)) && ((z_100 + z_136 + z_4 + z_40) <= (z_190 \n + z_202 + z_22 + z_82)) && ((z_4 + z_40) <= (z_22 + z_82)) && \n (z_190 > 0) && (z_2 > 0) && (z_202 > 0) && (z_22 > 0) && (z_322 > \n 0) && (z_330 > 0) && (z_366 > 0) && (z_378 > 0) && (z_82 > 0))
+n3 -[#800000]> n4 : <font color = #800000> ControlMsg ! [ 1 , 1 ] @(z_190 + z_2 + \n<font color = #800000>z_202 + z_22 + z_322 + z_330 + z_366 + z_378 + z_530 + z_82)
+n4 -[#800000]> n4 : <font color = #800000> ControlMsg ? [ 1 , 1 ] \n<font color = #800000>@(z_3 + z_39 + z_491 \n<font color = #800000>+ z_527 + z_583)
+n4 -[#469990]> n4 : <font color = #469990> DataMsg2 ? { 2 , \n<font color = #469990>FRAGMENT_1 , 1 } \n<font color = #469990>@(z_1551 + z_3 +\n<font color = #469990> z_39 + z_491 +\n<font color = #469990> z_527 + z_583 + \n<font color = #469990>z_587)
+hnote over of n3 #yellow : n3.localPC = ((t_15 < 4) && (t_54 < 4) \n && (t_1305 < 8) && (t_177 < 4) && (t_311 < 4) && (0 <= (t_15 + -2)) \n && (0 <= (t_54 + -2)) && (0 <= (t_1305 + -4)) && (0 <= (t_177 + -2))\n  && (0 <= (t_311 + -2)))
+hnote over of n3 #yellow : n3.localPtC = (((z_1558 + z_202 + z_322 \n + z_330 + z_366 + z_378 + z_530) == 4) && ((z_190 + z_202 + z_322 + \n z_330 + z_366 + z_378 + z_530) == t_54) && ((z_202 + z_322 + z_330 \n + z_366) == t_177) && ((z_330 + z_366 + z_378) == t_311) && (z_202 \n < t_177) && (z_330 < t_311) && (z_82 < t_15) && ((z_100 + z_136 + \n z_232 + z_264 + z_4 + z_40) <= (z_190 + z_202 + z_22 + z_322 + \n z_330 + z_82)) && ((z_100 + z_136 + z_4 + z_40) <= (z_190 + z_202 + \n z_22 + z_82)) && ((z_4 + z_40) <= (z_22 + z_82)) && ((z_1558 + \n z_202 + z_322 + z_330 + z_366 + z_378 + z_530) > t_177) && (z_190 > \n 0) && (z_2 > 0) && (z_202 > 0) && (z_22 > 0) && (z_322 > 0) && \n (z_330 > 0) && (z_366 > 0) && (z_378 > 0) && (z_530 > 0) && (z_82 > \n 0))
+hnote over of n3 #yellow : n3.localPtC = (((z_1558 + z_202 + z_322 \n + z_330 + z_366 + z_378 + z_530) == 4) && ((z_190 + z_202 + z_322 + \n z_330 + z_366 + z_378 + z_530) == t_54) && ((z_202 + z_322 + z_330 \n + z_366) == t_177) && ((z_330 + z_366 + z_378) == t_311) && (z_1582 \n == t_1305) && (z_202 < t_177) && (z_330 < t_311) && (z_82 < t_15) \n && ((z_100 + z_136 + z_232 + z_264 + z_4 + z_40) <= (z_190 + z_202 \n + z_22 + z_322 + z_330 + z_82)) && ((z_100 + z_136 + z_4 + z_40) <= \n (z_190 + z_202 + z_22 + z_82)) && ((z_4 + z_40) <= (z_22 + z_82)) \n && ((z_1558 + z_202 + z_322 + z_330 + z_366 + z_378 + z_530) > \n t_177) && (z_1558 > 0) && (z_190 > 0) && (z_2 > 0) && (z_202 > 0) \n && (z_22 > 0) && (z_322 > 0) && (z_330 > 0) && (z_366 > 0) && \n (z_378 > 0) && (z_530 > 0) && (z_82 > 0))
+n4 -[#911eb4]> n4 : <font color = #911eb4> DataMsg1 ? { 1 , \n<font color = #911eb4>FRAGMENT_0 , 0 } \n<font color = #911eb4>@(z_1551 + z_1555 +\n<font color = #911eb4> z_1631 + z_3 + z_39 \n<font color = #911eb4>+ z_491 + z_527 +\n<font color = #911eb4> z_583 + z_587)
+
+
+@enduml

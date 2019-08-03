@@ -1,0 +1,279 @@
+@sew< workflow , 1.0 >:
+
+// Symbolic Execution Workflow
+// Diversity Tool Configuration
+// CEA - LIST
+workflow {
+	workspace [
+		root   = "/home/thang/Dropbox/Implementation_Diversity/Diversity_workspace/MPL_Trickle_With_New_Connectors/APSEC/Topology2_outdated"
+		output = "output"
+		log    = "log"
+		debug  = "debug"
+	] // end workspace
+	director behavior#selection 'as main execution objective' {
+		manifest [
+			autoconf  = true
+			autostart = true
+		] // end manifest
+		project 'path of input model' [
+			source = "."
+			model  = "MPL_T2_outdated.xlia"
+		] // end project
+		supervisor {
+			limit 'of graph exploration' [
+				step = -1
+				eval = -1
+			] // end limit
+			queue 'defining the exploration/search strategy' [
+				strategy = 'WEIGHT#BREADTH_FIRST_SEARCH'
+				heuristic = true
+			] // end queue
+			redundancy 'detection strategy' [
+				loop#detection#trivial = true
+			] // end redundancy
+			console [
+				format = "\nstep:%1% , context:%2% , height:%3% , width:%4%"
+				report = "\nstop:%1% , context:%2% , height:%3% , width:%4%\n"
+			] // end console
+		}
+		worker [
+			coverage#behavior behavior_coverage {
+				property [
+					stop  = true
+					slice = true
+					heuristic = true
+					scope = 'GLOBALLY'
+					scheduler = '|;|'//'|;|'
+				] // end property
+				trace [
+					
+					state = 'Observer->o#1'
+					state = 'Observer->o#2'
+					state = 'Observer->o#3'
+					state = 'Observer->o#4'
+					state = 'Observer->o#5'
+					state = 'Observer->o#6'
+					state = 'Observer->o#7'
+					state = 'Observer->o#8'
+					state = 'Observer->o#9'
+					state = 'Observer->o#10'
+					state = 'Observer->o#11'
+					state = 'Observer->o#12'
+					state = 'Observer->o#13'
+					transition = 'n3.ControlProcess->cp1.cp_sendCM'
+					transition = 'n4.ControlProcess->cp1.cp1_receiveCM_inconsistent'
+					state = 'Observer->o#14'
+//					state = 'Observer->o#15'
+					
+					transition = 'n3.DataProcess1->dp1.dp1_receiveDM_consistent'
+					transition = 'n3.DataProcess1->dp1.dp1_receiveDM_consistent'
+					transition = 'n3.DataProcess1->dp1.dp1_reach_k'
+
+//					state = 'Observer->o#16'
+					state = 'Observer->o#17'
+//					state = 'Observer->o#18'
+					state = 'Observer->o#19'
+
+					transition = 'n4.DataProcess1->dp1.dp1_reach_k'
+					
+					state = 'Observer->o#20'
+
+//					transition = 'n4.DataProcess2->dp1.dp1_reach_k'
+//					
+//					state = 'Observer->PASS'
+					
+					formula = (spec::Trickle.n4.undef_DM1
+							&& spec::Trickle.n4.undef_DM2)
+					
+				] // end trace
+				heuristic [
+					hit#consecutive = false
+					hit#folding = true
+					hit#lucky   = false
+					hit#max     = false
+					hit#final   = true
+					jump#slice  = false
+					jump#height = 2
+					jump#trials#limit = 40
+					hit#count  = 1
+					jump#count = 1
+				] // end heuristic
+				console [
+					format = " , coverage: %1% / %2%"
+				] // end console
+			}
+			serializer#symbex#trace#sequencediagram basic_trace_generator {
+				property [
+					solver = 'Z3'
+					format = 'SEQUENCE_DIAGRAM'
+					info#selection = 'ALL'
+					data#selection = 'MODIFIED'
+					numerizer = 'NONE'
+					normalize = true
+					print#initial#values = true
+					print#lifelines = false
+					leaf#header#position = false
+					path#selection#verdict = 'PASS'
+				] // end property
+				trace [
+					//See full grammar of [Trace Specification] at the end of this generated file
+					input#env = '[*]'
+					output#env = '[*]'
+					output = '[*]'
+					input = '[*]'
+
+					line#wrap#width = '[*]';
+					
+					variable = 'n3.localPC'
+					
+					variable = 'n3.DataProcess1.c'
+					
+					variable = 'n4.localPC'
+					
+//					path#condition = '[*]'
+//					node#condition = '[*]'
+//					path#timed#condition = '[*]'
+				] // end trace
+				format [
+					line#wrap#width = 45
+					
+					line#wrap#separator = "\n"
+					
+					participant = "participant %1%\n"
+					
+					assign = "hnote over of %2% #yellow : %2%.%3% = %4%\n"
+					
+					value#params#begin = ""
+					value#params#separator = ", "
+					value#params#end = ""
+					
+					input#env = "-[#black]> %6% : %3% ? %4% @%9%\n"
+					input = "%6% -[%8%]> %6% : <font color = %8%> %3% ? %4% @%9%\n"
+					output#env = "<[#black]- %5% : %3% ! %4% @%9%\n"
+					output = "%5% -[%8%]> %6% : <font color = %8%> %3% ! %4% @%9%\n"
+					
+					node#condition = "\nnote over of %2% #pink : NC : %1%\n"					
+					node#timed#condition = "\nnote over of %2% #9ACD32 : NtC : %1%\n"
+					
+					path#condition = "\nnote over %3%, %4% #pink : PC : %1%\n"
+					path#timed#condition = "\nnote over %3%, %4% #9ACD32 : PtC : %1%\n"
+				] // end format
+				vfs [
+					folder = "basic"
+					file   = "symbex_sequence.txt"
+				] // end vfs
+			}
+		] // end worker
+		output 'standard analysis file' [
+			filename = 'MPL_%1%'
+			specification = 'MPL.xlia'
+			executable = 'MPL.fexe'
+			initialization = 'MPL.fet'
+			scenarii = 'MPL.fscn'
+		] // end output
+		debug 'analysis file at different stage' [
+			filename = 'MPL_%1%'
+			parsing = 'MPL_parsed.xlia'
+			compilation = 'MPL_compiled.fexe'
+			execution = 'MPL.fet'
+		] // end debug
+	}
+	symbex 'option' [
+		name_id_separator = "_"   // default "#"
+		newfresh_param_name_pid = false
+		pretty_printer_var_name = true   // default false
+		
+		time_name_id = 'localTime'
+//		time_name_id = '$time'
+		time_initial_value = 0
+		delta_name_id = "z"
+		
+		node_condition_enabled = false   // default false
+		separation_of_pc_disjunction = false
+		check_pathcondition_satisfiability = true
+		constraint_solver = 'CVC4'  // Z3
+	] // end symbex
+	console [
+		verbose = 'MINIMUM'
+	] // end console
+}
+
+//EOF of @sew< workflow , 1.0 >:
+
+/*
+# Grammar Reference
+
+## Trace Specification
+- [*] , use for ANY element
+- com_element_id ::= <port_name_id> | <signal_name_id>
+- com = <com_element_id>
+- input = <com_element_id>
+- output = <com_element_id>
+- input#env = <com_element_id>
+- output#env = <com_element_id>
+
+- variable = <variable_name_id>
+- newfresh = <variable_name_id>
+- state = <state_name_id>
+- transition = <transition_name_id>
+- statemachine = <statemachine_name_id>
+
+
+## Trace Format Specification
+- line#wrap#width = 80
+- line#wrap#separator = "\n\	"
+
+// %1% --> ec#id
+// %2% --> ec#eval
+// %3% --> ec#hight
+// %4% --> ec#width
+// %5% --> ec#weight
+// %6% --> statemachine configuration i.e. control node
+- context#ufid = "ctx< %1% > %6%"
+
+// %1% --> trace number
+// %2% --> execution context leaf identifier
+- file#header = "TRACE NUMBER %1%"
+- file#begin  = ""
+- file#end    = ""
+
+// %1% --> trace number
+// %2% --> execution context leaf identifier
+- testcase#header = "TRACE NUMBER %1%"
+- testcase#begin  = ""
+- testcase#end    = ""
+- testcase#end    = ""
+- init#begin = "\t// Initialization parameter values:"
+- init#end   = "\n"
+
+// %1% --> string message
+// %2% --> execution context identifier
+- comment   = "//%1%"
+- separator = "%1%"
+- newline   = "\n%1%"
+
+// %1% --> step identifier
+// %2% --> execution context identifier
+- step#begin = "\t#step#begin %1%"
+- step#end   = "\t#step#end %1%"
+
+// %1% --> condition
+// %2% --> execution context identifier
+- path#condition = "\tPC: %1%"
+- path#timed#condition = "\tPtC: %1%"
+- node#condition = "\tNC: %1%"
+- node#timed#condition = "\tNtC: %1%"
+
+// %1% --> machine runtime pid
+// %2% --> machine container identifier
+// %3% --> port | signal | variable | machine | transition | routine
+// %4% --> value
+- time   = "\t%4%"
+- assign = "\t%2%:%3% = %4%"
+- newfresh = "\tnewfresh %2%->%3%( %4% )"
+- input  = "\tinput  %2%->%3%%4%"
+- output = "\toutput %2%->%3%%4%"
+- input#env  = "\tINPUT  %2%->%3%%4%"
+- output#env = "\tOUTPUT %2%->%3%%4%"
+
+*/

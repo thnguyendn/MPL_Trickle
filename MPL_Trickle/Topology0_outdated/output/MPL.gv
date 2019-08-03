@@ -1,0 +1,321 @@
+digraph "Trickle" {
+compound = true;
+fontsize = 12
+ subgraph "cluster_spec::Trickle" {
+  label = "SYSTEM spec::Trickle"
+
+  subgraph "cluster_spec::Trickle.Node" {
+   label = "Node"
+   style=bold;
+
+   "spec::Trickle.Node"
+   [
+    label = "Node"
+    shape=point, style=invisible, color=white
+   ];
+
+   "spec::Trickle.Node#parameters"
+   [
+    label = "|{Parameters: Input|DATA_MESSAGE[ 2 ] my_buff\l
+FRAGMENT[ 2 ] firmware\l
+integer[ 2 ] myseq_buff\l
+boolean[ 2 ] mydp_run\l
+}|"
+    shape=Mrecord, style=bold, color=blue
+   ];
+
+   subgraph "cluster_spec::Trickle.Node.ControlProcess" {
+    label = "ControlProcess"
+    style=dashed;
+
+    "spec::Trickle.Node.ControlProcess"
+    [
+     label = "ControlProcess"
+     shape=point, style=invisible, color=white
+    ];
+
+    "spec::Trickle.Node.ControlProcess.cp0_init"
+    [
+     label = "cp0_init"
+     shape=oval, style="filled", fillcolor=green
+    ];
+
+    "spec::Trickle.Node.ControlProcess.cp0_init" -> "spec::Trickle.Node.ControlProcess.cp0" [ label = "cp_init" ];
+
+    "spec::Trickle.Node.ControlProcess.cp0"
+    [
+     label = "cp0"
+     shape=ellipse, style="bold,filled", color=skyblue
+    ];
+
+    "spec::Trickle.Node.ControlProcess.cp0" -> "spec::Trickle.Node.ControlProcess.cp1" [ label = "cp_init" ];
+
+    "spec::Trickle.Node.ControlProcess.cp1"
+    [
+     label = "cp1"
+     shape=ellipse, style="bold,filled", color=skyblue
+    ];
+
+    "spec::Trickle.Node.ControlProcess.cp1" -> "spec::Trickle.Node.ControlProcess.cp2" [ label = "cp_sendCM" ];
+
+    "spec::Trickle.Node.ControlProcess.cp1" -> "spec::Trickle.Node.ControlProcess.cp1" [ label = "cp1_receiveCM_consistent" ];
+
+    "spec::Trickle.Node.ControlProcess.cp1" -> "spec::Trickle.Node.ControlProcess.cp1" [ label = "cp1_receiveCM_inconsistent" ];
+
+    "spec::Trickle.Node.ControlProcess.cp1" -> "spec::Trickle.Node.ControlProcess.cp3" [ label = "cp_CTRL_EXPIR" ];
+
+    "spec::Trickle.Node.ControlProcess.cp1" -> "spec::Trickle.Node.ControlProcess.cp2" [ label = "cp1_reach_k" ];
+
+    "spec::Trickle.Node.ControlProcess.cp2"
+    [
+     label = "cp2"
+     shape=ellipse, style="bold,filled", color=skyblue
+    ];
+
+    "spec::Trickle.Node.ControlProcess.cp2" -> "spec::Trickle.Node.ControlProcess.cp1" [ label = "cp_resetTau" ];
+
+    "spec::Trickle.Node.ControlProcess.cp2" -> "spec::Trickle.Node.ControlProcess.cp2" [ label = "cp2_receiveCM_consistent" ];
+
+    "spec::Trickle.Node.ControlProcess.cp2" -> "spec::Trickle.Node.ControlProcess.cp1" [ label = "cp2_receiveCM_inconsistent" ];
+
+    "spec::Trickle.Node.ControlProcess.cp3"
+    [
+     label = "cp3"
+     shape=octagon, style="bold,filled", fillcolor=red
+    ];
+   }
+
+   subgraph "cluster_spec::Trickle.Node.DataProcess" {
+    label = "DataProcess"
+    style=dashed;
+
+    "spec::Trickle.Node.DataProcess"
+    [
+     label = "DataProcess"
+     shape=point, style=invisible, color=white
+    ];
+
+    "spec::Trickle.Node.DataProcess#parameters"
+    [
+     label = "|{Parameters: Input|integer mySeq\l
+}|"
+     shape=Mrecord, style=bold, color=blue
+    ];
+
+    "spec::Trickle.Node.DataProcess.dp0"
+    [
+     label = "dp0"
+     shape=ellipse, style="bold,filled", fillcolor=green
+    ];
+
+    "spec::Trickle.Node.DataProcess.dp0" -> "spec::Trickle.Node.DataProcess.dp1" [ label = "dp_init" ];
+
+    "spec::Trickle.Node.DataProcess.dp1"
+    [
+     label = "dp1"
+     shape=ellipse, style="bold,filled", color=skyblue
+    ];
+
+    "spec::Trickle.Node.DataProcess.dp1" -> "spec::Trickle.Node.DataProcess.dp2" [ label = "dp_sendDM" ];
+
+    "spec::Trickle.Node.DataProcess.dp1" -> "spec::Trickle.Node.DataProcess.dp1" [ label = "dp1_receiveDM_consistent" ];
+
+    "spec::Trickle.Node.DataProcess.dp1" -> "spec::Trickle.Node.DataProcess.dp1" [ label = "dp1_receiveDM_inconsistent" ];
+
+    "spec::Trickle.Node.DataProcess.dp1" -> "spec::Trickle.Node.DataProcess.dp3" [ label = "dp1_DATA_EXPIR" ];
+
+    "spec::Trickle.Node.DataProcess.dp1" -> "spec::Trickle.Node.DataProcess.dp2" [ label = "dp1_reach_k" ];
+
+    "spec::Trickle.Node.DataProcess.dp2"
+    [
+     label = "dp2"
+     shape=ellipse, style="bold,filled", color=skyblue
+    ];
+
+    "spec::Trickle.Node.DataProcess.dp2" -> "spec::Trickle.Node.DataProcess.dp1" [ label = "dp_resetTau" ];
+
+    "spec::Trickle.Node.DataProcess.dp2" -> "spec::Trickle.Node.DataProcess.dp2" [ label = "dp2_receiveDM_consistent" ];
+
+    "spec::Trickle.Node.DataProcess.dp2" -> "spec::Trickle.Node.DataProcess.dp1" [ label = "dp2_receiveDM_inconsistent" ];
+
+    "spec::Trickle.Node.DataProcess.dp3"
+    [
+     label = "dp3"
+     shape=octagon, style="bold,filled", fillcolor=red
+    ];
+   }
+
+   "spec::Trickle.Node.DataProcess1"
+   [
+    label = "|{model: DataProcess|DataProcess1}|"
+    shape=Mrecord, style=bold, color=orange
+   ];
+
+   "spec::Trickle.Node.DataProcess2"
+   [
+    label = "|{model: DataProcess|DataProcess2}|"
+    shape=Mrecord, style=bold, color=orange
+   ];
+  }
+
+  subgraph "cluster_spec::Trickle.Observer" {
+   label = "Observer"
+   style=dashed;
+
+   "spec::Trickle.Observer"
+   [
+    label = "Observer"
+    shape=point, style=invisible, color=white
+   ];
+
+   "spec::Trickle.Observer.startup"
+   [
+    label = "startup"
+    shape=oval, style="filled", fillcolor=green
+   ];
+
+   "spec::Trickle.Observer.startup" -> "spec::Trickle.Observer.o#0" [ label = "o_startup" ];
+
+   "spec::Trickle.Observer.o#0"
+   [
+    label = "o#0"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.Observer.o#0" -> "spec::Trickle.Observer.o#1" [ label = "n1_out_Log" ];
+
+   "spec::Trickle.Observer.o#0" -> "spec::Trickle.Observer.FAILED" [ label = "n1_out_Log_failed", color=orange ];
+
+   "spec::Trickle.Observer.o#1"
+   [
+    label = "o#1"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.Observer.o#1" -> "spec::Trickle.Observer.o#2" [ label = "n2_out_Log" ];
+
+   "spec::Trickle.Observer.o#1" -> "spec::Trickle.Observer.FAILED" [ label = "n2_out_Log_failed", color=orange ];
+
+   "spec::Trickle.Observer.o#2"
+   [
+    label = "o#2"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.Observer.o#2" -> "spec::Trickle.Observer.o#3" [ label = "n3_out_Log" ];
+
+   "spec::Trickle.Observer.o#2" -> "spec::Trickle.Observer.FAILED" [ label = "n3_out_Log_failed", color=orange ];
+
+   "spec::Trickle.Observer.o#3"
+   [
+    label = "o#3"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.Observer.o#3" -> "spec::Trickle.Observer.o#4" [ label = "n1_out_CM" ];
+
+   "spec::Trickle.Observer.o#3" -> "spec::Trickle.Observer.FAILED" [ label = "n1_out_CM_failed", color=orange ];
+
+   "spec::Trickle.Observer.o#4"
+   [
+    label = "o#4"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.Observer.o#4" -> "spec::Trickle.Observer.o#5" [ label = "n2_in_CM" ];
+
+   "spec::Trickle.Observer.o#4" -> "spec::Trickle.Observer.FAILED" [ label = "n2_in_CM_failed", color=orange ];
+
+   "spec::Trickle.Observer.o#5"
+   [
+    label = "o#5"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.Observer.o#5" -> "spec::Trickle.Observer.o#6" [ label = "n3_in_CM" ];
+
+   "spec::Trickle.Observer.o#5" -> "spec::Trickle.Observer.FAILED" [ label = "n3_in_CM_failed", color=orange ];
+
+   "spec::Trickle.Observer.o#6"
+   [
+    label = "o#6"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.Observer.o#6" -> "spec::Trickle.Observer.o#7" [ label = "n1_out_DM1" ];
+
+   "spec::Trickle.Observer.o#6" -> "spec::Trickle.Observer.FAILED" [ label = "n1_out_DM1_failed", color=orange ];
+
+   "spec::Trickle.Observer.o#7"
+   [
+    label = "o#7"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.Observer.o#7" -> "spec::Trickle.Observer.o#8" [ label = "n2_in_DM1" ];
+
+   "spec::Trickle.Observer.o#7" -> "spec::Trickle.Observer.FAILED" [ label = "n2_in_DM1_failed", color=orange ];
+
+   "spec::Trickle.Observer.o#8"
+   [
+    label = "o#8"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.Observer.o#8" -> "spec::Trickle.Observer.o#9" [ label = "n4_out_Log" ];
+
+   "spec::Trickle.Observer.o#8" -> "spec::Trickle.Observer.FAILED" [ label = "n3_out_Log_failed", color=orange ];
+
+   "spec::Trickle.Observer.o#9"
+   [
+    label = "o#9"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.Observer.o#9" -> "spec::Trickle.Observer.o#10" [ label = "n4_out_Log" ];
+
+   "spec::Trickle.Observer.o#9" -> "spec::Trickle.Observer.FAILED" [ label = "n3_out_Log_failed", color=orange ];
+
+   "spec::Trickle.Observer.o#10"
+   [
+    label = "o#10"
+    shape=ellipse, style="bold,filled", color=skyblue
+   ];
+
+   "spec::Trickle.Observer.o#10" -> "spec::Trickle.Observer.PASS" [ label = "n4_out_Log" ];
+
+   "spec::Trickle.Observer.o#10" -> "spec::Trickle.Observer.FAILED" [ label = "n3_out_Log_failed", color=orange ];
+
+   "spec::Trickle.Observer.PASS"
+   [
+    label = "PASS"
+    shape=octagon, style="bold,filled", fillcolor=red
+   ];
+
+   "spec::Trickle.Observer.FAILED"
+   [
+    label = "FAILED"
+    shape=octagon, style="bold,filled", fillcolor=red
+   ];
+  }
+
+  "spec::Trickle.n1"
+  [
+   label = "|{model: Node|n1}|"
+   shape=Mrecord, style=bold, color=orange
+  ];
+
+  "spec::Trickle.n2"
+  [
+   label = "|{model: Node|n2}|"
+   shape=Mrecord, style=bold, color=orange
+  ];
+
+  "spec::Trickle.n3"
+  [
+   label = "|{model: Node|n3}|"
+   shape=Mrecord, style=bold, color=orange
+  ];
+ }
+}
+

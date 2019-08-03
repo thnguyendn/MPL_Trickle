@@ -1,0 +1,67 @@
+TRACE NUMBER 1
+	fired transition cp0_init:cp_init
+	fired transition cp0_init:cp_init
+	fired transition cp0_init:cp_init
+	fired transition startup:o_startup
+	delta = 12/5
+	fired transition cp0:cp_init
+	fired transition o#0:n1_out_Log
+	delta = 1/5
+	OUTPUT cp0:Log(INIT)
+	fired transition cp0:cp_init
+	fired transition o#1:n2_out_Log
+	delta = 1/5
+	OUTPUT cp0:Log(INIT)
+	fired transition cp0:cp_init
+	fired transition o#2:n3_out_Log
+	delta = 2
+	OUTPUT cp0:Log(INIT)
+	fired transition cp1:cp_sendCM
+	fired transition o#3:n1_out_CM
+	delta = 2
+	output cp1:ControlMsg([ 1 , 1 ])
+	fired transition cp1:cp1_receiveCM_inconsistent
+	fired transition o#4:n2_in_CM
+	delta = 1/5
+	input  cp1:ControlMsg([ 1 , 1 ])
+	fired transition dp0:dp_init
+	delta = 1/5
+	fired transition cp1:cp1_receiveCM_inconsistent
+	fired transition o#5:n3_in_CM
+	delta = 1/5
+	input  cp1:ControlMsg([ 1 , 1 ])
+	fired transition dp1:dp_sendDM
+	fired transition o#6:n1_out_DM1
+	delta = 2
+	output dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 })
+	fired transition dp0:dp_init
+	delta = 9/5
+	fired transition dp0:dp_init
+	delta = 2
+	fired transition dp1:dp1_receiveDM_consistent
+	fired transition o#7:n2_in_DM1
+	delta = 1/5
+	input  dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 })
+	fired transition dp0:dp_init
+	delta = 1/5
+	fired transition dp1:dp1_receiveDM_consistent
+	fired transition o#8:n3_in_DM1
+	delta = 1/5
+	input  dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 })
+	fired transition dp0:dp_init
+	delta = 1/5
+	fired transition dp1:dp_sendDM
+	fired transition o#9:n1_out_DM2
+	delta = 2
+	output dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 })
+	fired transition dp0:dp_init
+	delta = 2
+	fired transition dp1:dp1_receiveDM_consistent
+	fired transition o#10:n2_in_DM2
+	delta = 1/5
+	input  dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 })
+	fired transition dp1:dp1_receiveDM_consistent
+	fired transition o#11:n3_in_DM2
+	delta = 11/5
+	input  dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 })
+

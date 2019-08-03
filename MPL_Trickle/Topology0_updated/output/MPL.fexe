@@ -1,0 +1,3498 @@
+xfsp< executable , 1.0 >:
+
+// #prototype system< moc: and % system > Trickle {
+header:
+	fqn_id = sys::Trickle
+	description = "the result of the system compilation"
+	count = 68
+
+instance:
+	// The Parameters Machine Instance
+	#prototype instance< id:0, multiplicity: [ 0, 1 ] > inst::#PARAMETERS#;
+
+	// The System Machine Instance
+	#prototype instance< id:0, multiplicity: [ 1 ] > prot::Trickle {
+		rid#runtime = run::pid_1:Trickle;
+		@start{ |and|
+			init Observer;
+			init n1;
+			init n2;
+			init n3;
+		}
+	}
+
+executable:
+	#prototype executable< moc: and % system , id:0, instanciation: [ + ] > exec::#PARAMETERS# {
+	moe:
+	}
+
+	#prototype executable< moc: and % system , id:0, instanciation: [ + ] > exec::Trickle {
+		weak#lifeline = true;
+	type:
+		type type::Trickle.FRAGMENT enum {
+			public static const< id:0, ptr:enum > FRAGMENT const::Trickle.FRAGMENT.UNDEF_FRAGMENT 'UNDEF_FRAGMENT' {
+				value = 0;
+			}
+			public static const< id:1, ptr:enum > FRAGMENT const::Trickle.FRAGMENT.FRAGMENT_0 'FRAGMENT_0' {
+				value = 1;
+			}
+			public static const< id:2, ptr:enum > FRAGMENT const::Trickle.FRAGMENT.FRAGMENT_1 'FRAGMENT_1' {
+				value = 2;
+			}
+		}
+		type type::Trickle.INFO_KIND enum {
+			public static const< id:0, ptr:enum > INFO_KIND const::Trickle.INFO_KIND.INIT 'INIT' {
+				value = 0;
+			}
+			public static const< id:1, ptr:enum > INFO_KIND const::Trickle.INFO_KIND.TERMIN_CM 'TERMIN_CM' {
+				value = 1;
+			}
+			public static const< id:2, ptr:enum > INFO_KIND const::Trickle.INFO_KIND.TERMIN_DM1 'TERMIN_DM1' {
+				value = 2;
+			}
+			public static const< id:3, ptr:enum > INFO_KIND const::Trickle.INFO_KIND.TERMIN_DM2 'TERMIN_DM2' {
+				value = 3;
+			}
+		}
+		type type::Trickle.DATA_MESSAGE struct {
+			var< id:0, ptr:attr > integer inst::Trickle.DATA_MESSAGE.seq 'seq';
+			var< id:1, ptr:attr > FRAGMENT inst::Trickle.DATA_MESSAGE.fragment 'fragment';
+			var< id:2, ptr:attr > integer inst::Trickle.DATA_MESSAGE.offset 'offset';
+		}
+	variable:
+		const< id:0, ptr:std > integer inst::Trickle.BUFF_SIZE 'BUFF_SIZE' {
+			rid#container = run::pid_0:#PARAMETERS#;
+			value = 2;
+		}
+
+	alias:
+		public buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n2
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n3
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n2
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n3
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n2
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n3
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n3
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n3
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n3
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n1.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n1
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n2
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n1.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n1
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n2
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n1.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n1
+		}
+		public buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode {
+			target = buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+		path#machine:
+			inst::Trickle.n2
+		}
+	connector:/* < exec::Trickle > */
+		connector< id:0 , mid:1 , env > inst::Trickle._#connector_0 {
+			output {
+				inst::Trickle.n1->Log;
+				inst::Trickle.n2->Log;
+				inst::Trickle.n3->Log;
+			}
+		}
+		connector< id:1 , mid:2 , multicast > inst::Trickle._#connector_1 {
+			output inst::Trickle.n1->ControlMsg;
+			input {
+				inst::Trickle.n2->ControlMsg;
+				inst::Trickle.n3->ControlMsg;
+			}
+		}
+		connector< id:2 , mid:3 , multicast > inst::Trickle._#connector_2 {
+			output inst::Trickle.n1->DataMsg1;
+			input {
+				inst::Trickle.n2->DataMsg1;
+				inst::Trickle.n3->DataMsg1;
+			}
+		}
+		connector< id:3 , mid:4 , multicast > inst::Trickle._#connector_3 {
+			output inst::Trickle.n1->DataMsg2;
+			input {
+				inst::Trickle.n2->DataMsg2;
+				inst::Trickle.n3->DataMsg2;
+			}
+		}
+		connector< id:4 , mid:5 , multicast > inst::Trickle._#connector_4 {
+			output inst::Trickle.n2->ControlMsg;
+			input inst::Trickle.n3->ControlMsg;
+		}
+		connector< id:5 , mid:6 , multicast > inst::Trickle._#connector_5 {
+			output inst::Trickle.n2->DataMsg1;
+			input inst::Trickle.n3->DataMsg1;
+		}
+		connector< id:6 , mid:7 , multicast > inst::Trickle._#connector_6 {
+			output inst::Trickle.n2->DataMsg2;
+			input inst::Trickle.n3->DataMsg2;
+		}
+		connector< id:7 , mid:8 , multicast > inst::Trickle._#connector_7 {
+			output inst::Trickle.n3->ControlMsg;
+			input {
+				inst::Trickle.n1->ControlMsg;
+				inst::Trickle.n2->ControlMsg;
+			}
+		}
+		connector< id:8 , mid:9 , multicast > inst::Trickle._#connector_8 {
+			output inst::Trickle.n3->DataMsg1;
+			input {
+				inst::Trickle.n1->DataMsg1;
+				inst::Trickle.n2->DataMsg1;
+			}
+		}
+		connector< id:9 , mid:10 , multicast > inst::Trickle._#connector_9 {
+			output inst::Trickle.n3->DataMsg2;
+			input {
+				inst::Trickle.n1->DataMsg2;
+				inst::Trickle.n2->DataMsg2;
+			}
+		}
+	router:
+		router prot::Trickle.$this< exec::Trickle > {
+		}
+
+		routeur<null>
+		router inst::Trickle.n1 {
+		input:
+			routing< multicast , mid:8 > inst::Trickle.n1->inst::Trickle.Node.ControlMsg {
+				connector = inst::Trickle._#connector_7;
+				buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n1.bufferNode |];
+			}
+			routing< multicast , mid:9 > inst::Trickle.n1->inst::Trickle.Node.DataMsg1 {
+				connector = inst::Trickle._#connector_8;
+				buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n1.bufferNode |];
+			}
+			routing< multicast , mid:10 > inst::Trickle.n1->inst::Trickle.Node.DataMsg2 {
+				connector = inst::Trickle._#connector_9;
+				buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n1.bufferNode |];
+			}
+		output:
+			routing< multicast , mid:2 > inst::Trickle.n1->inst::Trickle.Node.ControlMsg {
+				connector = inst::Trickle._#connector_1;
+				buffer = [|
+					buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode
+					buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode
+				|];
+			}
+			routing< multicast , mid:3 > inst::Trickle.n1->inst::Trickle.Node.DataMsg1 {
+				connector = inst::Trickle._#connector_2;
+				buffer = [|
+					buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode
+					buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode
+				|];
+			}
+			routing< multicast , mid:4 > inst::Trickle.n1->inst::Trickle.Node.DataMsg2 {
+				connector = inst::Trickle._#connector_3;
+				buffer = [|
+					buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode
+					buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode
+				|];
+			}
+			routing< env , mid:1 > inst::Trickle.n1->inst::Trickle.Node.Log {
+				connector = inst::Trickle._#connector_0;
+			}
+		}
+
+		router inst::Trickle.n2 {
+		input:
+			routing< multicast , mid:2 > inst::Trickle.n2->inst::Trickle.Node.ControlMsg {
+				connector = inst::Trickle._#connector_1;
+				buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode |];
+
+				routing< multicast , mid:8 > inst::Trickle.n2->inst::Trickle.Node.ControlMsg {
+					connector = inst::Trickle._#connector_7;
+					buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode |];
+				}
+			}
+			routing< multicast , mid:3 > inst::Trickle.n2->inst::Trickle.Node.DataMsg1 {
+				connector = inst::Trickle._#connector_2;
+				buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode |];
+
+				routing< multicast , mid:9 > inst::Trickle.n2->inst::Trickle.Node.DataMsg1 {
+					connector = inst::Trickle._#connector_8;
+					buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode |];
+				}
+			}
+			routing< multicast , mid:4 > inst::Trickle.n2->inst::Trickle.Node.DataMsg2 {
+				connector = inst::Trickle._#connector_3;
+				buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode |];
+
+				routing< multicast , mid:10 > inst::Trickle.n2->inst::Trickle.Node.DataMsg2 {
+					connector = inst::Trickle._#connector_9;
+					buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode |];
+				}
+			}
+		output:
+			routing< multicast , mid:5 > inst::Trickle.n2->inst::Trickle.Node.ControlMsg {
+				connector = inst::Trickle._#connector_4;
+				buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode |];
+			}
+			routing< multicast , mid:6 > inst::Trickle.n2->inst::Trickle.Node.DataMsg1 {
+				connector = inst::Trickle._#connector_5;
+				buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode |];
+			}
+			routing< multicast , mid:7 > inst::Trickle.n2->inst::Trickle.Node.DataMsg2 {
+				connector = inst::Trickle._#connector_6;
+				buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode |];
+			}
+			routing< env , mid:1 > inst::Trickle.n2->inst::Trickle.Node.Log {
+				connector = inst::Trickle._#connector_0;
+			}
+		}
+
+		router inst::Trickle.n3 {
+		input:
+			routing< multicast , mid:2 > inst::Trickle.n3->inst::Trickle.Node.ControlMsg {
+				connector = inst::Trickle._#connector_1;
+				buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode |];
+
+				routing< multicast , mid:5 > inst::Trickle.n3->inst::Trickle.Node.ControlMsg {
+					connector = inst::Trickle._#connector_4;
+					buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode |];
+				}
+			}
+			routing< multicast , mid:3 > inst::Trickle.n3->inst::Trickle.Node.DataMsg1 {
+				connector = inst::Trickle._#connector_2;
+				buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode |];
+
+				routing< multicast , mid:6 > inst::Trickle.n3->inst::Trickle.Node.DataMsg1 {
+					connector = inst::Trickle._#connector_5;
+					buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode |];
+				}
+			}
+			routing< multicast , mid:4 > inst::Trickle.n3->inst::Trickle.Node.DataMsg2 {
+				connector = inst::Trickle._#connector_3;
+				buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode |];
+
+				routing< multicast , mid:7 > inst::Trickle.n3->inst::Trickle.Node.DataMsg2 {
+					connector = inst::Trickle._#connector_6;
+					buffer = [| buffer< id:0 > fifo[*] alias::Trickle.n3.bufferNode |];
+				}
+			}
+		output:
+			routing< multicast , mid:8 > inst::Trickle.n3->inst::Trickle.Node.ControlMsg {
+				connector = inst::Trickle._#connector_7;
+				buffer = [|
+					buffer< id:0 > fifo[*] alias::Trickle.n1.bufferNode
+					buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode
+				|];
+			}
+			routing< multicast , mid:9 > inst::Trickle.n3->inst::Trickle.Node.DataMsg1 {
+				connector = inst::Trickle._#connector_8;
+				buffer = [|
+					buffer< id:0 > fifo[*] alias::Trickle.n1.bufferNode
+					buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode
+				|];
+			}
+			routing< multicast , mid:10 > inst::Trickle.n3->inst::Trickle.Node.DataMsg2 {
+				connector = inst::Trickle._#connector_9;
+				buffer = [|
+					buffer< id:0 > fifo[*] alias::Trickle.n1.bufferNode
+					buffer< id:0 > fifo[*] alias::Trickle.n2.bufferNode
+				|];
+			}
+			routing< env , mid:1 > inst::Trickle.n3->inst::Trickle.Node.Log {
+				connector = inst::Trickle._#connector_0;
+			}
+		}
+
+	router#model:
+		router prot::Trickle.$this< exec::Trickle > {
+		}
+
+		router model::Trickle.Node {
+		input:
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.ControlMsg {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.DataMsg1 {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.DataMsg2 {
+				connector = $null<connector>;
+			}
+		output:
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.ControlMsg {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.DataMsg1 {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.DataMsg2 {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.Log {
+				connector = $null<connector>;
+			}
+		}
+
+		routeur<null>
+
+	model:
+		#model instance< id:0, multiplicity: [ 1 ], this > model::Trickle.$this;
+		timed lifeline #model instance< id:1, multiplicity: [ 3, + ] > model::Trickle.Node;
+		lifeline #model instance< id:2, multiplicity: [ + ] > model::Trickle.Observer;
+	instance:
+		#static instance< id:0, multiplicity: [ 1 ], this > &exec::Trickle prot::Trickle.$this {
+			//model = model::Trickle.$this;
+		}
+		lifeline #prototype instance< id:1, multiplicity: [ + ] > prot::Trickle.Observer {
+			//model = model::Trickle.Observer;
+			rid#runtime = run::pid_2:Trickle.Observer;
+			@create{
+				uncoveredExit := 0;
+			}
+		}
+		#static instance< id:2, multiplicity: [ + ] > &exec::Trickle.Node inst::Trickle.n1 {
+			//model = model::Trickle.Node;
+		parameter:
+			input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+		moe:
+			@create{ |§|
+				node_time := 0;
+				z := $delta#initial;
+				localTime := 0;
+				undef_DM1 := false;
+				undef_DM2 := false;
+				localPC := true;
+				my_buff := [ { 1 , FRAGMENT_0 , 0 } , { 2 , FRAGMENT_1 , 1 } ];
+				firmware := [ FRAGMENT_0 , FRAGMENT_1 ];
+				myseq_buff := 1;
+				mydp_run := true;
+			}
+			@start{ |;|
+				{ |§|
+					node_time := 0;
+					z := $delta#initial;
+					newfresh(z)
+					localTime := (localTime + z);
+					guard (z > 0);
+					localPC := (localPC && (z > 0));
+				}
+				{ |and|
+					init ControlProcess;
+					init DataProcess1;
+					init DataProcess2;
+				}
+			}
+		}
+		#static instance< id:3, multiplicity: [ + ] > &exec::Trickle.Node inst::Trickle.n2 {
+			//model = model::Trickle.Node;
+		parameter:
+			input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+		moe:
+			@create{ |§|
+				node_time := 0;
+				z := $delta#initial;
+				localTime := 0;
+				undef_DM1 := false;
+				undef_DM2 := false;
+				localPC := true;
+				my_buff := [ { 0 , UNDEF_FRAGMENT , 0 } , { 0 , UNDEF_FRAGMENT , 1 } ];
+				firmware := [ UNDEF_FRAGMENT , UNDEF_FRAGMENT ];
+				myseq_buff := 0;
+				mydp_run := false;
+			}
+			@start{ |;|
+				{ |§|
+					node_time := 0;
+					z := $delta#initial;
+					newfresh(z)
+					localTime := (localTime + z);
+					guard (z > 0);
+					localPC := (localPC && (z > 0));
+				}
+				{ |and|
+					init ControlProcess;
+					init DataProcess1;
+					init DataProcess2;
+				}
+			}
+		}
+		#static instance< id:4, multiplicity: [ + ] > &exec::Trickle.Node inst::Trickle.n3 {
+			//model = model::Trickle.Node;
+		parameter:
+			input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+		moe:
+			@create{ |§|
+				node_time := 0;
+				z := $delta#initial;
+				localTime := 0;
+				undef_DM1 := false;
+				undef_DM2 := false;
+				localPC := true;
+				my_buff := [ { 0 , UNDEF_FRAGMENT , 0 } , { 0 , UNDEF_FRAGMENT , 1 } ];
+				firmware := [ UNDEF_FRAGMENT , UNDEF_FRAGMENT ];
+				myseq_buff := 0;
+				mydp_run := false;
+			}
+			@start{ |;|
+				{ |§|
+					node_time := 0;
+					z := $delta#initial;
+					newfresh(z)
+					localTime := (localTime + z);
+					guard (z > 0);
+					localPC := (localPC && (z > 0));
+				}
+				{ |and|
+					init ControlProcess;
+					init DataProcess1;
+					init DataProcess2;
+				}
+			}
+		}
+	moe:
+		@init{ |and|
+			init Observer;
+			init n1;
+			init n2;
+			init n3;
+		}
+		@final{ |;|
+			process#state#set $this final;
+			exit "FINALIZE";
+		}
+		@start{ |and|
+			init Observer;
+			init n1;
+			init n2;
+			init n3;
+		}
+		@enable{ |and|
+			enable Observer;
+			enable n1;
+			enable n2;
+			enable n3;
+		}
+		@disable{ |and|
+			disable Observer;
+			disable n1;
+			disable n2;
+			disable n3;
+		}
+		@abort{ |and|
+			abort#set Observer;
+			abort n1;
+			abort n2;
+			abort n3;
+		}
+		@run{
+			schedule $self;
+		}
+		@schedule<final>{ |;|
+			{ |i|
+				run n1;
+				run n2;
+				run n3;
+			}
+			run Observer;
+		}
+		@concurrency{ |;| }
+		opcode#family = basic | guard | input | output;
+	}
+
+	timed lifeline #model executable< moc: and % statemachine , id:1, instanciation: [ 3, + ] > exec::Trickle.Node {
+		weak#lifeline = true;
+	parameter:
+		input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff 'my_buff';
+		input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware 'firmware';
+		input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff 'myseq_buff';
+		input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run 'mydp_run';
+	type:
+		type type::Trickle.Node.DATA_MESSAGE[ 2 ] DATA_MESSAGE[ 2 ] {
+		property:
+			data_size = 7;   bit_size = 0;
+		}
+		type type::Trickle.Node.FRAGMENT[ 2 ] FRAGMENT[ 2 ] {
+		property:
+			data_size = 3;   bit_size = 0;
+		}
+		type type::Trickle.Node.integer[ 2 ] integer[ 2 ] {
+		property:
+			data_size = 3;   bit_size = 0;
+		}
+		type type::Trickle.Node.boolean[ 2 ] boolean[ 2 ] {
+		property:
+			data_size = 3;   bit_size = 0;
+		}
+		type type::Trickle.Node.integer[ 2 ] integer[ 2 ] {
+		property:
+			data_size = 3;   bit_size = 0;
+		}
+		type type::Trickle.Node.integer[ 2 ] integer[ 2 ] {
+		property:
+			data_size = 3;   bit_size = 0;
+		}
+	variable:
+		public static const< id:127, ptr:std > time< ureal > inst::Trickle.Node.$time#initial '$time#initial' {
+			rid#container = run::pid_0:#PARAMETERS#;
+			value = 0;
+		}
+		public static const< id:128, ptr:std > time< pos_real > inst::Trickle.Node.$delta#initial '$delta#initial' {
+			rid#container = run::pid_0:#PARAMETERS#;
+		}
+		public const< id:129, ptr:std > integer inst::Trickle.Node.CTRL_EXPIR 'CTRL_EXPIR' {
+			rid#container = run::pid_0:#PARAMETERS#;
+			value = 2;
+		}
+		public const< id:130, ptr:std > integer inst::Trickle.Node.DATA_EXPIR 'DATA_EXPIR' {
+			rid#container = run::pid_0:#PARAMETERS#;
+			value = 2;
+		}
+		public const< id:131, ptr:std > integer inst::Trickle.Node.MIN_SEQ 'MIN_SEQ' {
+			rid#container = run::pid_0:#PARAMETERS#;
+			value = 1;
+		}
+
+		var< id:4, ptr:std > time< ureal > inst::Trickle.Node.node_time 'node_time' {
+			value = 0;
+		}
+		var< id:5, ptr:std > time< pos_real > inst::Trickle.Node.z 'z' {
+			value = $delta#initial;
+		}
+		public volatile var< id:6, ptr:std > clock< pos_rational > inst::Trickle.Node.localTime 'localTime' {
+			value = 0;
+		}
+		public var< id:7, ptr:std > boolean inst::Trickle.Node.undef_DM1 'undef_DM1' {
+			value = false;
+		}
+		public var< id:8, ptr:std > boolean inst::Trickle.Node.undef_DM2 'undef_DM2' {
+			value = false;
+		}
+		var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff 'seq_buff';
+		var< id:10, ptr:std > uinteger inst::Trickle.Node.i 'i';
+		var< id:11, ptr:std > boolean inst::Trickle.Node.localPC 'localPC' {
+			value = true;
+		}
+		var< id:12, ptr:std > integer inst::Trickle.Node.new_seq_buff 'new_seq_buff';
+		var< id:13, ptr:std > integer inst::Trickle.Node.new_seq 'new_seq';
+		var< id:14, ptr:std > FRAGMENT inst::Trickle.Node.new_fragment 'new_fragment';
+		var< id:15, ptr:std > integer inst::Trickle.Node.new_offset 'new_offset';
+		var< id:16, ptr:std > time< pos_rational > inst::Trickle.Node.timeEmit 'timeEmit';
+	alias:
+		public volatile var< id:9, ptr:std > clock< pos_rational > alias::Trickle.Node.ControlProcess.cl 'cl' {
+			target = public volatile var< id:9, ptr:std > clock< pos_rational > inst::Trickle.Node.ControlProcess.cl;
+			value = 0;
+		path#machine:
+			prot::Trickle.Node.ControlProcess
+		}
+		public volatile var< id:10, ptr:std > clock< pos_rational > alias::Trickle.Node.DataProcess1.cl 'cl' {
+			target = public volatile var< id:10, ptr:std > clock< pos_rational > inst::Trickle.Node.DataProcess.cl;
+			value = 0;
+		path#machine:
+			inst::Trickle.Node.DataProcess1
+		}
+		public volatile var< id:10, ptr:std > clock< pos_rational > alias::Trickle.Node.DataProcess2.cl 'cl' {
+			target = public volatile var< id:10, ptr:std > clock< pos_rational > inst::Trickle.Node.DataProcess.cl;
+			value = 0;
+		path#machine:
+			inst::Trickle.Node.DataProcess2
+		}
+		input parameter var< id:0, ptr:ufi, mem:[ 0 , 0 , 1 ] > FRAGMENT inst::Trickle.Node.my_buff[0].fragment 'my_buff[0].fragment' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+		}
+		input parameter var< id:0, ptr:ufi, mem:[ 0 , 1 , 1 ] > FRAGMENT inst::Trickle.Node.my_buff[1].fragment 'my_buff[1].fragment' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+		}
+	time:
+		var< id:4, ptr:std > time< ureal > inst::Trickle.Node.node_time
+		var< id:5, ptr:std > time< pos_real > inst::Trickle.Node.z
+	port:
+		public inout port< id:0 , route:0 > inst::Trickle.Node.ControlMsg {
+		parameter:
+			parameter var< id:0, ptr:std > integer[ 2 ] seqBuff;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+		public inout port< id:1 , route:1 > inst::Trickle.Node.DataMsg1 {
+		parameter:
+			parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+		public inout port< id:2 , route:2 > inst::Trickle.Node.DataMsg2 {
+		parameter:
+			parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+		public output port< id:3 , route:3 > inst::Trickle.Node.Log {
+		parameter:
+			parameter var< id:0, ptr:std > INFO_KIND information;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+	buffer:
+		public buffer< id:0 > fifo[*] inst::Trickle.Node.bufferNode;
+	router:
+		router model::Trickle.Node {
+		input:
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.ControlMsg {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.DataMsg1 {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.DataMsg2 {
+				connector = $null<connector>;
+			}
+		output:
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.ControlMsg {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.DataMsg1 {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.DataMsg2 {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.Log {
+				connector = $null<connector>;
+			}
+		}
+
+	router#model:
+		router model::Trickle.Node {
+		input:
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.ControlMsg {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.DataMsg1 {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.DataMsg2 {
+				connector = $null<connector>;
+			}
+		output:
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.ControlMsg {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.DataMsg1 {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.DataMsg2 {
+				connector = $null<connector>;
+			}
+			routing< env , mid:0 > model::Trickle.Node->inst::Trickle.Node.Log {
+				connector = $null<connector>;
+			}
+		}
+
+	model:
+		timed lifeline #model instance< id:0, multiplicity: [ 1 ], this > model::Trickle.Node.$this;
+		#model instance< id:1, multiplicity: [ + ] > model::Trickle.Node.ControlProcess;
+		#model instance< id:2, multiplicity: [ 2, + ] > model::Trickle.Node.DataProcess;
+	instance:
+		timed lifeline #static instance< id:0, multiplicity: [ 1 ], this > &exec::Trickle.Node model::Trickle.Node.$this {
+			//model = model::Trickle.Node.$this;
+		}
+		#prototype instance< id:1, multiplicity: [ + ] > prot::Trickle.Node.ControlProcess {
+			//model = model::Trickle.Node.ControlProcess;
+			@create{
+				cl := 0;
+			}
+		}
+		#static instance< id:2, multiplicity: [ + ] > &exec::Trickle.Node.DataProcess inst::Trickle.Node.DataProcess1 {
+			//model = model::Trickle.Node.DataProcess;
+		parameter:
+			input parameter var< id:0, ptr:std > integer inst::Trickle.Node.DataProcess.mySeq;
+		moe:
+			@create{ |§|
+				cl := 0;
+				mySeq := 1;
+			}
+		}
+		#static instance< id:3, multiplicity: [ + ] > &exec::Trickle.Node.DataProcess inst::Trickle.Node.DataProcess2 {
+			//model = model::Trickle.Node.DataProcess;
+		parameter:
+			input parameter var< id:0, ptr:std > integer inst::Trickle.Node.DataProcess.mySeq;
+		moe:
+			@create{ |§|
+				cl := 0;
+				mySeq := 2;
+			}
+		}
+	program:
+		macro routine< id:0 > routine::Trickle.Node.time#get {
+		returns:
+			return transient parameter var< id:0, ptr:std > time< ureal > inst::Trickle.Node.time#get._time_ '_time_';
+		moe:
+			@run{ |§|
+				_time_ := node_time;
+				return;
+			 }
+		opcode#family = basic;
+		}
+
+		macro routine< id:1 > routine::Trickle.Node.delta#get {
+		returns:
+			return transient parameter var< id:0, ptr:std > time< pos_real > inst::Trickle.Node.delta#get._delta_ '_delta_';
+		moe:
+			@run{ |§|
+				_delta_ := z;
+				return;
+			 }
+		opcode#family = basic;
+		}
+
+		macro routine< id:2 > routine::Trickle.Node.time#reset {
+		moe:
+			@run{
+				node_time := 0;
+			 }
+		opcode#family = basic;
+		}
+
+		macro routine< id:3 > routine::Trickle.Node.clock#reset {
+		parameter:
+			transient parameter var< id:0, ptr:std > clock< uinteger > inst::Trickle.Node.clock#reset._clock_ '_clock_';
+		moe:
+			@run{
+				_clock_ := 0;
+			 }
+		opcode#family = basic;
+		}
+
+		macro routine< id:4 > routine::Trickle.Node.clock#update {
+		parameter:
+			transient parameter var< id:0, ptr:std > clock< uinteger > inst::Trickle.Node.clock#update._clock_ '_clock_';
+		moe:
+			@run{
+				_clock_ := (_clock_ + z);
+			 }
+		opcode#family = basic;
+		}
+
+		macro routine< id:5 > routine::Trickle.Node.Guard {
+		parameter:
+			transient parameter var< id:0, ptr:std > boolean inst::Trickle.Node.Guard.localCondition 'localCondition';
+		moe:
+			@run{ |§|
+				guard localCondition;
+				localCondition := true;
+				localPC := (localPC && localCondition);
+			 }
+		opcode#family = basic | guard;
+		}
+
+		macro routine< id:6 > routine::Trickle.Node.time#update {
+		moe:
+			@run{ |§|
+				newfresh(z)
+				node_time := (node_time + z);
+				localTime := (localTime + z);
+				if ${ status#is enable ControlProcess }
+				{
+					cl := (cl + z);
+				}
+				if ${ status#is enable DataProcess1 }
+				{
+					cl := (cl + z);
+				}
+				if ${ status#is enable DataProcess2 }
+				{
+					cl := (cl + z);
+				}
+			 }
+		opcode#family = basic;
+		}
+
+	moe:
+		@create{ |§|
+			node_time := 0;
+			z := $delta#initial;
+			localTime := 0;
+			undef_DM1 := false;
+			undef_DM2 := false;
+			localPC := true;
+		}
+		@init{ |;|
+			{ |§|
+				node_time := 0;
+				z := $delta#initial;
+				newfresh(z)
+				localTime := (localTime + z);
+				guard (z > 0);
+				localPC := (localPC && (z > 0));
+			}
+			{ |and|
+				init ControlProcess;
+				init DataProcess1;
+				init DataProcess2;
+			}
+		}
+		@start{ |;|
+			{ |§|
+				node_time := 0;
+				z := $delta#initial;
+				newfresh(z)
+				localTime := (localTime + z);
+				guard (z > 0);
+				localPC := (localPC && (z > 0));
+			}
+			{ |and|
+				init ControlProcess;
+				init DataProcess1;
+				init DataProcess2;
+			}
+		}
+		@enable{ |and|
+			enable ControlProcess;
+			enable DataProcess1;
+			enable DataProcess2;
+		}
+		@disable{ |and|
+			disable ControlProcess;
+			disable DataProcess1;
+			disable DataProcess2;
+		}
+		@abort{ |and|
+			abort#set ControlProcess;
+			abort#set DataProcess1;
+			abort#set DataProcess2;
+		}
+		@irun{ |§|
+			guard (z > 0);
+			localPC := (localPC && (z > 0));
+		}
+		@run{ |;|
+			{ |§|
+				newfresh(z)
+				node_time := (node_time + z);
+				localTime := (localTime + z);
+				if ${ status#is enable ControlProcess }
+				{
+					cl := (cl + z);
+				}
+				if ${ status#is enable DataProcess1 }
+				{
+					cl := (cl + z);
+				}
+				if ${ status#is enable DataProcess2 }
+				{
+					cl := (cl + z);
+				}
+			}
+			schedule $self;
+			{ |§|
+				undef_DM1 := (my_buff[0].fragment == 0);
+				undef_DM2 := (my_buff[1].fragment == 0);
+			}
+		}
+		@schedule<final>{ |i|
+			run ControlProcess;
+			run DataProcess1;
+			run DataProcess2;
+		}
+		@concurrency{ |i| }
+		opcode#family = basic | guard | input | output;
+	}
+
+	#prototype executable< moc: or % statemachine , id:2, instanciation: [ 3, + ] > exec::Trickle.Node.ControlProcess {
+		weak#lifeline = true;
+	variable:
+		public var< id:0, ptr:std > uinteger inst::Trickle.Node.ControlProcess.e 'e';
+		public var< id:1, ptr:std > time< pos_rational > inst::Trickle.Node.ControlProcess.tau 'tau';
+		public var< id:2, ptr:std > time< pos_rational > inst::Trickle.Node.ControlProcess.tau_l 'tau_l';
+		public var< id:3, ptr:std > time< pos_rational > inst::Trickle.Node.ControlProcess.tau_h 'tau_h';
+		var< id:4, ptr:std > uinteger inst::Trickle.Node.ControlProcess.k 'k';
+		var< id:5, ptr:std > uinteger inst::Trickle.Node.ControlProcess.c 'c';
+		var< id:6, ptr:std > uinteger inst::Trickle.Node.ControlProcess.i 'i';
+		var< id:7, ptr:std > urational inst::Trickle.Node.ControlProcess.t 't';
+		var< id:8, ptr:std > boolean inst::Trickle.Node.ControlProcess.consistent 'consistent';
+		public volatile var< id:9, ptr:std > clock< pos_rational > inst::Trickle.Node.ControlProcess.cl 'cl' {
+			value = 0;
+		}
+	alias:
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+	model:
+		#model instance< id:0, multiplicity: [ 1 ], this > model::Trickle.Node.ControlProcess.$this;
+	instance:
+		#static instance< id:0, multiplicity: [ 1 ], this > &exec::Trickle.Node.ControlProcess prot::Trickle.Node.ControlProcess.$this {
+			//model = model::Trickle.Node.ControlProcess.$this;
+		}
+		#prototype instance< id:1, multiplicity: [ + ] > prot::Trickle.Node.ControlProcess.cp0_init;
+		#prototype instance< id:2, multiplicity: [ + ] > prot::Trickle.Node.ControlProcess.cp0;
+		#prototype instance< id:3, multiplicity: [ + ] > prot::Trickle.Node.ControlProcess.cp1;
+		#prototype instance< id:4, multiplicity: [ + ] > prot::Trickle.Node.ControlProcess.cp2;
+		#prototype instance< id:5, multiplicity: [ + ] > prot::Trickle.Node.ControlProcess.cp3;
+	program:
+		macro routine< id:0 > routine::Trickle.Node.ControlProcess.doubleTau {
+		moe:
+			@run{
+				if ((2 * tau) <= tau_h)
+				{
+					tau := (2 * tau);
+				}
+				else
+				{
+					if ((2 * tau) > tau_h)
+					{
+						tau := tau_h;
+					}
+				}
+			 }
+		opcode#family = basic;
+		}
+
+		macro routine< id:1 > routine::Trickle.Node.ControlProcess.analyse_seq {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					input ControlMsg(seq_buff, timeEmit);
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+				}
+				for( i := 0 ; (i < 2) ; i := (i + 1) )
+				{
+					if (myseq_buff[i] != seq_buff[i])
+					{ |;|
+						consistent := false;
+						if (! mydp_run[i])
+						{
+							mydp_run[i] := true;
+						}
+					}
+				}
+			 }
+		opcode#family = basic | guard | input;
+		}
+
+		macro routine< id:2 > routine::Trickle.Node.ControlProcess.analyse_cp1_consistent {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < t);
+					localPC := (localPC && (cl < t));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					input ControlMsg(seq_buff, timeEmit);
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					for( i := 0 ; (i < 2) ; i := (i + 1) )
+					{
+						if (myseq_buff[i] != seq_buff[i])
+						{ |;|
+							consistent := false;
+							if (! mydp_run[i])
+							{
+								mydp_run[i] := true;
+							}
+						}
+					}
+				}
+				{ |§|
+					guard consistent;
+					consistent := true;
+					c := (c + 1);
+				}
+			 }
+		opcode#family = basic | guard | input;
+		}
+
+		macro routine< id:3 > routine::Trickle.Node.ControlProcess.analyse_cp1_inconsistent {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < t);
+					localPC := (localPC && (cl < t));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					input ControlMsg(seq_buff, timeEmit);
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					for( i := 0 ; (i < 2) ; i := (i + 1) )
+					{
+						if (myseq_buff[i] != seq_buff[i])
+						{ |;|
+							consistent := false;
+							if (! mydp_run[i])
+							{
+								mydp_run[i] := true;
+							}
+						}
+					}
+				}
+				{ |§|
+					guard (! consistent);
+					consistent := false;
+					tau := tau_l;
+					newfresh(t)
+					guard (((tau / 2) <= t) && (t < tau));
+					localPC := (localPC && ((tau / 2) <= t) && (t < tau));
+					cl := 0;
+					c := 0;
+					e := 0;
+				}
+			 }
+		opcode#family = basic | guard | input;
+		}
+
+		macro routine< id:4 > routine::Trickle.Node.ControlProcess.analyse_cp2_consistent {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < tau);
+					localPC := (localPC && (cl < tau));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					input ControlMsg(seq_buff, timeEmit);
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					for( i := 0 ; (i < 2) ; i := (i + 1) )
+					{
+						if (myseq_buff[i] != seq_buff[i])
+						{ |;|
+							consistent := false;
+							if (! mydp_run[i])
+							{
+								mydp_run[i] := true;
+							}
+						}
+					}
+				}
+				{ |§|
+					guard consistent;
+					consistent := true;
+					c := (c + 1);
+				}
+			 }
+		opcode#family = basic | guard | input;
+		}
+
+		macro routine< id:5 > routine::Trickle.Node.ControlProcess.analyse_cp2_inconsistent {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < tau);
+					localPC := (localPC && (cl < tau));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					input ControlMsg(seq_buff, timeEmit);
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					for( i := 0 ; (i < 2) ; i := (i + 1) )
+					{
+						if (myseq_buff[i] != seq_buff[i])
+						{ |;|
+							consistent := false;
+							if (! mydp_run[i])
+							{
+								mydp_run[i] := true;
+							}
+						}
+					}
+				}
+				{ |§|
+					guard (! consistent);
+					consistent := false;
+					tau := tau_l;
+					newfresh(t)
+					guard (((tau / 2) <= t) && (t < tau));
+					localPC := (localPC && ((tau / 2) <= t) && (t < tau));
+					cl := 0;
+					c := 0;
+					e := 0;
+				}
+			 }
+		opcode#family = basic | guard | input;
+		}
+
+	moe:
+		@create{
+			cl := 0;
+		}
+		@init{
+			init cp0_init;
+		}
+		@final{ |;|
+			process#state#set $this final;
+			final $parent;
+		}
+		@enable{
+			enable cp0_init;
+		}
+		@disable{ |§|
+			disable#child;
+			disable#self;
+		}
+		@run{
+			schedule $self;
+		}
+		@schedule{
+			run cp0_init;
+		}
+		opcode#family = basic | guard | input | output;
+	}
+
+	#prototype executable< moc: initial % pseudostate , id:3, instanciation: [ 2, + ] > exec::Trickle.Node.ControlProcess.cp0_init {
+	transition:
+		transition< id:0 > cp_init --> cp0 {
+		moe:
+			@run{ |§|
+				k := 2;
+				tau_l := 4;
+				tau_h := 8;
+				disable#self;
+				enable#set cp0;
+			}
+			opcode#family = basic;
+		}
+	moe:
+		@init{
+			run $self;
+		}
+		@enable{
+			run $self;
+		}
+		@run{
+			invoke#transition cp0_init.cp_init;
+		}
+		opcode#family = basic;
+	}
+
+	#prototype executable< moc: simple % state , id:4, instanciation: [ 2, + ] > exec::Trickle.Node.ControlProcess.cp0 {
+	transition:
+		transition< id:0 > cp_init --> cp1 {
+		moe:
+			@run{ |;|
+				{ |§|
+					tau := tau_l;
+					newfresh(t)
+					guard (((tau / 2) <= t) && (t < tau));
+					localPC := (localPC && ((tau / 2) <= t) && (t < tau));
+					cl := 0;
+					c := 0;
+					e := 0;
+					output Log(0, localTime);
+				}
+				{ |§|
+					disable#self;
+					enable#set cp1;
+				}
+			}
+			opcode#family = basic | guard | output;
+			communication<final>{
+				output Log(INIT, localTime);
+			}
+			com#internal{
+				output Log(INIT, localTime);
+			}
+			com#output{
+				inst::Trickle.Node.Log
+			}
+		}
+	moe:
+		@run{
+			invoke#transition cp0.cp_init;
+		}
+		opcode#family = basic | guard | output;
+	}
+
+	#prototype executable< moc: simple % state , id:5, instanciation: [ 2, + ] > exec::Trickle.Node.ControlProcess.cp1 {
+	alias:
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+	transition:
+		transition< id:0 > cp_sendCM --> cp2 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl == t);
+					localPC := (localPC && (cl == t));
+					guard ((c < k) && (e < 2));
+					localPC := (localPC && (c < k) && (e < 2));
+					output ControlMsg(myseq_buff, localTime);
+				}
+				{ |§|
+					disable#self;
+					enable#set cp2;
+				}
+			}
+			opcode#family = basic | guard | output;
+			communication<final>{
+				output ControlMsg(myseq_buff, localTime);
+			}
+			com#internal{
+				output ControlMsg(myseq_buff, localTime);
+			}
+			com#output{
+				inst::Trickle.Node.ControlMsg
+			}
+		}
+		transition< id:1 > cp1_receiveCM_consistent --> cp1 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < t);
+					localPC := (localPC && (cl < t));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					input ControlMsg(seq_buff, timeEmit);
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					for( i := 0 ; (i < 2) ; i := (i + 1) )
+					{
+						if (myseq_buff[i] != seq_buff[i])
+						{ |;|
+							consistent := false;
+							if (! mydp_run[i])
+							{
+								mydp_run[i] := true;
+							}
+						}
+					}
+				}
+				{ |§|
+					guard consistent;
+					consistent := true;
+					c := (c + 1);
+					disable#self;
+					enable#set cp1;
+				}
+			}
+			opcode#family = basic | guard | input;
+			communication<final>{
+				input ControlMsg(seq_buff, timeEmit);
+			}
+			com#internal{
+				input ControlMsg(seq_buff, timeEmit);
+			}
+			com#input{
+				inst::Trickle.Node.ControlMsg
+			}
+			com#input_enabled{
+				inst::Trickle.Node.ControlMsg
+			}
+		}
+		transition< id:2 > cp1_receiveCM_inconsistent --> cp1 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < t);
+					localPC := (localPC && (cl < t));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					input ControlMsg(seq_buff, timeEmit);
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					for( i := 0 ; (i < 2) ; i := (i + 1) )
+					{
+						if (myseq_buff[i] != seq_buff[i])
+						{ |;|
+							consistent := false;
+							if (! mydp_run[i])
+							{
+								mydp_run[i] := true;
+							}
+						}
+					}
+				}
+				{ |§|
+					guard (! consistent);
+					consistent := false;
+					tau := tau_l;
+					newfresh(t)
+					guard (((tau / 2) <= t) && (t < tau));
+					localPC := (localPC && ((tau / 2) <= t) && (t < tau));
+					cl := 0;
+					c := 0;
+					e := 0;
+					disable#self;
+					enable#set cp1;
+				}
+			}
+			opcode#family = basic | guard | input;
+			communication<final>{
+				input ControlMsg(seq_buff, timeEmit);
+			}
+			com#internal{
+				input ControlMsg(seq_buff, timeEmit);
+			}
+			com#input{
+				inst::Trickle.Node.ControlMsg
+			}
+			com#input_enabled{
+				inst::Trickle.Node.ControlMsg
+			}
+		}
+		transition< id:3 > cp_CTRL_EXPIR --> cp3 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (e == 2);
+					e := 2;
+					localPC := (localPC && (e == 2));
+					output Log(1, localTime);
+				}
+				{ |§|
+					disable#self;
+					enable#set cp3;
+					enable cp3;
+				}
+			}
+			opcode#family = basic | guard | output;
+			communication<final>{
+				output Log(TERMIN_CM, localTime);
+			}
+			com#internal{
+				output Log(TERMIN_CM, localTime);
+			}
+			com#output{
+				inst::Trickle.Node.Log
+			}
+		}
+		transition< id:4 > cp1_reach_k --> cp2 {
+		moe:
+			@run{ |§|
+				guard (cl == t);
+				localPC := (localPC && (cl == t));
+				guard ((c >= k) && (e < 2));
+				localPC := (localPC && (c >= k) && (e < 2));
+				disable#self;
+				enable#set cp2;
+			}
+			opcode#family = basic | guard;
+		}
+	moe:
+		@run{ |/\|
+			invoke#transition cp1.cp_sendCM;
+			invoke#transition cp1.cp1_receiveCM_consistent;
+			invoke#transition cp1.cp1_receiveCM_inconsistent;
+			invoke#transition cp1.cp_CTRL_EXPIR;
+			invoke#transition cp1.cp1_reach_k;
+		}
+		opcode#family = basic | guard | input | output;
+	}
+
+	#prototype executable< moc: simple % state , id:6, instanciation: [ 2, + ] > exec::Trickle.Node.ControlProcess.cp2 {
+	alias:
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[i] 'mydp_run[i]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = i;
+		}
+		var< id:9, ptr:mix > integer inst::Trickle.Node.seq_buff[i] 'seq_buff[i]' {
+			target = var< id:9, ptr:std > integer[ 2 ] inst::Trickle.Node.seq_buff;
+			value = i;
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[i] 'myseq_buff[i]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = i;
+		}
+	transition:
+		transition< id:0 > cp_resetTau --> cp1 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard ((cl > t) && (cl == tau));
+					localPC := (localPC && (cl > t) && (cl == tau));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					if ((2 * tau) <= tau_h)
+					{
+						tau := (2 * tau);
+					}
+					else
+					{
+						if ((2 * tau) > tau_h)
+						{
+							tau := tau_h;
+						}
+					}
+				}
+				{ |§|
+					newfresh(t)
+					guard (((tau / 2) <= t) && (t < tau));
+					localPC := (localPC && ((tau / 2) <= t) && (t < tau));
+					e := (e + 1);
+					cl := 0;
+					c := 0;
+					disable#self;
+					enable#set cp1;
+				}
+			}
+			opcode#family = basic | guard;
+		}
+		transition< id:1 > cp2_receiveCM_consistent --> cp2 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < tau);
+					localPC := (localPC && (cl < tau));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					input ControlMsg(seq_buff, timeEmit);
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					for( i := 0 ; (i < 2) ; i := (i + 1) )
+					{
+						if (myseq_buff[i] != seq_buff[i])
+						{ |;|
+							consistent := false;
+							if (! mydp_run[i])
+							{
+								mydp_run[i] := true;
+							}
+						}
+					}
+				}
+				{ |§|
+					guard consistent;
+					consistent := true;
+					c := (c + 1);
+					disable#self;
+					enable#set cp2;
+				}
+			}
+			opcode#family = basic | guard | input;
+			communication<final>{
+				input ControlMsg(seq_buff, timeEmit);
+			}
+			com#internal{
+				input ControlMsg(seq_buff, timeEmit);
+			}
+			com#input{
+				inst::Trickle.Node.ControlMsg
+			}
+			com#input_enabled{
+				inst::Trickle.Node.ControlMsg
+			}
+		}
+		transition< id:2 > cp2_receiveCM_inconsistent --> cp1 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < tau);
+					localPC := (localPC && (cl < tau));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					input ControlMsg(seq_buff, timeEmit);
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					for( i := 0 ; (i < 2) ; i := (i + 1) )
+					{
+						if (myseq_buff[i] != seq_buff[i])
+						{ |;|
+							consistent := false;
+							if (! mydp_run[i])
+							{
+								mydp_run[i] := true;
+							}
+						}
+					}
+				}
+				{ |§|
+					guard (! consistent);
+					consistent := false;
+					tau := tau_l;
+					newfresh(t)
+					guard (((tau / 2) <= t) && (t < tau));
+					localPC := (localPC && ((tau / 2) <= t) && (t < tau));
+					cl := 0;
+					c := 0;
+					e := 0;
+					disable#self;
+					enable#set cp1;
+				}
+			}
+			opcode#family = basic | guard | input;
+			communication<final>{
+				input ControlMsg(seq_buff, timeEmit);
+			}
+			com#internal{
+				input ControlMsg(seq_buff, timeEmit);
+			}
+			com#input{
+				inst::Trickle.Node.ControlMsg
+			}
+			com#input_enabled{
+				inst::Trickle.Node.ControlMsg
+			}
+		}
+	moe:
+		@run{ |/\|
+			invoke#transition cp2.cp_resetTau;
+			invoke#transition cp2.cp2_receiveCM_consistent;
+			invoke#transition cp2.cp2_receiveCM_inconsistent;
+		}
+		opcode#family = basic | guard | input;
+	}
+
+	#prototype executable< moc: final % state , id:7, instanciation: [ 2, + ] > exec::Trickle.Node.ControlProcess.cp3 {
+	moe:
+		@final{ |;|
+			process#state#set $this final;
+			final $parent;
+		}
+		@enable{
+			final $this;
+		}
+	}
+
+	#model executable< moc: or % statemachine , id:8, instanciation: [ 6, + ] > exec::Trickle.Node.DataProcess {
+		weak#lifeline = true;
+	parameter:
+		input parameter var< id:0, ptr:std > integer inst::Trickle.Node.DataProcess.mySeq 'mySeq';
+	variable:
+		public var< id:1, ptr:std > uinteger inst::Trickle.Node.DataProcess.e 'e';
+		public var< id:2, ptr:std > time< pos_rational > inst::Trickle.Node.DataProcess.tau 'tau';
+		public var< id:3, ptr:std > time< pos_rational > inst::Trickle.Node.DataProcess.tau_l 'tau_l';
+		public var< id:4, ptr:std > time< pos_rational > inst::Trickle.Node.DataProcess.tau_h 'tau_h';
+		var< id:5, ptr:std > uinteger inst::Trickle.Node.DataProcess.k 'k';
+		var< id:6, ptr:std > uinteger inst::Trickle.Node.DataProcess.c 'c';
+		var< id:7, ptr:std > uinteger inst::Trickle.Node.DataProcess.i 'i';
+		var< id:8, ptr:std > urational inst::Trickle.Node.DataProcess.t 't';
+		var< id:9, ptr:std > boolean inst::Trickle.Node.DataProcess.consistent 'consistent';
+		public volatile var< id:10, ptr:std > clock< pos_rational > inst::Trickle.Node.DataProcess.cl 'cl' {
+			value = 0;
+		}
+		var< id:11, ptr:std > DATA_MESSAGE inst::Trickle.Node.DataProcess.d 'd';
+	alias:
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(mySeq + -1)] 'my_buff[(mySeq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (mySeq + -1);
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(mySeq + -1)] 'my_buff[(mySeq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (mySeq + -1);
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(mySeq + -1)] 'my_buff[(mySeq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (mySeq + -1);
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(mySeq + -1)] 'my_buff[(mySeq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (mySeq + -1);
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+	model:
+		#model instance< id:0, multiplicity: [ 1 ], this > model::Trickle.Node.DataProcess.$this;
+	instance:
+		#static instance< id:0, multiplicity: [ 1 ], this > &exec::Trickle.Node.DataProcess model::Trickle.Node.DataProcess.$this {
+			//model = model::Trickle.Node.DataProcess.$this;
+		}
+		#prototype instance< id:1, multiplicity: [ + ] > prot::Trickle.Node.DataProcess.dp0;
+		#prototype instance< id:2, multiplicity: [ + ] > prot::Trickle.Node.DataProcess.dp1;
+		#prototype instance< id:3, multiplicity: [ + ] > prot::Trickle.Node.DataProcess.dp2;
+		#prototype instance< id:4, multiplicity: [ + ] > prot::Trickle.Node.DataProcess.dp3;
+	program:
+		macro routine< id:0 > routine::Trickle.Node.DataProcess.doubleTau {
+		moe:
+			@run{
+				if ((2 * tau) <= tau_h)
+				{
+					tau := (2 * tau);
+				}
+				else
+				{
+					if ((2 * tau) > tau_h)
+					{
+						tau := tau_h;
+					}
+				}
+			 }
+		opcode#family = basic;
+		}
+
+		macro routine< id:1 > routine::Trickle.Node.DataProcess.inputDataMsg {
+		moe:
+			@run{
+				if (mySeq == 1)
+				{
+					input DataMsg1(d, timeEmit);
+				}
+				else
+				{
+					input DataMsg2(d, timeEmit);
+				}
+			 }
+		opcode#family = input;
+		}
+
+		macro routine< id:2 > routine::Trickle.Node.DataProcess.outputDataMsg {
+		moe:
+			@run{
+				if (mySeq == 1)
+				{
+					output DataMsg1(my_buff[(mySeq + -1)], localTime);
+				}
+				else
+				{
+					if (mySeq == 2)
+					{
+						output DataMsg2(my_buff[(mySeq + -1)], localTime);
+					}
+				}
+			 }
+		opcode#family = output;
+		}
+
+		macro routine< id:3 > routine::Trickle.Node.DataProcess.outputLog {
+		moe:
+			@run{
+				if (mySeq == 1)
+				{
+					output Log(2, localTime);
+				}
+				else
+				{
+					if (mySeq == 2)
+					{
+						output Log(3, localTime);
+					}
+				}
+			 }
+		opcode#family = output;
+		}
+
+		macro routine< id:4 > routine::Trickle.Node.DataProcess.analyse_data {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					if (mySeq == 1)
+					{
+						input DataMsg1(d, timeEmit);
+					}
+					else
+					{
+						input DataMsg2(d, timeEmit);
+					}
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+				}
+				if (mySeq == d.seq)
+				{ |§|
+					my_buff[(d.seq + -1)] := d;
+					myseq_buff[(d.seq + -1)] := 1;
+					firmware[d.offset] := d.fragment;
+				}
+				else
+				{
+					consistent := false;
+				}
+			 }
+		opcode#family = basic | guard | input;
+		}
+
+		macro routine< id:5 > routine::Trickle.Node.DataProcess.analyse_dp1_consistent {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < t);
+					localPC := (localPC && (cl < t));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					if (mySeq == 1)
+					{
+						input DataMsg1(d, timeEmit);
+					}
+					else
+					{
+						input DataMsg2(d, timeEmit);
+					}
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					if (mySeq == d.seq)
+					{ |§|
+						my_buff[(d.seq + -1)] := d;
+						myseq_buff[(d.seq + -1)] := 1;
+						firmware[d.offset] := d.fragment;
+					}
+					else
+					{
+						consistent := false;
+					}
+				}
+				{ |§|
+					guard consistent;
+					consistent := true;
+					c := (c + 1);
+				}
+			 }
+		opcode#family = basic | guard | input;
+		}
+
+		macro routine< id:6 > routine::Trickle.Node.DataProcess.analyse_dp1_inconsistent {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < t);
+					localPC := (localPC && (cl < t));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					if (mySeq == 1)
+					{
+						input DataMsg1(d, timeEmit);
+					}
+					else
+					{
+						input DataMsg2(d, timeEmit);
+					}
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					if (mySeq == d.seq)
+					{ |§|
+						my_buff[(d.seq + -1)] := d;
+						myseq_buff[(d.seq + -1)] := 1;
+						firmware[d.offset] := d.fragment;
+					}
+					else
+					{
+						consistent := false;
+					}
+				}
+				{ |§|
+					guard (! consistent);
+					consistent := false;
+					tau := tau_l;
+					newfresh(t)
+					guard (((tau / 2) <= t) && (t < tau));
+					localPC := (localPC && ((tau / 2) <= t) && (t < tau));
+					cl := 0;
+					c := 0;
+					e := 0;
+				}
+			 }
+		opcode#family = basic | guard | input;
+		}
+
+		macro routine< id:7 > routine::Trickle.Node.DataProcess.analyse_dp2_consistent {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < tau);
+					localPC := (localPC && (cl < tau));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					if (mySeq == 1)
+					{
+						input DataMsg1(d, timeEmit);
+					}
+					else
+					{
+						input DataMsg2(d, timeEmit);
+					}
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					if (mySeq == d.seq)
+					{ |§|
+						my_buff[(d.seq + -1)] := d;
+						myseq_buff[(d.seq + -1)] := 1;
+						firmware[d.offset] := d.fragment;
+					}
+					else
+					{
+						consistent := false;
+					}
+				}
+				{ |§|
+					guard consistent;
+					consistent := true;
+					c := (c + 1);
+				}
+			 }
+		opcode#family = basic | guard | input;
+		}
+
+		macro routine< id:8 > routine::Trickle.Node.DataProcess.analyse_dp2_inconsistent {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < tau);
+					localPC := (localPC && (cl < tau));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					if (mySeq == 1)
+					{
+						input DataMsg1(d, timeEmit);
+					}
+					else
+					{
+						input DataMsg2(d, timeEmit);
+					}
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					if (mySeq == d.seq)
+					{ |§|
+						my_buff[(d.seq + -1)] := d;
+						myseq_buff[(d.seq + -1)] := 1;
+						firmware[d.offset] := d.fragment;
+					}
+					else
+					{
+						consistent := false;
+					}
+				}
+				{ |§|
+					guard (! consistent);
+					consistent := false;
+					tau := tau_l;
+					newfresh(t)
+					guard (((tau / 2) <= t) && (t < tau));
+					localPC := (localPC && ((tau / 2) <= t) && (t < tau));
+					cl := 0;
+					c := 0;
+					e := 0;
+				}
+			 }
+		opcode#family = basic | guard | input;
+		}
+
+	moe:
+		@create{
+			cl := 0;
+		}
+		@init{
+			init dp0;
+		}
+		@final{ |;|
+			process#state#set $this final;
+			final $parent;
+		}
+		@enable{
+			@comment "nop<enable> exec::Trickle.Node.DataProcess.dp0";
+		}
+		@disable{ |§|
+			disable#child;
+			disable#self;
+		}
+		@run{
+			schedule $self;
+		}
+		@schedule{
+			run dp0;
+		}
+		opcode#family = basic | guard | input | output;
+	}
+
+	#prototype executable< moc: start % state , id:9, instanciation: [ 5, + ] > exec::Trickle.Node.DataProcess.dp0 {
+	alias:
+		input parameter var< id:3, ptr:mix > boolean inst::Trickle.Node.mydp_run[(mySeq + -1)] 'mydp_run[(mySeq + -1)]' {
+			target = input parameter var< id:3, ptr:std > boolean[ 2 ] inst::Trickle.Node.mydp_run;
+			value = (mySeq + -1);
+		}
+	transition:
+		transition< id:0 > dp_init --> dp1 {
+		moe:
+			@run{ |§|
+				k := 2;
+				tau_l := 4;
+				tau_h := 8;
+				guard mydp_run[(mySeq + -1)];
+				mydp_run[(mySeq + -1)] := true;
+				tau := tau_l;
+				newfresh(t)
+				guard (((tau / 2) <= t) && (t < tau));
+				localPC := (localPC && ((tau / 2) <= t) && (t < tau));
+				cl := 0;
+				c := 0;
+				e := 0;
+				disable#self;
+				enable#set dp1;
+			}
+			opcode#family = basic | guard;
+		}
+	moe:
+		@run{
+			invoke#transition dp0.dp_init;
+		}
+		opcode#family = basic | guard;
+	}
+
+	#prototype executable< moc: simple % state , id:10, instanciation: [ 5, + ] > exec::Trickle.Node.DataProcess.dp1 {
+	alias:
+		input parameter var< id:0, ptr:mix > FRAGMENT inst::Trickle.Node.my_buff[(mySeq + -1)].fragment 'my_buff[(mySeq + -1)].fragment' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+		}
+		input parameter var< id:0, ptr:mix > FRAGMENT inst::Trickle.Node.my_buff[(mySeq + -1)].fragment 'my_buff[(mySeq + -1)].fragment' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(mySeq + -1)] 'my_buff[(mySeq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (mySeq + -1);
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(mySeq + -1)] 'my_buff[(mySeq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (mySeq + -1);
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+		input parameter var< id:0, ptr:mix > FRAGMENT inst::Trickle.Node.my_buff[(mySeq + -1)].fragment 'my_buff[(mySeq + -1)].fragment' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+		}
+		input parameter var< id:0, ptr:mix > FRAGMENT inst::Trickle.Node.my_buff[(mySeq + -1)].fragment 'my_buff[(mySeq + -1)].fragment' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+		}
+	transition:
+		transition< id:0 > dp_sendDM --> dp2 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl == t);
+					localPC := (localPC && (cl == t));
+					guard ((c < k) && (e < 2) && (my_buff[(mySeq + -1)].fragment != 0));
+					localPC := (localPC && (c < k) && (e < 2) && (my_buff[(mySeq + -1)].fragment != 0));
+					if (mySeq == 1)
+					{
+						output DataMsg1(my_buff[(mySeq + -1)], localTime);
+					}
+					else
+					{
+						if (mySeq == 2)
+						{
+							output DataMsg2(my_buff[(mySeq + -1)], localTime);
+						}
+					}
+				}
+				{ |§|
+					disable#self;
+					enable#set dp2;
+				}
+			}
+			opcode#family = basic | guard | output;
+		}
+		transition< id:1 > dp1_receiveDM_consistent --> dp1 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < t);
+					localPC := (localPC && (cl < t));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					if (mySeq == 1)
+					{
+						input DataMsg1(d, timeEmit);
+					}
+					else
+					{
+						input DataMsg2(d, timeEmit);
+					}
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					if (mySeq == d.seq)
+					{ |§|
+						my_buff[(d.seq + -1)] := d;
+						myseq_buff[(d.seq + -1)] := 1;
+						firmware[d.offset] := d.fragment;
+					}
+					else
+					{
+						consistent := false;
+					}
+				}
+				{ |§|
+					guard consistent;
+					consistent := true;
+					c := (c + 1);
+					disable#self;
+					enable#set dp1;
+				}
+			}
+			opcode#family = basic | guard | input;
+		}
+		transition< id:2 > dp1_receiveDM_inconsistent --> dp1 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < t);
+					localPC := (localPC && (cl < t));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					if (mySeq == 1)
+					{
+						input DataMsg1(d, timeEmit);
+					}
+					else
+					{
+						input DataMsg2(d, timeEmit);
+					}
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					if (mySeq == d.seq)
+					{ |§|
+						my_buff[(d.seq + -1)] := d;
+						myseq_buff[(d.seq + -1)] := 1;
+						firmware[d.offset] := d.fragment;
+					}
+					else
+					{
+						consistent := false;
+					}
+				}
+				{ |§|
+					guard (! consistent);
+					consistent := false;
+					tau := tau_l;
+					newfresh(t)
+					guard (((tau / 2) <= t) && (t < tau));
+					localPC := (localPC && ((tau / 2) <= t) && (t < tau));
+					cl := 0;
+					c := 0;
+					e := 0;
+					disable#self;
+					enable#set dp1;
+				}
+			}
+			opcode#family = basic | guard | input;
+		}
+		transition< id:3 > dp1_DATA_EXPIR --> dp3 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (e == 2);
+					e := 2;
+					localPC := (localPC && (e == 2));
+					if (mySeq == 1)
+					{
+						output Log(2, localTime);
+					}
+					else
+					{
+						if (mySeq == 2)
+						{
+							output Log(3, localTime);
+						}
+					}
+				}
+				{ |§|
+					disable#self;
+					enable#set dp3;
+					enable dp3;
+				}
+			}
+			opcode#family = basic | guard | output;
+		}
+		transition< id:4 > dp1_reach_k --> dp2 {
+		moe:
+			@run{ |§|
+				guard (cl == t);
+				localPC := (localPC && (cl == t));
+				guard (((c >= k) || (my_buff[(mySeq + -1)].fragment == 0)) && (e < 2));
+				localPC := (localPC && ((c >= k) || (my_buff[(mySeq + -1)].fragment == 0)) && (e < 2));
+				disable#self;
+				enable#set dp2;
+			}
+			opcode#family = basic | guard;
+		}
+	moe:
+		@run{ |/\|
+			invoke#transition dp1.dp_sendDM;
+			invoke#transition dp1.dp1_receiveDM_consistent;
+			invoke#transition dp1.dp1_receiveDM_inconsistent;
+			invoke#transition dp1.dp1_DATA_EXPIR;
+			invoke#transition dp1.dp1_reach_k;
+		}
+		opcode#family = basic | guard | input | output;
+	}
+
+	#prototype executable< moc: simple % state , id:11, instanciation: [ 5, + ] > exec::Trickle.Node.DataProcess.dp2 {
+	alias:
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+		input parameter var< id:0, ptr:mix > DATA_MESSAGE inst::Trickle.Node.my_buff[(d.seq + -1)] 'my_buff[(d.seq + -1)]' {
+			target = input parameter var< id:0, ptr:std > DATA_MESSAGE[ 2 ] inst::Trickle.Node.my_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:2, ptr:mix > integer inst::Trickle.Node.myseq_buff[(d.seq + -1)] 'myseq_buff[(d.seq + -1)]' {
+			target = input parameter var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Node.myseq_buff;
+			value = (d.seq + -1);
+		}
+		input parameter var< id:1, ptr:mix > FRAGMENT inst::Trickle.Node.firmware[d.offset] 'firmware[d.offset]' {
+			target = input parameter var< id:1, ptr:std > FRAGMENT[ 2 ] inst::Trickle.Node.firmware;
+			value = d.offset;
+		}
+	transition:
+		transition< id:0 > dp_resetTau --> dp1 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard ((cl > t) && (cl == tau));
+					localPC := (localPC && (cl > t) && (cl == tau));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					if ((2 * tau) <= tau_h)
+					{
+						tau := (2 * tau);
+					}
+					else
+					{
+						if ((2 * tau) > tau_h)
+						{
+							tau := tau_h;
+						}
+					}
+				}
+				{ |§|
+					newfresh(t)
+					guard (((tau / 2) <= t) && (t < tau));
+					localPC := (localPC && ((tau / 2) <= t) && (t < tau));
+					e := (e + 1);
+					cl := 0;
+					c := 0;
+					disable#self;
+					enable#set dp1;
+				}
+			}
+			opcode#family = basic | guard;
+		}
+		transition< id:1 > dp2_receiveDM_consistent --> dp2 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < tau);
+					localPC := (localPC && (cl < tau));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					if (mySeq == 1)
+					{
+						input DataMsg1(d, timeEmit);
+					}
+					else
+					{
+						input DataMsg2(d, timeEmit);
+					}
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					if (mySeq == d.seq)
+					{ |§|
+						my_buff[(d.seq + -1)] := d;
+						myseq_buff[(d.seq + -1)] := 1;
+						firmware[d.offset] := d.fragment;
+					}
+					else
+					{
+						consistent := false;
+					}
+				}
+				{ |§|
+					guard consistent;
+					consistent := true;
+					c := (c + 1);
+					disable#self;
+					enable#set dp2;
+				}
+			}
+			opcode#family = basic | guard | input;
+		}
+		transition< id:2 > dp2_receiveDM_inconsistent --> dp1 {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (cl < tau);
+					localPC := (localPC && (cl < tau));
+					guard (e < 2);
+					localPC := (localPC && (e < 2));
+					if (mySeq == 1)
+					{
+						input DataMsg1(d, timeEmit);
+					}
+					else
+					{
+						input DataMsg2(d, timeEmit);
+					}
+				}
+				{ |§|
+					guard (timeEmit <= localTime);
+					localPC := (localPC && (timeEmit <= localTime));
+					consistent := true;
+					if (mySeq == d.seq)
+					{ |§|
+						my_buff[(d.seq + -1)] := d;
+						myseq_buff[(d.seq + -1)] := 1;
+						firmware[d.offset] := d.fragment;
+					}
+					else
+					{
+						consistent := false;
+					}
+				}
+				{ |§|
+					guard (! consistent);
+					consistent := false;
+					tau := tau_l;
+					newfresh(t)
+					guard (((tau / 2) <= t) && (t < tau));
+					localPC := (localPC && ((tau / 2) <= t) && (t < tau));
+					cl := 0;
+					c := 0;
+					e := 0;
+					disable#self;
+					enable#set dp1;
+				}
+			}
+			opcode#family = basic | guard | input;
+		}
+	moe:
+		@run{ |/\|
+			invoke#transition dp2.dp_resetTau;
+			invoke#transition dp2.dp2_receiveDM_consistent;
+			invoke#transition dp2.dp2_receiveDM_inconsistent;
+		}
+		opcode#family = basic | guard | input;
+	}
+
+	#prototype executable< moc: final % state , id:12, instanciation: [ 5, + ] > exec::Trickle.Node.DataProcess.dp3 {
+	moe:
+		@final{ |;|
+			process#state#set $this final;
+			final $parent;
+		}
+		@enable{
+			final $this;
+		}
+	}
+
+	lifeline #prototype executable< moc: or % statemachine , id:13, instanciation: [ + ] > exec::Trickle.Observer {
+		weak#lifeline = true;
+	type:
+		type type::Trickle.Observer.integer[ 2 ] integer[ 2 ] {
+		property:
+			data_size = 3;   bit_size = 0;
+		}
+	variable:
+		var< id:0, ptr:std > integer inst::Trickle.Observer.uncoveredExit 'uncoveredExit' {
+			rid#container = run::pid_2:Trickle.Observer;
+			value = 0;
+		}
+		var< id:1, ptr:std > INFO_KIND inst::Trickle.Observer.mess 'mess' {
+			rid#container = run::pid_2:Trickle.Observer;
+		}
+		var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Observer.seqBuff 'seqBuff' {
+			rid#container = run::pid_2:Trickle.Observer;
+		}
+		var< id:3, ptr:std > DATA_MESSAGE inst::Trickle.Observer.dataMessage 'dataMessage' {
+			rid#container = run::pid_2:Trickle.Observer;
+		}
+	model:
+		lifeline #model instance< id:0, multiplicity: [ 1 ], this > model::Trickle.Observer.$this;
+	instance:
+		lifeline #static instance< id:0, multiplicity: [ 1 ], this > &exec::Trickle.Observer prot::Trickle.Observer.$this {
+			//model = model::Trickle.Observer.$this;
+		}
+		#prototype instance< id:1, multiplicity: [ + ] > prot::Trickle.Observer.startup {
+			rid#runtime = run::pid_3:Trickle.Observer.startup;
+		}
+		#prototype instance< id:2, multiplicity: [ + ] > prot::Trickle.Observer.o#0 {
+			rid#runtime = run::pid_4:Trickle.Observer.o#0;
+		}
+		#prototype instance< id:3, multiplicity: [ + ] > prot::Trickle.Observer.o#1 {
+			rid#runtime = run::pid_5:Trickle.Observer.o#1;
+		}
+		#prototype instance< id:4, multiplicity: [ + ] > prot::Trickle.Observer.o#2 {
+			rid#runtime = run::pid_6:Trickle.Observer.o#2;
+		}
+		#prototype instance< id:5, multiplicity: [ + ] > prot::Trickle.Observer.o#3 {
+			rid#runtime = run::pid_7:Trickle.Observer.o#3;
+		}
+		#prototype instance< id:6, multiplicity: [ + ] > prot::Trickle.Observer.o#4 {
+			rid#runtime = run::pid_8:Trickle.Observer.o#4;
+		}
+		#prototype instance< id:7, multiplicity: [ + ] > prot::Trickle.Observer.o#5 {
+			rid#runtime = run::pid_9:Trickle.Observer.o#5;
+		}
+		#prototype instance< id:8, multiplicity: [ + ] > prot::Trickle.Observer.o#6 {
+			rid#runtime = run::pid_10:Trickle.Observer.o#6;
+		}
+		#prototype instance< id:9, multiplicity: [ + ] > prot::Trickle.Observer.o#7 {
+			rid#runtime = run::pid_11:Trickle.Observer.o#7;
+		}
+		#prototype instance< id:10, multiplicity: [ + ] > prot::Trickle.Observer.o#8 {
+			rid#runtime = run::pid_12:Trickle.Observer.o#8;
+		}
+		#prototype instance< id:11, multiplicity: [ + ] > prot::Trickle.Observer.o#9 {
+			rid#runtime = run::pid_13:Trickle.Observer.o#9;
+		}
+		#prototype instance< id:12, multiplicity: [ + ] > prot::Trickle.Observer.o#10 {
+			rid#runtime = run::pid_14:Trickle.Observer.o#10;
+		}
+		#prototype instance< id:13, multiplicity: [ + ] > prot::Trickle.Observer.o#11 {
+			rid#runtime = run::pid_15:Trickle.Observer.o#11;
+		}
+		#prototype instance< id:14, multiplicity: [ + ] > prot::Trickle.Observer.PASS {
+			rid#runtime = run::pid_16:Trickle.Observer.PASS;
+		}
+		#prototype instance< id:15, multiplicity: [ + ] > prot::Trickle.Observer.FAILED {
+			rid#runtime = run::pid_17:Trickle.Observer.FAILED;
+		}
+	moe:
+		@create{
+			uncoveredExit := 0;
+		}
+		@init{
+			init startup;
+		}
+		@enable{
+			enable startup;
+		}
+		@disable{ |§|
+			disable#child;
+			disable#self;
+		}
+		@irun{
+			uncoveredExit := (uncoveredExit + 1);
+		}
+		@run{
+			schedule $self;
+		}
+		@schedule{
+			run startup;
+		}
+		opcode#family = guard | input | output;
+	}
+
+	#prototype executable< moc: initial % pseudostate , id:14, instanciation: [ * ] > exec::Trickle.Observer.startup {
+	transition:
+		transition< id:0 > o_startup --> o#0 {
+		moe:
+			@run{ |§|
+				disable#self;
+				enable#set o#0;
+				enable o#0;
+			}
+		}
+	moe:
+		@init{
+			run $self;
+		}
+		@enable{
+			run $self;
+		}
+		@run{
+			invoke#transition startup.o_startup;
+		}
+	}
+
+	#prototype executable< moc: simple % state , id:15, instanciation: [ * ] > exec::Trickle.Observer.o#0 {
+	alias:
+		public output port< id:3 , route:3 > alias::Trickle.n1.Log {
+			target = public output port< id:3 , route:3 > inst::Trickle.Node.Log[ parameter var< id:0, ptr:std > INFO_KIND information , parameter var< id:1, ptr:std > time< pos_rational > emit_time ];
+		path#machine:
+			inst::Trickle.n1
+		parameter:
+			parameter var< id:0, ptr:std > INFO_KIND information;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+	transition:
+		transition< id:0 > n1_out_Log --> o#1 {
+		moe:
+			@run{ |;|
+				@observe( ctx: Trickle ) {
+					output Log(mess);
+				} [ (mess == 0) ];
+				{ |§|
+					disable#self;
+					enable#set o#1;
+					enable o#1;
+				}
+			}
+			opcode#family = output;
+		}
+		transition< id:1, else > n1_out_Log_failed --> FAILED {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (uncoveredExit > 1);
+					exit "Unfound Trace point< output n1->Log >";
+				}
+				{ |§|
+					disable#self;
+					enable#set FAILED;
+					enable FAILED;
+				}
+			}
+			opcode#family = guard;
+		}
+	moe:
+		@enable{
+			uncoveredExit := 0;
+		}
+		@run{ |>|
+			invoke#transition o#0.n1_out_Log;
+			invoke#transition o#0.n1_out_Log_failed;
+		}
+		opcode#family = guard | output;
+	}
+
+	#prototype executable< moc: simple % state , id:16, instanciation: [ * ] > exec::Trickle.Observer.o#1 {
+	alias:
+		public output port< id:3 , route:3 > alias::Trickle.n2.Log {
+			target = public output port< id:3 , route:3 > inst::Trickle.Node.Log[ parameter var< id:0, ptr:std > INFO_KIND information , parameter var< id:1, ptr:std > time< pos_rational > emit_time ];
+		path#machine:
+			inst::Trickle.n2
+		parameter:
+			parameter var< id:0, ptr:std > INFO_KIND information;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+	transition:
+		transition< id:0 > n2_out_Log --> o#2 {
+		moe:
+			@run{ |;|
+				@observe( ctx: Trickle ) {
+					output Log(mess);
+				} [ (mess == 0) ];
+				{ |§|
+					disable#self;
+					enable#set o#2;
+					enable o#2;
+				}
+			}
+			opcode#family = output;
+		}
+		transition< id:1, else > n2_out_Log_failed --> FAILED {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (uncoveredExit > 1);
+					exit "Unfound Trace point< output n2->Log >";
+				}
+				{ |§|
+					disable#self;
+					enable#set FAILED;
+					enable FAILED;
+				}
+			}
+			opcode#family = guard;
+		}
+	moe:
+		@enable{
+			uncoveredExit := 0;
+		}
+		@run{ |>|
+			invoke#transition o#1.n2_out_Log;
+			invoke#transition o#1.n2_out_Log_failed;
+		}
+		opcode#family = guard | output;
+	}
+
+	#prototype executable< moc: simple % state , id:17, instanciation: [ * ] > exec::Trickle.Observer.o#2 {
+	alias:
+		public output port< id:3 , route:3 > alias::Trickle.n3.Log {
+			target = public output port< id:3 , route:3 > inst::Trickle.Node.Log[ parameter var< id:0, ptr:std > INFO_KIND information , parameter var< id:1, ptr:std > time< pos_rational > emit_time ];
+		path#machine:
+			inst::Trickle.n3
+		parameter:
+			parameter var< id:0, ptr:std > INFO_KIND information;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+	transition:
+		transition< id:0 > n3_out_Log --> o#3 {
+		moe:
+			@run{ |;|
+				@observe( ctx: Trickle ) {
+					output Log(mess);
+				} [ (mess == 0) ];
+				{ |§|
+					disable#self;
+					enable#set o#3;
+					enable o#3;
+				}
+			}
+			opcode#family = output;
+		}
+		transition< id:1, else > n3_out_Log_failed --> FAILED {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (uncoveredExit > 1);
+					exit "Unfound Trace point< output n3->Log >";
+				}
+				{ |§|
+					disable#self;
+					enable#set FAILED;
+					enable FAILED;
+				}
+			}
+			opcode#family = guard;
+		}
+	moe:
+		@enable{
+			uncoveredExit := 0;
+		}
+		@run{ |>|
+			invoke#transition o#2.n3_out_Log;
+			invoke#transition o#2.n3_out_Log_failed;
+		}
+		opcode#family = guard | output;
+	}
+
+	#prototype executable< moc: simple % state , id:18, instanciation: [ * ] > exec::Trickle.Observer.o#3 {
+	alias:
+		var< id:2, ptr:ufi, mem:[ 2 , 0 ] > integer inst::Trickle.Observer.seqBuff[0] 'seqBuff[0]' {
+			target = var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Observer.seqBuff;
+		}
+		var< id:2, ptr:ufi, mem:[ 2 , 1 ] > integer inst::Trickle.Observer.seqBuff[1] 'seqBuff[1]' {
+			target = var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Observer.seqBuff;
+		}
+
+		public inout port< id:0 , route:0 > alias::Trickle.n1.ControlMsg {
+			target = public inout port< id:0 , route:0 > inst::Trickle.Node.ControlMsg[ parameter var< id:0, ptr:std > integer[ 2 ] seqBuff , parameter var< id:1, ptr:std > time< pos_rational > emit_time ];
+		path#machine:
+			inst::Trickle.n1
+		parameter:
+			parameter var< id:0, ptr:std > integer[ 2 ] seqBuff;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+	transition:
+		transition< id:0 > n1_out_CM --> o#4 {
+		moe:
+			@run{ |;|
+				@observe( ctx: Trickle ) {
+					output ControlMsg(seqBuff);
+				} [ ((seqBuff[0] == 1) && (seqBuff[1] == 1)) ];
+				{ |§|
+					disable#self;
+					enable#set o#4;
+					enable o#4;
+				}
+			}
+			opcode#family = output;
+		}
+		transition< id:1, else > n1_out_CM_failed --> FAILED {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (uncoveredExit > 1);
+					exit "Unfound Trace point< output n4->ControlMsg >";
+				}
+				{ |§|
+					disable#self;
+					enable#set FAILED;
+					enable FAILED;
+				}
+			}
+			opcode#family = guard;
+		}
+	moe:
+		@enable{
+			uncoveredExit := 0;
+		}
+		@run{ |>|
+			invoke#transition o#3.n1_out_CM;
+			invoke#transition o#3.n1_out_CM_failed;
+		}
+		opcode#family = guard | output;
+	}
+
+	#prototype executable< moc: simple % state , id:19, instanciation: [ * ] > exec::Trickle.Observer.o#4 {
+	alias:
+		var< id:2, ptr:ufi, mem:[ 2 , 0 ] > integer inst::Trickle.Observer.seqBuff[0] 'seqBuff[0]' {
+			target = var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Observer.seqBuff;
+		}
+		var< id:2, ptr:ufi, mem:[ 2 , 1 ] > integer inst::Trickle.Observer.seqBuff[1] 'seqBuff[1]' {
+			target = var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Observer.seqBuff;
+		}
+
+		public inout port< id:0 , route:0 > alias::Trickle.n2.ControlMsg {
+			target = public inout port< id:0 , route:0 > inst::Trickle.Node.ControlMsg[ parameter var< id:0, ptr:std > integer[ 2 ] seqBuff , parameter var< id:1, ptr:std > time< pos_rational > emit_time ];
+		path#machine:
+			inst::Trickle.n2
+		parameter:
+			parameter var< id:0, ptr:std > integer[ 2 ] seqBuff;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+	transition:
+		transition< id:0 > n2_in_CM --> o#5 {
+		moe:
+			@run{ |;|
+				@observe( ctx: Trickle ) {
+					input ControlMsg(seqBuff);
+				} [ ((seqBuff[0] == 1) && (seqBuff[1] == 1)) ];
+				{ |§|
+					disable#self;
+					enable#set o#5;
+					enable o#5;
+				}
+			}
+			opcode#family = input;
+		}
+		transition< id:1, else > n2_in_CM_failed --> FAILED {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (uncoveredExit > 1);
+					exit "Unfound Trace point< input n2->ControlMsg >";
+				}
+				{ |§|
+					disable#self;
+					enable#set FAILED;
+					enable FAILED;
+				}
+			}
+			opcode#family = guard;
+		}
+	moe:
+		@enable{
+			uncoveredExit := 0;
+		}
+		@run{ |>|
+			invoke#transition o#4.n2_in_CM;
+			invoke#transition o#4.n2_in_CM_failed;
+		}
+		opcode#family = guard | input;
+	}
+
+	#prototype executable< moc: simple % state , id:20, instanciation: [ * ] > exec::Trickle.Observer.o#5 {
+	alias:
+		var< id:2, ptr:ufi, mem:[ 2 , 0 ] > integer inst::Trickle.Observer.seqBuff[0] 'seqBuff[0]' {
+			target = var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Observer.seqBuff;
+		}
+		var< id:2, ptr:ufi, mem:[ 2 , 1 ] > integer inst::Trickle.Observer.seqBuff[1] 'seqBuff[1]' {
+			target = var< id:2, ptr:std > integer[ 2 ] inst::Trickle.Observer.seqBuff;
+		}
+
+		public inout port< id:0 , route:0 > alias::Trickle.n3.ControlMsg {
+			target = public inout port< id:0 , route:0 > inst::Trickle.Node.ControlMsg[ parameter var< id:0, ptr:std > integer[ 2 ] seqBuff , parameter var< id:1, ptr:std > time< pos_rational > emit_time ];
+		path#machine:
+			inst::Trickle.n3
+		parameter:
+			parameter var< id:0, ptr:std > integer[ 2 ] seqBuff;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+	transition:
+		transition< id:0 > n3_in_CM --> o#6 {
+		moe:
+			@run{ |;|
+				@observe( ctx: Trickle ) {
+					input ControlMsg(seqBuff);
+				} [ ((seqBuff[0] == 1) && (seqBuff[1] == 1)) ];
+				{ |§|
+					disable#self;
+					enable#set o#6;
+					enable o#6;
+				}
+			}
+			opcode#family = input;
+		}
+		transition< id:1, else > n3_in_CM_failed --> FAILED {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (uncoveredExit > 1);
+					exit "Unfound Trace point< output n3->ControlMsg >";
+				}
+				{ |§|
+					disable#self;
+					enable#set FAILED;
+					enable FAILED;
+				}
+			}
+			opcode#family = guard;
+		}
+	moe:
+		@enable{
+			uncoveredExit := 0;
+		}
+		@run{ |>|
+			invoke#transition o#5.n3_in_CM;
+			invoke#transition o#5.n3_in_CM_failed;
+		}
+		opcode#family = guard | input;
+	}
+
+	#prototype executable< moc: simple % state , id:21, instanciation: [ * ] > exec::Trickle.Observer.o#6 {
+	alias:
+		public inout port< id:1 , route:1 > alias::Trickle.n1.DataMsg1 {
+			target = public inout port< id:1 , route:1 > inst::Trickle.Node.DataMsg1[ parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage , parameter var< id:1, ptr:std > time< pos_rational > emit_time ];
+		path#machine:
+			inst::Trickle.n1
+		parameter:
+			parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+	transition:
+		transition< id:0 > n1_out_DM1 --> o#7 {
+		moe:
+			@run{ |;|
+				@observe( ctx: Trickle ) {
+					output DataMsg1(dataMessage);
+				} [ (dataMessage.seq == 1) ];
+				{ |§|
+					disable#self;
+					enable#set o#7;
+					enable o#7;
+				}
+			}
+			opcode#family = output;
+		}
+		transition< id:1, else > n1_out_DM1_failed --> FAILED {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (uncoveredExit > 3);
+					exit "Unfound Trace point< output n1->DataMsg1 >";
+				}
+				{ |§|
+					disable#self;
+					enable#set FAILED;
+					enable FAILED;
+				}
+			}
+			opcode#family = guard;
+		}
+	moe:
+		@enable{
+			uncoveredExit := 0;
+		}
+		@run{ |>|
+			invoke#transition o#6.n1_out_DM1;
+			invoke#transition o#6.n1_out_DM1_failed;
+		}
+		opcode#family = guard | output;
+	}
+
+	#prototype executable< moc: simple % state , id:22, instanciation: [ * ] > exec::Trickle.Observer.o#7 {
+	alias:
+		public inout port< id:1 , route:1 > alias::Trickle.n2.DataMsg1 {
+			target = public inout port< id:1 , route:1 > inst::Trickle.Node.DataMsg1[ parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage , parameter var< id:1, ptr:std > time< pos_rational > emit_time ];
+		path#machine:
+			inst::Trickle.n2
+		parameter:
+			parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+	transition:
+		transition< id:0 > n2_in_DM1 --> o#8 {
+		moe:
+			@run{ |;|
+				@observe( ctx: Trickle ) {
+					input DataMsg1(dataMessage);
+				} [ (dataMessage.seq == 1) ];
+				{ |§|
+					disable#self;
+					enable#set o#8;
+					enable o#8;
+				}
+			}
+			opcode#family = input;
+		}
+		transition< id:1, else > n2_in_DM1_failed --> FAILED {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (uncoveredExit > 3);
+					exit "Unfound Trace point< input n2->DataMsg1 >";
+				}
+				{ |§|
+					disable#self;
+					enable#set FAILED;
+					enable FAILED;
+				}
+			}
+			opcode#family = guard;
+		}
+	moe:
+		@enable{
+			uncoveredExit := 0;
+		}
+		@run{ |>|
+			invoke#transition o#7.n2_in_DM1;
+			invoke#transition o#7.n2_in_DM1_failed;
+		}
+		opcode#family = guard | input;
+	}
+
+	#prototype executable< moc: simple % state , id:23, instanciation: [ * ] > exec::Trickle.Observer.o#8 {
+	alias:
+		public inout port< id:1 , route:1 > alias::Trickle.n3.DataMsg1 {
+			target = public inout port< id:1 , route:1 > inst::Trickle.Node.DataMsg1[ parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage , parameter var< id:1, ptr:std > time< pos_rational > emit_time ];
+		path#machine:
+			inst::Trickle.n3
+		parameter:
+			parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+	transition:
+		transition< id:0 > n3_in_DM1 --> o#9 {
+		moe:
+			@run{ |;|
+				@observe( ctx: Trickle ) {
+					input DataMsg1(dataMessage);
+				} [ (dataMessage.seq == 1) ];
+				{ |§|
+					disable#self;
+					enable#set o#9;
+					enable o#9;
+				}
+			}
+			opcode#family = input;
+		}
+		transition< id:1, else > n3_in_DM1_failed --> FAILED {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (uncoveredExit > 3);
+					exit "Unfound Trace point< input n3->DataMsg1 >";
+				}
+				{ |§|
+					disable#self;
+					enable#set FAILED;
+					enable FAILED;
+				}
+			}
+			opcode#family = guard;
+		}
+	moe:
+		@enable{
+			uncoveredExit := 0;
+		}
+		@run{ |>|
+			invoke#transition o#8.n3_in_DM1;
+			invoke#transition o#8.n3_in_DM1_failed;
+		}
+		opcode#family = guard | input;
+	}
+
+	#prototype executable< moc: simple % state , id:24, instanciation: [ * ] > exec::Trickle.Observer.o#9 {
+	alias:
+		public inout port< id:2 , route:2 > alias::Trickle.n1.DataMsg2 {
+			target = public inout port< id:2 , route:2 > inst::Trickle.Node.DataMsg2[ parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage , parameter var< id:1, ptr:std > time< pos_rational > emit_time ];
+		path#machine:
+			inst::Trickle.n1
+		parameter:
+			parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+	transition:
+		transition< id:0 > n1_out_DM2 --> o#10 {
+		moe:
+			@run{ |;|
+				@observe( ctx: Trickle ) {
+					output DataMsg2(dataMessage);
+				} [ (dataMessage.seq == 2) ];
+				{ |§|
+					disable#self;
+					enable#set o#10;
+					enable o#10;
+				}
+			}
+			opcode#family = output;
+		}
+		transition< id:1, else > n1_out_DM1_failed --> FAILED {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (uncoveredExit > 3);
+					exit "Unfound Trace point< output n1->DataMsg2 >";
+				}
+				{ |§|
+					disable#self;
+					enable#set FAILED;
+					enable FAILED;
+				}
+			}
+			opcode#family = guard;
+		}
+	moe:
+		@enable{
+			uncoveredExit := 0;
+		}
+		@run{ |>|
+			invoke#transition o#9.n1_out_DM2;
+			invoke#transition o#9.n1_out_DM1_failed;
+		}
+		opcode#family = guard | output;
+	}
+
+	#prototype executable< moc: simple % state , id:25, instanciation: [ * ] > exec::Trickle.Observer.o#10 {
+	alias:
+		public inout port< id:2 , route:2 > alias::Trickle.n2.DataMsg2 {
+			target = public inout port< id:2 , route:2 > inst::Trickle.Node.DataMsg2[ parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage , parameter var< id:1, ptr:std > time< pos_rational > emit_time ];
+		path#machine:
+			inst::Trickle.n2
+		parameter:
+			parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+	transition:
+		transition< id:0 > n2_in_DM2 --> o#11 {
+		moe:
+			@run{ |;|
+				@observe( ctx: Trickle ) {
+					input DataMsg2(dataMessage);
+				} [ (dataMessage.seq == 2) ];
+				{ |§|
+					disable#self;
+					enable#set o#11;
+					enable o#11;
+				}
+			}
+			opcode#family = input;
+		}
+		transition< id:1, else > n2_in_DM1_failed --> FAILED {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (uncoveredExit > 3);
+					exit "Unfound Trace point< input n2->DataMsg2 >";
+				}
+				{ |§|
+					disable#self;
+					enable#set FAILED;
+					enable FAILED;
+				}
+			}
+			opcode#family = guard;
+		}
+	moe:
+		@enable{
+			uncoveredExit := 0;
+		}
+		@run{ |>|
+			invoke#transition o#10.n2_in_DM2;
+			invoke#transition o#10.n2_in_DM1_failed;
+		}
+		opcode#family = guard | input;
+	}
+
+	#prototype executable< moc: simple % state , id:26, instanciation: [ * ] > exec::Trickle.Observer.o#11 {
+	alias:
+		public inout port< id:2 , route:2 > alias::Trickle.n3.DataMsg2 {
+			target = public inout port< id:2 , route:2 > inst::Trickle.Node.DataMsg2[ parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage , parameter var< id:1, ptr:std > time< pos_rational > emit_time ];
+		path#machine:
+			inst::Trickle.n3
+		parameter:
+			parameter var< id:0, ptr:std > DATA_MESSAGE dataMessage;
+			parameter var< id:1, ptr:std > time< pos_rational > emit_time;
+		}
+	transition:
+		transition< id:0 > n3_in_DM2 --> PASS {
+		moe:
+			@run{ |;|
+				@observe( ctx: Trickle ) {
+					input DataMsg2(dataMessage);
+				} [ (dataMessage.seq == 2) ];
+				{ |§|
+					disable#self;
+					enable#set PASS;
+					enable PASS;
+				}
+			}
+			opcode#family = input;
+		}
+		transition< id:1, else > n3_in_DM2_failed --> FAILED {
+		moe:
+			@run{ |;|
+				{ |§|
+					guard (uncoveredExit > 3);
+					exit "Unfound Trace point< input n3->DataMsg2 >";
+				}
+				{ |§|
+					disable#self;
+					enable#set FAILED;
+					enable FAILED;
+				}
+			}
+			opcode#family = guard;
+		}
+	moe:
+		@enable{
+			uncoveredExit := 0;
+		}
+		@run{ |>|
+			invoke#transition o#11.n3_in_DM2;
+			invoke#transition o#11.n3_in_DM2_failed;
+		}
+		opcode#family = guard | input;
+	}
+
+	#prototype executable< moc: final % state , id:27, instanciation: [ * ] > exec::Trickle.Observer.PASS {
+	moe:
+		@final{ |;|
+			exit;
+			process#state#set $this final;
+			final $parent;
+		}
+		@enable{
+			final $this;
+		}
+	}
+
+	#prototype executable< moc: final % state , id:28, instanciation: [ * ] > exec::Trickle.Observer.FAILED {
+	moe:
+		@final{ |;|
+			process#state#set $this final;
+			final $parent;
+		}
+		@enable{
+			final $this;
+		}
+	}
+
+// }

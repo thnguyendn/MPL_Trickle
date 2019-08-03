@@ -1,0 +1,31 @@
+@startuml
+
+skinparam note{
+	BackgroundColor White
+	BorderColor White
+}
+
+skinparam BackgroundColor transparent
+
+box "Trickle" #transparent
+participant "n1" as n1
+participant "n2" as n2
+participant "n3" as n3
+end box
+
+== PATH 1 ec< 2113 > ==
+<[#black]- n1 : Log ! INIT @z_3
+<[#black]- n2 : Log ! INIT @z_7
+<[#black]- n3 : Log ! INIT @z_14
+n1 -[#3cb44b]> n2 : <font color = #3cb44b> ControlMsg ! [ 1 , \n<font color = #3cb44b>1 ] @(z_24 + z_3)
+n1 -[#3cb44b]> n3 : <font color = #3cb44b> ControlMsg ! [ 1 , 1 ]\n<font color = #3cb44b> @(z_24 + z_3)
+n2 -[#3cb44b]> n2 : <font color = #3cb44b> \n<font color = #3cb44b>ControlMsg ? [ 1 , 1 ] @(z_34 + z_7)
+n3 -[#3cb44b]> n3 : <font color = #3cb44b> \n<font color = #3cb44b>ControlMsg ? [ 1 , 1 ] @(z_14 + z_53)
+n1 -[#4363d8]> n2 : <font color = #4363d8> DataMsg1 ! { 1 , \n<font color = #4363d8>FRAGMENT_0 , 0 } @(z_129 + z_24 + z_3 + z_72)
+n2 -[#4363d8]> n2 : <font color = #4363d8> DataMsg1 \n<font color = #4363d8>? { 1 , FRAGMENT_0 , 0 } @(z_139 + z_184 + z_34 + \n<font color = #4363d8>z_43 + z_7)
+<[#black]- n3 : Log ! TERMIN_CM @(z_14 + z_197 + \n<font color = #e6194b>z_200 + z_257 + z_53 + z_572 + z_575)
+<[#black]- n3 : Log ! TERMIN_DM1 @(z_14 + z_197 + \n<font color = #e6194b>z_200 + z_257 + z_53 + z_572 + z_575 + z_605 + \n<font color = #e6194b>z_608 + z_632 + z_635 + z_659 + z_662)
+<[#black]- n3 : Log ! TERMIN_DM2 @(z_14 + z_197 + \n<font color = #e6194b>z_200 + z_257 + z_53 + z_572 + z_575 + z_605 + \n<font color = #e6194b>z_608 + z_632 + z_635 + z_659 + z_662 + z_686 + \n<font color = #e6194b>z_689 + z_710 + z_713 + z_734 + z_737)
+
+
+@enduml
