@@ -406,7 +406,7 @@ system< and > Trickle {
 				
 			}
 		}
-		
+	
 	// Declaration of different instances of Data Process in the network
 	// In this example, we suppose that there are two Data Process which
 	// represent two Data Messages to be transmitted in the network

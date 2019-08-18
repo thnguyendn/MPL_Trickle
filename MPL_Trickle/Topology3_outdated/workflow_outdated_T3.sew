@@ -17,7 +17,7 @@ workflow {
 		] // end manifest
 		project 'path of input model' [
 			source = "."
-			model  = "MPL_T3.xlia"
+			model  = "MPL_T3_outdated.xlia"
 		] // end project
 		supervisor {
 			limit 'of graph exploration' [

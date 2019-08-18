@@ -17,7 +17,7 @@ workflow {
 		] // end manifest
 		project 'path of input model' [
 			source = "."
-			model  = "MPL_T1_1buffer_updated.xlia"
+			model  = "MPL_T1_updated.xlia"
 		] // end project
 		supervisor {
 			limit 'of graph exploration' [
@@ -107,7 +107,15 @@ workflow {
 					line#wrap#width = '[*]';
 					
 					variable = 'n3.localPC'
-					variable = 'n3.localPtC'
+//					variable = 'n3.localPtC'
+					
+					variable = 'n1.localTime'
+					
+					variable = 'n2.localTime'
+					
+					variable = 'n3.localTime'
+					
+					variable = 'n4.localTime'
 
 //					path#condition = '[*]'
 //					path#timed#condition = '[*]'

@@ -76,13 +76,13 @@ TRACE NUMBER 1
 	fired transition o#13:n3_out_DM2
 	delta = 16/9
 	output dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 })
-	fired transition dp2:dp_resetTau
-	delta = 2
 	fired transition cp1:cp1_receiveCM_inconsistent
 	delta = 1/9
 	input  cp1:ControlMsg([ 1 , 1 ])
 	fired transition dp0:dp_init
-	delta = 5/3
+	delta = 1/9
+	fired transition dp0:dp_init
+	delta = 14/9
 	fired transition dp1:dp1_receiveDM_consistent
 	fired transition o#14:n4_in_DM2
 	delta = 1/9
@@ -91,11 +91,6 @@ TRACE NUMBER 1
 	fired transition o#15:n3_out_DM1
 	delta = 1/9
 	output dp1:DataMsg1({ 1 , FRAGMENT_0 , 0 })
-	fired transition dp1:dp_sendDM
-	delta = 4
-	output dp1:DataMsg2({ 2 , FRAGMENT_1 , 1 })
-	fired transition dp0:dp_init
-	delta = 1/9
 	fired transition dp1:dp1_receiveDM_consistent
 	fired transition o#16:n4_in_DM1
 	delta = 1/9
